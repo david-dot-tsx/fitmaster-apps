@@ -1,7 +1,29 @@
 {
-  "eslint.workingDirectories": [
-    {
-      "mode": "auto"
-    }
-  ]
+  // Set Prettier as the default formatter
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+
+  // Language-specific settings (important in a monorepo)
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "eslint.validate": ["javascript", "javascriptreact", "typescript", "typescriptreact"],
+  // ESLint optimization for a monorepo
+  "eslint.workingDirectories": [{ "mode": "auto" }],
+
+  // Automatically fix ESLint issues on save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.addMissingImports": "explicit"
+  },
+
+  // Hide noisy folders in the explorer (optional)
+  "files.exclude": {
+    "**/.turbo": true,
+    "**/node_modules": true,
+    "**/.expo": true
+  }
 }

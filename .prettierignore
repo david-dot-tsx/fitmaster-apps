@@ -1,0 +1,22 @@
+node_modules/
+.turbo/
+.next/
+out/
+dist/
+build/
+coverage/
+
+.expo/
+web-build/
+ios/
+android/
+
+.vercel/
+.pnpm-store/
+
+pnpm-lock.yaml
+package-lock.json
+*.tsbuildinfo
+
+# One-time template script (kept in repo, but not formatted)
+**/scripts/*.js
