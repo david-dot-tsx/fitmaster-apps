@@ -24,6 +24,17 @@
   "files.exclude": {
     "**/.turbo": true,
     "**/node_modules": true,
-    "**/.expo": true
+    "**/.expo": true,
+    "**/.next": true,
+    "apps/**/.next": true,
+    "apps/**/.vscode": true,
+    "apps/**/.expo": true,
+    "apps/**/.turbo": true,
+    "apps/**/node_modules": true,
+    "apps/**/dist": true,
+    "apps/**/build": true,
+    "apps/**/coverage": true,
+    "apps/**/out": true,
+    "apps/**/web-build": true
   }
 }

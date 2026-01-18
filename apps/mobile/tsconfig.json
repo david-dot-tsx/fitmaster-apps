@@ -2,7 +2,7 @@
   "extends": ["@repo/typescript-config/expo.json", "expo/tsconfig.base"],
   "compilerOptions": {
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./src/*", "./*"]
     }
   },
   "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
