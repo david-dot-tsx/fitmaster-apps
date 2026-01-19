@@ -40,14 +40,14 @@ export default function Home(): ReactElement {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-        <div className="flex flex-row bg-purple-500 *:m-2 *:border-2 *:border-red-500 *:p-2 hover:*:bg-red-500">
-          <div className="flex">
-            2*2=4
-          </div>
-          <div className="flex">
-            2*2=4
-          </div>
-        </div>
+    <div className="flex flex-row bg-purple-500 *:m-2 *:border-2 *:border-red-500 *:p-2 hover:*:bg-red-500">
+      <div className="flex">
+        2*2=4
+      </div>
+      <div className="flex">
+        2*2=4
+      </div>
+    </div>
         <div className={styles.ctas}>
           <a
             className={styles.primary}
