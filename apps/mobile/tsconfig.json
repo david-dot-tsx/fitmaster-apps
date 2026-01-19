@@ -1,9 +1,20 @@
 {
-  "extends": ["@repo/typescript-config/expo.json", "expo/tsconfig.base"],
+  "extends": [
+    "@repo/typescript-config/expo.json",
+    "expo/tsconfig.base"
+  ],
   "compilerOptions": {
     "paths": {
-      "@/*": ["./src/*", "./*"]
+      "@/*": [
+        "./src/*",
+      ]
     }
   },
-  "include": ["**/*.ts", "**/*.tsx", ".expo/types/**/*.ts", "expo-env.d.ts"]
+  "include": [
+    "**/*.ts",
+    "**/*.tsx",
+    ".expo/types/**/*.ts",
+    "expo-env.d.ts",
+    "nativewind-env.d.ts"
+  ]
 }
