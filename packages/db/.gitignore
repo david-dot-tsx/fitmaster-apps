@@ -1,0 +1,19 @@
+node_modules
+dist
+
+# Keep environment variables out of version control
+.env
+.env.local
+.env.*.local
+
+# Prisma generated files
+/generated/prisma
+
+# Database files
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
+# Testing
+coverage

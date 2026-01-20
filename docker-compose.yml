@@ -1,0 +1,27 @@
+services:
+  db:
+    image: postgres:16-alpine 
+    container_name: fitmaster-db
+    restart: always
+    environment:
+      POSTGRES_USER: devuser
+      POSTGRES_PASSWORD: devpassword
+      POSTGRES_DB: fitmaster_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin: # Opcjonalnie: Graficzny interfejs do bazy w przeglądarce
+    image: dpage/pgadmin4
+    container_name: fitmaster-pgadmin
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "5050:80"
+    depends_on:
+      - db
+
+volumes:
+  postgres_data:
