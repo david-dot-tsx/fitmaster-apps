@@ -48,13 +48,19 @@ expo-env.d.ts
 
 # Debug
 npm-debug.log*
+pnpm-debug.log*
+lerna-debug.log*
 yarn-debug.log*
 yarn-error.log*
+*.log
+*.pid
+*.pid.lock
 
 # TypeScript
 *.tsbuildinfo
 
 # Misc
 .DS_Store
+Thumbs.db
 *.pem
 app-example

@@ -1,9 +1,6 @@
-import js from "@eslint/js";
 import { globalIgnores } from "eslint/config";
-import eslintConfigPrettier from "eslint-config-prettier";
-import tseslint from "typescript-eslint";
-import pluginReactHooks from "eslint-plugin-react-hooks";
-import pluginReact from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
+import reactPlugin from "eslint-plugin-react";
 import globals from "globals";
 import pluginNext from "@next/eslint-plugin-next";
 import { config as baseConfig } from "./base.js";
@@ -15,9 +12,6 @@ import { config as baseConfig } from "./base.js";
  * */
 export const nextJsConfig = [
   ...baseConfig,
-  js.configs.recommended,
-  eslintConfigPrettier,
-  ...tseslint.configs.recommended,
   globalIgnores([
     // Default ignores of eslint-config-next:
     ".next/**",
@@ -26,9 +20,9 @@ export const nextJsConfig = [
     "next-env.d.ts",
   ]),
   {
-    ...pluginReact.configs.flat.recommended,
+    ...reactPlugin.configs.flat.recommended,
     languageOptions: {
-      ...pluginReact.configs.flat.recommended.languageOptions,
+      ...reactPlugin.configs.flat.recommended.languageOptions,
       globals: {
         ...globals.serviceworker,
       },
@@ -45,11 +39,14 @@ export const nextJsConfig = [
   },
   {
     plugins: {
-      "react-hooks": pluginReactHooks,
+      "react-hooks": reactHooksPlugin,
     },
-    settings: { react: { version: "detect" } },
+    settings: {
+      react: { version: "detect" },
+      "import/internal-regex": "^(@repo/|@/)",
+    },
     rules: {
-      ...pluginReactHooks.configs.recommended.rules,
+      ...reactHooksPlugin.configs.recommended.rules,
       // React scope no longer necessary with new JSX transform.
       "react/react-in-jsx-scope": "off",
     },

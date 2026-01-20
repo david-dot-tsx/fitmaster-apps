@@ -1,5 +1,8 @@
+import { type ReactElement } from "react";
 import Image, { type ImageProps } from "next/image";
+
 import { Button } from "@repo/ui/button";
+
 import styles from "./page.module.css";
 
 type Props = Omit<ImageProps, "src"> & {
@@ -18,7 +21,7 @@ const ThemeImage = (props: Props) => {
   );
 };
 
-export default function Home() {
+export default function Home(): ReactElement {
   return (
     <div className={styles.page}>
       <main className={styles.main}>
@@ -37,7 +40,14 @@ export default function Home() {
           </li>
           <li>Save and see your changes instantly.</li>
         </ol>
-
+        <div className="flex flex-row bg-purple-500 *:m-2 *:border-2 *:border-red-500 *:p-2 hover:*:bg-red-500">
+          <div className="flex">
+            2*2=4
+          </div>
+          <div className="flex">
+            2*2=4
+          </div>
+        </div>
         <div className={styles.ctas}>
           <a
             className={styles.primary}
@@ -73,13 +83,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
+          <Image aria-hidden src="/window.svg" alt="Window icon" width={16} height={16} />
           Examples
         </a>
         <a
@@ -87,13 +91,7 @@ export default function Home() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
+          <Image aria-hidden src="/globe.svg" alt="Globe icon" width={16} height={16} />
           Go to turborepo.com →
         </a>
       </footer>
