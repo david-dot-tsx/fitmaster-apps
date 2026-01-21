@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { publicProcedure, router } from "@/trpc.js";
+import { publicProcedure, router } from "@/trpc";
 
 export const userRouter = router({
   list: publicProcedure.query(async ({ ctx }) => {
@@ -8,7 +8,6 @@ export const userRouter = router({
       select: {
         id: true,
         email: true,
-        name: true,
       },
     });
 
@@ -18,7 +17,7 @@ export const userRouter = router({
   getById: publicProcedure
     .input(
       z.object({
-        id: z.number(),
+        id: z.string(),
       }),
     )
     .query(async ({ ctx, input }) => {
@@ -27,7 +26,7 @@ export const userRouter = router({
         select: {
           id: true,
           email: true,
-          name: true,
+          role: true,
         },
       });
 
@@ -42,19 +41,19 @@ export const userRouter = router({
     .input(
       z.object({
         email: z.string().email(),
-        name: z.string().optional(),
+        role: z.enum(["ADMIN", "TRAINER", "CUSTOMER"]).optional(),
       }),
     )
     .mutation(async ({ ctx, input }) => {
       const user = await ctx.prisma.user.create({
         data: {
           email: input.email,
-          name: input.name,
+          role: input.role,
         },
         select: {
           id: true,
           email: true,
-          name: true,
+          role: true,
         },
       });
 
