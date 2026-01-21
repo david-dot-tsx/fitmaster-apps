@@ -1,6 +1,6 @@
 {
   // Set Prettier as the default formatter
-  "prettier.configPath": ".prettierrc",
+  "prettier.configPath": ".prettierrc.json",
   "prettier.requireConfig": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.formatOnSave": true,

@@ -56,6 +56,13 @@ yarn-error.log*
 *.pid
 *.pid.lock
 
+# Database
+*/generated/prisma
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+
 # TypeScript
 *.tsbuildinfo
 
@@ -64,3 +71,18 @@ yarn-error.log*
 Thumbs.db
 *.pem
 app-example
+
+# Editor / IDE
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/launch.json
+.idea
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+.temp
+temp/
