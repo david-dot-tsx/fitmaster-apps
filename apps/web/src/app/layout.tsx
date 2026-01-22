@@ -1,7 +1,11 @@
 import type { Metadata } from "next";
 import type { ReactElement, ReactNode } from "react";
 import localFont from "next/font/local";
+
 import "./globals.css";
+import { ApiQueryProvider } from "@repo/api/client";
+
+import { env } from "@/env";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -20,7 +24,9 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: ReactNode }): ReactElement {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>{children}</body>
+      <body className={`${geistSans.variable} ${geistMono.variable}`}>
+        <ApiQueryProvider url={env.NEXT_PUBLIC_API_URL}>{children}</ApiQueryProvider>
+      </body>
     </html>
   );
 }
