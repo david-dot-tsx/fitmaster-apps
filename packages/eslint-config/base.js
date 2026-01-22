@@ -156,15 +156,9 @@ export const config = [
       "check-file/filename-naming-convention": [
         2,
         {
-          // Everything else should be kebab-case.
-          // Note: Files starting with "_" (e.g. Expo Router `_layout.tsx`) are excluded.
-          "**/!(_layout)*.{js,jsx,ts,tsx}": "KEBAB_CASE",
+          "**/!(__tests__|_layout)*.{js,jsx,ts,tsx}": "KEBAB_CASE",
         },
         { ignoreMiddleExtensions: true },
-      ],
-      "check-file/folder-naming-convention": [
-        2,
-        { "src/**//!(__tests__)/**/": "KEBAB_CASE", "mocks/*/": "KEBAB_CASE" },
       ],
       // TanStack Query (React Query)
       ...tanstackQueryPlugin.configs["flat/recommended"].rules,

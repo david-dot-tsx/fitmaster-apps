@@ -4,8 +4,9 @@ import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
 import cors from "@fastify/cors";
 import Fastify from "fastify";
 
-import { appRouter } from "@/routers/index";
-import { createContext } from "@/trpc";
+import { appRouter } from "@repo/api";
+
+import { createTrpcFastifyContext } from "@/lib/trpc";
 
 const PORT = process.env.PORT ? Number.parseInt(process.env.PORT, 10) : 3001;
 const HOST = process.env.HOST ?? "0.0.0.0";
@@ -28,7 +29,7 @@ await server.register(fastifyTRPCPlugin, {
   prefix: "/trpc",
   trpcOptions: {
     router: appRouter,
-    createContext,
+    context: createTrpcFastifyContext,
     onError({ path, error }: { path?: string; error: Error }) {
       server.log.error(error, `Error in tRPC handler on path '${path ?? "unknown"}'`);
     },
