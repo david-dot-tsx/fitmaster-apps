@@ -10,7 +10,8 @@
       "env": ["DATABASE_URL"]
     },
     "lint": {
-      "dependsOn": ["^lint"]
+      "dependsOn": ["^lint"],
+      "inputs": ["$TURBO_DEFAULT$", "eslint.config.{js,cjs,mjs}", ".eslintrc.{js,json}"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
