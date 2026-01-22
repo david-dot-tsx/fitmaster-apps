@@ -9,26 +9,35 @@
   },
   "dependencies": {
     "@repo/db": "workspace:*",
-    "@tanstack/react-query": "^5.62.11",
-    "@trpc/client": "^11.0.0",
+    "@t3-oss/env-core": "^0.13.10",
+    "@tanstack/react-query": "^5.90.19",
+    "@trpc/client": "^11.8.1",
     "@trpc/react-query": "^11.0.0",
     "@trpc/server": "^11.0.0",
-    "react": "^18.3.1",
-    "react-dom": "^18.3.1",
-    "zod": "^3.24.2"
+    "@trpc/tanstack-react-query": "^11.8.1",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "dotenv": "^17.2.3",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "zod": "^3.25.76"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/react": "^18.3.17",
-    "@types/react-dom": "^18.3.5",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
     "eslint": "^9.18.0",
     "typescript": "^5.7.3"
   },
   "exports": {
-    ".": {
-      "import": "./src/index.ts",
-      "types": "./src/index.ts"
+    "./server": {
+      "import": "./src/server.ts",
+      "types": "./src/server.ts"
+    },
+    "./client": {
+      "import": "./src/client.ts",
+      "types": "./src/client.ts"
     }
   }
 }

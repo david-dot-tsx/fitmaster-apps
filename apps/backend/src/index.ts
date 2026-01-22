@@ -4,7 +4,7 @@ import { fastifyTRPCPlugin } from "@trpc/server/adapters/fastify";
 import cors from "@fastify/cors";
 import Fastify from "fastify";
 
-import { appRouter } from "@repo/api";
+import { appRouter } from "@repo/api/server";
 
 import { createTrpcFastifyContext } from "@/lib/trpc";
 
