@@ -17,6 +17,9 @@ export const env = createEnv({
 
     // CORS
     CORS_ORIGIN: z.string(),
+
+    // JWT
+    JWT_SECRET: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
