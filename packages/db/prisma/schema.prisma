@@ -12,6 +12,39 @@ enum Role {
   TRAINER
   CUSTOMER
 }
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum BodyPart {
+  CHEST
+  SHOULDERS
+  BACK
+  ARMS
+  LEGS
+}
+
+enum WorkoutType {
+  STRENGTH
+  ENDURANCE
+  FLEXIBILITY
+  BALANCE
+}
+
+enum WorkoutBlockType {
+  WARM_UP
+  MAIN_WORKOUT
+  REST
+  COOL_DOWN
+}
+
+/*********
+ * User
+ *********
+ */
 model User {
   id        String    @id @default(uuid())
   email     String    @unique
@@ -53,10 +86,166 @@ model CustomerProfile {
   height    Int
   weight    Int
   goal      String?
+  progressCustomerTrainings ProgressCustomerTraining[]
+  profile   Profile   @relation(fields: [profileId], references: [id])
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?
-  profile   Profile   @relation(fields: [profileId], references: [id])
 }
 
 
+/******************
+ * Workout entities
+ ******************
+ */
+
+model Exercise {
+  id        String    @id @default(uuid())
+  name      String
+  difficulty Difficulty
+  bodyPart BodyPart
+  description String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+  workoutExercises WorkoutExercise[]
+}
+
+model WorkoutExercise {
+  id        String    @id @default(uuid())
+  reps      Int? //REPS
+  duration  Int? //SECONDS
+  distance  Int? //METERS
+  weight    Float? //KG
+  exerciseId String
+  exercise  Exercise  @relation(fields: [exerciseId], references: [id])
+  workoutBlockId String
+  workoutBlock   WorkoutBlock   @relation(fields: [workoutBlockId], references: [id])
+  workoutType WorkoutType
+  progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt  
+  deletedAt DateTime?
+}
+
+model WorkoutBlock {
+  id        String    @id @default(uuid())
+  order     Int @default(0)
+  workoutBlockType WorkoutBlockType
+  workoutExercises WorkoutExercise[]
+  trainingDays TrainingDay[]
+  progressCustomerWorkoutBlocks ProgressCustomerWorkoutBlock[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+model TrainingDay {
+  id        String    @id @default(uuid())
+  workoutBlockId String
+  workoutBlock WorkoutBlock? @relation(fields: [workoutBlockId], references: [id])
+  trainingId String
+  training Training? @relation(fields: [trainingId], references: [id])
+  progressCustomerTrainingDays ProgressCustomerTrainingDay[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum TrainingStatus {
+  VISIBLE
+  HIDDEN
+  DISABLED
+}
+
+model Training {
+  id        String    @id @default(uuid())
+  name      String
+  description String?
+  status TrainingStatus 
+  trainingDays TrainingDay[]
+  progressCustomerTrainings ProgressCustomerTraining[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+/******************
+ * Customer & Training
+ ******************
+ */
+
+enum CustomerProgressTrainingStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  CANCELLED
+}
+model ProgressCustomerTraining {
+  id        String    @id @default(uuid())
+  customerProfileId String
+  customerProfile CustomerProfile? @relation(fields: [customerProfileId], references: [id])
+  trainingId String
+  training Training? @relation(fields: [trainingId], references: [id])
+  status CustomerProgressTrainingStatus
+  progressCustomerTrainingDays ProgressCustomerTrainingDay[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum ProgressCustomerTrainingDayStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+model ProgressCustomerTrainingDay {
+  id        String    @id @default(uuid())
+  status ProgressCustomerTrainingDayStatus @default(NOT_STARTED)
+  progressCustomerTrainingId String
+  progressCustomerTraining ProgressCustomerTraining? @relation(fields: [progressCustomerTrainingId], references: [id])
+  trainingDayId String
+  trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
+  progressCustomerWorkoutBlocks ProgressCustomerWorkoutBlock[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum ProgressCustomerWorkoutBlockStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+model ProgressCustomerWorkoutBlock {
+  id        String    @id @default(uuid())
+  status ProgressCustomerWorkoutBlockStatus @default(NOT_STARTED)
+  progressCustomerTrainingDayId String
+  progressCustomerTrainingDay ProgressCustomerTrainingDay? @relation(fields: [progressCustomerTrainingDayId], references: [id])
+  workoutBlockId String
+  workoutBlock WorkoutBlock? @relation(fields: [workoutBlockId], references: [id])
+  progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
+
+enum ProgressCustomerWorkoutExerciseStatus {
+  NOT_STARTED
+  IN_PROGRESS
+  COMPLETED
+  SKIPPED
+}
+model ProgressCustomerWorkoutExercise {
+  id        String    @id @default(uuid())
+  duration Int? //SECONDS
+  status ProgressCustomerWorkoutExerciseStatus @default(NOT_STARTED)
+  progressCustomerWorkoutBlockId String
+  progressCustomerWorkoutBlock ProgressCustomerWorkoutBlock? @relation(fields: [progressCustomerWorkoutBlockId], references: [id])
+  workoutExerciseId String
+  workoutExercise WorkoutExercise? @relation(fields: [workoutExerciseId], references: [id])
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+  deletedAt DateTime?
+}
