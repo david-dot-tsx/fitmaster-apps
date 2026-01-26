@@ -5,17 +5,18 @@ import swaggerUi from "@fastify/swagger-ui";
 import { generateOpenApiDocument, fastifyTRPCOpenApiPlugin, appRouter } from "@repo/api/server";
 
 import { createTrpcFastifyContext } from "@/lib/trpc";
+import { env } from "@/env";
 
 export default fp(async (server) => {
   const openApiDocument = generateOpenApiDocument(appRouter, {
     title: "FitMaster API",
     version: "3.0.0",
-    baseUrl: "http://localhost:3001/trpc",
+    baseUrl: `http://${env.HOST}:${env.PORT}/${env.TRPC_PATH}`,
     openApiVersion: "3.0.0",
   });
 
   await server.register(fastifyTRPCOpenApiPlugin, {
-    basePath: "/trpc",
+    basePath: `/env.TRPC_PATH`,
     router: appRouter,
     createContext: createTrpcFastifyContext,
   });
@@ -32,6 +33,6 @@ export default fp(async (server) => {
   });
 
   await server.register(swaggerUi, {
-    routePrefix: "/docs",
+    routePrefix: `/${env.SWAGGER_PATH}`,
   });
 });

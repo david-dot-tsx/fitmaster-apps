@@ -20,6 +20,12 @@ export const env = createEnv({
 
     // JWT
     JWT_SECRET: z.string(),
+
+    // TRPC
+    TRPC_PATH: z.string(),
+
+    // SWAGGER
+    SWAGGER_PATH: z.string(),
   },
   runtimeEnv: process.env,
   emptyStringAsUndefined: true,
