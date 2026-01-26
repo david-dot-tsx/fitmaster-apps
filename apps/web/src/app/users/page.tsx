@@ -13,7 +13,7 @@ export default function ApiExamplePage(): ReactElement {
   const handleCreateUser = () => {
     createUserMutation.mutate({
       email: "test@example.com",
-      role: "CUSTOMER",
+      password: "password",
     });
   };
 
