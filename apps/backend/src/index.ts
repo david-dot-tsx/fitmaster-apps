@@ -16,9 +16,9 @@ const server = Fastify({
 
 await server.register(zodPlugin);
 await server.register(authPlugin);
-await server.register(swaggerPlugin);
 await server.register(corsPlugin);
 await server.register(trpcPlugin);
+await server.register(swaggerPlugin);
 
 // Health check endpoint
 server.get("/health", async () => {
@@ -29,9 +29,6 @@ server.get("/health", async () => {
 const start = async () => {
   try {
     await server.listen({ port: env.PORT, host: env.HOST });
-    server.log.info(`🚀 API server running on http://${env.HOST}:${env.PORT}`);
-    server.log.info(`📡 tRPC endpoint: http://${env.HOST}:${env.PORT}/trpc`);
-    server.log.info(`❤️  Health check: http://${env.HOST}:${env.PORT}/health`);
   } catch (err) {
     server.log.error(err);
     process.exit(1);

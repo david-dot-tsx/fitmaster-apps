@@ -10,7 +10,7 @@ export default fp(async (server) => {
     prefix: "/trpc",
     trpcOptions: {
       router: appRouter,
-      context: createTrpcFastifyContext,
+      createContext: createTrpcFastifyContext,
       onError({ path, error }: { path?: string; error: Error }) {
         server.log.error(error, `Error in tRPC handler on path '${path ?? "unknown"}'`);
       },
