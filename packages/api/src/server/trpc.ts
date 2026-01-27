@@ -1,17 +1,10 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { type OpenApiMeta } from "trpc-to-openapi";
 
-import { type PrismaClient, type Role as RoleType, Role } from "@repo/db";
+import { type Role as RoleType, Role } from "@repo/db";
 
-import type { SessionUser, SignToken } from "./types";
+import type { TRPCContext } from "./types";
 
-export interface TRPCContext {
-  prisma: PrismaClient;
-  res: unknown;
-  req: unknown;
-  user: SessionUser | null;
-  signToken: SignToken;
-}
 /**
  * Initialization of tRPC backend
  * Should be done only once per backend!
@@ -22,7 +15,7 @@ const t = initTRPC.context<TRPCContext>().meta<OpenApiMeta>().create();
  * isAuthed middleware to check if the user is authenticated
  */
 const isAuthed = t.middleware(({ next, ctx }) => {
-  if (!ctx.user) {
+  if (!ctx.sessionUser) {
     throw new TRPCError({
       code: "UNAUTHORIZED",
       message: "You must be authenticated to access this resource.",
@@ -31,13 +24,13 @@ const isAuthed = t.middleware(({ next, ctx }) => {
 
   return next({
     ctx: {
-      user: ctx.user,
+      sessionUser: ctx.sessionUser,
     },
   });
 });
 
 const isAdmin = isAuthed.unstable_pipe(({ next, ctx }) => {
-  if (ctx.user.role !== "ADMIN") {
+  if (ctx.sessionUser.role !== "ADMIN") {
     throw new TRPCError({
       code: "UNAUTHORIZED",
     });
@@ -47,7 +40,7 @@ const isAdmin = isAuthed.unstable_pipe(({ next, ctx }) => {
 });
 
 const isTrainer = isAuthed.unstable_pipe(({ next, ctx }) => {
-  if (ctx.user.role !== "TRAINER") {
+  if (ctx.sessionUser.role !== "TRAINER") {
     throw new TRPCError({
       code: "UNAUTHORIZED",
     });
@@ -57,7 +50,7 @@ const isTrainer = isAuthed.unstable_pipe(({ next, ctx }) => {
 });
 
 const isCustomer = isAuthed.unstable_pipe(({ next, ctx }) => {
-  if (ctx.user.role !== "CUSTOMER") {
+  if (ctx.sessionUser.role !== "CUSTOMER") {
     throw new TRPCError({
       code: "UNAUTHORIZED",
     });
@@ -68,13 +61,13 @@ const isCustomer = isAuthed.unstable_pipe(({ next, ctx }) => {
 
 const hasRole = (roles: RoleType[]) =>
   isAuthed.unstable_pipe(({ next, ctx }) => {
-    if (!roles.includes(ctx.user.role)) {
+    if (!roles.includes(ctx.sessionUser.role)) {
       throw new TRPCError({
         code: "FORBIDDEN",
       });
     }
 
-    return next();
+    return next({ ctx });
   });
 
 /**

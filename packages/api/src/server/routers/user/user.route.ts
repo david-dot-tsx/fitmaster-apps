@@ -1,5 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import * as argon2 from "argon2";
+import { addDays } from "date-fns";
 
 import { prisma } from "@repo/db";
 
@@ -13,7 +14,11 @@ import {
   userGetByIdInputSchema,
   userCreateInputSchema,
   userCreateOutputSchema,
+  userRefreshTokenInputSchema,
+  userRefreshTokenOutputSchema,
+  userLogoutInputSchema,
 } from "./user.schema";
+import { generateRefreshToken, hashRefreshToken } from "../../utils/refresh-token";
 
 export const user = router({
   login: publicProcedure
@@ -36,13 +41,26 @@ export const user = router({
         foundUser.passwordHash &&
         (await argon2.verify(foundUser.passwordHash, input.password))
       ) {
-        const token = await ctx.signToken({
+        const refreshToken = hashRefreshToken(generateRefreshToken());
+
+        await ctx.prisma.session.create({
+          data: {
+            userId: foundUser.id,
+            refreshToken: refreshToken,
+            userAgent: ctx.client.userAgent,
+            ip: ctx.client.ip,
+            deviceInfo: ctx.client.deviceInfo,
+            expiresAt: addDays(new Date(), ctx.config.refreshTokenExpiresInDays),
+          },
+        });
+
+        const token = await ctx.utils.signToken({
           id: foundUser.id,
           role: foundUser.role,
           email: foundUser.email,
         });
 
-        return { token };
+        return { token, refreshToken };
       }
 
       throw new TRPCError({
@@ -50,14 +68,93 @@ export const user = router({
       });
     }),
 
+  logout: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/user.logout", tags: ["Users"] } })
+    .input(userLogoutInputSchema)
+    .mutation(async ({ input, ctx }) => {
+      const hashedToken = hashRefreshToken(input.refreshToken);
+
+      try {
+        await ctx.prisma.session.delete({
+          where: {
+            refreshToken: hashedToken,
+          },
+        });
+      } catch (_error) {
+        throw new TRPCError({
+          code: "INTERNAL_SERVER_ERROR",
+          message: "Failed to logout",
+        });
+      }
+    }),
+  refreshToken: publicProcedure
+    .meta({ openapi: { method: "POST", path: "/user.refreshToken", tags: ["Users"] } })
+    .input(userRefreshTokenInputSchema)
+    .output(userRefreshTokenOutputSchema)
+    .mutation(async ({ input, ctx }) => {
+      const hashedInputToken = hashRefreshToken(input.refreshToken);
+
+      const session = await ctx.prisma.session.findUnique({
+        where: { refreshToken: hashedInputToken },
+        include: {
+          user: {
+            select: {
+              id: true,
+              email: true,
+              role: true,
+            },
+          },
+        },
+      });
+
+      if (!session || session.expiresAt < new Date()) {
+        throw new TRPCError({
+          code: "UNAUTHORIZED",
+          message: "Session expired or invalid. Please login again.",
+        });
+      }
+
+      if (session.userAgent !== ctx.client.userAgent) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: "Session invalid. Please login again.",
+        });
+      }
+
+      const newRawRefreshToken = generateRefreshToken();
+      const newHashedRefreshToken = hashRefreshToken(newRawRefreshToken);
+
+      await ctx.prisma.$transaction([
+        ctx.prisma.session.delete({
+          where: { id: session.id },
+        }),
+        ctx.prisma.session.create({
+          data: {
+            userId: session.user.id,
+            refreshToken: newHashedRefreshToken,
+            expiresAt: addDays(new Date(), ctx.config.refreshTokenExpiresInDays),
+          },
+        }),
+      ]);
+
+      const token = await ctx.utils.signToken({
+        id: session.user.id,
+        role: session.user.role,
+        email: session.user.email,
+      });
+
+      return {
+        token,
+        refreshToken: newRawRefreshToken,
+      };
+    }),
+
   me: protectedProcedure
     .meta({ openapi: { method: "GET", path: "/user.me", tags: ["Users"] } })
     .output(userMeOutputSchema)
     .query(async ({ ctx }) => {
-      const userId = ctx.user.id;
-
       const user = await ctx.prisma.user.findUnique({
-        where: { id: userId },
+        where: { id: ctx.sessionUser.id },
         select: {
           id: true,
           email: true,
@@ -83,6 +180,7 @@ export const user = router({
 
       return user;
     }),
+
   list: staffProcedure
     .meta({ openapi: { method: "GET", path: "/user.list", tags: ["Users"] } })
     .output(userListOutputSchema)

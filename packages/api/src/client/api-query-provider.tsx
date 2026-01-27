@@ -4,6 +4,7 @@ import { httpBatchLink } from "@trpc/client";
 import { useState } from "react";
 
 import { trpc } from "./trpc";
+import { type DeviceInfo } from "../server/types";
 
 function makeQueryClient() {
   return new QueryClient({
@@ -35,9 +36,10 @@ interface ApiQueryProviderProps {
   children: React.ReactNode;
   url: string;
   getToken: () => Promise<string | null>;
+  deviceInfo: DeviceInfo;
 }
 
-export function ApiQueryProvider({ children, url, getToken }: ApiQueryProviderProps) {
+export function ApiQueryProvider({ children, url, getToken, deviceInfo }: ApiQueryProviderProps) {
   const queryClient = getQueryClient();
   const [trpcClient] = useState(() =>
     trpc.createClient({
@@ -46,13 +48,12 @@ export function ApiQueryProvider({ children, url, getToken }: ApiQueryProviderPr
           url,
           async headers() {
             const token = await getToken();
-            if (token) {
-              return {
-                authorization: `Bearer ${token}`,
-              };
-            }
 
-            return {};
+            return {
+              "x-device-name": deviceInfo.name,
+              "x-device-os": deviceInfo.os,
+              ...(token && { authorization: `Bearer ${token}` }),
+            };
           },
         }),
       ],

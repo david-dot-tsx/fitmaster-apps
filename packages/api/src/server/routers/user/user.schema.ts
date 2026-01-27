@@ -12,14 +12,27 @@ export const userSchema = z.object({
   createdAt: z.date(),
 });
 
+export const userTokensSchema = z.object({
+  token: z.string(),
+  refreshToken: z.string(),
+});
+
+export const userRefreshTokenInputSchema = z.object({
+  refreshToken: z.string(),
+});
+
+export const userLogoutInputSchema = z.object({
+  refreshToken: z.string(),
+});
+
+export const userRefreshTokenOutputSchema = userTokensSchema;
+
 export const userCreateInputSchema = userCredentialsSchema;
 export const userLoginInputSchema = userCredentialsSchema;
 
 export const userCreateOutputSchema = userSchema;
 
-export const userLoginOutputSchema = z.object({
-  token: z.string(),
-});
+export const userLoginOutputSchema = userTokensSchema;
 
 export const userGetByIdInputSchema = z.object({
   id: z.string(),
