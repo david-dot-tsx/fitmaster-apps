@@ -25,7 +25,19 @@ export default function RootLayout({ children }: { children: ReactNode }): React
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <ApiQueryProvider url={env.NEXT_PUBLIC_API_URL}>{children}</ApiQueryProvider>
+        <ApiQueryProvider
+          //TODO: to implement
+          url={env.NEXT_PUBLIC_API_URL}
+          getToken={async () => {
+            return null;
+          }}
+          deviceInfo={{
+            name: "UNKNOWN",
+            os: "UNKNOWN",
+          }}
+        >
+          {children}
+        </ApiQueryProvider>
       </body>
     </html>
   );
