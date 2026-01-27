@@ -34,14 +34,26 @@ function getQueryClient() {
 interface ApiQueryProviderProps {
   children: React.ReactNode;
   url: string;
+  getToken: () => Promise<string | null>;
 }
-export function ApiQueryProvider({ children, url }: ApiQueryProviderProps) {
+
+export function ApiQueryProvider({ children, url, getToken }: ApiQueryProviderProps) {
   const queryClient = getQueryClient();
   const [trpcClient] = useState(() =>
     trpc.createClient({
       links: [
         httpBatchLink({
           url,
+          async headers() {
+            const token = await getToken();
+            if (token) {
+              return {
+                authorization: `Bearer ${token}`,
+              };
+            }
+
+            return {};
+          },
         }),
       ],
     }),

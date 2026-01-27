@@ -46,7 +46,7 @@ export const user = router({
       }
 
       throw new TRPCError({
-        code: "UNAUTHORIZED",
+        code: "BAD_REQUEST",
       });
     }),
 
