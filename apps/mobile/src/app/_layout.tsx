@@ -1,7 +1,8 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import * as SecureStore from "expo-secure-store";
+import { StatusBar } from "expo-status-bar";
+import * as Device from "expo-device";
 import "react-native-reanimated";
 import "@/global.css";
 
@@ -15,6 +16,10 @@ export const unstable_settings = {
   anchor: "(tabs)",
 };
 
+const deviceInfo = {
+  name: `${Device.deviceName} ${Device.osName}`,
+  os: Device.osName ?? "",
+};
 export default function RootLayout() {
   const colorScheme = useColorScheme();
 
@@ -23,6 +28,7 @@ export default function RootLayout() {
       <ApiQueryProvider
         url={env.EXPO_PUBLIC_API_URL}
         getToken={() => SecureStore.getItemAsync("token")}
+        deviceInfo={deviceInfo}
       >
         <AuthProvider>
           <Stack>
