@@ -14,7 +14,7 @@ declare module "fastify" {
 
 declare module "@fastify/jwt" {
   interface FastifyJWT {
-    user: SessionUser;
+    sessionUser: SessionUser;
   }
 }
 
