@@ -25,6 +25,8 @@ export const userLogoutInputSchema = z.object({
   refreshToken: z.string(),
 });
 
+export const userLogoutOutputSchema = z.void();
+
 export const userRefreshTokenOutputSchema = userTokensSchema;
 
 export const userCreateInputSchema = userCredentialsSchema;

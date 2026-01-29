@@ -17,6 +17,7 @@ import {
   userRefreshTokenInputSchema,
   userRefreshTokenOutputSchema,
   userLogoutInputSchema,
+  userLogoutOutputSchema,
 } from "./user.schema";
 import { generateRefreshToken, hashRefreshToken } from "../../utils/refresh-token";
 
@@ -41,12 +42,13 @@ export const user = router({
         foundUser.passwordHash &&
         (await argon2.verify(foundUser.passwordHash, input.password))
       ) {
-        const refreshToken = hashRefreshToken(generateRefreshToken());
+        const refreshToken = generateRefreshToken();
+        const hashedRefreshToken = hashRefreshToken(refreshToken);
 
         await ctx.prisma.session.create({
           data: {
             userId: foundUser.id,
-            refreshToken: refreshToken,
+            refreshToken: hashedRefreshToken,
             userAgent: ctx.client.userAgent,
             ip: ctx.client.ip,
             deviceInfo: ctx.client.deviceInfo,
@@ -71,6 +73,7 @@ export const user = router({
   logout: publicProcedure
     .meta({ openapi: { method: "POST", path: "/user.logout", tags: ["Users"] } })
     .input(userLogoutInputSchema)
+    .output(userLogoutOutputSchema)
     .mutation(async ({ input, ctx }) => {
       const hashedToken = hashRefreshToken(input.refreshToken);
 
@@ -132,6 +135,9 @@ export const user = router({
           data: {
             userId: session.user.id,
             refreshToken: newHashedRefreshToken,
+            userAgent: ctx.client.userAgent,
+            ip: ctx.client.ip,
+            deviceInfo: ctx.client.deviceInfo,
             expiresAt: addDays(new Date(), ctx.config.refreshTokenExpiresInDays),
           },
         }),
