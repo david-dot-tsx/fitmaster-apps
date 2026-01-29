@@ -1,43 +1,31 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { Stack } from "expo-router";
-import * as SecureStore from "expo-secure-store";
 import { StatusBar } from "expo-status-bar";
-import * as Device from "expo-device";
 import "react-native-reanimated";
-import "@/global.css";
+import "../global.css";
 
-import { ApiQueryProvider } from "@repo/api/client";
+import { RootProvider } from "@/providers/root-provider";
+import { AUTH_STATUS } from "@/context/auth/types";
+import { useAuthStoreState } from "@/context/auth/auth.store";
 
-import { useColorScheme } from "@/hooks/use-color-scheme";
-import { env } from "@/env";
-import { AuthProvider } from "@/context/auth-context";
-
-export const unstable_settings = {
-  anchor: "(tabs)",
+const CurrentScreen = {
+  [AUTH_STATUS.AUTHENTICATED]: "(tabs)",
+  [AUTH_STATUS.UNAUTHENTICATED]: "auth",
+  [AUTH_STATUS.LOADING]: "boot-screen",
 };
-
-const deviceInfo = {
-  name: `${Device.deviceName} ${Device.osName}`,
-  os: Device.osName ?? "",
-};
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
+function RootNavigation() {
+  const { authStatus } = useAuthStoreState();
 
   return (
-    <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <ApiQueryProvider
-        url={env.EXPO_PUBLIC_API_URL}
-        getToken={() => SecureStore.getItemAsync("token")}
-        deviceInfo={deviceInfo}
-      >
-        <AuthProvider>
-          <Stack>
-            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-            <Stack.Screen name="modal" options={{ presentation: "modal", title: "Modal" }} />
-          </Stack>
-          <StatusBar style="auto" />
-        </AuthProvider>
-      </ApiQueryProvider>
-    </ThemeProvider>
+    <Stack screenOptions={{ headerShown: false }}>
+      <Stack.Screen name={CurrentScreen[authStatus]} options={{ headerShown: false }} />
+    </Stack>
+  );
+}
+export default function RootLayout() {
+  return (
+    <RootProvider>
+      <RootNavigation />
+      <StatusBar style="auto" />
+    </RootProvider>
   );
 }

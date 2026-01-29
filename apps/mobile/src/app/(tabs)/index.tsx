@@ -4,15 +4,15 @@ import { StyleSheet, Text, TouchableOpacity } from "react-native";
 import { trpc } from "@repo/api/client";
 
 import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { useAuthContext } from "@/context/auth-context";
+import { useAuthContext } from "@/context/auth/auth-context";
 
 export default function HomeScreen() {
-  const { login, logout, authState } = useAuthContext();
-  const { data: me, refetch } = trpc.user.me.useQuery();
-
+  const { logout } = useAuthContext();
+  const { data: me, refetch, isFetching } = trpc.user.me.useQuery();
   /**
    * TODO: Remove POC login, with a proper login flow.
    */
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -23,10 +23,8 @@ export default function HomeScreen() {
         />
       }
     >
-      <TouchableOpacity onPress={() => login("user@test.dev", "123")}>
-        <Text className="bg-purple-400 p-4 text-2xl font-extrabold text-slate-950">Login</Text>
-      </TouchableOpacity>
-      <Text>Auth State: {JSON.stringify(authState, null, 2)}</Text>
+      <Text className="text-4xl font-bold text-slate-950">Hello</Text>
+      <Text>QUERY: {isFetching ? "Fetching" : "Not fetching"}</Text>
       <Text>Me: {JSON.stringify(me, null, 2)}</Text>
       <TouchableOpacity
         onPress={() => refetch()}

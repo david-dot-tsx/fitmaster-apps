@@ -1,0 +1,6 @@
+export const AUTH_STATUS = {
+  AUTHENTICATED: "AUTHENTICATED",
+  LOADING: "LOADING",
+  UNAUTHENTICATED: "UNAUTHENTICATED",
+};
+export type AuthStatus = (typeof AUTH_STATUS)[keyof typeof AUTH_STATUS];
