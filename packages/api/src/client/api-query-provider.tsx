@@ -1,7 +1,7 @@
 "use client";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { httpBatchLink } from "@trpc/client";
-import { useState } from "react";
+import { useMemo } from "react";
 
 import { trpc } from "./trpc";
 import { type DeviceInfo } from "../server/types";
@@ -35,29 +35,29 @@ function getQueryClient() {
 interface ApiQueryProviderProps {
   children: React.ReactNode;
   url: string;
-  getToken: () => Promise<string | null>;
+  token: string | null;
   deviceInfo: DeviceInfo;
 }
 
-export function ApiQueryProvider({ children, url, getToken, deviceInfo }: ApiQueryProviderProps) {
+export function ApiQueryProvider({ children, url, token, deviceInfo }: ApiQueryProviderProps) {
   const queryClient = getQueryClient();
-  const [trpcClient] = useState(() =>
-    trpc.createClient({
-      links: [
-        httpBatchLink({
-          url,
-          async headers() {
-            const token = await getToken();
-
-            return {
-              "x-device-name": deviceInfo.name,
-              "x-device-os": deviceInfo.os,
-              ...(token && { authorization: `Bearer ${token}` }),
-            };
-          },
-        }),
-      ],
-    }),
+  const trpcClient = useMemo(
+    () =>
+      trpc.createClient({
+        links: [
+          httpBatchLink({
+            url,
+            headers() {
+              return {
+                "x-device-name": deviceInfo.name,
+                "x-device-os": deviceInfo.os,
+                ...(token && { authorization: `Bearer ${token}` }),
+              };
+            },
+          }),
+        ],
+      }),
+    [url, token, deviceInfo.name, deviceInfo.os],
   );
 
   return (
