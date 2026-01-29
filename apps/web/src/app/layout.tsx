@@ -28,9 +28,7 @@ export default function RootLayout({ children }: { children: ReactNode }): React
         <ApiQueryProvider
           //TODO: to implement
           url={env.NEXT_PUBLIC_API_URL}
-          getToken={async () => {
-            return null;
-          }}
+          token={null}
           deviceInfo={{
             name: "UNKNOWN",
             os: "UNKNOWN",
