@@ -1,5 +1,6 @@
 import { type ReactElement } from "react";
 import Image, { type ImageProps } from "next/image";
+import Link from "next/link";
 
 import { Button } from "@repo/ui/button";
 
@@ -34,6 +35,18 @@ export default function Home(): ReactElement {
           height={38}
           priority
         />
+        <Link
+          href="/dashboard"
+          className="rounded-md bg-gray-800 p-2 text-center text-blue-500 hover:bg-gray-700 hover:text-blue-600"
+        >
+          Dashboard
+        </Link>
+        <Link
+          href="/auth/login"
+          className="rounded-md bg-gray-800 p-2 text-center text-blue-500 hover:bg-gray-700 hover:text-blue-600"
+        >
+          Login
+        </Link>
         <ol>
           <li>
             Get started by editing <code>apps/web/app/page.tsx</code>

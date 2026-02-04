@@ -1,8 +1,10 @@
 import { router } from "./trpc";
-import { user } from "./routers/user/user.route";
+import { user } from "../routers/user/user.route";
+import { auth } from "../routers/auth/auth.route";
 
 export const appRouter = router({
-  user: user,
+  user,
+  auth,
 });
 
 // Export type router type signature,

@@ -1,13 +1,16 @@
 import { Image } from "expo-image";
-import { Link } from "expo-router";
-import { Platform, StyleSheet, Text } from "react-native";
+import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-import { HelloWave } from "@/components/hello-wave";
+import { trpc } from "@/lib/trpc/client";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
-import { ThemedText } from "@/components/themed-text";
-import { ThemedView } from "@/components/themed-view";
+import { useAuthContext } from "@/providers/auth/auth-context";
+import { useAuthStoreState } from "@/providers/auth/auth.store";
 
 export default function HomeScreen() {
+  const { logout } = useAuthContext();
+  const { token, refreshToken } = useAuthStoreState();
+  const { data: me, refetch, isFetching } = trpc.user.me.useQuery();
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#A1CEDC", dark: "#1D3D47" }}
@@ -18,66 +21,23 @@ export default function HomeScreen() {
         />
       }
     >
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type='title'>Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <Text className="bg-purple-400 p-4 text-2xl font-extrabold text-slate-950">
-        Tailwind - Nativewind styled
-      </Text>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{" "}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: "cmd + d",
-              android: "cmd + m",
-              web: "F12",
-            })}
-          </ThemedText>{" "}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <Link href="/modal">
-          <Link.Trigger>
-            <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-          </Link.Trigger>
-          <Link.Preview />
-          <Link.Menu>
-            <Link.MenuAction title="Action" icon="cube" onPress={() => alert("Action pressed")} />
-            <Link.MenuAction
-              title="Share"
-              icon="square.and.arrow.up"
-              onPress={() => alert("Share pressed")}
-            />
-            <Link.Menu title="More" icon="ellipsis">
-              <Link.MenuAction
-                title="Delete"
-                icon="trash"
-                destructive
-                onPress={() => alert("Delete pressed")}
-              />
-            </Link.Menu>
-          </Link.Menu>
-        </Link>
-
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{" "}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{" "}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
+      <Text className="text-4xl font-bold text-slate-950">Hello</Text>
+      <Text>QUERY: {isFetching ? "Fetching" : "Not fetching"}</Text>
+      <Text>Me: {JSON.stringify(me, null, 2)}</Text>
+      <Text>Token: {token}</Text>
+      <Text>RefreshToken: {refreshToken}</Text>
+      <TouchableOpacity
+        onPress={() => refetch()}
+        className="rounded-md bg-purple-400 p-2 font-bold text-slate-950"
+      >
+        <Text className="text-center text-2xl text-slate-950">Refetch Me</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => logout()}
+        className="rounded-md bg-purple-400 p-2 font-bold text-slate-950"
+      >
+        <Text className="text-center text-2xl text-slate-950">Logout</Text>
+      </TouchableOpacity>
     </ParallaxScrollView>
   );
 }

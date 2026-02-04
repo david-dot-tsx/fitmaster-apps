@@ -3,6 +3,7 @@ import { createEnv } from "@t3-oss/env-core";
 
 export const envSchema = z.object({
   EXPO_PUBLIC_API_URL: z.url(),
+  EXPO_PUBLIC_API_TRPC_PATH: z.string().startsWith("/"),
 });
 
 export const createValidateEnv = () => {

@@ -54,6 +54,7 @@ model User {
   updatedAt DateTime  @updatedAt
   passwordHash  String?
   profile   Profile?
+  sessions  Session[]
 }
 
 model Profile {
@@ -93,7 +94,17 @@ model CustomerProfile {
   deletedAt DateTime?
 }
 
-
+model Session {
+  id           String   @id @default(uuid())
+  refreshToken String   @unique
+  userId       String
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userAgent    String?
+  ip           String?
+  deviceInfo   Json?
+  expiresAt    DateTime
+  createdAt    DateTime @default(now())
+}
 /******************
  * Workout entities
  ******************
