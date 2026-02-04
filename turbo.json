@@ -1,7 +1,16 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "globalEnv": ["EXPO_OS", "DATABASE_URL", "NODE_ENV", "PORT", "HOST", "CORS_ORIGIN"],
+  "globalEnv": [
+    "EXPO_OS",
+    "DATABASE_URL",
+    "COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS",
+    "COOKIE_TOKEN_MAX_AGE_IN_SECONDS",
+    "NODE_ENV",
+    "PORT",
+    "HOST",
+    "CORS_ORIGIN"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

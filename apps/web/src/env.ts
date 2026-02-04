@@ -7,7 +7,10 @@ export const env = createEnv({
    * Will throw if you access these variables on the client.
    */
   server: {
-    // DATABASE_URL: z.url(),
+    // Cookie
+    NODE_ENV: z.enum(["development", "production", "test"]),
+    COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
+    COOKIE_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -16,6 +19,7 @@ export const env = createEnv({
    */
   client: {
     NEXT_PUBLIC_API_URL: z.string(),
+    NEXT_PUBLIC_API_TRPC_PATH: z.string().startsWith("/"),
   },
   /*
    * Specify what values should be validated by your schemas above.
@@ -26,6 +30,10 @@ export const env = createEnv({
    */
   runtimeEnv: {
     NEXT_PUBLIC_API_URL: process.env.NEXT_PUBLIC_API_URL,
+    NEXT_PUBLIC_API_TRPC_PATH: process.env.NEXT_PUBLIC_API_TRPC_PATH,
+    NODE_ENV: process.env.NODE_ENV,
+    COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: process.env.COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS,
+    COOKIE_TOKEN_MAX_AGE_IN_SECONDS: process.env.COOKIE_TOKEN_MAX_AGE_IN_SECONDS,
   },
   // experimental__runtimeEnv: {
   //   NEXT_PUBLIC_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_PUBLISHABLE_KEY,

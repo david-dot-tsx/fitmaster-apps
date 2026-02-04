@@ -20,8 +20,13 @@ export const env = createEnv({
 
     // JWT
     JWT_SECRET: z.string(),
-    JWT_TOKEN_EXPIRES_IN: z.string(),
-    JWT_REFRESH_TOKEN_EXPIRES_IN_DAYS: z.coerce.number(),
+    JWT_TOKEN_EXPIRES_IN_SECONDS: z.coerce.number(),
+    JWT_REFRESH_TOKEN_EXPIRES_IN_SECONDS: z.coerce.number(),
+
+    // Cookie
+    COOKIE_SECRET: z.string(),
+    COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
+    COOKIE_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
 
     // TRPC
     TRPC_PATH: z.string(),

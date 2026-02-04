@@ -1,6 +1,15 @@
-import { Stack } from "expo-router";
+import { Redirect, Stack } from "expo-router";
+
+import { useAuthStoreState } from "@/providers/auth/auth.store";
+import { AUTH_STATUS } from "@/providers/auth/types";
 
 export default function AuthLayout() {
+  const { authStatus } = useAuthStoreState();
+
+  if (authStatus === AUTH_STATUS.AUTHENTICATED) {
+    return <Redirect href="/(tabs)" />;
+  }
+
   return (
     <Stack
       screenOptions={{

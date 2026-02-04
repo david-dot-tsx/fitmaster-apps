@@ -1,5 +1,6 @@
 import { initTRPC, TRPCError } from "@trpc/server";
 import { type OpenApiMeta } from "trpc-to-openapi";
+import superjson from "superjson";
 
 import { type Role as RoleType, Role } from "@repo/db";
 
@@ -9,7 +10,9 @@ import type { TRPCContext } from "./types";
  * Initialization of tRPC backend
  * Should be done only once per backend!
  */
-const t = initTRPC.context<TRPCContext>().meta<OpenApiMeta>().create();
+const t = initTRPC.context<TRPCContext>().meta<OpenApiMeta>().create({
+  transformer: superjson,
+});
 
 /**
  * isAuthed middleware to check if the user is authenticated

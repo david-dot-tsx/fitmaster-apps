@@ -7,8 +7,11 @@ import {
   type SignToken,
   type TRPCContext,
 } from "@repo/api/server";
+import { API_HEADERS_KEYS } from "@repo/api/schemas";
+import { AUTH_COOKIES_NAMES } from "@repo/api/cookies";
 
 import { env } from "@/env";
+import { AuthCookieBuilder } from "@/lib/auth-cookie-builder";
 
 const getFirstHeader = (header: string | string[] | undefined): string | undefined => {
   if (!header) return undefined;
@@ -19,20 +22,46 @@ const getFirstHeader = (header: string | string[] | undefined): string | undefin
 export const createTrpcFastifyContext = async ({ req, res }: CreateFastifyContextOptions) => {
   let sessionUser: SessionUser | null = null;
 
-  try {
-    await req.jwtVerify();
+  const sessionDeviceType = getFirstHeader(req.headers[API_HEADERS_KEYS.X_CLIENT_TYPE]);
 
-    const result = sessionUserSchema.safeParse(req.user);
-    sessionUser = result.success ? result.data : null;
-  } catch (_error) {
-    sessionUser = null;
+  const setAuthToken = (token: string) => {
+    const { name, value, cookieSettings } = AuthCookieBuilder.getAuthTokenCookieSettings(token);
+    res.setCookie(name, value, cookieSettings);
+  };
+
+  const setAuthRefreshToken = (refreshToken: string) => {
+    const { name, value, cookieSettings } =
+      AuthCookieBuilder.getAuthRefreshTokenCookieSettings(refreshToken);
+    res.setCookie(name, value, cookieSettings);
+  };
+
+  const clearAuth = () => {
+    res.clearCookie(AUTH_COOKIES_NAMES.TOKEN);
+    res.clearCookie(AUTH_COOKIES_NAMES.REFRESH_TOKEN);
+  };
+
+  const token = req.cookies.token || req.headers.authorization?.replace("Bearer ", "");
+  if (token) {
+    try {
+      const decoded = await req.server.jwt.verify(token);
+      const result = sessionUserSchema.safeParse(decoded);
+      if (result.success) {
+        sessionUser = result.data;
+      }
+    } catch (_error) {
+      sessionUser = null;
+    }
   }
+
   const signToken: SignToken = (payload: SessionUser) =>
-    res.jwtSign(payload, { expiresIn: env.JWT_TOKEN_EXPIRES_IN });
+    res.jwtSign(payload, {
+      expiresIn: env.JWT_TOKEN_EXPIRES_IN_SECONDS,
+    });
 
   const ctx: TRPCContext = {
     prisma,
     sessionUser,
+    sessionDeviceType,
     client: {
       userAgent: req.headers["user-agent"],
       ip: req.ip,
@@ -43,9 +72,12 @@ export const createTrpcFastifyContext = async ({ req, res }: CreateFastifyContex
     },
     utils: {
       signToken,
+      clearAuth,
+      setAuthToken,
+      setAuthRefreshToken,
     },
     config: {
-      refreshTokenExpiresInDays: env.JWT_REFRESH_TOKEN_EXPIRES_IN_DAYS,
+      refreshTokenExpiresInSeconds: env.JWT_REFRESH_TOKEN_EXPIRES_IN_SECONDS,
     },
   };
 

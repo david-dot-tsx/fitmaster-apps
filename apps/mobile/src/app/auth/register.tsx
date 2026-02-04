@@ -3,18 +3,12 @@ import React from "react";
 import { router } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
 
-import { trpc } from "@repo/api/client";
+import { userCreateInputSchema, type UserCreateInput } from "@repo/api/schemas";
 
+import { trpc } from "@/lib/trpc/client";
 import { InputText } from "@/components/form/input-text";
 import { Button } from "@/components/ui/button";
-
-const registerFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
-type RegisterFormValues = z.infer<typeof registerFormSchema>;
 
 const RegisterScreen = () => {
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
@@ -22,8 +16,8 @@ const RegisterScreen = () => {
       router.push("/auth/login");
     },
   });
-  const form = useForm<RegisterFormValues>({
-    resolver: zodResolver(registerFormSchema),
+  const form = useForm<UserCreateInput>({
+    resolver: zodResolver(userCreateInputSchema),
     defaultValues: {
       email: "",
       password: "",

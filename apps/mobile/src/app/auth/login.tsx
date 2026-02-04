@@ -1,27 +1,22 @@
 import { View, Text, TouchableOpacity } from "react-native";
 import React from "react";
 import { router } from "expo-router";
-import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
+import { authLoginInputSchema, type AuthLoginInput } from "@repo/api/schemas";
+
 import { InputText } from "@/components/form/input-text";
 import { Button } from "@/components/ui/button";
-import { useAuthContext } from "@/context/auth/auth-context";
-
-const loginFormSchema = z.object({
-  email: z.string().email(),
-  password: z.string(),
-});
-type LoginFormValues = z.infer<typeof loginFormSchema>;
+import { useAuthContext } from "@/providers/auth/auth-context";
 
 const LoginScreen = () => {
   const { login, loginStatus } = useAuthContext();
-  const form = useForm<LoginFormValues>({
-    resolver: zodResolver(loginFormSchema),
+  const form = useForm<AuthLoginInput>({
+    resolver: zodResolver(authLoginInputSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "admin@test.dev",
+      password: "123",
     },
     disabled: loginStatus === "pending",
   });
@@ -38,7 +33,6 @@ const LoginScreen = () => {
           </Button>
         </FormProvider>
       </View>
-      {/* <Text className="bg-slate-800 text-red-500">{JSON.stringify(loginError, null, 2)}</Text> */}
       <TouchableOpacity onPress={() => router.push("/auth/register")}>
         <Text className="text-slate-300">Register</Text>
       </TouchableOpacity>

@@ -19,6 +19,7 @@ export type SignToken = (payload: SessionUser) => Promise<string>;
 export interface TRPCContext {
   prisma: PrismaClient;
   sessionUser: SessionUser | null;
+  sessionDeviceType: string | undefined;
   client: {
     userAgent?: string;
     ip: string;
@@ -26,8 +27,11 @@ export interface TRPCContext {
   };
   utils: {
     signToken: SignToken;
+    clearAuth: () => void;
+    setAuthToken: (token: string) => void;
+    setAuthRefreshToken: (refreshToken: string) => void;
   };
   config: {
-    refreshTokenExpiresInDays: number;
+    refreshTokenExpiresInSeconds: number;
   };
 }

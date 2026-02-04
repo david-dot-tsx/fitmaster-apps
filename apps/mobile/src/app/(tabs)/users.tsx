@@ -1,6 +1,6 @@
 import { FlatList, View, Text } from "react-native";
 
-import { trpc } from "@repo/api/client";
+import { trpc } from "@/lib/trpc/client";
 
 export default function TabThreeScreen() {
   const { data, status, error } = trpc.user.list.useQuery();
