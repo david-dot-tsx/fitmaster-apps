@@ -1,0 +1,31 @@
+{
+  "name": "@repo/i18n",
+  "version": "0.0.1",
+  "type": "module",
+  "main": "src/index.ts",
+  "scripts": {
+    "generate-types": "pnpm interface",
+    "dev": "node scripts/watch.js",
+    "interface": "i18next-resources-for-ts interface -i ./src/locales/en -o ./src/resources.ts"
+  },
+  "dependencies": {
+    "i18next": "^25.8.3",
+    "i18next-resources-for-ts": "^2.0.0"
+  },
+  "devDependencies": {
+    "@repo/eslint-config": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "eslint": "9.39.1",
+    "typescript": "5.9.2"
+  },
+  "exports": {
+    "./mobile": {
+      "import": "./src/mobile.ts",
+      "types": "./src/mobile.ts"
+    },
+    "./web": {
+      "import": "./src/web.ts",
+      "types": "./src/web.ts"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "title": "Tytuł testowy ",
+  "description": "Opis testowy",
+  "content": {
+    "part_1": "Treść 1",
+    "part_2": "Treść 2",
+    "part_3": "Treść 3"
+  },
+  "interpolation": "interpolowana wartość to {{name}}",
+  "foo_one": "foo tylko",
+  "foo_other": "foo wiele {{count}}",
+  "baz": "baz PL <0>{{count}}</0>",
+  "quux": "quux PL <0>{{count}}</0>",
+  "bar": "bar PL <0>{{count}}</0>"
+}
