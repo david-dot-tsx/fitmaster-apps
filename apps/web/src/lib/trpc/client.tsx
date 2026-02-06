@@ -8,7 +8,7 @@ import { createTRPCContext } from "@trpc/tanstack-react-query";
 import { useState } from "react";
 
 import { type AppRouter } from "@repo/api/client";
-import { API_HEADER_X_CLIENT_TYPES_VALUES, API_HEADERS_KEYS } from "@repo/api/schemas";
+import { API_HEADER_X_CLIENT_TYPES_VALUES, API_HEADERS_KEYS } from "@repo/api/headers";
 
 import { env } from "@/env";
 import { makeQueryClient } from "@/lib/trpc/query-client";
