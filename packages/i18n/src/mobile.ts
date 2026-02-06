@@ -1,7 +1,7 @@
 import { LOCALES, NAMESPACES } from "./shared";
-import plTranslations from "./locales/pl/translations.json";
-import enTranslations from "./locales/en/translations.json";
-import esTranslations from "./locales/es/translations.json";
+import plCommon from "./locales/pl/common.json";
+import enCommon from "./locales/en/common.json";
+import esCommon from "./locales/es/common.json";
 import plValidations from "./locales/pl/validations.json";
 import enValidations from "./locales/en/validations.json";
 import esValidations from "./locales/es/validations.json";
@@ -10,15 +10,15 @@ export * from "./shared";
 
 export const resourcesToMobile = {
   [LOCALES.PL]: {
-    [NAMESPACES.TRANSLATIONS]: plTranslations,
+    [NAMESPACES.COMMON]: plCommon,
     [NAMESPACES.VALIDATIONS]: plValidations,
   },
   [LOCALES.EN]: {
-    [NAMESPACES.TRANSLATIONS]: enTranslations,
+    [NAMESPACES.COMMON]: enCommon,
     [NAMESPACES.VALIDATIONS]: enValidations,
   },
   [LOCALES.ES]: {
-    [NAMESPACES.TRANSLATIONS]: esTranslations,
+    [NAMESPACES.COMMON]: esCommon,
     [NAMESPACES.VALIDATIONS]: esValidations,
   },
 };
