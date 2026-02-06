@@ -3,21 +3,21 @@ import * as argon2 from "argon2";
 import { addSeconds } from "date-fns";
 
 import { prisma } from "@repo/db";
-
-import { generateRefreshToken, hashRefreshToken } from "../../server/utils/refresh-token";
-import { router, publicProcedure } from "../../server/trpc";
 import {
   authLoginInputSchema,
   authLoginOutputSchema,
   authLogoutInputSchema,
   authLogoutOutputSchema,
+  AuthProcedureErrors,
   authRefreshTokenInputSchema,
   authRefreshTokenOutputSchema,
-} from "./auth.schema";
+} from "@repo/validators";
+
+import { generateRefreshToken, hashRefreshToken } from "../../server/utils/refresh-token";
+import { router, publicProcedure } from "../../server/trpc";
 
 /**
  * TODO:
- * - Divide this router into multiple routers: User and Auth.
  * - Create a router builder to avoid code duplication, and for specific procedures
  */
 export const auth = router({
@@ -65,7 +65,8 @@ export const auth = router({
       }
 
       throw new TRPCError({
-        code: "BAD_REQUEST",
+        code: "UNAUTHORIZED",
+        message: AuthProcedureErrors.INVALID_CREDENTIALS,
       });
     }),
 
@@ -85,7 +86,7 @@ export const auth = router({
       } catch (_error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: "Failed to logout",
+          message: AuthProcedureErrors.FAILED_TO_LOGOUT,
         });
       }
     }),
@@ -112,7 +113,7 @@ export const auth = router({
       if (!session || session.expiresAt < new Date()) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
-          message: "Session expired or invalid. Please login again.",
+          message: AuthProcedureErrors.SESSION_EXPIRED_OR_INVALID,
         });
       }
 
@@ -120,7 +121,7 @@ export const auth = router({
       if (session.userAgent !== ctx.client.userAgent) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: "Session invalid. Please login again.",
+          message: AuthProcedureErrors.SESSION_INVALID,
         });
       }
 

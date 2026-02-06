@@ -2,8 +2,6 @@ import { TRPCError } from "@trpc/server";
 import * as argon2 from "argon2";
 
 import { prisma } from "@repo/db";
-
-import { protectedProcedure, publicProcedure, router, staffProcedure } from "../../server/trpc";
 import {
   userMeOutputSchema,
   userListOutputSchema,
@@ -11,7 +9,10 @@ import {
   userGetByIdInputSchema,
   userCreateInputSchema,
   userCreateOutputSchema,
-} from "./user.schema";
+  UserProcedureErrors,
+} from "@repo/validators";
+
+import { protectedProcedure, publicProcedure, router, staffProcedure } from "../../server/trpc";
 
 export const user = router({
   me: protectedProcedure
@@ -39,7 +40,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "User not found",
+          message: UserProcedureErrors.USER_NOT_FOUND,
         });
       }
 
@@ -80,7 +81,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: "User not found",
+          message: UserProcedureErrors.USER_NOT_FOUND,
         });
       }
 
@@ -92,6 +93,17 @@ export const user = router({
     .input(userCreateInputSchema)
     .output(userCreateOutputSchema)
     .mutation(async ({ input }) => {
+      const foundUser = await prisma.user.findUnique({
+        where: { email: input.email },
+      });
+
+      if (foundUser) {
+        throw new TRPCError({
+          code: "CONFLICT",
+          message: UserProcedureErrors.USER_ALREADY_EXISTS,
+        });
+      }
+
       const user = await prisma.user.create({
         data: {
           email: input.email,
