@@ -13,7 +13,7 @@ import type Resources from "./resources";
  */
 declare module "i18next" {
   interface CustomTypeOptions {
-    defaultNS: "translations";
+    defaultNS: Namespace;
     resources: Resources;
   }
 }
@@ -26,7 +26,7 @@ export const LOCALES = {
 export type Locale = (typeof LOCALES)[keyof typeof LOCALES];
 
 export const NAMESPACES = {
-  TRANSLATIONS: "translations",
+  COMMON: "common",
   VALIDATIONS: "validations",
 } as const;
 export type Namespace = (typeof NAMESPACES)[keyof typeof NAMESPACES];
@@ -35,8 +35,8 @@ export const initOptions = {
   debug: false,
   fallbackLng: LOCALES.EN,
   load: "languageOnly",
-  ns: [NAMESPACES.TRANSLATIONS, NAMESPACES.VALIDATIONS],
-  defaultNS: "translations",
+  ns: [NAMESPACES.COMMON, NAMESPACES.VALIDATIONS],
+  defaultNS: NAMESPACES.COMMON,
 } satisfies InitOptions;
 
 export type ResourcesType = Resources;

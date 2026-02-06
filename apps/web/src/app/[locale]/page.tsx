@@ -1,16 +1,11 @@
 import { times } from "remeda";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import initTranslations from "@/lib/i18n/i18n";
 
-export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
-  const { locale } = await params;
-  const { t } = await initTranslations({ locale });
-
+export default async function Home() {
   return (
     <PageWrapper>
       <div>
-        <div>{t("description")}</div>
         <h1 className="text-4xl font-bold">Home</h1>
         <h2 className="mt-12 text-2xl font-bold">Content 1</h2>
         <div className="flex flex-wrap gap-4">

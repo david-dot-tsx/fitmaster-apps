@@ -6,15 +6,15 @@ import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
 import { authLoginInputSchema, AuthProcedureErrors, type AuthLoginInput } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
-import { LocaleSwitch } from "@/components/locale-switch";
 
 export default function LoginPage() {
-  const { t } = useTranslation(["translations", "validations"]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.VALIDATIONS]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
@@ -51,30 +51,29 @@ export default function LoginPage() {
 
   return (
     <PageWrapper className="mt-12">
-      <LocaleSwitch />
       <Card className="w-full max-w-xs">
         <CardHeader>
-          <CardTitle className="bg-popover text-2xl font-bold text-amber-400">Login</CardTitle>
+          <CardTitle className="bg-popover text-2xl font-bold text-amber-400">
+            {t("login")}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <FormProvider {...methods}>
-            {/* <p>{t("validations.validation_error")}</p> */}
-            <p>{t("interpolation", { name: "John" })}</p>
-            <p>{t("content.part_1")}</p>
-            <p>{t("validations:validation_error")}</p>
-            <p>{t("description")}</p>
-            <p>{t("validations:validation_error_2")}</p>
-            <p>{t("content.part_2")}</p>
             <form className="flex flex-col gap-4">
-              <FormInput name="email" label="Email" placeholder="Email" />
-              <FormInput name="password" label="Password" placeholder="Password" type="password" />
+              <FormInput name="email" label={t("email")} placeholder={t("email")} />
+              <FormInput
+                name="password"
+                label={t("password")}
+                placeholder={t("password")}
+                type="password"
+              />
               <Button
                 className="mt-2"
                 onClick={methods.handleSubmit((data) =>
                   loginMutation.mutate({ email: data.email, password: data.password }),
                 )}
               >
-                Login
+                {t("login")}
               </Button>
             </form>
           </FormProvider>

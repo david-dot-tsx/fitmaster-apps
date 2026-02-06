@@ -4,6 +4,7 @@ import Link from "next/link";
 
 import { NavigationMenuDemo } from "@/components/layout/navbar/navbar-menu";
 import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
+import { LocaleSwitch } from "@/components/locale-switch";
 
 export const Navbar = () => {
   return (
@@ -21,7 +22,10 @@ export const Navbar = () => {
           </Link>
           <NavigationMenuDemo />
         </div>
-        <NavbarAuth />
+        <div className="flex flex-row gap-4">
+          <LocaleSwitch />
+          <NavbarAuth />
+        </div>
       </nav>
     </header>
   );

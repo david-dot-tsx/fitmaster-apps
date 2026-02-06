@@ -3,6 +3,9 @@ import React from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/providers/auth/auth-provider";
@@ -11,6 +14,7 @@ export const NavbarAuth = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { session } = useAuth();
+  const { t } = useTranslation([NAMESPACES.COMMON]);
 
   // TODO: Tanstack query: To refactor to queryfactory
   const { mutate: logout } = useMutation({
@@ -41,14 +45,14 @@ export const NavbarAuth = () => {
   return (
     <div className="flex flex-row gap-2">
       {session ? (
-        <Button onClick={() => logout()}>Logout</Button>
+        <Button onClick={() => logout()}>{t("logout")}</Button>
       ) : (
         <>
           <Button asChild>
-            <Link href="/auth/login">Login</Link>
+            <Link href="/auth/login">{t("login")}</Link>
           </Button>
           <Button asChild>
-            <Link href="/auth/register">Register</Link>
+            <Link href="/auth/register">{t("register")}</Link>
           </Button>
         </>
       )}

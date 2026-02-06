@@ -1,0 +1,8 @@
+{
+  "login": "Login",
+  "logout": "Wyloguj",
+  "email": "Email",
+  "password": "Hasło",
+  "password_confirmation": "Potwierdź hasło",
+  "register": "Zarejestruj się"
+}

@@ -2,12 +2,14 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
 
 import {
   userCreateInputFormSchema,
   UserProcedureErrors,
   type UserCreateInputForm,
 } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,6 +19,7 @@ import { FormInput } from "@/components/form/form-input";
 
 export default function RegisterPage() {
   const trpc = useTRPC();
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.VALIDATIONS]);
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
@@ -46,17 +49,19 @@ export default function RegisterPage() {
     <PageWrapper className="mt-12">
       <Card className="w-full max-w-xs">
         <CardHeader>
-          <CardTitle className="bg-popover text-2xl font-bold text-amber-400">Register</CardTitle>
+          <CardTitle className="bg-popover text-2xl font-bold text-amber-400">
+            {t("register")}
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <FormProvider {...methods}>
             <form className="flex flex-col gap-4">
-              <FormInput name="email" label="Email" placeholder="Email" />
-              <FormInput name="password" label="Password" type="password" />
+              <FormInput name="email" label={t("email")} placeholder={t("email")} />
+              <FormInput name="password" label={t("password")} type="password" />
 
               <FormInput
                 name="passwordConfirmation"
-                label="Password Confirmation"
+                label={t("password_confirmation")}
                 type="password"
               />
               <Button
@@ -65,7 +70,7 @@ export default function RegisterPage() {
                   registerMutation.mutate({ email: data.email, password: data.password }),
                 )}
               >
-                Register
+                {t("register")}
               </Button>
             </form>
           </FormProvider>
