@@ -7,7 +7,7 @@ import {
   type SignToken,
   type TRPCContext,
 } from "@repo/api/server";
-import { API_HEADERS_KEYS } from "@repo/api/schemas";
+import { API_HEADERS_KEYS } from "@repo/api/headers";
 import { AUTH_COOKIES_NAMES } from "@repo/api/cookies";
 
 import { env } from "@/env";
