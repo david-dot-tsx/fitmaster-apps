@@ -2,9 +2,9 @@
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 
-import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
-import { UserDetails } from "@/app/[locale]/dashboard/_components/user-details";
 import { PageWrapper } from "@/components/layout/page-wrapper";
+import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
+import { UserDetails } from "@/app/[locale]/(protected)/dashboard/_components/user-details";
 
 export default async function DashboardPage() {
   const queryClient = getQueryClient();

@@ -9,7 +9,7 @@ export const Footer = ({ className }: { className?: string }) => {
       <div className="flex h-6 flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-4">
           <Link href="/">
-            <Image src="/app-logo.png" alt="Logo" width={40} height={40} />
+            <Image src="/assets/app-logo.png" alt="Logo" width={40} height={40} />
           </Link>
           <Link
             href="https://github.com/david-dot-tsx"

@@ -47,7 +47,6 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const { mutate: mutateRefreshToken } = trpc.auth.refreshToken.useMutation({
     onSuccess: (result) => {
       setAuthenticated(result.token, result.refreshToken);
-      router.push("/");
     },
     onError: (_error) => {
       setUnauthenticated();

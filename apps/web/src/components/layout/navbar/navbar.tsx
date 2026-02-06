@@ -12,7 +12,7 @@ export const Navbar = () => {
         <div className="flex flex-row gap-4">
           <Link href="/">
             <Image
-              src="/app-logo.png"
+              src="/assets/app-logo.png"
               alt="Logo"
               width={120}
               height={40}
