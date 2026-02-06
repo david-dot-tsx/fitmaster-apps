@@ -1,13 +1,10 @@
 import { StyleSheet, Text } from "react-native";
-import { useTranslation } from "react-i18next";
 
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { IconSymbol } from "@/components/ui/icon-symbol";
 import { LanguagePicker } from "@/components/ui/language-picker";
 
 export default function TabTwoScreen() {
-  const { t } = useTranslation();
-
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: "#D0D0D0", dark: "#353636" }}
@@ -21,7 +18,6 @@ export default function TabTwoScreen() {
       }
     >
       <Text>Test</Text>
-      <Text>{t("interpolation", { name: "John" })}</Text>
       <LanguagePicker />
     </ParallaxScrollView>
   );
