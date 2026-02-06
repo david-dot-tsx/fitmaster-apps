@@ -3,7 +3,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
-import { initOptions, type Locale, LOCALES } from "@repo/i18n/web";
+import { type Locale, LOCALES } from "@repo/i18n/web";
 
 import { updateLocaleCookieAction } from "@/actions/locale.actions";
 
@@ -25,11 +25,7 @@ export function LocaleSwitch() {
 
     await updateLocaleCookieAction(newLocale as Locale, currentPathname);
 
-    if (currentLocale === initOptions.fallbackLng) {
-      router.push("/" + newLocale + currentPathname);
-    } else {
-      router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`));
-    }
+    router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`));
   };
 
   return (
