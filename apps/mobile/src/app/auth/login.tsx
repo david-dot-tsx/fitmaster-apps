@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 
-import { authLoginInputSchema, type AuthLoginInput } from "@repo/api/schemas";
+import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 
 import { InputText } from "@/components/form/input-text";
 import { Button } from "@/components/ui/button";
