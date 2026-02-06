@@ -4,7 +4,7 @@ import { router } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
-import { userCreateInputSchema, type UserCreateInput } from "@repo/api/schemas";
+import { userCreateInputSchema, type UserCreateInput } from "@repo/validators";
 
 import { trpc } from "@/lib/trpc/client";
 import { InputText } from "@/components/form/input-text";

@@ -7,11 +7,8 @@ import { DevToolsBubble } from "react-native-react-query-devtools";
 import * as Device from "expo-device";
 
 import { type AppRouter } from "@repo/api/client";
-import {
-  API_HEADERS_KEYS,
-  API_HEADER_X_CLIENT_TYPES_VALUES,
-  authRefreshTokenOutputSchema,
-} from "@repo/api/schemas";
+import { API_HEADERS_KEYS, API_HEADER_X_CLIENT_TYPES_VALUES } from "@repo/api/headers";
+import { authRefreshTokenOutputSchema } from "@repo/validators";
 
 import { env } from "@/env";
 import { makeQueryClient } from "@/lib/trpc/query-client";
