@@ -3,7 +3,7 @@
 import { createContext, useContext } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-import { type UserMeOutput } from "@repo/api/schemas";
+import { type UserMeOutput } from "@repo/validators";
 
 import { useTRPC } from "@/lib/trpc/client";
 
@@ -25,7 +25,7 @@ export function AuthProvider({
   session: boolean;
 }) {
   const trpc = useTRPC();
-  const { data } = useQuery(trpc.user.me.queryOptions(undefined, { enabled: false }));
+  const { data } = useQuery(trpc.user.me.queryOptions(undefined, { enabled: session }));
 
   return <AuthContext.Provider value={{ session, me: data }}>{children}</AuthContext.Provider>;
 }

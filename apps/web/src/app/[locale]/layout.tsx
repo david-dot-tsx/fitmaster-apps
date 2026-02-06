@@ -2,17 +2,18 @@ import type { Metadata } from "next";
 import type { ReactElement, ReactNode } from "react";
 import localFont from "next/font/local";
 
-import "./globals.css";
+import "@/globals.css";
 
 import RootProvider from "@/providers/root-provider";
 import { hasSessionTokensAction } from "@/actions/session.actions";
+import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 
 const geistSans = localFont({
-  src: "./fonts/GeistVF.woff",
+  src: "../../fonts/GeistVF.woff",
   variable: "--font-geist-sans",
 });
 const geistMono = localFont({
-  src: "./fonts/GeistMonoVF.woff",
+  src: "../../fonts/GeistMonoVF.woff",
   variable: "--font-geist-mono",
 });
 
@@ -23,15 +24,20 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
+  params,
 }: {
   children: ReactNode;
+  params: Promise<{ locale: string }>;
 }): Promise<ReactElement> {
+  const { locale } = await params;
   const { hasRefreshToken } = await hasSessionTokensAction();
 
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        <RootProvider session={hasRefreshToken}>{children}</RootProvider>
+        <RootProvider session={hasRefreshToken} locale={locale}>
+          <LayoutWrapper>{children}</LayoutWrapper>
+        </RootProvider>
       </body>
     </html>
   );

@@ -1,5 +1,7 @@
 import { NextResponse } from "next/server";
 
+import { AuthProcedureErrors } from "@repo/validators";
+
 import { trpcServerClient } from "@/lib/trpc/client-server";
 import { AuthCookieBuilder } from "@/lib/auth-cookie-builder";
 
@@ -25,7 +27,11 @@ export async function POST(request: Request) {
     response.cookies.set(refreshTokenName, refreshTokenValue, refreshTokenCookieSettings);
 
     return response;
-  } catch (_error) {
-    return NextResponse.json({ error: "Invalid credentials" }, { status: 401 });
+  } catch (error) {
+    if (error instanceof Error && error.message === AuthProcedureErrors.INVALID_CREDENTIALS) {
+      return NextResponse.json({ error: { message: error.message } }, { status: 401 });
+    }
+
+    return NextResponse.json({ error: "Internal server error" }, { status: 500 });
   }
 }
