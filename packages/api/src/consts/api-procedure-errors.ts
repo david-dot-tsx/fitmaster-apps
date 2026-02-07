@@ -1,7 +1,8 @@
-// TODO:: replace values with translation keys from i18n when is implemented
-export const AuthProcedureErrors = {
+export const API_PROCEDURE_ERRORS = {
   INVALID_CREDENTIALS: "INVALID_CREDENTIALS",
   FAILED_TO_LOGOUT: "FAILED_TO_LOGOUT",
   SESSION_EXPIRED_OR_INVALID: "SESSION_EXPIRED_OR_INVALID",
   SESSION_INVALID: "SESSION_INVALID",
+  USER_ALREADY_EXISTS: "USER_ALREADY_EXISTS",
+  USER_NOT_FOUND: "USER_NOT_FOUND",
 } as const;

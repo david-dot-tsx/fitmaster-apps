@@ -5,8 +5,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import { authLoginInputSchema, AuthProcedureErrors, type AuthLoginInput } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
+import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
+import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -14,7 +14,7 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.VALIDATIONS]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
@@ -35,8 +35,11 @@ export default function LoginPage() {
 
       if (!res.ok) {
         const errorData = await res.json();
-        if (errorData.error.message === AuthProcedureErrors.INVALID_CREDENTIALS) {
-          methods.setError("email", { message: errorData.error.message });
+        const apiErrorTranslationKey = getApiErrorNamespacedTranslationKey(errorData.error.message);
+        if (apiErrorTranslationKey) {
+          methods.setError("email", {
+            message: t(apiErrorTranslationKey),
+          });
         }
         throw new Error(errorData.message);
       }
