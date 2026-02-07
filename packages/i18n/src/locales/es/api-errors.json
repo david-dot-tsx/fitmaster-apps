@@ -1,0 +1,8 @@
+{
+  "INVALID_CREDENTIALS": "Credenciales inválidas",
+  "FAILED_TO_LOGOUT": "Error al cerrar sesión",
+  "SESSION_EXPIRED_OR_INVALID": "Sesión expirada o inválida",
+  "SESSION_INVALID": "Sesión inválida",
+  "USER_ALREADY_EXISTS": "El usuario ya existe",
+  "USER_NOT_FOUND": "Usuario no encontrado"
+}

@@ -1,6 +1,7 @@
 import { type InitOptions } from "i18next";
 
 import type Resources from "./resources";
+export * from "./utils/api-error";
 
 /**
  * TODO:
@@ -27,7 +28,7 @@ export type Locale = (typeof LOCALES)[keyof typeof LOCALES];
 
 export const NAMESPACES = {
   COMMON: "common",
-  VALIDATIONS: "validations",
+  API_ERRORS: "api-errors",
 } as const;
 export type Namespace = (typeof NAMESPACES)[keyof typeof NAMESPACES];
 
@@ -35,7 +36,7 @@ export const initOptions = {
   debug: false,
   fallbackLng: LOCALES.EN,
   load: "languageOnly",
-  ns: [NAMESPACES.COMMON, NAMESPACES.VALIDATIONS],
+  ns: [NAMESPACES.COMMON, NAMESPACES.API_ERRORS],
   defaultNS: NAMESPACES.COMMON,
 } satisfies InitOptions;
 

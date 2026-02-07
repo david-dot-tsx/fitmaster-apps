@@ -9,10 +9,10 @@ import {
   userGetByIdInputSchema,
   userCreateInputSchema,
   userCreateOutputSchema,
-  UserProcedureErrors,
 } from "@repo/validators";
 
 import { protectedProcedure, publicProcedure, router, staffProcedure } from "../../server/trpc";
+import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
 
 export const user = router({
   me: protectedProcedure
@@ -40,7 +40,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: UserProcedureErrors.USER_NOT_FOUND,
+          message: API_PROCEDURE_ERRORS.USER_NOT_FOUND,
         });
       }
 
@@ -81,7 +81,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: UserProcedureErrors.USER_NOT_FOUND,
+          message: API_PROCEDURE_ERRORS.USER_NOT_FOUND,
         });
       }
 
@@ -100,7 +100,7 @@ export const user = router({
       if (foundUser) {
         throw new TRPCError({
           code: "CONFLICT",
-          message: UserProcedureErrors.USER_ALREADY_EXISTS,
+          message: API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS,
         });
       }
 

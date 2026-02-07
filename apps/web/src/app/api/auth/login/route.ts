@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 
-import { AuthProcedureErrors } from "@repo/validators";
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
 import { trpcServerClient } from "@/lib/trpc/client-server";
 import { AuthCookieBuilder } from "@/lib/auth-cookie-builder";
@@ -28,7 +28,7 @@ export async function POST(request: Request) {
 
     return response;
   } catch (error) {
-    if (error instanceof Error && error.message === AuthProcedureErrors.INVALID_CREDENTIALS) {
+    if (error instanceof Error && error.message === API_PROCEDURE_ERRORS.INVALID_CREDENTIALS) {
       return NextResponse.json({ error: { message: error.message } }, { status: 401 });
     }
 

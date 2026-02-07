@@ -1,0 +1,8 @@
+{
+  "INVALID_CREDENTIALS": "Invalid credentials",
+  "FAILED_TO_LOGOUT": "Failed to logout",
+  "SESSION_EXPIRED_OR_INVALID": "Session expired or invalid",
+  "SESSION_INVALID": "Session invalid",
+  "USER_ALREADY_EXISTS": "User already exists",
+  "USER_NOT_FOUND": "User not found"
+}

@@ -4,12 +4,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 
-import {
-  userCreateInputFormSchema,
-  UserProcedureErrors,
-  type UserCreateInputForm,
-} from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
+import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
+import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -19,7 +15,7 @@ import { FormInput } from "@/components/form/form-input";
 
 export default function RegisterPage() {
   const trpc = useTRPC();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.VALIDATIONS]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS]);
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
@@ -35,11 +31,9 @@ export default function RegisterPage() {
         alert("Registered!");
       },
       onError: (err) => {
-        console.error(err);
-        console.error(JSON.stringify(err.message, null, 2));
-        //TODO: for now there are displayed values from Api errors, it should be translated using i18n when is implemented
-        if (err.message === UserProcedureErrors.USER_ALREADY_EXISTS) {
-          methods.setError("email", { message: err.message });
+        const apiErrorTranslationKey = getApiErrorNamespacedTranslationKey(err.message);
+        if (apiErrorTranslationKey) {
+          methods.setError("email", { message: t(apiErrorTranslationKey) });
         }
       },
     }),

@@ -8,13 +8,13 @@ import {
   authLoginOutputSchema,
   authLogoutInputSchema,
   authLogoutOutputSchema,
-  AuthProcedureErrors,
   authRefreshTokenInputSchema,
   authRefreshTokenOutputSchema,
 } from "@repo/validators";
 
 import { generateRefreshToken, hashRefreshToken } from "../../server/utils/refresh-token";
 import { router, publicProcedure } from "../../server/trpc";
+import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
 
 /**
  * TODO:
@@ -66,7 +66,7 @@ export const auth = router({
 
       throw new TRPCError({
         code: "UNAUTHORIZED",
-        message: AuthProcedureErrors.INVALID_CREDENTIALS,
+        message: API_PROCEDURE_ERRORS.INVALID_CREDENTIALS,
       });
     }),
 
@@ -86,7 +86,7 @@ export const auth = router({
       } catch (_error) {
         throw new TRPCError({
           code: "INTERNAL_SERVER_ERROR",
-          message: AuthProcedureErrors.FAILED_TO_LOGOUT,
+          message: API_PROCEDURE_ERRORS.FAILED_TO_LOGOUT,
         });
       }
     }),
@@ -113,7 +113,7 @@ export const auth = router({
       if (!session || session.expiresAt < new Date()) {
         throw new TRPCError({
           code: "UNAUTHORIZED",
-          message: AuthProcedureErrors.SESSION_EXPIRED_OR_INVALID,
+          message: API_PROCEDURE_ERRORS.SESSION_EXPIRED_OR_INVALID,
         });
       }
 
@@ -121,7 +121,7 @@ export const auth = router({
       if (session.userAgent !== ctx.client.userAgent) {
         throw new TRPCError({
           code: "FORBIDDEN",
-          message: AuthProcedureErrors.SESSION_INVALID,
+          message: API_PROCEDURE_ERRORS.SESSION_INVALID,
         });
       }
 
