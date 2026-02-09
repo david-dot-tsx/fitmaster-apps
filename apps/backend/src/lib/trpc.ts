@@ -1,6 +1,6 @@
 import type { CreateFastifyContextOptions } from "@trpc/server/adapters/fastify";
 
-import { prisma } from "@repo/db";
+import { prisma } from "@repo/db/prisma";
 import {
   sessionUserSchema,
   type SessionUser,
