@@ -1,7 +1,6 @@
 import { TRPCError } from "@trpc/server";
 import * as argon2 from "argon2";
 
-import { prisma } from "@repo/db";
 import {
   userMeOutputSchema,
   userListOutputSchema,
@@ -50,8 +49,8 @@ export const user = router({
   list: staffProcedure
     .meta({ openapi: { method: "GET", path: "/user.list", tags: ["Users"] } })
     .output(userListOutputSchema)
-    .query(async () => {
-      const users = await prisma.user.findMany({
+    .query(async ({ ctx }) => {
+      const users = await ctx.prisma.user.findMany({
         select: {
           id: true,
           email: true,
@@ -67,8 +66,8 @@ export const user = router({
     .meta({ openapi: { method: "GET", path: "/user.getById/{id}", tags: ["Users"] } })
     .input(userGetByIdInputSchema)
     .output(userGetByIdOutputSchema)
-    .query(async ({ input }) => {
-      const user = await prisma.user.findUnique({
+    .query(async ({ input, ctx }) => {
+      const user = await ctx.prisma.user.findUnique({
         where: { id: input.id },
         select: {
           id: true,
@@ -92,8 +91,8 @@ export const user = router({
     .meta({ openapi: { method: "POST", path: "/user.create", tags: ["Users"] } })
     .input(userCreateInputSchema)
     .output(userCreateOutputSchema)
-    .mutation(async ({ input }) => {
-      const foundUser = await prisma.user.findUnique({
+    .mutation(async ({ input, ctx }) => {
+      const foundUser = await ctx.prisma.user.findUnique({
         where: { email: input.email },
       });
 
@@ -104,7 +103,7 @@ export const user = router({
         });
       }
 
-      const user = await prisma.user.create({
+      const user = await ctx.prisma.user.create({
         data: {
           email: input.email,
           passwordHash: await argon2.hash(input.password),
