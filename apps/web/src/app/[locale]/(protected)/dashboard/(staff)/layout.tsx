@@ -2,7 +2,8 @@ import { redirect } from "next/navigation";
 
 import { hasSessionTokensAction } from "@/actions/session.actions";
 
-export default async function ProtectedLayout({ children }: { children: React.ReactNode }) {
+// TODO: Check if user is staff
+export default async function StaffLayout({ children }: { children: React.ReactNode }) {
   const { hasToken, hasRefreshToken } = await hasSessionTokensAction();
 
   if (!hasToken && !hasRefreshToken) {
