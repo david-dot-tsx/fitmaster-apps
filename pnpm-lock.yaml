@@ -634,6 +634,9 @@ importers:
 
   packages/validators:
     dependencies:
+      '@repo/db':
+        specifier: workspace:*
+        version: link:../db
       zod:
         specifier: 'catalog:'
         version: 4.3.6
