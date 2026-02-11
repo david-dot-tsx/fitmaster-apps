@@ -59,6 +59,8 @@ export const exercise = router({
           bodyPart: true,
           description: true,
           imageUrl: true,
+          createdAt: true,
+          updatedAt: true,
         },
       });
       if (!exercise) {

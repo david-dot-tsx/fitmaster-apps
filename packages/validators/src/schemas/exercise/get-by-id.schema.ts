@@ -7,5 +7,8 @@ export const exerciseGetByIdInputSchema = z.object({
 });
 export type ExerciseGetByIdInput = z.infer<typeof exerciseGetByIdInputSchema>;
 
-export const exerciseGetByIdOutputSchema = exerciseBaseWithIdSchema;
+export const exerciseGetByIdOutputSchema = exerciseBaseWithIdSchema.extend({
+  createdAt: z.date(),
+  updatedAt: z.date(),
+});
 export type ExerciseGetByIdOutput = z.infer<typeof exerciseGetByIdOutputSchema>;
