@@ -2,7 +2,6 @@ import { TRPCError } from "@trpc/server";
 import * as argon2 from "argon2";
 import { addSeconds } from "date-fns";
 
-import { prisma } from "@repo/db";
 import {
   authLoginInputSchema,
   authLoginOutputSchema,
@@ -26,7 +25,7 @@ export const auth = router({
     .input(authLoginInputSchema)
     .output(authLoginOutputSchema)
     .mutation(async ({ input, ctx }) => {
-      const foundUser = await prisma.user.findUnique({
+      const foundUser = await ctx.prisma.user.findUnique({
         where: { email: input.email },
         select: {
           id: true,

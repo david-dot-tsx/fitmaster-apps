@@ -1,4 +1,3 @@
-// app/(protected)/layout.tsx
 import { redirect } from "next/navigation";
 
 import { hasSessionTokensAction } from "@/actions/session.actions";

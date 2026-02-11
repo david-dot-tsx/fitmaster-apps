@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-import { type PrismaClient, Role } from "@repo/db";
+import { type PrismaClient } from "@repo/db/prisma";
+import { Role } from "@repo/db/types";
 
 export const sessionUserSchema = z.object({
   id: z.string(),
