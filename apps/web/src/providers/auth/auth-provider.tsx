@@ -1,20 +1,13 @@
 "use client";
 
 import { createContext, useContext } from "react";
-import { useQuery } from "@tanstack/react-query";
-
-import { type UserMeOutput } from "@repo/validators";
-
-import { useTRPC } from "@/lib/trpc/client";
 
 interface AuthContextType {
   session: boolean;
-  me?: UserMeOutput;
 }
 
 const AuthContext = createContext<AuthContextType>({
   session: false,
-  me: undefined,
 });
 
 export function AuthProvider({
@@ -24,10 +17,7 @@ export function AuthProvider({
   children: React.ReactNode;
   session: boolean;
 }) {
-  const trpc = useTRPC();
-  const { data } = useQuery(trpc.user.me.queryOptions(undefined, { enabled: session }));
-
-  return <AuthContext.Provider value={{ session, me: data }}>{children}</AuthContext.Provider>;
+  return <AuthContext.Provider value={{ session }}>{children}</AuthContext.Provider>;
 }
 
 export const useAuth = () => {

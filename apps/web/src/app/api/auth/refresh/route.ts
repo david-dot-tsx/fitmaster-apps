@@ -1,12 +1,14 @@
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 
+import { AUTH_COOKIES_NAMES } from "@repo/api/cookies";
+
 import { trpcServerClient } from "@/lib/trpc/client-server";
 import { AuthCookieBuilder } from "@/lib/auth-cookie-builder";
 
 export async function POST() {
   const cookieStore = await cookies();
-  const refreshToken = cookieStore.get("refreshToken")?.value;
+  const refreshToken = cookieStore.get(AUTH_COOKIES_NAMES.REFRESH_TOKEN)?.value;
 
   if (!refreshToken) {
     return NextResponse.json({ error: "No refresh token" }, { status: 401 });

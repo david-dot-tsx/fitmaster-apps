@@ -16,6 +16,31 @@ import { makeQueryClient } from "@/lib/trpc/query-client";
 export const { TRPCProvider, useTRPC } = createTRPCContext<AppRouter>();
 
 let browserQueryClient: QueryClient;
+let refreshPromise: Promise<boolean> | null = null;
+
+async function fetchWithRefresh(url: string | URL | Request, options: RequestInit | undefined) {
+  let response = await fetch(url, { ...options, credentials: "include" });
+
+  if (response.status === 401) {
+    if (!refreshPromise) {
+      refreshPromise = fetch("/api/auth/refresh", { method: "POST" })
+        .then((res) => res.ok)
+        .finally(() => {
+          refreshPromise = null;
+        });
+    }
+
+    const isRefreshed = await refreshPromise;
+
+    if (isRefreshed) {
+      response = await fetch(url, { ...options, credentials: "include" });
+    } else {
+      window.location.href = "/auth/login";
+    }
+  }
+
+  return response;
+}
 
 function getQueryClient() {
   if (typeof window === "undefined") {
@@ -40,30 +65,7 @@ export function TRPCReactProvider(
         httpBatchLink({
           transformer: superjson,
           url: env.NEXT_PUBLIC_API_URL + env.NEXT_PUBLIC_API_TRPC_PATH,
-          async fetch(url, options) {
-            let response = await fetch(url, {
-              ...options,
-              credentials: "include",
-            });
-
-            if (response.status === 401) {
-              const refreshRes = await fetch("/api/auth/refresh", {
-                method: "POST",
-              });
-
-              if (refreshRes.ok) {
-                response = await fetch(url, {
-                  ...options,
-                  credentials: "include",
-                });
-              } else {
-                console.error("LOG: Refresh failed, redirecting to login");
-                window.location.href = "/auth/login";
-              }
-            }
-
-            return response;
-          },
+          fetch: fetchWithRefresh,
           headers() {
             return {
               [API_HEADERS_KEYS.X_CLIENT_TYPE]: API_HEADER_X_CLIENT_TYPES_VALUES.WEB || undefined,
