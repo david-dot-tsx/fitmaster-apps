@@ -4,5 +4,5 @@
   "SESSION_EXPIRED_OR_INVALID": "Sesja wygasła lub jest nieprawidłowa",
   "SESSION_INVALID": "Nieprawidłowa sesja",
   "USER_ALREADY_EXISTS": "Użytkownik już istnieje",
-  "USER_NOT_FOUND": "Użytkownik nie znaleziony"
+  "NOT_FOUND": "Nie znaleziono"
 }

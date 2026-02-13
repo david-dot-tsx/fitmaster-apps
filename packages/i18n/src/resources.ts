@@ -2,10 +2,10 @@ interface Resources {
   "api-errors": {
     "FAILED_TO_LOGOUT": "Failed to logout",
     "INVALID_CREDENTIALS": "Invalid credentials",
+    "NOT_FOUND": "not found",
     "SESSION_EXPIRED_OR_INVALID": "Session expired or invalid",
     "SESSION_INVALID": "Session invalid",
-    "USER_ALREADY_EXISTS": "User already exists",
-    "USER_NOT_FOUND": "User not found"
+    "USER_ALREADY_EXISTS": "User already exists"
   },
   "common": {
     "email": "Email",
