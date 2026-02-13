@@ -9,7 +9,7 @@ import { useTRPC } from "@/lib/trpc/client";
 import { Button } from "@/components/ui/button";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
-import { TrainingDays } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_component/training-days";
+import { TrainingDays } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/training-days";
 
 export const TrainingContent = ({ id }: { id: string }) => {
   const trpc = useTRPC();
