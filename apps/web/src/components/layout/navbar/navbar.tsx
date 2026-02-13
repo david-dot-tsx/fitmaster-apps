@@ -5,13 +5,16 @@ import Link from "next/link";
 import { NavigationMenuDemo } from "@/components/layout/navbar/navbar-menu";
 import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
 import { LocaleSwitch } from "@/components/locale-switch";
+import { hasSessionTokensAction } from "@/actions/session.actions";
 
-export const Navbar = () => {
+export const Navbar = async () => {
+  const { hasToken, hasRefreshToken } = await hasSessionTokensAction();
+
   return (
     <header className="sticky top-0 z-50 border-b border-b-amber-400 bg-background/80 px-16 backdrop-blur-md">
       <nav className="flex h-16 flex-row items-center justify-between">
         <div className="flex flex-row gap-4">
-          <Link href="/">
+          <Link href={hasToken && hasRefreshToken ? "/dashboard" : "/"}>
             <Image
               src="/assets/app-logo.png"
               alt="Logo"
