@@ -39,7 +39,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: API_PROCEDURE_ERRORS.USER_NOT_FOUND,
+          message: API_PROCEDURE_ERRORS.NOT_FOUND,
         });
       }
 
@@ -80,7 +80,7 @@ export const user = router({
       if (!user) {
         throw new TRPCError({
           code: "NOT_FOUND",
-          message: API_PROCEDURE_ERRORS.USER_NOT_FOUND,
+          message: API_PROCEDURE_ERRORS.NOT_FOUND,
         });
       }
 
