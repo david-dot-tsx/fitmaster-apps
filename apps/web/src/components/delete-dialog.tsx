@@ -1,7 +1,6 @@
 "use client";
 
 import React from "react";
-// import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { Loader2, Trash2 } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
@@ -16,7 +15,6 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
-// import { useTRPC } from "@/lib/trpc/client";
 
 type DeleteDialogProps = Pick<AlertDialogProps, "open" | "onOpenChange"> & {
   onConfirm: () => void;
