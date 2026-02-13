@@ -18,6 +18,7 @@ import { ImageCell } from "@/components/table/cells/image-cell";
 import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
 import { TextCell } from "@/components/table/cells/text-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
+import { cn } from "@/lib/utils";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
@@ -71,11 +72,11 @@ export const ExerciseTable = () => {
       }),
       columnHelper.accessor("createdAt", {
         header: "Created At",
-        cell: ({ row }) => <DateCell className="text-center" date={row.original.createdAt} />,
+        cell: ({ row }) => <DateCell date={row.original.createdAt} />,
       }),
       columnHelper.accessor("updatedAt", {
         header: "Updated At",
-        cell: ({ row }) => <DateCell className="text-center" date={row.original.updatedAt} />,
+        cell: ({ row }) => <DateCell date={row.original.updatedAt} />,
       }),
       columnHelper.display({
         id: "actions",
@@ -129,7 +130,7 @@ export const ExerciseTable = () => {
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="text-nowrap bg-amber-400 p-2 text-background">
+                  <th key={header.id} className="text-nowrap bg-amber-400 p-2">
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -148,7 +149,12 @@ export const ExerciseTable = () => {
                 }}
               >
                 {row.getVisibleCells().map((cell) => (
-                  <td key={cell.id} className="p-2">
+                  <td
+                    key={cell.id}
+                    className={cn("border p-2", {
+                      "w-full": cell.column.id === "description",
+                    })}
+                  >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
                   </td>
                 ))}
