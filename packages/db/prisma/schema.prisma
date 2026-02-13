@@ -179,7 +179,7 @@ model Training {
   id        String    @id @default(uuid())
   name      String
   description String?
-  status TrainingStatus 
+  status TrainingStatus  @default(DRAFT)
   trainingDays TrainingDay[]
   progressCustomerTrainings ProgressCustomerTraining[]
   imageUrl String?
