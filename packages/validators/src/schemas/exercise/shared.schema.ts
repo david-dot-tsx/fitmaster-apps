@@ -2,6 +2,8 @@ import z from "zod";
 
 import { Difficulty, BodyPart } from "@repo/db/types";
 
+import { withIdSchema } from "../../utils/objects";
+
 export const exerciseBaseSchema = z.object({
   name: z.string().nonempty(),
   difficulty: z.enum(Difficulty),
@@ -11,9 +13,7 @@ export const exerciseBaseSchema = z.object({
 });
 export type ExerciseBase = z.infer<typeof exerciseBaseSchema>;
 
-export const exerciseBaseWithIdSchema = exerciseBaseSchema.extend({
-  id: z.string(),
-});
+export const exerciseBaseWithIdSchema = exerciseBaseSchema.extend(withIdSchema.shape);
 export type ExerciseBaseWithId = z.infer<typeof exerciseBaseWithIdSchema>;
 
 export { Difficulty, BodyPart };

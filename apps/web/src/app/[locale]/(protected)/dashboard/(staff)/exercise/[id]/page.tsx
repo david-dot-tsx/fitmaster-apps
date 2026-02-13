@@ -26,17 +26,15 @@ export default async function ExerciseDetailPage({ params }: { params: { id: str
           </Button>
         </div>
 
-        <div className="space-y-6">
-          <div className="relative aspect-video max-h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
-            <Image src={data.imageUrl} alt={data.name} fill className="object-cover" />
-          </div>
+        <div className="relative aspect-video max-h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
+          <Image src={data.imageUrl} alt={data.name} fill className="object-cover" />
+        </div>
 
-          <div className="col-span-3 rounded-2xl border border-white/5 bg-slate-900/50 p-6">
-            <h2 className="mb-4 text-xl font-bold text-amber-400">Description</h2>
-            <p className="text-lg leading-relaxed text-slate-300">
-              {data.description || "No description provided for this exercise."}
-            </p>
-          </div>
+        <div className="rounded-2xl border border-white/5 bg-slate-900/50 p-6">
+          <h2 className="mb-4 text-xl font-bold text-amber-400">Description</h2>
+          <p className="text-lg leading-relaxed text-slate-300">
+            {data.description || "No description provided for this exercise."}
+          </p>
         </div>
       </div>
     </PageWrapper>

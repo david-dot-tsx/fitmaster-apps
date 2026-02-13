@@ -29,9 +29,13 @@ enum BodyPart {
 
 enum WorkoutType {
   STRENGTH
+  HYPERTROPHY
   ENDURANCE
+  POWER
+  MOBILITY
   FLEXIBILITY
   BALANCE
+  RECOVERY
 }
 
 enum WorkoutBlockType {
@@ -164,18 +168,21 @@ model TrainingDay {
 }
 
 enum TrainingStatus {
-  VISIBLE
+  DRAFT
+  READY_TO_PUBLISH
+  PUBLISHED
   HIDDEN
-  DISABLED
+  BLOCKED
 }
 
 model Training {
   id        String    @id @default(uuid())
   name      String
   description String?
-  status TrainingStatus 
+  status TrainingStatus  @default(DRAFT)
   trainingDays TrainingDay[]
   progressCustomerTrainings ProgressCustomerTraining[]
+  imageUrl String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?

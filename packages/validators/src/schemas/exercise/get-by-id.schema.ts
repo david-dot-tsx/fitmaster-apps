@@ -1,14 +1,12 @@
-import { z } from "zod";
+import { type z } from "zod";
 
 import { exerciseBaseWithIdSchema } from "./shared.schema";
+import { withIdSchema, withTimestampsSchema } from "../../utils/objects";
 
-export const exerciseGetByIdInputSchema = z.object({
-  id: z.uuid(),
-});
+export const exerciseGetByIdInputSchema = withIdSchema;
 export type ExerciseGetByIdInput = z.infer<typeof exerciseGetByIdInputSchema>;
 
-export const exerciseGetByIdOutputSchema = exerciseBaseWithIdSchema.extend({
-  createdAt: z.date(),
-  updatedAt: z.date(),
-});
+export const exerciseGetByIdOutputSchema = exerciseBaseWithIdSchema.extend(
+  withTimestampsSchema.shape,
+);
 export type ExerciseGetByIdOutput = z.infer<typeof exerciseGetByIdOutputSchema>;
