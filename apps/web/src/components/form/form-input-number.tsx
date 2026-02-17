@@ -2,36 +2,33 @@ import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
-import { Input } from "@/components/ui/input";
+import { InputNumber, type InputNumberProps } from "@/components/ui/input-number";
 
-interface FormInputProps extends React.ComponentProps<"input"> {
+interface FormInputNumberProps extends InputNumberProps {
   name: string;
   label: string;
 }
-
-export const FormInput = ({ name, label, ...props }: FormInputProps) => {
+export const FormInputNumber = ({ name, label, ...props }: FormInputNumberProps) => {
   const { control, trigger } = useFormContext();
 
   return (
     <Controller
       control={control}
       name={name}
-      render={({ field, fieldState }) => (
+      render={({ field: { onChange, ...field }, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor={name}>{label}</FieldLabel>
-          <Input
+          <InputNumber
             {...field}
             {...props}
-            value={field.value ?? ""}
-            id={field.name}
-            onChange={(e) => {
-              const value = e.target.value;
-              field.onChange(value == "" ? null : value);
+            onValueChange={(values) => {
+              onChange(values.floatValue ?? null);
               //Required to trigger revalidation in array fields
               if (fieldState.error) {
                 trigger(name);
               }
             }}
+            id={field.name}
           />
           {fieldState.error && <FieldError>{fieldState.error.message}</FieldError>}
         </Field>

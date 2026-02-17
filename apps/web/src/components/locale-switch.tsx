@@ -1,11 +1,19 @@
 "use client";
 
+import { Globe } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslation } from "react-i18next";
 
 import { type Locale, LOCALES } from "@repo/i18n/web";
 
 import { updateLocaleCookieAction } from "@/actions/locale.actions";
+import { Button } from "@/components/ui/button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const locales = [
   { code: LOCALES.EN, name: "English", flag: "🇺🇸" },
@@ -13,32 +21,45 @@ const locales = [
   { code: LOCALES.ES, name: "Español", flag: "🇪🇸" },
 ] as const;
 
-// TODO: to refactor for now it's just a fast solution without styles to ensure if it works as expected
 export function LocaleSwitch() {
   const { i18n } = useTranslation();
   const router = useRouter();
   const currentPathname = usePathname();
   const currentLocale = i18n.language;
 
-  const handleChange = async (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const newLocale = e.target.value;
-
+  const handleLocaleChange = async (newLocale: string) => {
     await updateLocaleCookieAction(newLocale as Locale, currentPathname);
-
     router.push(currentPathname.replace(`/${currentLocale}`, `/${newLocale}`));
   };
 
+  const activeLocale = locales.find((l) => l.code === currentLocale);
+
   return (
-    <select
-      onChange={handleChange}
-      value={currentLocale}
-      className="rounded border border-gray-300 bg-transparent p-1"
-    >
-      {locales.map((locale) => (
-        <option key={locale.code} value={locale.code}>
-          {locale.flag} {locale.name}
-        </option>
-      ))}
-    </select>
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-8 gap-2 px-2 text-zinc-400 hover:bg-zinc-900 hover:text-amber-400"
+        >
+          <Globe className="size-4" />
+          <span className="text-[10px] font-black uppercase tracking-widest">
+            {activeLocale?.code}
+          </span>
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent align="end" className="border-zinc-800 bg-zinc-950 text-zinc-400">
+        {locales.map((locale) => (
+          <DropdownMenuItem
+            key={locale.code}
+            onClick={() => handleLocaleChange(locale.code)}
+            className="gap-2 text-xs font-bold hover:bg-zinc-900 focus:bg-zinc-900 focus:text-amber-400"
+          >
+            <span>{locale.flag}</span>
+            <span>{locale.name}</span>
+          </DropdownMenuItem>
+        ))}
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }

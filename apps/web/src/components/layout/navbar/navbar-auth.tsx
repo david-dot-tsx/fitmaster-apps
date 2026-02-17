@@ -43,15 +43,31 @@ export const NavbarAuth = () => {
   });
 
   return (
-    <div className="flex flex-row gap-2">
+    <div className="flex flex-row items-center gap-3">
       {session ? (
-        <Button onClick={() => logout()}>{t("logout")}</Button>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
+          onClick={() => logout()}
+        >
+          {t("logout")}
+        </Button>
       ) : (
         <>
-          <Button asChild>
+          <Button
+            asChild
+            variant="ghost"
+            size="sm"
+            className="text-[10px] font-black uppercase tracking-widest text-zinc-400"
+          >
             <Link href="/auth/login">{t("login")}</Link>
           </Button>
-          <Button asChild>
+          <Button
+            asChild
+            size="sm"
+            className="bg-amber-400 text-[10px] font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
+          >
             <Link href="/auth/register">{t("register")}</Link>
           </Button>
         </>

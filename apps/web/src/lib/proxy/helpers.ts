@@ -8,6 +8,7 @@ import { initOptions, LOCALES, type Locale } from "@repo/i18n/web";
 import { UNLOCALIZED_PUBLIC_PATHS } from "@/lib/proxy/consts/unlocalized-public-paths";
 import { type CookieSetupParams } from "@/lib/proxy/types/cookie-setup-params";
 import { COOKIES_NAMES } from "@/consts/cookies";
+import { getUnlocalizedPath } from "@/helpers/unlocalized-path";
 
 const locales: Locale[] = Object.values(LOCALES);
 acceptLanguage.languages(locales);
@@ -55,17 +56,6 @@ export const getUrlWithLocale = (pathname: string, request: NextRequest, locale:
 
 export const isLocalizedPath = (pathname: string) => {
   return locales.some((locale) => pathname.startsWith(`/${locale}`));
-};
-
-export const getUnlocalizedPath = (pathname: string) => {
-  const locale = locales.find((locale) => pathname.startsWith(`/${locale}`));
-  if (locale) {
-    const path = pathname.replace(`/${locale}`, "");
-
-    return path === "" ? "/" : path;
-  } else {
-    return pathname;
-  }
 };
 
 export const isPathPublic = (pathname: string) => {
