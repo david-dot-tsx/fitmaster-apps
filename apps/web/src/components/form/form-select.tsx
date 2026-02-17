@@ -1,6 +1,6 @@
 import React from "react";
 import { Controller, useFormContext } from "react-hook-form";
-import { type SelectItemProps } from "@radix-ui/react-select";
+import { type SelectProps, type SelectItemProps } from "@radix-ui/react-select";
 
 import { Field, FieldError, FieldLabel } from "@/components/ui/field";
 import {
@@ -12,16 +12,16 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-type SelectOption = SelectItemProps;
+export type SelectOption = SelectItemProps;
 
-interface FormSelectProps {
+interface FormSelectProps extends SelectProps {
   name: string;
   label: string;
   placeholder?: string;
   options: SelectOption[];
 }
-export const FormSelect = ({ name, label, placeholder, options }: FormSelectProps) => {
-  const { control } = useFormContext();
+export const FormSelect = ({ name, label, placeholder, options, ...rest }: FormSelectProps) => {
+  const { control, trigger } = useFormContext();
 
   return (
     <Controller
@@ -30,7 +30,18 @@ export const FormSelect = ({ name, label, placeholder, options }: FormSelectProp
       render={({ field, fieldState }) => (
         <Field data-invalid={fieldState.invalid}>
           <FieldLabel htmlFor={name}>{label}</FieldLabel>
-          <Select onValueChange={field.onChange} {...field}>
+          <Select
+            onValueChange={(value) => {
+              field.onChange(value);
+              field.onBlur();
+              //Required to trigger revalidation in array fields
+              if (fieldState.error) {
+                trigger(name);
+              }
+            }}
+            {...rest}
+            {...field}
+          >
             <SelectTrigger>
               <SelectValue placeholder={placeholder} />
             </SelectTrigger>
