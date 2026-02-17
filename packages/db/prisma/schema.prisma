@@ -133,6 +133,7 @@ model WorkoutExercise {
   duration  Int? //SECONDS
   distance  Int? //METERS
   weight    Float? //KG
+  order     Int @default(0)
   exerciseId String
   exercise  Exercise  @relation(fields: [exerciseId], references: [id])
   workoutBlockId String
@@ -146,10 +147,10 @@ model WorkoutExercise {
 
 model WorkoutBlock {
   id        String    @id @default(uuid())
-  order     Int @default(0)
   workoutBlockType WorkoutBlockType
   workoutExercises WorkoutExercise[]
-  trainingDays TrainingDay[]
+  trainingDayId String
+  trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
   progressCustomerWorkoutBlocks ProgressCustomerWorkoutBlock[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -157,8 +158,7 @@ model WorkoutBlock {
 }
 model TrainingDay {
   id        String    @id @default(uuid())
-  workoutBlockId String
-  workoutBlock WorkoutBlock? @relation(fields: [workoutBlockId], references: [id])
+  workoutBlocks WorkoutBlock[]
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
   progressCustomerTrainingDays ProgressCustomerTrainingDay[]
