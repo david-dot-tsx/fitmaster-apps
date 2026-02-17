@@ -2,6 +2,7 @@
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
+import { notFound } from "next/navigation";
 
 import { TrainingStatus } from "@repo/validators";
 
@@ -13,8 +14,14 @@ import { TrainingDays } from "@/app/[locale]/(protected)/dashboard/(staff)/train
 
 export const TrainingContent = ({ id }: { id: string }) => {
   const trpc = useTRPC();
-  const { data } = useQuery(trpc.training.getById.queryOptions({ id }));
+  const { data, status } = useQuery(trpc.training.getById.queryOptions({ id }));
   const [openEditDialog, setOpenEditDialog] = useState(false);
+
+  if (status === "pending") return <div>Loading...</div>;
+  if (status === "error") return <div>Error</div>;
+  if (!data) {
+    notFound();
+  }
 
   return (
     <>
@@ -47,7 +54,7 @@ export const TrainingContent = ({ id }: { id: string }) => {
                 {data?.description || "No description provided for this training."}
               </p>
             </div>
-            <TrainingDays className="col-span-3" />
+            <TrainingDays training={data} className="col-span-3" />
           </div>
         </div>
       </PageWrapper>

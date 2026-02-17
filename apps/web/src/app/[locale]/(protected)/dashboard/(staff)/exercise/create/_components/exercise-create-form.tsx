@@ -2,7 +2,7 @@
 import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 
 import {
@@ -36,6 +36,7 @@ const bodyPartOptions = [
 export const ExerciseCreateForm = () => {
   const trpc = useTRPC();
   const router = useRouter();
+  const queryClient = useQueryClient();
   const methods = useForm<ExerciseCreateInputForm>({
     resolver: zodResolver(exerciseCreateInputFormSchema),
     defaultValues: {
@@ -51,6 +52,7 @@ export const ExerciseCreateForm = () => {
       onSuccess: () => {
         alert("Exercise created!");
         router.push("/dashboard/exercise");
+        queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
       },
     }),
   );
