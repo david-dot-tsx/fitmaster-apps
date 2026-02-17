@@ -3,12 +3,14 @@ import { user } from "../routers/user/user.route";
 import { auth } from "../routers/auth/auth.route";
 import { exercise } from "../routers/exercise/exercise.route";
 import { training } from "../routers/training/training.route";
+import { trainingDay } from "../routers/trainingDay/training-day.route";
 
 export const appRouter = router({
   user,
   auth,
   exercise,
   training,
+  trainingDay,
 });
 
 // Export type router type signature,
