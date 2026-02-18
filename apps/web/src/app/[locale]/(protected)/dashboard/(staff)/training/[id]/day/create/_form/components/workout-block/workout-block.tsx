@@ -3,7 +3,7 @@ import { useFieldArray, useFormContext } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { PlusIcon } from "lucide-react";
 
-import { type WorkoutBlockBase } from "@repo/validators";
+import { type WorkoutCreateBlockBase } from "@repo/validators";
 
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils";
 
 export const WorkoutBlock = () => {
   const [expandedItem, setExpandedItem] = useState<string | undefined>(undefined);
-  const { control } = useFormContext<WorkoutBlockBase>();
+  const { control } = useFormContext<WorkoutCreateBlockBase>();
   const { fields, append, remove } = useFieldArray({
     control,
     name: "exercises",
