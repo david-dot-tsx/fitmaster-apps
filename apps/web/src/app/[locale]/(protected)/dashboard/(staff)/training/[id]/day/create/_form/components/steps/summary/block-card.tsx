@@ -2,7 +2,7 @@ import React from "react";
 
 import {
   type ExerciseBaseWithId,
-  type WorkoutBlockBase,
+  type WorkoutCreateBlockBase,
   type WorkoutBlockTypes,
 } from "@repo/validators";
 
@@ -14,7 +14,7 @@ import { cn } from "@/lib/utils";
 import { DAY_CREATOR_STEPS } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 
 interface BlockCardProps {
-  block: WorkoutBlockBase;
+  block: WorkoutCreateBlockBase;
   blockType: WorkoutBlockTypes;
   exercises?: ExerciseBaseWithId[];
 }

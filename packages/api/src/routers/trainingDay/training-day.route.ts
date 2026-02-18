@@ -1,8 +1,14 @@
-import { entries } from "remeda";
+import { entries, mapValues, pick } from "remeda";
 
-import { trainingDayCreateInputSchema, trainingDayCreateOutputSchema } from "@repo/validators";
+import {
+  trainingDayCreateInputSchema,
+  trainingDayCreateOutputSchema,
+  trainingDayListInputSchema,
+  trainingDayListOutputSchema,
+  workoutBlockTypesSchema,
+} from "@repo/validators";
 
-import { router, staffProcedure } from "../../server/trpc";
+import { publicProcedure, router, staffProcedure } from "../../server/trpc";
 
 export const trainingDay = router({
   create: staffProcedure
@@ -40,5 +46,41 @@ export const trainingDay = router({
       });
 
       return { id: newTrainingDay.id };
+    }),
+  getTrainingsDays: publicProcedure
+    .meta({ openapi: { method: "GET", path: "/trainingDay.list", tags: ["TrainingDay"] } })
+    .input(trainingDayListInputSchema)
+    .output(trainingDayListOutputSchema)
+    .query(async ({ input, ctx }) => {
+      const trainingDays = await ctx.prisma.trainingDay.findMany({
+        where: { trainingId: input.trainingId },
+        include: {
+          workoutBlocks: {
+            include: {
+              workoutExercises: {
+                include: {
+                  exercise: true,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const mappedTrainingDays = trainingDays.map((trainingDay) => {
+        const mappedBlocks = mapValues(workoutBlockTypesSchema.enum, (blockType) => {
+          const foundBlock = trainingDay.workoutBlocks.find(
+            (block) => block.workoutBlockType === blockType,
+          );
+
+          return foundBlock ?? null;
+        });
+
+        const pickedValues = pick(trainingDay, ["id", "createdAt", "updatedAt"]);
+
+        return { ...pickedValues, workoutBlocks: mappedBlocks };
+      });
+
+      return mappedTrainingDays;
     }),
 });

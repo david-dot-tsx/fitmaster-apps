@@ -1,67 +1,59 @@
 "use client";
 import { useQuery } from "@tanstack/react-query";
-import Image from "next/image";
 import { useState } from "react";
 import { notFound } from "next/navigation";
 
-import { TrainingStatus } from "@repo/validators";
-
 import { useTRPC } from "@/lib/trpc/client";
-import { Button } from "@/components/ui/button";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
-import { TrainingDays } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/training-days";
+import { TrainingHero } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/hero";
+import { TrainingDayItem } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/training-day-item";
 
 export const TrainingContent = ({ id }: { id: string }) => {
   const trpc = useTRPC();
-  const { data, status } = useQuery(trpc.training.getById.queryOptions({ id }));
+  const { data: trainingData, status: trainingStatus } = useQuery(
+    trpc.training.getById.queryOptions({ id }),
+  );
+  const { data: trainingDaysData, status: trainingDaysStatus } = useQuery(
+    trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId: id }),
+  );
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
-  if (status === "pending") return <div>Loading...</div>;
-  if (status === "error") return <div>Error</div>;
-  if (!data) {
+  if (trainingStatus === "pending" || trainingDaysStatus === "pending")
+    return <div>Loading...</div>;
+  if (trainingStatus === "error" || trainingDaysStatus === "error") return <div>Error</div>;
+  if (!trainingData || !trainingDaysData) {
     notFound();
   }
 
   return (
     <>
-      <PageWrapper
-        title={`${data?.name ?? "Training"} ${data?.status === TrainingStatus.DRAFT ? " (Draft)" : ""}`}
-      >
-        <div className="flex w-full flex-col gap-8">
-          <div className="flex items-end justify-end">
-            <Button onClick={() => setOpenEditDialog(true)}>Edit</Button>
-          </div>
+      <PageWrapper title="Training" subtitle="Full view of the training.">
+        <div className="flex flex-col gap-12">
+          <TrainingHero training={trainingData} />
 
-          <div className="grid grid-cols-3 gap-4">
-            <div className="col-span-2 rounded-2xl border border-white/5 bg-slate-900/50 p-6">
-              <h2 className="mb-4 text-xl font-bold text-amber-400">Info</h2>
-              <div>TODO: INFO ABOUT THE TRAINING</div>
-            </div>
-            <div className="col-span-1">
-              <div className="relative col-span-2 aspect-video max-h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
-                <Image
-                  src={data?.imageUrl ?? ""}
-                  alt={data?.name ?? ""}
-                  fill
-                  className="object-cover"
-                />
+          <div className="flex flex-col">
+            <div className="mb-8 flex items-center justify-between">
+              <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
+                Training <span className="text-amber-400">Timeline</span>
+              </h2>
+              <div className="rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                Total Days: {trainingDaysData.length}
               </div>
             </div>
-            <div className="col-span-3 rounded-2xl border border-white/5 bg-slate-900/50 p-6">
-              <h2 className="mb-4 text-xl font-bold text-amber-400">Description</h2>
-              <p className="text-lg leading-relaxed text-slate-300">
-                {data?.description || "No description provided for this training."}
-              </p>
+
+            <div className="flex flex-col">
+              {trainingDaysData.map((day, index) => (
+                <TrainingDayItem key={day.id} day={day} index={index} />
+              ))}
             </div>
-            <TrainingDays training={data} className="col-span-3" />
           </div>
         </div>
       </PageWrapper>
       <EditTrainingDialog
         open={openEditDialog}
         onOpenChange={setOpenEditDialog}
-        training={data ?? null}
+        training={trainingData ?? null}
       />
     </>
   );

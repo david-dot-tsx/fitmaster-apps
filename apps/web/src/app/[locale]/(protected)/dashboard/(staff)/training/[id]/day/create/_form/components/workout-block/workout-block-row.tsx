@@ -3,7 +3,11 @@ import { useFormContext, useWatch } from "react-hook-form";
 import { TrashIcon } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 
-import { type ExerciseBaseWithId, WorkoutType, type WorkoutBlockBase } from "@repo/validators";
+import {
+  type ExerciseBaseWithId,
+  WorkoutType,
+  type WorkoutCreateBlockBase,
+} from "@repo/validators";
 
 import { Button } from "@/components/ui/button";
 import { FormSelect, type SelectOption } from "@/components/form/form-select";
@@ -39,7 +43,7 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
   const {
     control,
     formState: { errors },
-  } = useFormContext<WorkoutBlockBase>();
+  } = useFormContext<WorkoutCreateBlockBase>();
   const { data: exercises, status: exercisesStatus } = useQuery(trpc.exercise.list.queryOptions());
 
   const getFieldName = (name: string) => {

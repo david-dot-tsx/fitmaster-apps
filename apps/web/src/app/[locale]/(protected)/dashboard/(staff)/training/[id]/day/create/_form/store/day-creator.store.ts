@@ -4,7 +4,7 @@ import { create } from "zustand";
 import {
   trainingDayCreateInputSchema,
   type TrainingDayCreateInput,
-  type WorkoutBlockBase,
+  type WorkoutCreateBlockBase,
   type WorkoutBlockCoolDown,
   type WorkoutBlockMainWorkout,
   type WorkoutBlockWarmUp,
@@ -67,8 +67,8 @@ interface DayCreatorActions {
   setTrainingId: (trainingId: string) => void;
   getStepIterator: () => StepIterator;
   isLastStep: () => boolean;
-  saveCurrentStepData: (formData: WorkoutBlockBase) => void;
-  getCurrentStepData: () => WorkoutBlockBase | undefined;
+  saveCurrentStepData: (formData: WorkoutCreateBlockBase) => void;
+  getCurrentStepData: () => WorkoutCreateBlockBase | undefined;
   getTrainingDayCreateInput: () => TrainingDayCreateInput;
   resetStore: () => void;
 }

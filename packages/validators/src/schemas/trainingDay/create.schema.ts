@@ -1,15 +1,9 @@
 import { z } from "zod";
 
-import { WorkoutBlockType as DbWorkoutBlockType, WorkoutType } from "@repo/db/types";
+import { WorkoutType } from "@repo/db/types";
 
 import { idSchema } from "../../utils/common-types";
-
-export const workoutBlockTypesSchema = z.enum([
-  DbWorkoutBlockType.WARM_UP,
-  DbWorkoutBlockType.MAIN_WORKOUT,
-  DbWorkoutBlockType.COOL_DOWN,
-]);
-export type WorkoutBlockTypes = z.infer<typeof workoutBlockTypesSchema>;
+import { workoutBlockTypesSchema } from "./shared.schema";
 
 const WORKOUT_BLOCK_EXERCISE_MIN_LENGTH = {
   [workoutBlockTypesSchema.enum.WARM_UP]: 1,
@@ -32,27 +26,26 @@ export const workoutBlockExerciseSchema = z.object({
 });
 export type WorkoutBlockExercise = z.infer<typeof workoutBlockExerciseSchema>;
 
-export const workoutBlockBaseSchema = z.object({
+const workoutCreateBlockBaseSchema = z.object({
   exercises: z.array(workoutBlockExerciseSchema),
 });
+export type WorkoutCreateBlockBase = z.infer<typeof workoutCreateBlockBaseSchema>;
 
-export type WorkoutBlockBase = z.infer<typeof workoutBlockBaseSchema>;
-
-export const workoutBlockWarmUpSchema = workoutBlockBaseSchema.extend({
+export const workoutBlockWarmUpSchema = workoutCreateBlockBaseSchema.extend({
   exercises: z
     .array(workoutBlockExerciseSchema)
     .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.WARM_UP]),
 });
 export type WorkoutBlockWarmUp = z.infer<typeof workoutBlockWarmUpSchema>;
 
-export const workoutBlockMainWorkoutSchema = workoutBlockBaseSchema.extend({
+export const workoutBlockMainWorkoutSchema = workoutCreateBlockBaseSchema.extend({
   exercises: z
     .array(workoutBlockExerciseSchema)
     .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.MAIN_WORKOUT]),
 });
 export type WorkoutBlockMainWorkout = z.infer<typeof workoutBlockMainWorkoutSchema>;
 
-export const workoutBlockCoolDownSchema = workoutBlockBaseSchema.extend({
+export const workoutBlockCoolDownSchema = workoutCreateBlockBaseSchema.extend({
   exercises: z
     .array(workoutBlockExerciseSchema)
     .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.COOL_DOWN]),
@@ -69,17 +62,17 @@ const workoutBlockExerciseInputSchema = workoutBlockExerciseSchema.extend({
 
 export const trainingDayCreateInputSchema = z.object({
   workoutBlocks: z.object({
-    [workoutBlockTypesSchema.enum.WARM_UP]: workoutBlockBaseSchema.extend({
+    [workoutBlockTypesSchema.enum.WARM_UP]: workoutCreateBlockBaseSchema.extend({
       exercises: z
         .array(workoutBlockExerciseInputSchema)
         .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.WARM_UP]),
     }),
-    [workoutBlockTypesSchema.enum.MAIN_WORKOUT]: workoutBlockBaseSchema.extend({
+    [workoutBlockTypesSchema.enum.MAIN_WORKOUT]: workoutCreateBlockBaseSchema.extend({
       exercises: z
         .array(workoutBlockExerciseInputSchema)
         .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.MAIN_WORKOUT]),
     }),
-    [workoutBlockTypesSchema.enum.COOL_DOWN]: workoutBlockBaseSchema.extend({
+    [workoutBlockTypesSchema.enum.COOL_DOWN]: workoutCreateBlockBaseSchema.extend({
       exercises: z
         .array(workoutBlockExerciseInputSchema)
         .min(WORKOUT_BLOCK_EXERCISE_MIN_LENGTH[workoutBlockTypesSchema.enum.COOL_DOWN]),
