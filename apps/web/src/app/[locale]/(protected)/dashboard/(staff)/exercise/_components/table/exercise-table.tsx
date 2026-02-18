@@ -19,6 +19,7 @@ import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell"
 import { TextCell } from "@/components/table/cells/text-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
 import { cn } from "@/lib/utils";
+import { EditExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/edit-exercise-dialog";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
@@ -28,6 +29,8 @@ export const ExerciseTable = () => {
   const queryClient = useQueryClient();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [exerciseToDelete, setExerciseToDelete] = useState<ExerciseBaseWithId | null>(null);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [exerciseToEdit, setExerciseToEdit] = useState<ExerciseBaseWithId | null>(null);
   const { data, status: listStatus, error } = useQuery(trpc.exercise.list.queryOptions());
 
   const { mutate: deleteExercise, status: deleteStatus } = useMutation(
@@ -84,10 +87,13 @@ export const ExerciseTable = () => {
         cell: ({ row }) => (
           <ActionButtonsCell
             className="m-0 ml-auto"
-            editLink={`/dashboard/exercise/${row.original.id}/edit`}
             onDelete={() => {
               setOpenDeleteDialog(true);
               setExerciseToDelete(row.original);
+            }}
+            onEdit={() => {
+              setExerciseToEdit(row.original);
+              setOpenEditDialog(true);
             }}
           />
         ),
@@ -123,6 +129,11 @@ export const ExerciseTable = () => {
         }}
         entityName={exerciseToDelete?.name ?? ""}
         status={deleteStatus}
+      />
+      <EditExerciseDialog
+        exercise={exerciseToEdit}
+        open={openEditDialog}
+        onOpenChange={setOpenEditDialog}
       />
       <div className="flex w-full flex-col">
         <table className="w-full max-w-full table-auto border-collapse flex-col overflow-hidden rounded-xl">
