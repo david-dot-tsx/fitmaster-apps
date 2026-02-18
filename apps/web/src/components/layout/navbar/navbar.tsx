@@ -49,7 +49,7 @@ export const Navbar = async () => {
         </div>
       </nav>
 
-      <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
+      <div className="absolute bottom-0 left-0 h-0.5 w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
     </header>
   );
 };
