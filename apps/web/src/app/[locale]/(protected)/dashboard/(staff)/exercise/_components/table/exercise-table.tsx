@@ -9,16 +9,18 @@ import {
 } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
 
-import { type ExerciseListOutput, type ExerciseBaseWithId } from "@repo/validators";
+import { type ExerciseListOutput, type ExerciseBaseWithId, Difficulty } from "@repo/validators";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell";
-import { DateCell } from "@/components/table/cells/date-cell";
 import { ImageCell } from "@/components/table/cells/image-cell";
-import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
-import { TextCell } from "@/components/table/cells/text-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
 import { cn } from "@/lib/utils";
+import { EditExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/edit-exercise-dialog";
+import { Badge } from "@/components/ui/badge";
+import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
+import { DATE_FORMATS } from "@/consts/date-formats";
+import { DateCell } from "@/components/table/cells/date-cell";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
@@ -28,6 +30,8 @@ export const ExerciseTable = () => {
   const queryClient = useQueryClient();
   const [openDeleteDialog, setOpenDeleteDialog] = useState(false);
   const [exerciseToDelete, setExerciseToDelete] = useState<ExerciseBaseWithId | null>(null);
+  const [openEditDialog, setOpenEditDialog] = useState(false);
+  const [exerciseToEdit, setExerciseToEdit] = useState<ExerciseBaseWithId | null>(null);
   const { data, status: listStatus, error } = useQuery(trpc.exercise.list.queryOptions());
 
   const { mutate: deleteExercise, status: deleteStatus } = useMutation(
@@ -40,60 +44,97 @@ export const ExerciseTable = () => {
     }),
   );
 
-  const columns = useMemo(() => {
-    return [
+  const columns = useMemo(
+    () => [
       columnHelper.accessor("name", {
-        header: "Name",
-        cell: ({ row }) => <TextCell className="text-nowrap" text={row.original.name} />,
-      }),
-      columnHelper.accessor("difficulty", {
-        header: "Difficulty",
+        header: "Exercise Name",
         cell: ({ row }) => (
-          <TextCell
-            className="text-center font-bold text-amber-500"
-            text={row.original.difficulty}
-          />
+          <div className="flex flex-col">
+            <span className="font-bold text-zinc-200 transition-colors group-hover:text-amber-400">
+              {row.original.name}
+            </span>
+            <span className="text-[10px] uppercase tracking-tighter text-zinc-600">
+              ID: {row.original.id.slice(0, 8)}
+            </span>
+          </div>
         ),
       }),
+      columnHelper.accessor("difficulty", {
+        header: "Intensity",
+        cell: ({ getValue }) => {
+          const value = getValue();
+
+          return (
+            <Badge
+              className={cn(
+                "border bg-transparent text-[10px] font-black uppercase tracking-widest",
+                {
+                  "border-red-500/50 text-red-500": value === Difficulty.HARD,
+                  "border-amber-400/50 text-amber-400": value === Difficulty.MEDIUM,
+                  "border-emerald-500/50 text-emerald-500": value === Difficulty.EASY,
+                },
+              )}
+            >
+              {value}
+            </Badge>
+          );
+        },
+      }),
       columnHelper.accessor("bodyPart", {
-        header: "Body Part",
-        cell: ({ row }) => (
-          <TextCell className="text-center font-bold text-amber-500" text={row.original.bodyPart} />
+        header: "Target",
+        cell: ({ getValue }) => (
+          <span className="text-xs font-bold uppercase italic tracking-tight text-zinc-400">
+            {getValue()}
+          </span>
         ),
       }),
       columnHelper.accessor("description", {
-        header: "Description",
-        cell: ({ row }) => <TextTruncatedCell text={row.original.description ?? ""} />,
-      }),
-      columnHelper.accessor("imageUrl", {
-        size: 100,
-        header: "Image",
-        cell: ({ row }) => <ImageCell src={row.original.imageUrl} alt="Image" />,
-      }),
-      columnHelper.accessor("createdAt", {
-        header: "Created At",
-        cell: ({ row }) => <DateCell date={row.original.createdAt} />,
-      }),
-      columnHelper.accessor("updatedAt", {
-        header: "Updated At",
-        cell: ({ row }) => <DateCell date={row.original.updatedAt} />,
-      }),
-      columnHelper.display({
-        id: "actions",
-        header: "Actions",
-        cell: ({ row }) => (
-          <ActionButtonsCell
-            className="m-0 ml-auto"
-            editLink={`/dashboard/exercise/${row.original.id}/edit`}
-            onDelete={() => {
-              setOpenDeleteDialog(true);
-              setExerciseToDelete(row.original);
-            }}
+        header: "Protocol Details",
+        cell: ({ getValue }) => (
+          <TextTruncatedCell
+            text={getValue() || "—"}
+            className="text-xs leading-relaxed text-zinc-500 group-hover:text-zinc-400"
           />
         ),
       }),
-    ];
-  }, [setOpenDeleteDialog]);
+      columnHelper.accessor("imageUrl", {
+        header: "Preview",
+        cell: ({ row }) => (
+          <div className="relative h-10 w-16 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 transition-colors group-hover:border-amber-400/30">
+            <ImageCell src={row.original.imageUrl} alt="Image" className="object-cover" />
+          </div>
+        ),
+      }),
+      columnHelper.accessor("updatedAt", {
+        header: "Last Update",
+        cell: ({ getValue }) => (
+          <DateCell
+            date={getValue()}
+            dateFormat={DATE_FORMATS.DATE}
+            className="font-mono text-[10px] text-zinc-600"
+          />
+        ),
+      }),
+      columnHelper.display({
+        id: "actions",
+        cell: ({ row }) => (
+          <div className="flex justify-end gap-2" onClick={(e) => e.stopPropagation()}>
+            <ActionButtonsCell
+              onDelete={() => {
+                setOpenDeleteDialog(true);
+                setExerciseToDelete(row.original);
+              }}
+              onEdit={() => {
+                setExerciseToEdit(row.original);
+                setOpenEditDialog(true);
+              }}
+            />
+          </div>
+        ),
+      }),
+    ],
+    [setOpenDeleteDialog],
+  );
 
   const table = useReactTable({
     data: data ?? [],
@@ -124,13 +165,21 @@ export const ExerciseTable = () => {
         entityName={exerciseToDelete?.name ?? ""}
         status={deleteStatus}
       />
-      <div className="flex w-full flex-col">
-        <table className="w-full max-w-full table-auto border-collapse flex-col overflow-hidden rounded-xl">
+      <EditExerciseDialog
+        exercise={exerciseToEdit}
+        open={openEditDialog}
+        onOpenChange={setOpenEditDialog}
+      />
+      <div className="w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
+        <table className="w-full table-auto border-collapse">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id}>
+              <tr key={headerGroup.id} className="border-b border-zinc-800 bg-zinc-900/50">
                 {headerGroup.headers.map((header) => (
-                  <th key={header.id} className="text-nowrap bg-amber-400 p-2">
+                  <th
+                    key={header.id}
+                    className="p-4 text-left text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500"
+                  >
                     {header.isPlaceholder
                       ? null
                       : flexRender(header.column.columnDef.header, header.getContext())}
@@ -139,20 +188,19 @@ export const ExerciseTable = () => {
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody className="divide-y divide-zinc-800/50">
             {table.getRowModel().rows.map((row) => (
               <tr
                 key={row.id}
-                className="cursor-pointer rounded-sm even:bg-slate-900/50 hover:bg-amber-400/10"
-                onClick={() => {
-                  router.push(`/dashboard/exercise/${row.original.id}`);
-                }}
+                className="group cursor-pointer transition-colors hover:bg-amber-400/[0.03]"
+                onClick={() => router.push(`/dashboard/exercise/${row.original.id}`)}
               >
                 {row.getVisibleCells().map((cell) => (
                   <td
                     key={cell.id}
-                    className={cn("border p-2", {
+                    className={cn("p-4 transition-colors group-hover:text-zinc-100", {
                       "w-full": cell.column.id === "description",
+                      "min-w-56": cell.column.id === "name",
                     })}
                   >
                     {flexRender(cell.column.columnDef.cell, cell.getContext())}
@@ -161,19 +209,6 @@ export const ExerciseTable = () => {
               </tr>
             ))}
           </tbody>
-          <tfoot>
-            {table.getFooterGroups().map((footerGroup) => (
-              <tr key={footerGroup.id}>
-                {footerGroup.headers.map((header) => (
-                  <th key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.footer, header.getContext())}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </tfoot>
         </table>
       </div>
     </>

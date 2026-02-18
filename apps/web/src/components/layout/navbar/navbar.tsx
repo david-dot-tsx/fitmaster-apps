@@ -17,7 +17,7 @@ export const Navbar = async () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-zinc-800/50 bg-black/60 px-8 backdrop-blur-xl md:px-16">
+    <header className="sticky top-0 z-50 w-full bg-black/60 px-8 backdrop-blur-xl md:px-16">
       <nav className="flex h-16 flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-12">
           <Link
@@ -33,7 +33,6 @@ export const Navbar = async () => {
             />
           </Link>
 
-          {/* Custom Navigation Links */}
           <div className="hidden flex-row gap-8 md:flex">
             {navLinks.map((link) => (
               <NavLink key={link.href} href={link.href}>
@@ -45,10 +44,12 @@ export const Navbar = async () => {
 
         <div className="flex flex-row items-center gap-6">
           <LocaleSwitch />
-          <div className="h-4 w-px bg-zinc-800" /> {/* Separator */}
+          <div className="h-4 w-px bg-zinc-800" />
           <NavbarAuth />
         </div>
       </nav>
+
+      <div className="absolute bottom-0 left-0 h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
     </header>
   );
 };

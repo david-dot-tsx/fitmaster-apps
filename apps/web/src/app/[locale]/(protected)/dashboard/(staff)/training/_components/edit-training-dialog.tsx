@@ -64,26 +64,53 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
       <FormProvider {...methods}>
-        <DialogContent className="sm:max-w-sm">
+        <DialogContent className="border-zinc-800 bg-zinc-950/90 backdrop-blur-2xl sm:max-w-[525px]">
           <form onSubmit={methods.handleSubmit(submitForm)}>
-            <DialogHeader>
-              <DialogTitle>Edit Training</DialogTitle>
-              <DialogDescription>
-                Edit the training here. Click save when you&apos;re done.
+            <DialogHeader className="space-y-3">
+              <div className="flex items-center gap-2">
+                <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
+                <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
+                  Edit <span className="text-amber-400">Training</span> {training?.name}
+                </DialogTitle>
+              </div>
+              <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">
+                Edit the parameters of the training.
               </DialogDescription>
             </DialogHeader>
-            <FieldGroup className="my-4">
-              <FormInput name="name" label="Name" />
-              <FormInput name="description" label="Description" />
-              <FormInput name="imageUrl" label="Image URL" />
-            </FieldGroup>
-            <DialogFooter>
+            <div className="my-8 space-y-6">
+              <FieldGroup className="grid grid-cols-2 gap-4">
+                {/* Full width Name */}
+                <div className="col-span-2">
+                  <FormInput name="name" label="Training Identity" placeholder="e.g. Cardio II" />
+                </div>
+
+                {/* Description & URL */}
+                <div className="col-span-2 space-y-4">
+                  <FormInput
+                    name="description"
+                    label="Details"
+                    placeholder="Training description"
+                  />
+                  <FormInput name="imageUrl" label="Visual Asset (URL)" />
+                </div>
+              </FieldGroup>
+            </div>
+            <DialogFooter className="gap-2 sm:gap-0">
               <DialogClose asChild>
-                <Button variant="outline" type="button">
-                  Cancel
+                <Button
+                  variant="ghost"
+                  type="button"
+                  className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"
+                >
+                  Abort
                 </Button>
               </DialogClose>
-              <Button type="submit">Save</Button>
+              <Button
+                type="submit"
+                className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
+              >
+                Update
+              </Button>
             </DialogFooter>
           </form>
         </DialogContent>
