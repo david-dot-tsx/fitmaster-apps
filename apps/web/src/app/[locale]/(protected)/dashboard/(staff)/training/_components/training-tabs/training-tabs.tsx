@@ -4,6 +4,7 @@ import { TrainingStatus } from "@repo/validators";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrainingTab } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tab";
+import { cn } from "@/lib/utils";
 
 const TABS = {
   UNPUBLISHED: {
@@ -24,21 +25,50 @@ const TABS = {
 };
 export const TrainingTabs = () => {
   return (
-    <Tabs defaultValue={TABS.UNPUBLISHED.value}>
-      <TabsList>
-        <TabsTrigger value={TABS.UNPUBLISHED.value}>{TABS.UNPUBLISHED.label}</TabsTrigger>
-        <TabsTrigger value={TABS.PUBLISHED.value}>{TABS.PUBLISHED.label}</TabsTrigger>
-        <TabsTrigger value={TABS.EXPIRING.value}>{TABS.EXPIRING.label}</TabsTrigger>
+    <Tabs defaultValue={TABS.UNPUBLISHED.value} className="w-full space-y-8">
+      <TabsList className="h-12 w-full justify-start gap-2 rounded-xl border border-zinc-800/50 bg-zinc-950/50 p-1.5 backdrop-blur-md md:w-fit">
+        {Object.values(TABS).map((tab) => (
+          <TabsTrigger
+            key={tab.value}
+            value={tab.value}
+            className={cn(
+              "group",
+              "relative h-full px-6 text-[10px] font-black uppercase tracking-[0.2em] transition-all duration-300",
+              "data-[state=inactive]:text-zinc-500 data-[state=inactive]:hover:text-zinc-300",
+              "data-[state=active]:bg-zinc-900 data-[state=active]:text-amber-400 data-[state=active]:shadow-[0_0_15px_rgba(251,191,36,0.1)]",
+            )}
+          >
+            <span className="flex items-center gap-2">
+              <div
+                className={cn(
+                  "size-1 rounded-full transition-all duration-500",
+                  "bg-zinc-800 group-data-[state=active]:bg-amber-400 group-data-[state=active]:shadow-[0_0_8px_rgba(251,191,36,0.8)]",
+                )}
+              />
+              {tab.label}
+            </span>
+
+            <div
+              className={cn(
+                "absolute inset-x-4 bottom-1 hidden h-px bg-gradient-to-r from-transparent via-amber-400/50 to-transparent data-[state=active]:block",
+                "group-data-[state=active]:block",
+              )}
+            />
+          </TabsTrigger>
+        ))}
       </TabsList>
-      <TabsContent value={TABS.UNPUBLISHED.value}>
-        <TrainingTab statuses={TABS.UNPUBLISHED.statuses} />
-      </TabsContent>
-      <TabsContent value={TABS.PUBLISHED.value}>
-        <TrainingTab statuses={TABS.PUBLISHED.statuses} />
-      </TabsContent>
-      <TabsContent value={TABS.EXPIRING.value}>
-        <TrainingTab statuses={TABS.EXPIRING.statuses} />
-      </TabsContent>
+
+      {Object.values(TABS).map((tab) => (
+        <TabsContent
+          key={tab.value}
+          value={tab.value}
+          className="mt-0 ring-offset-background focus-visible:outline-none"
+        >
+          <div className="duration-500 animate-in fade-in slide-in-from-bottom-2">
+            <TrainingTab statuses={tab.statuses} />
+          </div>
+        </TabsContent>
+      ))}
     </Tabs>
   );
 };
