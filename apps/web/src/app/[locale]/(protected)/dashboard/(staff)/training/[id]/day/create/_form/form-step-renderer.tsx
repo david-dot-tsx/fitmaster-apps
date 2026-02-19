@@ -7,7 +7,7 @@ import { StepCoolDown } from "@/app/[locale]/(protected)/dashboard/(staff)/train
 import { StepMainWorkout } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/main-workout/step-main-workout";
 import { StepWarmUp } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/warm-up/step-warm-up";
 
-export const FormStepRenderer = () => {
+export const FormStepRenderer = ({ trainingId }: { trainingId: string }) => {
   const { currentStep } = useDayCreatorStore();
 
   const content = useMemo(() => {
@@ -19,11 +19,11 @@ export const FormStepRenderer = () => {
       case DAY_CREATOR_STEPS.COOL_DOWN:
         return <StepCoolDown />;
       case DAY_CREATOR_STEPS.SUMMARY:
-        return <StepSummary />;
+        return <StepSummary trainingId={trainingId} />;
       default:
         return null;
     }
-  }, [currentStep]);
+  }, [currentStep, trainingId]);
 
   return content;
 };

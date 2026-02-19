@@ -1,21 +1,21 @@
 import React from "react";
 
-import {
-  type ExerciseBaseWithId,
-  type WorkoutBlockTypes,
-  type TrainingDayCreateInput,
-} from "@repo/validators";
+import { type ExerciseBaseWithId, type WorkoutBlockTypes } from "@repo/validators";
 
 import { BlockCard } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/block-card";
+import { type StoredTrainingDayCreateInput } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
 
 interface SummaryContainerBodyProps {
-  trainingDayData: TrainingDayCreateInput;
+  trainingDayCreateInput: StoredTrainingDayCreateInput;
   exercises?: ExerciseBaseWithId[];
 }
-export const SummaryContainerBody = ({ trainingDayData, exercises }: SummaryContainerBodyProps) => {
+export const SummaryContainerBody = ({
+  trainingDayCreateInput,
+  exercises,
+}: SummaryContainerBodyProps) => {
   return (
     <div className="grid gap-2">
-      {Object.entries(trainingDayData.workoutBlocks).map(([key, block]) => (
+      {Object.entries(trainingDayCreateInput.workoutBlocks).map(([key, block]) => (
         <BlockCard
           key={key}
           block={block}

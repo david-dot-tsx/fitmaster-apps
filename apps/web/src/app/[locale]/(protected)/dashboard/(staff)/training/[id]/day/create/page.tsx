@@ -11,7 +11,7 @@ export default async function DayCreatePage({ params }: { params: { id: string }
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <DayCreateContent />
+      <DayCreateContent trainingId={id} />
     </HydrationBoundary>
   );
 }
