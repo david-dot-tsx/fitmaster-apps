@@ -3,27 +3,48 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { toast } from "sonner";
 
-import { type WorkoutBlockMainWorkout, workoutBlockMainWorkoutSchema } from "@repo/validators";
+import {
+  workoutBlockCoolDownSchema,
+  workoutBlockMainWorkoutSchema,
+  workoutBlockWarmUpSchema,
+  type WorkoutCreateBlockBase,
+} from "@repo/validators";
 
-import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
 import { Stepper } from "@/components/stepper";
 import {
   DAY_CREATOR_STEPS,
+  type DayCreatorStep,
   formStepperSteps,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
-import { useDayCreatorStore } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
-import { WorkoutBlock } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block";
+import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
+import { WorkoutBlock } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block";
+import { useDayCreatorStore } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
 
-export const StepMainWorkout = () => {
-  const { getStepIterator, isLastStep, saveCurrentStepData, getCurrentStepData } =
+const getCurrentStepSchema = (step: DayCreatorStep) => {
+  switch (step) {
+    case DAY_CREATOR_STEPS.WARM_UP:
+      return workoutBlockWarmUpSchema;
+    case DAY_CREATOR_STEPS.MAIN_WORKOUT:
+      return workoutBlockMainWorkoutSchema;
+    case DAY_CREATOR_STEPS.COOL_DOWN:
+      return workoutBlockCoolDownSchema;
+    default:
+      throw new Error(`Unknown step: ${step}`);
+  }
+};
+
+export const StepExerciseBlockForm = () => {
+  const { getStepIterator, isLastStep, saveCurrentStepData, getCurrentStepData, currentStep } =
     useDayCreatorStore();
   const stepIterator = getStepIterator();
+  const schema = getCurrentStepSchema(currentStep);
   const methods = useForm({
-    resolver: zodResolver(workoutBlockMainWorkoutSchema),
+    resolver: zodResolver(schema),
     defaultValues: getCurrentStepData(),
   });
-  const onSubmit = (data: WorkoutBlockMainWorkout) => {
+
+  const onSubmit = (data: WorkoutCreateBlockBase) => {
     saveCurrentStepData(data);
     stepIterator.next?.();
   };
@@ -43,12 +64,8 @@ export const StepMainWorkout = () => {
   return (
     <FormProvider {...methods}>
       <form className="flex w-full flex-col gap-4" onSubmit={methods.handleSubmit(onSubmit)}>
-        <Stepper
-          currentStep={DAY_CREATOR_STEPS.MAIN_WORKOUT}
-          steps={formStepperSteps}
-          className="w-full"
-        />
-        <StepHeader step={DAY_CREATOR_STEPS.MAIN_WORKOUT} />
+        <Stepper currentStep={currentStep} steps={formStepperSteps} className="w-full" />
+        <StepHeader step={currentStep} />
         <WorkoutBlock />
         <StepsNavigation
           handlePrevious={stepIterator.previous}

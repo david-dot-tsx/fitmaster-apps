@@ -11,7 +11,7 @@ const WORKOUT_BLOCK_EXERCISE_MIN_LENGTH = {
   [workoutBlockTypesSchema.enum.COOL_DOWN]: 0,
 };
 /**
- * TRPC Procedure Input Schema
+ * Form schema
  */
 export const workoutBlockExerciseSchema = z.object({
   exerciseId: idSchema,
