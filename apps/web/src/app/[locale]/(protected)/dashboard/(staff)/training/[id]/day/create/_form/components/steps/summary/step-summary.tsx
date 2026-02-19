@@ -1,13 +1,15 @@
 import React from "react";
-import { useMutation, useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
-
-import { trainingDayCreateInputSchema } from "@repo/validators";
+import { useRouter } from "next/navigation";
 
 import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
-import { useDayCreatorStore } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
+import {
+  storedTrainingDayCreateInputSchema,
+  useDayCreatorStore,
+} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
 import { useTRPC } from "@/lib/trpc/client";
 import { SummaryContainer } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-container";
 import { Stepper } from "@/components/stepper";
@@ -17,10 +19,11 @@ import {
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
 
-export const StepSummary = () => {
+export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const trpc = useTRPC();
-
-  const { getStepIterator, isLastStep, getTrainingDayCreateInput, resetStore, trainingId } =
+  const router = useRouter();
+  const queryClient = useQueryClient();
+  const { getStepIterator, isLastStep, getTrainingDayCreateInput, resetStore } =
     useDayCreatorStore();
 
   const { data: training } = useQuery(trpc.training.getById.queryOptions({ id: trainingId }));
@@ -31,14 +34,18 @@ export const StepSummary = () => {
       onSuccess: () => {
         toast.success("Training day created!");
         resetStore();
+        queryClient.invalidateQueries(
+          trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId }),
+        );
+        router.push(`/dashboard/training/${trainingId}`);
       },
     }),
   );
 
-  const data = getTrainingDayCreateInput();
+  const trainingDayCreateInput = getTrainingDayCreateInput();
   const methods = useForm({
-    resolver: zodResolver(trainingDayCreateInputSchema),
-    values: data,
+    resolver: zodResolver(storedTrainingDayCreateInputSchema),
+    values: trainingDayCreateInput,
   });
 
   const stepIterator = getStepIterator();
@@ -51,9 +58,17 @@ export const StepSummary = () => {
         className="w-full"
       />
       <StepHeader step={DAY_CREATOR_STEPS.SUMMARY} />
-      <SummaryContainer trainingDayData={data} training={training} exercises={exercises} />
+      <SummaryContainer
+        trainingDayCreateInput={trainingDayCreateInput}
+        training={training}
+        exercises={exercises}
+      />
       <FormProvider {...methods}>
-        <form onSubmit={methods.handleSubmit((data) => createTrainingDayMutation.mutate(data))}>
+        <form
+          onSubmit={methods.handleSubmit((trainingDayCreateInput) =>
+            createTrainingDayMutation.mutate({ ...trainingDayCreateInput, trainingId }),
+          )}
+        >
           <StepsNavigation
             handlePrevious={stepIterator.previous}
             isLastStep={isLastStep()}

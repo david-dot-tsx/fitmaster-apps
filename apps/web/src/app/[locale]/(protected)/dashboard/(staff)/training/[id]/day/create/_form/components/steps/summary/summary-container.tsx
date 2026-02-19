@@ -1,16 +1,12 @@
 import React, { useMemo } from "react";
 import { entries, groupBy, values } from "remeda";
 
-import {
-  Difficulty,
-  type ExerciseBaseWithId,
-  type Training,
-  type TrainingDayCreateInput,
-} from "@repo/validators";
+import { Difficulty, type ExerciseBaseWithId, type Training } from "@repo/validators";
 
 import { Separator } from "@/components/ui/separator";
 import { SummaryContainerBody } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-container-body";
 import { SummaryStats } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-stats";
+import { type StoredTrainingDayCreateInput } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
 
 export interface Stats {
   exercises: {
@@ -25,16 +21,16 @@ export interface Stats {
 }
 
 interface SummaryContainerProps {
-  trainingDayData: TrainingDayCreateInput;
+  trainingDayCreateInput: StoredTrainingDayCreateInput;
   training?: Training;
   exercises?: ExerciseBaseWithId[];
 }
-export const SummaryContainer = ({ trainingDayData, exercises }: SummaryContainerProps) => {
+export const SummaryContainer = ({ trainingDayCreateInput, exercises }: SummaryContainerProps) => {
   const stats = useMemo(() => {
-    const blocks = trainingDayData?.workoutBlocks;
+    const blocks = trainingDayCreateInput?.workoutBlocks;
     if (!blocks) return null;
 
-    const allExercises = values(trainingDayData.workoutBlocks).flatMap((b) => b.exercises);
+    const allExercises = values(trainingDayCreateInput.workoutBlocks).flatMap((b) => b.exercises);
     const partCounts = groupBy(
       allExercises,
       (e) => exercises?.find((ex) => ex.id === e.exerciseId)?.bodyPart,
@@ -79,12 +75,12 @@ export const SummaryContainer = ({ trainingDayData, exercises }: SummaryContaine
       dominantPart,
       intensity: avgIntensity,
     };
-  }, [trainingDayData, exercises]);
+  }, [trainingDayCreateInput, exercises]);
 
   return (
     <div className="relative mx-auto flex size-full max-h-full flex-col">
       <Separator className="mb-8 bg-zinc-800" />
-      <SummaryContainerBody trainingDayData={trainingDayData} exercises={exercises} />
+      <SummaryContainerBody trainingDayCreateInput={trainingDayCreateInput} exercises={exercises} />
       {stats && <SummaryStats stats={stats} />}
     </div>
   );

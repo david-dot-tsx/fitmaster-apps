@@ -1,9 +1,9 @@
 import { immer } from "zustand/middleware/immer";
 import { create } from "zustand";
+import type z from "zod";
 
 import {
   trainingDayCreateInputSchema,
-  type TrainingDayCreateInput,
   type WorkoutCreateBlockBase,
   type WorkoutBlockCoolDown,
   type WorkoutBlockMainWorkout,
@@ -14,6 +14,11 @@ import {
   DAY_CREATOR_STEPS,
   type DayCreatorStep,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+
+export const storedTrainingDayCreateInputSchema = trainingDayCreateInputSchema.omit({
+  trainingId: true,
+});
+export type StoredTrainingDayCreateInput = z.infer<typeof storedTrainingDayCreateInputSchema>;
 
 const stepOrder: DayCreatorStep[] = [
   DAY_CREATOR_STEPS.WARM_UP,
@@ -54,7 +59,6 @@ const createStepIterator = (
 
 interface DayCreatorState {
   currentStep: DayCreatorStep;
-  trainingId: string;
   workoutData: {
     [DAY_CREATOR_STEPS.WARM_UP]: WorkoutBlockWarmUp;
     [DAY_CREATOR_STEPS.MAIN_WORKOUT]: WorkoutBlockMainWorkout;
@@ -64,18 +68,16 @@ interface DayCreatorState {
 
 interface DayCreatorActions {
   setCurrentStep: (step: DayCreatorStep) => void;
-  setTrainingId: (trainingId: string) => void;
   getStepIterator: () => StepIterator;
   isLastStep: () => boolean;
   saveCurrentStepData: (formData: WorkoutCreateBlockBase) => void;
   getCurrentStepData: () => WorkoutCreateBlockBase | undefined;
-  getTrainingDayCreateInput: () => TrainingDayCreateInput;
+  getTrainingDayCreateInput: () => StoredTrainingDayCreateInput;
   resetStore: () => void;
 }
 
 const initStoreState = {
   currentStep: getInitialStep(stepOrder),
-  trainingId: "",
   workoutData: {
     [DAY_CREATOR_STEPS.WARM_UP]: { exercises: [] },
     [DAY_CREATOR_STEPS.MAIN_WORKOUT]: { exercises: [] },
@@ -86,7 +88,6 @@ export const useDayCreatorStore = create<DayCreatorState & DayCreatorActions>()(
   immer((set, get) => ({
     ...initStoreState,
     setCurrentStep: (step) => set({ currentStep: step }),
-    setTrainingId: (trainingId: string) => set({ trainingId }),
     getStepIterator: () =>
       createStepIterator(get().currentStep, (step: DayCreatorStep) => set({ currentStep: step })),
     isLastStep: () => get().currentStep === stepOrder[stepOrder.length - 1],
@@ -101,12 +102,9 @@ export const useDayCreatorStore = create<DayCreatorState & DayCreatorActions>()(
       return workoutData[currentStep];
     },
     getTrainingDayCreateInput: () => {
-      const data = {
+      return storedTrainingDayCreateInputSchema.parse({
         workoutBlocks: get().workoutData,
-        trainingId: get().trainingId,
-      };
-
-      return trainingDayCreateInputSchema.parse(data);
+      });
     },
     resetStore: () => set(initStoreState),
   })),

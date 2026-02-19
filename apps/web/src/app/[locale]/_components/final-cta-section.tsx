@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -8,7 +9,7 @@ export const FinalCTASection = () => {
     <section
       className={cn(
         "relative mt-32 overflow-hidden rounded-[2rem] border border-amber-400/30 bg-[radial-gradient(circle_at_50%_0%,rgba(251,191,36,0.08),transparent_70%)] p-12 text-center",
-        "transition-all duration-300 has-[button:hover]:shadow-2xl has-[button:hover]:shadow-amber-400/10 md:p-24",
+        "transition-all duration-300 has-[a:hover]:shadow-2xl has-[a:hover]:shadow-amber-400/10 md:p-24",
       )}
     >
       <div className="absolute left-6 top-6 size-4 border-l-2 border-t-2 border-amber-400/30" />
@@ -35,8 +36,11 @@ export const FinalCTASection = () => {
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4">
-          <Button className="h-16 w-full bg-amber-400 px-12 font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all hover:scale-105 hover:bg-amber-500 md:w-auto">
-            Initialize Transformation
+          <Button
+            asChild
+            className="h-16 w-full bg-amber-400 px-12 font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all hover:scale-105 hover:bg-amber-500 md:w-auto"
+          >
+            <Link href="/auth/register">Initialize Transformation</Link>
           </Button>
 
           <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">

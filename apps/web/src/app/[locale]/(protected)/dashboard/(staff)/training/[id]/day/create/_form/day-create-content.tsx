@@ -33,11 +33,11 @@ export const stepConfig = {
   },
 } as const;
 
-export const DayCreateContent = () => {
+export const DayCreateContent = ({ trainingId }: { trainingId: string }) => {
   return (
     <PageWrapper title="Training day creator">
       <div className="flex w-full flex-col gap-4">
-        <FormStepRenderer />
+        <FormStepRenderer trainingId={trainingId} />
       </div>
     </PageWrapper>
   );
