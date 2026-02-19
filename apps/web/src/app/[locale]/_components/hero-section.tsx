@@ -27,10 +27,8 @@ export const HeroSection = () => {
 
         {/* Main H1 */}
         <h1 className="max-w-4xl text-6xl font-black uppercase italic tracking-tighter text-zinc-100 md:text-8xl lg:text-9xl">
-          Forge Your{" "}
-          <span className="text-glow text-amber-400">
-            Legacy<span className="text-zinc-500">.</span>
-          </span>
+          Forge Your <span className="text-glow text-amber-400">Legacy</span>
+          <span className="text-zinc-500">.</span>
         </h1>
 
         <p className="mx-auto mb-10 max-w-2xl text-lg font-medium text-zinc-300 drop-shadow-2xl">

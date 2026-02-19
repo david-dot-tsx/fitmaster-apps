@@ -1,14 +1,12 @@
-import { redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
-import { hasSessionTokensAction } from "@/actions/session.actions";
+import { getSessionUser } from "@/lib/session-user";
 
-// TODO: Check if user is staff
 export default async function StaffLayout({ children }: { children: React.ReactNode }) {
-  const { hasToken, hasRefreshToken } = await hasSessionTokensAction();
-
-  if (!hasToken && !hasRefreshToken) {
-    redirect("/auth/login");
+  const sessionUser = await getSessionUser();
+  if (sessionUser.isStaff) {
+    return <>{children}</>;
   }
 
-  return <>{children}</>;
+  notFound();
 }
