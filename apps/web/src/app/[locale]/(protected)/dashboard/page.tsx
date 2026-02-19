@@ -2,11 +2,12 @@
 
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import Link from "next/link";
+import { redirect } from "next/navigation";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
 import { UserDetails } from "@/app/[locale]/(protected)/dashboard/_components/user-details";
-import { hasSessionTokensAction } from "@/actions/session.actions";
+import { getSessionUser } from "@/lib/session-user";
 
 const links = [
   {
@@ -24,11 +25,12 @@ const links = [
 ];
 
 export default async function DashboardPage() {
-  const queryClient = getQueryClient();
-  const { hasToken } = await hasSessionTokensAction();
-  if (hasToken) {
-    await queryClient.prefetchQuery(trpcServerOptionsProxy.user.me.queryOptions());
+  const sessionUser = await getSessionUser();
+  if (!sessionUser.isAuthenticated) {
+    redirect("/auth/login");
   }
+  const queryClient = getQueryClient();
+  await queryClient.prefetchQuery(trpcServerOptionsProxy.user.me.queryOptions());
 
   return (
     <PageWrapper title="Dashboard">

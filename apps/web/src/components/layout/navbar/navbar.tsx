@@ -4,16 +4,16 @@ import Link from "next/link";
 
 import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
 import { LocaleSwitch } from "@/components/locale-switch";
-import { hasSessionTokensAction } from "@/actions/session.actions";
 import { NavLink } from "@/components/layout/navbar/nav-link";
+import { getSessionUser } from "@/lib/session-user";
 
 export const Navbar = async () => {
-  const { hasToken, hasRefreshToken } = await hasSessionTokensAction();
+  const sessionUser = await getSessionUser();
 
   const navLinks = [
     { href: "/dashboard", label: "Dashboard" },
-    { href: "/dashboard/training", label: "Trainings" },
-    { href: "/dashboard/exercise", label: "Exercises" },
+    ...(sessionUser.isStaff ? [{ href: "/dashboard/training", label: "Trainings" }] : []),
+    ...(sessionUser.isStaff ? [{ href: "/dashboard/exercise", label: "Exercises" }] : []),
   ];
 
   return (
@@ -21,7 +21,7 @@ export const Navbar = async () => {
       <nav className="flex h-16 flex-row items-center justify-between">
         <div className="flex flex-row items-center gap-12">
           <Link
-            href={hasToken && hasRefreshToken ? "/dashboard" : "/"}
+            href={sessionUser.isAuthenticated ? "/dashboard" : "/"}
             className="transition-opacity hover:opacity-80"
           >
             <Image
