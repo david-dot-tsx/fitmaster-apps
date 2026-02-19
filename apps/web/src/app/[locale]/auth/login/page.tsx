@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
+import Link from "next/link";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
@@ -53,35 +54,68 @@ export default function LoginPage() {
   });
 
   return (
-    <PageWrapper className="mt-12">
-      <Card className="w-full max-w-xs">
-        <CardHeader>
-          <CardTitle className="bg-popover text-2xl font-bold text-amber-400">
-            {t("login")}
-          </CardTitle>
-        </CardHeader>
-        <CardContent>
-          <FormProvider {...methods}>
-            <form className="flex flex-col gap-4">
-              <FormInput name="email" label={t("email")} placeholder={t("email")} />
-              <FormInput
-                name="password"
-                label={t("password")}
-                placeholder={t("password")}
-                type="password"
-              />
-              <Button
-                className="mt-2"
-                onClick={methods.handleSubmit((data) =>
-                  loginMutation.mutate({ email: data.email, password: data.password }),
-                )}
-              >
+    <PageWrapper title={t("login")} subtitle={"Access to your training modules"}>
+      <div className="group m-auto max-w-xs">
+        <Card className="relative overflow-hidden border-zinc-900 bg-zinc-950/50 backdrop-blur-md transition-all duration-700 ease-out group-hover:border-amber-400/30 group-hover:shadow-[0_0_50px_rgba(251,191,36,0.05)]">
+          <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+          <CardHeader className="space-y-1">
+            <div className="flex items-center justify-between">
+              <CardTitle className="text-sm font-black uppercase tracking-[0.3em] text-zinc-500 transition-colors group-hover:text-amber-400">
                 {t("login")}
-              </Button>
-            </form>
-          </FormProvider>
-        </CardContent>
-      </Card>
+              </CardTitle>
+            </div>
+          </CardHeader>
+
+          <CardContent>
+            <FormProvider {...methods}>
+              <form
+                className="flex flex-col gap-5"
+                onSubmit={methods.handleSubmit((data) => loginMutation.mutate(data))}
+              >
+                <div className="space-y-4">
+                  <FormInput
+                    name="email"
+                    label={t("email")}
+                    className="border-zinc-800 bg-zinc-900/50 text-zinc-100 transition-all focus:border-amber-400/50"
+                  />
+                  <FormInput
+                    name="password"
+                    label={t("password")}
+                    type="password"
+                    className="border-zinc-800 bg-zinc-900/50 text-zinc-100 transition-all focus:border-amber-400/50"
+                  />
+                </div>
+
+                <Button
+                  type="submit"
+                  disabled={loginMutation.isPending}
+                  className="relative mt-4 w-full overflow-hidden rounded-none border-t border-amber-400/20 bg-zinc-900 py-6 font-black uppercase tracking-widest text-zinc-400 transition-all duration-300 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] disabled:opacity-20"
+                >
+                  {loginMutation.isPending ? "Authenticating..." : t("login")}
+                </Button>
+              </form>
+            </FormProvider>
+
+            <div className="mt-10 flex flex-col items-center gap-3">
+              <Link
+                href="/auth/register"
+                className="text-xs uppercase tracking-widest text-zinc-500 transition-colors hover:text-zinc-300"
+              >
+                Initialize registration
+              </Link>
+              <Link
+                href="#"
+                className="text-[10px] uppercase tracking-widest text-zinc-700 transition-colors hover:text-zinc-300"
+              >
+                Forgot password?
+              </Link>
+            </div>
+          </CardContent>
+        </Card>
+
+        <div className="mx-auto h-1 w-4/5 bg-amber-400/10 opacity-0 blur-xl transition-opacity duration-1000 group-hover:opacity-100" />
+      </div>
     </PageWrapper>
   );
 }
