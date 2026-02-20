@@ -20,7 +20,7 @@ const TABS = {
   EXPIRING: {
     label: "Expiring",
     value: "expiring",
-    statuses: [TrainingStatus.HIDDEN, TrainingStatus.BLOCKED],
+    statuses: [TrainingStatus.HIDDEN, TrainingStatus.DISABLED],
   },
 };
 export const TrainingTabs = () => {

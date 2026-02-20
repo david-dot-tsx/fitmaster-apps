@@ -1,7 +1,6 @@
 "use client";
 
-import React from "react";
-import { Loader2, Trash2, AlertTriangle } from "lucide-react";
+import { AlertTriangle, Loader2 } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
 
@@ -17,46 +16,48 @@ import {
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
 
-type DeleteDialogProps = Pick<AlertDialogProps, "open" | "onOpenChange"> & {
+export type WarningDialogProps = Required<Pick<AlertDialogProps, "open" | "onOpenChange">> & {
   onConfirm: () => void;
-  status: MutationStatus;
-  entityName: string;
+  title?: string;
+  description?: React.ReactNode;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  status?: MutationStatus;
 };
 
-export const DeleteDialog = ({
+export const WarningDialog = ({
   open,
   onOpenChange,
   onConfirm,
+  title = "Warning",
+  description = "This action may have unintended consequences. Please confirm to continue.",
+  confirmLabel = "Proceed",
+  cancelLabel = "Cancel",
   status,
-  entityName,
-}: DeleteDialogProps) => {
+}: WarningDialogProps) => {
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
-      <AlertDialogContent className="border-red-900/30 bg-zinc-950/90 backdrop-blur-2xl sm:max-w-[450px]">
-        <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-red-600 to-transparent opacity-50" />
+      <AlertDialogContent className="border-amber-400/20 bg-zinc-950/90 backdrop-blur-2xl sm:max-w-[460px]">
+        <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-400/60 to-transparent opacity-60" />
 
         <AlertDialogHeader className="space-y-4">
           <div className="flex items-center gap-3">
-            <div className="flex size-10 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/10">
-              <AlertTriangle className="size-5 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.4)]" />
+            <div className="flex size-10 items-center justify-center rounded-xl border border-amber-400/20 bg-amber-400/10">
+              <AlertTriangle className="size-5 text-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.25)]" />
             </div>
             <AlertDialogTitle className="text-xl font-black uppercase italic tracking-tighter text-zinc-100">
-              Delete <span className="text-red-500">{entityName}</span>
+              {title}
             </AlertDialogTitle>
           </div>
 
           <AlertDialogDescription className="text-xs font-bold uppercase leading-relaxed tracking-widest text-zinc-500">
-            WARNING: This action is irreversible. You are attempting to permanently delete the
-            following record:
-            <span className="mt-2 block text-sm font-black normal-case italic tracking-normal text-zinc-200">
-              &quot;{entityName}&quot;
-            </span>
+            {description}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter className="mt-8 gap-3 sm:gap-0">
           <AlertDialogCancel className="border-zinc-800 bg-transparent text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200">
-            Abort
+            {cancelLabel}
           </AlertDialogCancel>
 
           <AlertDialogAction
@@ -64,18 +65,15 @@ export const DeleteDialog = ({
               e.preventDefault();
               onConfirm();
             }}
+            type="submit"
             disabled={status === "pending"}
             className={cn(
-              "bg-red-600 text-[10px] font-black uppercase tracking-widest text-white shadow-[0_0_20px_rgba(220,38,38,0.2)] transition-all hover:bg-red-700",
+              "bg-amber-400 text-[10px] font-black uppercase tracking-widest text-black shadow-[0_0_20px_rgba(251,191,36,0.18)] transition-all hover:bg-amber-500",
               status === "pending" && "cursor-not-allowed opacity-50",
             )}
           >
-            {status === "pending" ? (
-              <Loader2 className="mr-2 size-3 animate-spin" />
-            ) : (
-              <Trash2 className="mr-2 size-3" />
-            )}
-            Confirm Delete
+            {status === "pending" && <Loader2 className="mr-2 size-3 animate-spin" />}
+            {confirmLabel}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
