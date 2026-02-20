@@ -1,6 +1,6 @@
 import z from "zod";
 
-import { TrainingStatus } from "@repo/db/types";
+import { TrainingStatus, type TrainingStatus as TrainingStatusType } from "@repo/db/types";
 
 import { withIdSchema, withTimestampsSchema } from "../../utils/objects";
 
@@ -15,10 +15,10 @@ export const trainingSchema = z
   .object({
     status: z.enum(TrainingStatus),
   })
-  .extend(trainingBaseSchema.shape)
-  .extend(withIdSchema.shape)
-  .extend(withTimestampsSchema.shape);
+  .and(trainingBaseSchema)
+  .and(withIdSchema)
+  .and(withTimestampsSchema);
 
 export type Training = z.infer<typeof trainingSchema>;
 
-export { TrainingStatus };
+export { TrainingStatus, type TrainingStatusType };

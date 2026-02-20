@@ -168,11 +168,11 @@ model TrainingDay {
 }
 
 enum TrainingStatus {
-  DRAFT
-  READY_TO_PUBLISH
-  PUBLISHED
-  HIDDEN
-  BLOCKED
+  DRAFT // Only visible to staff
+  READY_TO_PUBLISH // only visible to staff and can be published to customers
+  PUBLISHED // Visible to customers, they can launch it
+  DISABLED // Visible to staff and customers, but customers cannot launch it
+  HIDDEN // Visible to staff invisible to customers
 }
 
 model Training {

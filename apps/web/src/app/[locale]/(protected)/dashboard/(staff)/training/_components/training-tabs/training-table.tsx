@@ -11,7 +11,12 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
-import { type Training, TrainingStatus, type TrainingListStaffOutput } from "@repo/validators";
+import {
+  type Training,
+  TrainingStatus,
+  type TrainingListStaffOutput,
+  type Role,
+} from "@repo/validators";
 
 import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
 import { ImageCell } from "@/components/table/cells/image-cell";
@@ -24,6 +29,10 @@ import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)
 import { Badge } from "@/components/ui/badge";
 import { DATE_FORMATS } from "@/consts/date-formats";
 import { NoDataFoundRow } from "@/components/table/no-data-found-row";
+import {
+  UpdateStatusDialog,
+  UpdateTrainingStatusSelect,
+} from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -42,9 +51,10 @@ const statusConfig = {
 };
 interface TrainingTableProps {
   trainings: TrainingListStaffOutput;
+  userRole: Role;
 }
 
-export const TrainingTable = ({ trainings }: TrainingTableProps) => {
+export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
   const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -52,6 +62,9 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
   const [trainingToDelete, setTrainingToDelete] = useState<Training | null>(null);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [trainingToEdit, setTrainingToEdit] = useState<Training | null>(null);
+  const [openWarningDialog, setOpenWarningDialog] = useState(false);
+  const [trainingToUpdateStatus, setTrainingToUpdateStatus] = useState<Training | null>(null);
+  const [trainingNewStatus, setTrainingNewStatus] = useState<TrainingStatus | null>(null);
 
   const { mutate: deleteTraining, status: deleteStatus } = useMutation(
     trpc.training.delete.mutationOptions({
@@ -159,12 +172,22 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
                 setTrainingToDelete(row.original);
                 setOpenDeleteDialog(true);
               }}
-            />
+            >
+              <UpdateTrainingStatusSelect
+                currentValue={row.original.status}
+                userRole={userRole}
+                onValueChange={(value) => {
+                  setTrainingToUpdateStatus(row.original);
+                  setTrainingNewStatus(value);
+                  setOpenWarningDialog(true);
+                }}
+              />
+            </ActionButtonsCell>
           </div>
         ),
       }),
     ],
-    [setOpenEditDialog, setOpenDeleteDialog],
+    [userRole],
   );
 
   const table = useReactTable({
@@ -191,6 +214,12 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
         training={trainingToEdit}
         open={openEditDialog}
         onOpenChange={setOpenEditDialog}
+      />
+      <UpdateStatusDialog
+        training={trainingToUpdateStatus}
+        newStatus={trainingNewStatus}
+        open={openWarningDialog}
+        onOpenChange={setOpenWarningDialog}
       />
       <div className="w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
         <table className="w-full table-auto border-collapse">

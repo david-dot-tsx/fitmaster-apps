@@ -6,8 +6,14 @@ import { type TrainingStatus } from "@repo/validators";
 
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
 import { TrainingTabContent } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tab-content";
+import { getSessionUser } from "@/lib/session-user";
 
 export const TrainingTab = async ({ statuses }: { statuses: TrainingStatus[] }) => {
+  const sessionUser = await getSessionUser();
+  const userRole = sessionUser.user?.role;
+  if (!userRole) {
+    throw new Error("User role not found");
+  }
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(
     trpcServerOptionsProxy.training.listStaff.queryOptions({
@@ -17,7 +23,7 @@ export const TrainingTab = async ({ statuses }: { statuses: TrainingStatus[] }) 
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
-      <TrainingTabContent statuses={statuses} />
+      <TrainingTabContent statuses={statuses} userRole={userRole} />
     </HydrationBoundary>
   );
 };
