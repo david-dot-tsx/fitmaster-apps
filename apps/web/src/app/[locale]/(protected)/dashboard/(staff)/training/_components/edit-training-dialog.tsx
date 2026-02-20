@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { type DialogProps } from "@radix-ui/react-dialog";
+import { toast } from "sonner";
 
 import {
   type Training,
@@ -40,7 +41,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
   const editTrainingMutation = useMutation(
     trpc.training.update.mutationOptions({
       onSuccess: () => {
-        alert("Training updated!");
+        toast.success("Training updated!");
         onOpenChange?.(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
@@ -49,6 +50,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
         );
       },
       onError: (error) => {
+        toast.error("Failed to update training");
         console.error(error);
         onOpenChange?.(false);
       },

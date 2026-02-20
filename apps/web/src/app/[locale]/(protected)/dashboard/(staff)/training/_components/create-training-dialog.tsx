@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation } from "@tanstack/react-query";
 import { PlusIcon } from "lucide-react";
+import { toast } from "sonner";
 
 import { trainingCreateInputFormSchema, type TrainingCreateInputForm } from "@repo/validators";
 
@@ -44,10 +45,11 @@ export const CreateTrainingDialog = () => {
   const createTrainingMutation = useMutation(
     trpc.training.create.mutationOptions({
       onSuccess: () => {
-        alert("Training created!");
+        toast.success("Training created!");
         onOpenChange(false);
       },
       onError: (error) => {
+        toast.error("Failed to create training");
         console.error(error);
         onOpenChange(false);
       },

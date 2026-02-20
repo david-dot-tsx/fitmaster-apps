@@ -4,6 +4,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import { useTranslation } from "react-i18next";
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
@@ -29,12 +30,14 @@ export default function RegisterPage() {
   const registerMutation = useMutation(
     trpc.user.create.mutationOptions({
       onSuccess: () => {
-        alert("Registered!");
+        toast.success("Registered!");
       },
       onError: (err) => {
         const apiErrorTranslationKey = getApiErrorNamespacedTranslationKey(err.message);
         if (apiErrorTranslationKey) {
           methods.setError("email", { message: t(apiErrorTranslationKey) });
+        } else {
+          toast.error("Failed to register");
         }
       },
     }),

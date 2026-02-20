@@ -9,6 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { type Training, TrainingStatus, type TrainingListStaffOutput } from "@repo/validators";
 
@@ -55,13 +56,18 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
   const { mutate: deleteTraining, status: deleteStatus } = useMutation(
     trpc.training.delete.mutationOptions({
       onSuccess: () => {
-        alert("Training deleted!");
+        toast.success("Training deleted!");
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
             status: [TrainingStatus.DRAFT, TrainingStatus.READY_TO_PUBLISH],
           }),
         );
+      },
+      onError: (error) => {
+        toast.error("Failed to delete training");
+        console.error(error);
+        setOpenDeleteDialog(false);
       },
     }),
   );

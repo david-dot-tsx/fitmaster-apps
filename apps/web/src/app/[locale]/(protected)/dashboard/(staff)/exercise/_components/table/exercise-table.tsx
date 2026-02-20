@@ -8,6 +8,7 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { type ExerciseListOutput, type ExerciseBaseWithId, Difficulty } from "@repo/validators";
 
@@ -40,9 +41,14 @@ export const ExerciseTable = () => {
   const { mutate: deleteExercise, status: deleteStatus } = useMutation(
     trpc.exercise.delete.mutationOptions({
       onSuccess: () => {
-        alert("Exercise deleted!");
+        toast.success("Exercise deleted!");
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
+      },
+      onError: (error) => {
+        toast.error("Failed to delete exercise");
+        console.error(error);
+        setOpenDeleteDialog(false);
       },
     }),
   );
