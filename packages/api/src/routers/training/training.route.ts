@@ -1,6 +1,7 @@
 import { TRPCError } from "@trpc/server";
 
 import {
+  canChangeStatus,
   trainingCreateInputSchema,
   trainingCreateOutputSchema,
   trainingDeleteInputSchema,
@@ -11,6 +12,8 @@ import {
   trainingListStaffOutputSchema,
   trainingUpdateInputSchema,
   trainingUpdateOutputSchema,
+  trainingUpdateStatusInputSchema,
+  trainingUpdateStatusOutputSchema,
 } from "@repo/validators";
 
 import { router, staffProcedure } from "../../server/trpc";
@@ -34,6 +37,33 @@ export const training = router({
       const training = await ctx.prisma.training.update({ where: { id }, data });
 
       return training;
+    }),
+  updateStatus: staffProcedure
+    .meta({ openapi: { method: "PATCH", path: "/training.updateStatus", tags: ["Training"] } })
+    .input(trainingUpdateStatusInputSchema)
+    .output(trainingUpdateStatusOutputSchema)
+    .mutation(async ({ input, ctx }) => {
+      const training = await ctx.prisma.training.findUnique({ where: { id: input.trainingId } });
+      if (!training) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: API_PROCEDURE_ERRORS.NOT_FOUND,
+        });
+      }
+
+      if (!canChangeStatus(training.status, input.status, ctx.sessionUser.role)) {
+        throw new TRPCError({
+          code: "FORBIDDEN",
+          message: API_PROCEDURE_ERRORS.FORBIDDEN,
+        });
+      }
+
+      const updatedTraining = await ctx.prisma.training.update({
+        where: { id: input.trainingId },
+        data: { status: input.status },
+      });
+
+      return updatedTraining;
     }),
 
   delete: staffProcedure
