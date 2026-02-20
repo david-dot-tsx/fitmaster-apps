@@ -1,3 +1,4 @@
+"use server";
 import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import React from "react";
 

@@ -11,21 +11,40 @@ import { TrainingHero } from "@/app/[locale]/(protected)/dashboard/(staff)/train
 import { TrainingDayItem } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/training-day-item";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { LoadingState } from "@/components/query/loading-state";
+import { ErrorState } from "@/components/query/error-state";
 
 export const TrainingContent = ({ id }: { id: string }) => {
   const router = useRouter();
   const trpc = useTRPC();
-  const { data: trainingData, status: trainingStatus } = useQuery(
-    trpc.training.getById.queryOptions({ id }),
-  );
-  const { data: trainingDaysData, status: trainingDaysStatus } = useQuery(
-    trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId: id }),
-  );
+  const {
+    data: trainingData,
+    status: trainingStatus,
+    error: trainingError,
+    refetch: refetchTraining,
+  } = useQuery(trpc.training.getById.queryOptions({ id }));
+  const {
+    data: trainingDaysData,
+    status: trainingDaysStatus,
+    error: trainingDaysError,
+    refetch: refetchTrainingDays,
+  } = useQuery(trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId: id }));
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
-  if (trainingStatus === "pending" || trainingDaysStatus === "pending")
-    return <div>Loading...</div>;
-  if (trainingStatus === "error" || trainingDaysStatus === "error") return <div>Error</div>;
+  if (trainingStatus === "pending" || trainingDaysStatus === "pending") {
+    return <LoadingState message="Loading training…" />;
+  }
+  if (trainingStatus === "error" || trainingDaysStatus === "error") {
+    return (
+      <ErrorState
+        title="Failed to load training"
+        onTryAgain={() => {
+          if (trainingError) void refetchTraining();
+          if (trainingDaysError) void refetchTrainingDays();
+        }}
+      />
+    );
+  }
   if (!trainingData || !trainingDaysData) {
     notFound();
   }

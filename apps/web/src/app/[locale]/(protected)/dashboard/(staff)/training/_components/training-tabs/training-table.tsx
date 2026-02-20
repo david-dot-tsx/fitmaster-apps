@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useMemo, useState } from "react";
 import {
   createColumnHelper,
@@ -21,6 +22,7 @@ import { useTRPC } from "@/lib/trpc/client";
 import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
 import { Badge } from "@/components/ui/badge";
 import { DATE_FORMATS } from "@/consts/date-formats";
+import { NoDataFoundRow } from "@/components/table/no-data-found-row";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -222,6 +224,7 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
                 ))}
               </tr>
             ))}
+            {trainings.length === 0 && <NoDataFoundRow colSpan={columns.length} />}
           </tbody>
         </table>
       </div>

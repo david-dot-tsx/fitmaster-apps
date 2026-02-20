@@ -21,6 +21,9 @@ import { Badge } from "@/components/ui/badge";
 import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
 import { DATE_FORMATS } from "@/consts/date-formats";
 import { DateCell } from "@/components/table/cells/date-cell";
+import { LoadingState } from "@/components/query/loading-state";
+import { ErrorState } from "@/components/query/error-state";
+import { NoDataFoundRow } from "@/components/table/no-data-found-row";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
@@ -32,7 +35,7 @@ export const ExerciseTable = () => {
   const [exerciseToDelete, setExerciseToDelete] = useState<ExerciseBaseWithId | null>(null);
   const [openEditDialog, setOpenEditDialog] = useState(false);
   const [exerciseToEdit, setExerciseToEdit] = useState<ExerciseBaseWithId | null>(null);
-  const { data, status: listStatus, error } = useQuery(trpc.exercise.list.queryOptions());
+  const { data, status: listStatus, refetch } = useQuery(trpc.exercise.list.queryOptions());
 
   const { mutate: deleteExercise, status: deleteStatus } = useMutation(
     trpc.exercise.delete.mutationOptions({
@@ -143,12 +146,10 @@ export const ExerciseTable = () => {
   });
 
   if (listStatus === "pending") {
-    // TODO: improve
-    return <div>Loading...</div>;
+    return <LoadingState message="Loading exercises…" />;
   }
   if (listStatus === "error") {
-    // TODO: improve
-    return <div>Error: {error?.message}</div>;
+    return <ErrorState title="Failed to load exercises" onTryAgain={refetch} />;
   }
 
   return (
@@ -208,6 +209,7 @@ export const ExerciseTable = () => {
                 ))}
               </tr>
             ))}
+            {data?.length === 0 && <NoDataFoundRow colSpan={columns.length} />}
           </tbody>
         </table>
       </div>
