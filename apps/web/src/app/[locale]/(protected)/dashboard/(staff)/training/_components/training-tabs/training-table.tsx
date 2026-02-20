@@ -47,7 +47,7 @@ const statusConfig = {
       "border-emerald-500 text-emerald-500 bg-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.2)]",
   },
   HIDDEN: { label: "Hidden", color: "border-orange-500 text-orange-500 bg-orange-500/10" },
-  BLOCKED: { label: "Blocked", color: "border-red-500 text-red-500 bg-red-500/10" },
+  DISABLED: { label: "Disabled", color: "border-red-500 text-red-500 bg-red-500/10" },
 };
 interface TrainingTableProps {
   trainings: TrainingListStaffOutput;
