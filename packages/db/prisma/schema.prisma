@@ -171,8 +171,8 @@ enum TrainingStatus {
   DRAFT
   READY_TO_PUBLISH
   PUBLISHED
+  DISABLED
   HIDDEN
-  BLOCKED
 }
 
 model Training {
