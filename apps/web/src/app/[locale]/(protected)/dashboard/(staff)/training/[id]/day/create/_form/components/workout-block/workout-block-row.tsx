@@ -16,6 +16,8 @@ import { ExercisePreview } from "@/app/[locale]/(protected)/dashboard/(staff)/tr
 import { FormInputNumber } from "@/components/form/form-input-number";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";
+import { LoadingState } from "@/components/query/loading-state";
+import { ErrorState } from "@/components/query/error-state";
 
 const getExerciseSelectOptions = (exercises: ExerciseBaseWithId[]) => {
   return exercises.map((exercise) => ({ children: exercise.name, value: exercise.id })) || [];
@@ -44,7 +46,11 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
     control,
     formState: { errors },
   } = useFormContext<WorkoutCreateBlockBase>();
-  const { data: exercises, status: exercisesStatus } = useQuery(trpc.exercise.list.queryOptions());
+  const {
+    data: exercises,
+    status: exercisesStatus,
+    refetch: refetchExercises,
+  } = useQuery(trpc.exercise.list.queryOptions());
 
   const getFieldName = (name: string) => {
     return `exercises.${index}.${name}`;
@@ -68,6 +74,16 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
         </div>
       </AccordionTrigger>
       <AccordionContent className="rounded-b-xl border border-t-0 border-zinc-800 bg-zinc-900/20 p-6 group-data-[state=open]:border-amber-400/30">
+        {exercisesStatus === "pending" && (
+          <LoadingState message="Loading exercises…" className="justify-start py-2" />
+        )}
+        {exercisesStatus === "error" && (
+          <ErrorState
+            title="Failed to load exercises"
+            onTryAgain={refetchExercises}
+            className="mb-6 items-start text-left"
+          />
+        )}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Exercise Preview */}
           <div className="lg:col-span-5">

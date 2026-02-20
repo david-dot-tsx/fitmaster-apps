@@ -18,6 +18,8 @@ import {
   formStepperSteps,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
+import { LoadingState } from "@/components/query/loading-state";
+import { ErrorState } from "@/components/query/error-state";
 
 export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const trpc = useTRPC();
@@ -26,8 +28,18 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const { getStepIterator, isLastStep, getTrainingDayCreateInput, resetStore } =
     useDayCreatorStore();
 
-  const { data: training } = useQuery(trpc.training.getById.queryOptions({ id: trainingId }));
-  const { data: exercises } = useQuery(trpc.exercise.list.queryOptions());
+  const {
+    data: training,
+    status: trainingStatus,
+    error: trainingError,
+    refetch: refetchTraining,
+  } = useQuery(trpc.training.getById.queryOptions({ id: trainingId }));
+  const {
+    data: exercises,
+    status: exercisesStatus,
+    error: exercisesError,
+    refetch: refetchExercises,
+  } = useQuery(trpc.exercise.list.queryOptions());
 
   const createTrainingDayMutation = useMutation(
     trpc.trainingDay.create.mutationOptions({
@@ -49,6 +61,21 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   });
 
   const stepIterator = getStepIterator();
+
+  if (trainingStatus === "pending" || exercisesStatus === "pending") {
+    return <LoadingState message="Loading summary…" />;
+  }
+  if (trainingStatus === "error" || exercisesStatus === "error") {
+    return (
+      <ErrorState
+        title="Failed to load summary data"
+        onTryAgain={() => {
+          if (trainingError) void refetchTraining();
+          if (exercisesError) void refetchExercises();
+        }}
+      />
+    );
+  }
 
   return (
     <div className="flex w-full flex-col gap-4">

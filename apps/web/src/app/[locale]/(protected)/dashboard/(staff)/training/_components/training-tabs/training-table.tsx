@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useMemo, useState } from "react";
 import {
   createColumnHelper,
@@ -8,6 +9,7 @@ import {
 } from "@tanstack/react-table";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
+import { toast } from "sonner";
 
 import { type Training, TrainingStatus, type TrainingListStaffOutput } from "@repo/validators";
 
@@ -21,6 +23,7 @@ import { useTRPC } from "@/lib/trpc/client";
 import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
 import { Badge } from "@/components/ui/badge";
 import { DATE_FORMATS } from "@/consts/date-formats";
+import { NoDataFoundRow } from "@/components/table/no-data-found-row";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -53,13 +56,18 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
   const { mutate: deleteTraining, status: deleteStatus } = useMutation(
     trpc.training.delete.mutationOptions({
       onSuccess: () => {
-        alert("Training deleted!");
+        toast.success("Training deleted!");
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
             status: [TrainingStatus.DRAFT, TrainingStatus.READY_TO_PUBLISH],
           }),
         );
+      },
+      onError: (error) => {
+        toast.error("Failed to delete training");
+        console.error(error);
+        setOpenDeleteDialog(false);
       },
     }),
   );
@@ -222,6 +230,7 @@ export const TrainingTable = ({ trainings }: TrainingTableProps) => {
                 ))}
               </tr>
             ))}
+            {trainings.length === 0 && <NoDataFoundRow colSpan={columns.length} />}
           </tbody>
         </table>
       </div>
