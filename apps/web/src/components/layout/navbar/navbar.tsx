@@ -11,9 +11,13 @@ export const Navbar = async () => {
   const sessionUser = await getSessionUser();
 
   const navLinks = [
-    { href: "/dashboard", label: "Dashboard" },
-    ...(sessionUser.isStaff ? [{ href: "/dashboard/training", label: "Trainings" }] : []),
-    ...(sessionUser.isStaff ? [{ href: "/dashboard/exercise", label: "Exercises" }] : []),
+    ...(sessionUser.isStaff
+      ? [
+          { href: "/dashboard", label: "Dashboard" },
+          { href: "/dashboard/training", label: "Trainings" },
+          { href: "/dashboard/exercise", label: "Exercises" },
+        ]
+      : []),
   ];
 
   return (
