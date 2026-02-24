@@ -18,9 +18,9 @@ export function LanguagePicker() {
   };
 
   return (
-    <View className="rounded-2xl bg-gray-50 p-4 shadow-sm">
-      <Text className="mb-4 text-lg font-semibold text-gray-800">
-        {t("settings.language_title", "Wybierz język")}
+    <View className="rounded-2xl border border-zinc-800 bg-zinc-950/50 p-4">
+      <Text className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-zinc-500">
+        {t("select_your_language", { defaultValue: "Select your language" })}
       </Text>
 
       <View className="space-y-2">
@@ -32,22 +32,22 @@ export function LanguagePicker() {
               key={lang.code}
               onPress={() => changeLanguage(lang.code)}
               className={`flex-row items-center rounded-xl border p-4 ${
-                isActive ? "border-blue-500 bg-blue-50" : "border-gray-200 bg-white"
+                isActive ? "border-amber-400/50 bg-zinc-900/60" : "border-zinc-800 bg-zinc-900/30"
               }`}
             >
               <Text className="mr-3 text-2xl">{lang.flag}</Text>
 
               <Text
                 className={`flex-1 text-base ${
-                  isActive ? "font-bold text-blue-600" : "text-gray-700"
+                  isActive ? "font-bold text-amber-400" : "text-zinc-300"
                 }`}
               >
                 {lang.label}
               </Text>
 
               {isActive && (
-                <View className="rounded-full bg-blue-500 p-1">
-                  <Text className="text-xs text-white">✓</Text>
+                <View className="rounded-full bg-amber-400/20 p-1">
+                  <Text className="text-xs font-bold text-amber-400">✓</Text>
                 </View>
               )}
             </Pressable>

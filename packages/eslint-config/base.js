@@ -67,6 +67,7 @@ export const config = [
       parser: tseslint.parser,
     },
     rules: {
+      "react/prop-types": "off",
       "@typescript-eslint/no-unused-vars": [
         "error",
         {
