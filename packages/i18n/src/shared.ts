@@ -1,6 +1,8 @@
 import { type InitOptions } from "i18next";
 
 import type Resources from "./resources";
+import { type Namespace, NAMESPACES } from "./types/namespaces";
+import { LOCALES, type Locale } from "./types/locales";
 export * from "./utils/api-error";
 
 /**
@@ -19,19 +21,6 @@ declare module "i18next" {
   }
 }
 
-export const LOCALES = {
-  PL: "pl",
-  EN: "en",
-  ES: "es",
-} as const;
-export type Locale = (typeof LOCALES)[keyof typeof LOCALES];
-
-export const NAMESPACES = {
-  COMMON: "common",
-  API_ERRORS: "api-errors",
-} as const;
-export type Namespace = (typeof NAMESPACES)[keyof typeof NAMESPACES];
-
 export const initOptions = {
   debug: false,
   fallbackLng: LOCALES.EN,
@@ -41,3 +30,6 @@ export const initOptions = {
 } satisfies InitOptions;
 
 export type ResourcesType = Resources;
+
+export { type Namespace, NAMESPACES };
+export { type Locale, LOCALES };
