@@ -2,7 +2,7 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { type OpenApiMeta } from "trpc-to-openapi";
 import superjson from "superjson";
 
-import { type Role as RoleType, Role } from "@repo/db/prisma";
+import { type Role as RoleType, Role } from "@repo/validators";
 
 import type { TRPCContext } from "./types";
 

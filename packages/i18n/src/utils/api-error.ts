@@ -1,6 +1,6 @@
 import apiErrors from "../locales/pl/api-errors.json";
 import type Resources from "../resources";
-import { NAMESPACES } from "../shared";
+import { NAMESPACES } from "../types/namespaces";
 
 type ApiErrorKeyInI18nResources = keyof Resources["api-errors"];
 

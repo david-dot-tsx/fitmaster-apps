@@ -5,7 +5,7 @@
   "main": "src/index.ts",
   "scripts": {
     "generate-types": "pnpm interface",
-    "dev": "node scripts/watch.js",
+    "watch": "node scripts/watch.js",
     "interface": "i18next-resources-for-ts interface -i ./src/locales/en -o ./src/resources.ts"
   },
   "dependencies": {

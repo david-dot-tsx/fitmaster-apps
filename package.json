@@ -4,10 +4,14 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
+    "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
+    "dev:web": "turbo dev --filter=web",
+    "dev:backend": "turbo dev --filter=backend",
     "lint": "turbo run lint",
     "format": "prettier --cache --write .",
     "format:check": "prettier --cache --check .",
     "check-types": "turbo run check-types",
+    "clean:mobile": "cd apps/mobile && rm -rf .expo && rm -rf node_modules/.cache/metro",
     "validate": "turbo run lint --continue && turbo run check-types --continue",
     "prepare": "husky"
   },
