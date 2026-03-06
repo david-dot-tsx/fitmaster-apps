@@ -11,6 +11,7 @@
     ".expo/types/**/*.ts",
     "expo-env.d.ts",
     "nativewind-env.d.ts",
-    "scripts/check-env.ts"
+    "scripts/check-env.ts",
+    "tailwind.config.js"
   ]
 }
