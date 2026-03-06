@@ -33,7 +33,7 @@ export const FormInput = ({
       render={({ field, fieldState }) => (
         <FormControl isInvalid={Boolean(fieldState.error)}>
           <FormControlLabel>
-            <FormControlLabelText className={cn("font-normal tracking-widest text-white")}>
+            <FormControlLabelText className={"font-normal tracking-widest text-white"}>
               {label}
             </FormControlLabelText>
           </FormControlLabel>

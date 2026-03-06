@@ -26,6 +26,9 @@ const iconStyle = tva({
       md: "h-[18px] w-[18px]",
       lg: "h-5 w-5",
       xl: "h-6 w-6",
+      "2xl": "h-10 w-10",
+      "3xl": "h-16 w-16",
+      "4xl": "h-28 w-28",
     },
   },
 });
@@ -404,6 +407,21 @@ const CircleIcon = createIcon({
 CircleIcon.displayName = "CircleIcon";
 
 export { CircleIcon };
+
+// Filled dot used for checked radio state
+const RadioDotIcon = createIcon({
+  Root: Svg,
+  viewBox: "0 0 24 24",
+  path: (
+    <>
+      <Path d="M12 16a4 4 0 1 0 0-8a4 4 0 0 0 0 8Z" fill="currentColor" />
+    </>
+  ),
+});
+
+RadioDotIcon.displayName = "RadioDotIcon";
+
+export { RadioDotIcon };
 
 const ClockIcon = createIcon({
   Root: Svg,

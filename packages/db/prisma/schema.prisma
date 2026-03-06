@@ -45,6 +45,11 @@ enum WorkoutBlockType {
   COOL_DOWN
 }
 
+enum Gender {
+  MALE
+  FEMALE
+  OTHER
+}
 /*********
  * User
  *********
@@ -64,9 +69,13 @@ model User {
 model Profile {
   id              String           @id @default(uuid())
   userId          String           @unique
-  nickname        String?
+  bio             String?
+  nickname        String
   firstName       String?
   lastName        String?
+  birthDate       DateTime
+  gender          Gender
+  imageUrl        String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
   deletedAt       DateTime?
@@ -78,7 +87,6 @@ model Profile {
 model TrainerProfile {
   id        String    @id @default(uuid())
   profileId String    @unique
-  bio       String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?

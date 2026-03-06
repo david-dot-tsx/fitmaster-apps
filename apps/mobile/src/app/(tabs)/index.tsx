@@ -1,10 +1,12 @@
 import { Image } from "expo-image";
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
+import { router } from "expo-router";
 
 import { trpc } from "@/lib/trpc/client";
 import ParallaxScrollView from "@/components/parallax-scroll-view";
 import { useAuthContext } from "@/providers/auth/auth-context";
 import { useAuthStoreState } from "@/providers/auth/auth.store";
+import { Button, ButtonText } from "@/components/ui/button";
 
 export default function HomeScreen() {
   const { logout } = useAuthContext();
@@ -26,6 +28,12 @@ export default function HomeScreen() {
       <Text>Me: {JSON.stringify(me, null, 2)}</Text>
       <Text>Token: {token}</Text>
       <Text>RefreshToken: {refreshToken}</Text>
+      <Button onPress={() => router.push("/onboarding/completed")}>
+        <ButtonText>OnboardingCompletedScreen</ButtonText>
+      </Button>
+      <TouchableOpacity onPress={() => router.push("/onboarding")}>
+        <Text className="text-center text-2xl text-slate-950">Create Profile</Text>
+      </TouchableOpacity>
       <TouchableOpacity
         onPress={() => refetch()}
         className="rounded-md bg-purple-400 p-2 font-bold text-slate-950"
