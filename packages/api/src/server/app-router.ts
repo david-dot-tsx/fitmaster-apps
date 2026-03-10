@@ -5,6 +5,7 @@ import { exercise } from "../routers/exercise/exercise.route";
 import { training } from "../routers/training/training.route";
 import { trainingDay } from "../routers/trainingDay/training-day.route";
 import { profile } from "../routers/profile/profile.route";
+import { leaderboard } from "../routers/leaderboard/leaderboard.route";
 
 export const appRouter = router({
   user,
@@ -13,6 +14,7 @@ export const appRouter = router({
   exercise,
   training,
   trainingDay,
+  leaderboard,
 });
 
 // Export type router type signature,
