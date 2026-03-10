@@ -22,7 +22,7 @@ export const OnboardingCompletedScreen = () => {
             Your profile has been created. Time to start your fitness journey.
           </Text>
         </View>
-        <Button className="mt-4 w-full" size="xl" onPress={() => router.replace("/(tabs)")}>
+        <Button className="mt-4 w-full" size="xl" onPress={() => router.replace("/main")}>
           <ButtonText>Let&apos;s Go</ButtonText>
         </Button>
       </View>
