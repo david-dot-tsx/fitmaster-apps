@@ -1,6 +1,11 @@
 import z from "zod";
 
-import { Gender, profileBaseSchema, customerProfileBaseSchema } from "./shared.schema";
+import {
+  Gender,
+  profileBaseSchema,
+  customerProfileBaseSchema,
+  customerProfileDetailedSchema,
+} from "./shared.schema";
 
 export const customerProfileCreateInputSchema = z
   .object()
@@ -10,9 +15,7 @@ export const customerProfileCreateInputSchema = z
 export type CustomerProfileCreateInput = z.infer<typeof customerProfileCreateInputSchema>;
 export type CustomerProfileCreateInputKey = keyof CustomerProfileCreateInput;
 
-export const customerProfileCreateOutputSchema = profileBaseSchema.extend({
-  customerProfile: customerProfileBaseSchema,
-});
+export const customerProfileCreateOutputSchema = customerProfileDetailedSchema;
 export type CustomerProfileCreateOutput = z.infer<typeof customerProfileCreateOutputSchema>;
 
 export const customerProfileCreateFormSchema = z
