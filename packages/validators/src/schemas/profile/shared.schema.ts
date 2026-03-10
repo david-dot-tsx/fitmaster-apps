@@ -20,14 +20,8 @@ export const customerProfileBaseSchema = z.object({
 });
 export type CustomerProfileBase = z.infer<typeof customerProfileBaseSchema>;
 
-export const customerProfileCombinedSchema = z.object({
-  profile: profileBaseSchema,
+export const customerProfileDetailedSchema = profileBaseSchema.extend({
   customerProfile: customerProfileBaseSchema,
 });
 
-export type CustomerProfileCombined = z.infer<typeof customerProfileCombinedSchema>;
-
-/**
- * MINE CODE
- */
 export { Gender, GenderType };
