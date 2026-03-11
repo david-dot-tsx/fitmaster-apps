@@ -8,6 +8,8 @@ import {
   trainingDeleteOutputSchema,
   trainingGetByIdInputSchema,
   trainingGetByIdOutputSchema,
+  trainingListPublishedInputSchema,
+  trainingListPublishedOutputSchema,
   trainingListStaffInputSchema,
   trainingListStaffOutputSchema,
   trainingUpdateInputSchema,
@@ -16,7 +18,7 @@ import {
   trainingUpdateStatusOutputSchema,
 } from "@repo/validators";
 
-import { router, staffProcedure } from "../../server/trpc";
+import { protectedProcedure, router, staffProcedure } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
 
 export const training = router({
@@ -100,6 +102,22 @@ export const training = router({
     .query(async ({ input, ctx }) => {
       const trainings = await ctx.prisma.training.findMany({
         where: { status: { in: input.status } },
+      });
+
+      return trainings;
+    }),
+
+  listPublished: protectedProcedure
+    .meta({ openapi: { method: "GET", path: "/training.listPublished", tags: ["Training"] } })
+    .input(trainingListPublishedInputSchema)
+    .output(trainingListPublishedOutputSchema)
+    .query(async ({ input, ctx }) => {
+      const trainings = await ctx.prisma.training.findMany({
+        take: input.limit,
+        skip: input.cursor ? 1 : 0,
+        cursor: input.cursor ? { id: input.cursor } : undefined,
+        where: { status: "PUBLISHED", deletedAt: null },
+        orderBy: { createdAt: "desc" },
       });
 
       return trainings;
