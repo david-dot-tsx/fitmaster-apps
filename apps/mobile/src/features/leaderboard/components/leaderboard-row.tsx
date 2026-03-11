@@ -1,4 +1,6 @@
 import React from "react";
+import { Pressable } from "react-native";
+import { useRouter } from "expo-router";
 
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
@@ -11,19 +13,30 @@ type LeaderboardRowProps = {
   isCurrentUser: boolean;
 };
 
-export const LeaderboardRow = ({ position, nickname, points, isCurrentUser }: LeaderboardRowProps) => (
-  <HStack
-    className={[
-      "items-center border-b border-zinc-800 px-4 py-3",
-      isCurrentUser ? "bg-amber-400/10" : "",
-    ].join(" ")}
-  >
-    <Text
-      className={["w-10 text-sm", isCurrentUser ? "text-amber-400" : "text-zinc-500"].join(" ")}
-    >
-      #{position}
-    </Text>
-    <Text className="flex-1 text-sm font-semibold text-amber-400">{nickname}</Text>
-    <Text className="text-sm text-zinc-400">{points.toLocaleString()} pts</Text>
-  </HStack>
-);
+export const LeaderboardRow = ({
+  position,
+  nickname,
+  points,
+  isCurrentUser,
+}: LeaderboardRowProps) => {
+  const router = useRouter();
+
+  return (
+    <Pressable onPress={() => router.push(`/profile/${nickname}`)}>
+      <HStack
+        className={[
+          "items-center border-b border-zinc-800 px-4 py-3",
+          isCurrentUser ? "bg-amber-400/10" : "",
+        ].join(" ")}
+      >
+        <Text
+          className={["w-10 text-sm", isCurrentUser ? "text-amber-400" : "text-zinc-500"].join(" ")}
+        >
+          #{position}
+        </Text>
+        <Text className="flex-1 text-sm font-semibold text-amber-400">{nickname}</Text>
+        <Text className="text-sm text-zinc-400">{points.toLocaleString()} pts</Text>
+      </HStack>
+    </Pressable>
+  );
+};

@@ -18,7 +18,21 @@ type LeaderboardEntry = {
 };
 
 export const LeaderboardScreen = () => {
-  const { data: myPosition } = trpc.leaderboard.getMyPosition.useQuery();
+  const { data: me } = trpc.user.me.useQuery();
+
+  const { data: myProfile } = trpc.profile.getCustomerProfile.useQuery(
+    { userId: me!.id },
+    { enabled: !!me?.id },
+  );
+
+  const { data: myPosition } = trpc.leaderboard.getPosition.useQuery(
+    {
+      nickname: myProfile?.nickname ?? "",
+    },
+    {
+      enabled: !!myProfile?.nickname,
+    },
+  );
 
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     trpc.leaderboard.list.useInfiniteQuery(

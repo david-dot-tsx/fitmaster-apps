@@ -1,12 +1,13 @@
 import { TRPCError } from "@trpc/server";
 
 import {
-  leaderboardGetMyPositionOutputSchema,
+  leaderboardGetPositionInputSchema,
+  leaderboardGetPositionOutputSchema,
   leaderboardListInputSchema,
   leaderboardListOutputSchema,
 } from "@repo/validators";
 
-import { customerProcedure, protectedProcedure, router } from "../../server/trpc";
+import { protectedProcedure, router } from "../../server/trpc";
 
 export const leaderboard = router({
   list: protectedProcedure
@@ -36,19 +37,20 @@ export const leaderboard = router({
       }));
     }),
 
-  getMyPosition: customerProcedure
+  getPosition: protectedProcedure
     .meta({
-      openapi: { method: "GET", path: "/leaderboard.getMyPosition", tags: ["Leaderboard"] },
+      openapi: { method: "GET", path: "/leaderboard.getPosition", tags: ["Leaderboard"] },
     })
-    .output(leaderboardGetMyPositionOutputSchema)
-    .query(async ({ ctx }) => {
-      const profile = await ctx.prisma.profile.findUnique({
-        where: { userId: ctx.sessionUser.id },
+    .input(leaderboardGetPositionInputSchema)
+    .output(leaderboardGetPositionOutputSchema)
+    .query(async ({ input, ctx }) => {
+      const profile = await ctx.prisma.profile.findFirst({
+        where: { nickname: input.nickname, deletedAt: null },
         select: {
+          nickname: true,
           customerProfile: {
             select: { id: true, totalPoints: true },
           },
-          nickname: true,
         },
       });
 
