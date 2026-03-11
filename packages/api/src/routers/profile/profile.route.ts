@@ -4,10 +4,11 @@ import { pick } from "remeda";
 import {
   customerProfileCreateInputSchema,
   customerProfileCreateOutputSchema,
+  customerProfileGetInputSchema,
   customerProfileGetOutputSchema,
 } from "@repo/validators";
 
-import { customerProcedure, router } from "../../server/trpc";
+import { customerProcedure, protectedProcedure, router } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
 
 export const profile = router({
@@ -75,36 +76,42 @@ export const profile = router({
       return customerProfileCreateOutputSchema.parse(profile);
     }),
 
-  getCustomerMyProfile: customerProcedure
+  getCustomerProfile: protectedProcedure
     .meta({
       openapi: {
         method: "GET",
-        path: "/profile.getCustomerMyProfile",
+        path: "/profile.getCustomerProfile",
         tags: ["CustomerProfile"],
       },
     })
+    .input(customerProfileGetInputSchema)
     .output(customerProfileGetOutputSchema)
-    .query(async ({ ctx }) => {
-      const profile = await ctx.prisma.profile.findUnique({
-        where: { userId: ctx.sessionUser.id },
-        select: {
-          id: true,
-          bio: true,
-          nickname: true,
-          firstName: true,
-          lastName: true,
-          birthDate: true,
-          gender: true,
-          imageUrl: true,
-          customerProfile: {
-            select: {
-              id: true,
-              height: true,
-              weight: true,
-              goal: true,
-            },
+    .query(async ({ input, ctx }) => {
+      const select = {
+        userId: true,
+        bio: true,
+        nickname: true,
+        firstName: true,
+        lastName: true,
+        birthDate: true,
+        gender: true,
+        imageUrl: true,
+        customerProfile: {
+          select: {
+            height: true,
+            weight: true,
+            goal: true,
           },
         },
+      } as const;
+
+      const profile = await ctx.prisma.profile.findFirst({
+        where: {
+          ...("userId" in input ? { userId: input.userId } : {}),
+          ...("email" in input ? { user: { email: input.email } } : {}),
+          ...("nickname" in input ? { nickname: input.nickname } : {}),
+        },
+        select,
       });
 
       return customerProfileGetOutputSchema.parse(profile);
