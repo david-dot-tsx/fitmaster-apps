@@ -1,61 +1,68 @@
-import { faker } from "@faker-js/faker";
+import { checkbox, number } from "@inquirer/prompts";
 import { PrismaPg } from "@prisma/adapter-pg";
 
-import { Gender, PrismaClient, Role } from "../generated/prisma/client";
+import { PrismaClient } from "../generated/prisma/client";
+import { exercisesSeeder } from "./seeders/exercises.seeder";
+import { trainingsSeeder } from "./seeders/trainings.seeder";
+import type { Seeder } from "./seeders/types";
+import { usersSeeder } from "./seeders/users.seeder";
 
 const adapter = new PrismaPg({ connectionString: process.env["DATABASE_URL"]! });
 const prisma = new PrismaClient({ adapter });
 
-const getRandomImageUrl = (): string => {
-  const id = Math.floor(Math.random() * 1024) + 1;
-
-  return `https://picsum.photos/id/${id}/1024/1024`;
-};
-
-const maybe = <T>(value: T): T | null => (Math.random() > 0.5 ? value : null);
-
-const SEED_COUNT = 100;
+const SEEDERS: Seeder[] = [usersSeeder, exercisesSeeder, trainingsSeeder];
 
 async function main() {
   // eslint-disable-next-line no-console
-  console.log(`Seeding ${SEED_COUNT} users…`);
+  console.log("\n🌱  FitMaster — Database Seeder\n");
 
-  for (let i = 0; i < SEED_COUNT; i++) {
-    const sex = faker.person.sexType();
-    const firstName = faker.person.firstName(sex);
-    const lastName = faker.person.lastName();
-    const gender = sex === "male" ? Gender.MALE : Gender.FEMALE;
+  const selectedNames = await checkbox({
+    message: "Which seeders do you want to run?",
+    choices: SEEDERS.map((s) => ({
+      name: `${s.name}  —  ${s.description}  (default: ${s.defaultCount})`,
+      value: s.name,
+      checked: false,
+    })),
+    required: true,
+  });
 
-    await prisma.user.create({
-      data: {
-        email: faker.internet.email({ firstName, lastName }).toLowerCase(),
-        role: Role.CUSTOMER,
-        passwordHash: null,
-        profile: {
-          create: {
-            nickname: faker.internet.username({ firstName, lastName }).slice(0, 20),
-            firstName: maybe(firstName),
-            lastName: maybe(lastName),
-            bio: maybe(faker.lorem.sentence({ min: 5, max: 200 })),
-            birthDate: faker.date.birthdate({ min: 18, max: 60, mode: "age" }),
-            gender,
-            imageUrl: maybe(getRandomImageUrl()),
-            customerProfile: {
-              create: {
-                height: faker.number.int({ min: 155, max: 210 }),
-                weight: faker.number.int({ min: 50, max: 130 }),
-                goal: maybe(faker.lorem.sentence({ min: 5, max: 200 })),
-                totalPoints: faker.number.int({ min: 0, max: 100000 }),
-              },
-            },
-          },
-        },
-      },
+  const selected = SEEDERS.filter((s) => selectedNames.includes(s.name));
+
+  // Collect counts for every selected seeder upfront
+  const counts: Record<string, number> = {};
+
+  for (const seeder of selected) {
+    const count = await number({
+      message: `How many ${seeder.name.toLowerCase()} to generate?`,
+      default: seeder.defaultCount,
+      min: 1,
+      required: true,
     });
+
+    counts[seeder.name] = count ?? seeder.defaultCount;
   }
 
   // eslint-disable-next-line no-console
-  console.log(`✅ Seeded ${SEED_COUNT} users with profiles and customer profiles.`);
+  console.log("");
+
+  for (const seeder of selected) {
+    const count = counts[seeder.name]!;
+
+    // eslint-disable-next-line no-console
+    console.log(`⏳  Seeding ${count} ${seeder.name.toLowerCase()}…`);
+
+    const start = Date.now();
+
+    await seeder.run({ prisma }, count);
+
+    const elapsed = ((Date.now() - start) / 1000).toFixed(1);
+
+    // eslint-disable-next-line no-console
+    console.log(`✅  ${count} ${seeder.name.toLowerCase()} seeded in ${elapsed}s`);
+  }
+
+  // eslint-disable-next-line no-console
+  console.log("\n🎉  All done!\n");
 }
 
 main()
