@@ -21,6 +21,7 @@ export const customerProfileBaseSchema = z.object({
 export type CustomerProfileBase = z.infer<typeof customerProfileBaseSchema>;
 
 export const customerProfileDetailedSchema = profileBaseSchema.extend({
+  userId: z.string(),
   customerProfile: customerProfileBaseSchema,
 });
 
