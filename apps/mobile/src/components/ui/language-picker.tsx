@@ -1,8 +1,11 @@
 import React from "react";
 import { View, Text, Pressable } from "react-native";
 import { useTranslation } from "react-i18next";
+import { CheckIcon } from "lucide-react-native";
 
 import { LOCALES } from "@repo/i18n/mobile";
+
+import { Icon } from "@/components/ui/icon";
 
 const LANGUAGES = [
   { code: LOCALES.EN, label: "English", flag: "🇺🇸" },
@@ -47,7 +50,7 @@ export function LanguagePicker() {
 
               {isActive && (
                 <View className="rounded-full bg-amber-400/20 p-1">
-                  <Text className="text-xs font-bold text-amber-400">✓</Text>
+                  <Icon as={CheckIcon} size="sm" className="text-amber-400" />
                 </View>
               )}
             </Pressable>
