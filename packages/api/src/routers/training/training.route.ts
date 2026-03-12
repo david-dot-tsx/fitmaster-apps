@@ -8,6 +8,8 @@ import {
   trainingDeleteOutputSchema,
   trainingGetByIdInputSchema,
   trainingGetByIdOutputSchema,
+  trainingGetByIdCustomerInputSchema,
+  trainingGetByIdCustomerOutputSchema,
   trainingListPublishedInputSchema,
   trainingListPublishedOutputSchema,
   trainingListStaffInputSchema,
@@ -121,5 +123,56 @@ export const training = router({
       });
 
       return trainings;
+    }),
+
+  getByIdCustomer: protectedProcedure
+    .meta({ openapi: { method: "GET", path: "/training.getByIdCustomer/{id}", tags: ["Training"] } })
+    .input(trainingGetByIdCustomerInputSchema)
+    .output(trainingGetByIdCustomerOutputSchema)
+    .query(async ({ input, ctx }) => {
+      const training = await ctx.prisma.training.findUnique({
+        where: { id: input.id, status: "PUBLISHED", deletedAt: null },
+        include: {
+          trainingDays: {
+            where: { deletedAt: null },
+            include: {
+              workoutBlocks: {
+                where: { deletedAt: null },
+                include: {
+                  workoutExercises: {
+                    where: { deletedAt: null },
+                    include: { exercise: true },
+                  },
+                },
+              },
+            },
+          },
+        },
+      });
+
+      if (!training) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: API_PROCEDURE_ERRORS.NOT_FOUND,
+        });
+      }
+
+      const exerciseMap = new Map<string, (typeof training.trainingDays)[number]["workoutBlocks"][number]["workoutExercises"][number]["exercise"]>();
+
+      for (const day of training.trainingDays) {
+        for (const block of day.workoutBlocks) {
+          for (const we of block.workoutExercises) {
+            if (!exerciseMap.has(we.exercise.id)) {
+              exerciseMap.set(we.exercise.id, we.exercise);
+            }
+          }
+        }
+      }
+
+      return {
+        ...training,
+        daysAmount: training.trainingDays.length,
+        exercises: Array.from(exerciseMap.values()),
+      };
     }),
 });

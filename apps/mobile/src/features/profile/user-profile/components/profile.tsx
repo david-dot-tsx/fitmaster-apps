@@ -14,6 +14,7 @@ import { Avatar, AvatarImage } from "@/components/ui/avatar";
 import { FoldableText } from "@/components/foldable-text";
 import { Button } from "@/components/ui/button";
 import { Icon } from "@/components/ui/icon";
+import { BackButton } from "@/components/back-button";
 import LeaderboardPosition from "@/features/profile/user-profile/components/leaderboard-position";
 import { SettingsSheet } from "@/features/settings/components/settings-sheet";
 
@@ -29,6 +30,7 @@ export const Profile = ({
   return (
     <View className="flex-1">
       <ScreenWrapper className="pt-12">
+        {!isMyProfile && <BackButton className="ml-4 mt-4" />}
         <ScrollView className="px-4 py-8">
           <VStack className="gap-4">
             <HStack className="gap-4">

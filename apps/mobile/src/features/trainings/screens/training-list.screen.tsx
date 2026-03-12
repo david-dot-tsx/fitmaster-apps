@@ -1,5 +1,6 @@
 import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
+import { useRouter } from "expo-router";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -16,6 +17,7 @@ type Training = {
 };
 
 export const TrainingListScreen = () => {
+  const router = useRouter();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
     trpc.training.listPublished.useInfiniteQuery(
       { limit: LIMIT },
@@ -68,7 +70,9 @@ export const TrainingListScreen = () => {
       <FlatList
         data={trainings}
         keyExtractor={(item) => item.id}
-        renderItem={({ item }) => <TrainingCard {...item} />}
+        renderItem={({ item }) => (
+          <TrainingCard {...item} onPress={() => router.push(`/training/${item.id}`)} />
+        )}
         onEndReached={handleEndReached}
         onEndReachedThreshold={0.3}
         ListFooterComponent={renderFooter}
