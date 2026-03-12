@@ -31,6 +31,7 @@ export const TrainingExerciseList = ({ exercises }: TrainingExerciseListProps) =
       {exercises.map((exercise) => (
         <TrainingExerciseRow
           key={exercise.id}
+          id={exercise.id}
           name={exercise.name}
           imageUrl={exercise.imageUrl}
           difficulty={exercise.difficulty}

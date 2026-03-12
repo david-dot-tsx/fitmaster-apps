@@ -14,6 +14,7 @@ export default function RootLayout() {
         <Stack.Screen name="main" options={{ headerShown: false }} />
         <Stack.Screen name="profile" options={{ headerShown: false }} />
         <Stack.Screen name="training" options={{ headerShown: false }} />
+        <Stack.Screen name="exercise" options={{ headerShown: false }} />
       </Stack>
       <StatusBar style="auto" />
     </RootProvider>
