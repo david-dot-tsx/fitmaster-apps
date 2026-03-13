@@ -214,7 +214,7 @@ model ProgressCustomerTraining {
   customerProfile CustomerProfile? @relation(fields: [customerProfileId], references: [id])
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
-  status CustomerProgressTrainingStatus
+  status CustomerProgressTrainingStatus @default(NOT_STARTED)
   progressCustomerTrainingDays ProgressCustomerTrainingDay[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

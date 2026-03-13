@@ -22,6 +22,7 @@ import {
 
 import { protectedProcedure, router, staffProcedure } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
+import { trainingEnrolment } from "./enrolment/training-enrolment.route";
 
 export const training = router({
   create: staffProcedure
@@ -126,7 +127,9 @@ export const training = router({
     }),
 
   getByIdCustomer: protectedProcedure
-    .meta({ openapi: { method: "GET", path: "/training.getByIdCustomer/{id}", tags: ["Training"] } })
+    .meta({
+      openapi: { method: "GET", path: "/training.getByIdCustomer/{id}", tags: ["Training"] },
+    })
     .input(trainingGetByIdCustomerInputSchema)
     .output(trainingGetByIdCustomerOutputSchema)
     .query(async ({ input, ctx }) => {
@@ -157,7 +160,10 @@ export const training = router({
         });
       }
 
-      const exerciseMap = new Map<string, (typeof training.trainingDays)[number]["workoutBlocks"][number]["workoutExercises"][number]["exercise"]>();
+      const exerciseMap = new Map<
+        string,
+        (typeof training.trainingDays)[number]["workoutBlocks"][number]["workoutExercises"][number]["exercise"]
+      >();
 
       for (const day of training.trainingDays) {
         for (const block of day.workoutBlocks) {
@@ -175,4 +181,5 @@ export const training = router({
         exercises: Array.from(exerciseMap.values()),
       };
     }),
+  enrolment: trainingEnrolment,
 });
