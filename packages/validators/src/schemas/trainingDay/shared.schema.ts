@@ -35,21 +35,15 @@ export const workoutExerciseBaseSchema = z
     distance: z.number().nullable(),
     weight: z.number().nullable(),
     exercise: exerciseBaseWithIdSchema,
+    workoutType: z.enum(WorkoutType),
+    order: z.number(),
   })
   .and(withIdSchema);
 
-export const workoutBlockBaseSchema = z
-  .object({
-    trainingDayId: idSchema,
-    workoutExercises: z.array(workoutExerciseBaseSchema),
-  })
-  .and(withIdSchema)
-  .nullable();
-export type WorkoutBlockBase = z.infer<typeof workoutBlockBaseSchema>;
-
 export const trainingDayDetailedSchema = z
   .object({
-    workoutBlocks: z.record(workoutBlockTypesSchema, workoutBlockBaseSchema),
+    order: z.number(),
+    workoutBlocks: z.record(workoutBlockTypesSchema, z.array(workoutExerciseBaseSchema)),
   })
   .and(withTimestampsSchema)
   .and(withIdSchema);

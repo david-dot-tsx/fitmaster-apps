@@ -38,15 +38,12 @@ const TRAINING_NAMES = [
   "Advanced Shred",
 ];
 
-const BLOCK_TYPES: WorkoutBlockType[] = [
-  WorkoutBlockType.WARM_UP,
-  WorkoutBlockType.MAIN_WORKOUT,
-  WorkoutBlockType.COOL_DOWN,
-];
-
 const workoutTypes = Object.values(WorkoutType);
 
-const buildWorkoutExercises = (exerciseIds: string[]): object[] =>
+const buildWorkoutExercises = (
+  exerciseIds: string[],
+  workoutBlockType: WorkoutBlockType,
+): object[] =>
   Array.from({ length: range(3, 6) }, (_, order) => {
     const exerciseId = pick(exerciseIds);
     const workoutType = pick(workoutTypes);
@@ -62,7 +59,8 @@ const buildWorkoutExercises = (exerciseIds: string[]): object[] =>
     return {
       exerciseId,
       workoutType,
-      order,
+      workoutBlockType: workoutBlockType,
+      order: order + 1,
       reps: isStrengthBased ? range(6, 15) : null,
       duration: isTimeBased ? range(30, 120) : null,
       weight: isStrengthBased ? parseFloat((Math.random() * 80 + 10).toFixed(1)) : null,
@@ -113,18 +111,24 @@ export const trainingsSeeder: Seeder = {
           status: TrainingStatus.PUBLISHED,
           imageUrl: getRandomImageUrl(),
           trainingDays: {
-            create: Array.from({ length: daysCount }, () => ({
-              workoutBlocks: {
-                create: BLOCK_TYPES.map((workoutBlockType) => ({
-                  workoutBlockType,
-                  ...(exerciseIds.length > 0 && {
-                    workoutExercises: {
-                      create: buildWorkoutExercises(exerciseIds),
-                    },
-                  }),
-                })),
-              },
-            })),
+            create: Array.from({ length: daysCount }, (_value, index) => {
+              const exercises = Object.values([
+                WorkoutBlockType.WARM_UP,
+                WorkoutBlockType.MAIN_WORKOUT,
+                WorkoutBlockType.COOL_DOWN,
+              ])
+                .map((workoutBlockType) => {
+                  return buildWorkoutExercises(exerciseIds, workoutBlockType);
+                })
+                .flat();
+
+              return {
+                order: index + 1,
+                workoutExercises: {
+                  create: exercises,
+                },
+              };
+            }),
           },
         },
       });
