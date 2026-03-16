@@ -83,26 +83,26 @@ const BlockSection = ({
     </div>
 
     <div className="space-y-2">
-      {block?.workoutExercises.map((we) => (
+      {block.map((workoutExercise) => (
         <div
-          key={we.id}
+          key={workoutExercise.id}
           className="flex flex-col rounded-lg border border-zinc-800/50 bg-black/20 p-3 transition-colors hover:bg-black/40"
         >
           <span className="text-xs font-bold uppercase tracking-tight text-zinc-200">
-            {we.exercise.name}
+            {workoutExercise.exercise.name}
           </span>
 
           <div className="mt-2 flex items-center gap-3 text-[10px] font-black uppercase text-zinc-500">
-            {we.reps && <span>{we.reps} Reps</span>}
-            {we.duration && <span>{we.duration} Min</span>}
-            {we.distance && <span>{we.distance} Km</span>}
-            {we.weight && <span className="text-amber-500">{we.weight} Kg</span>}
+            {workoutExercise.reps && <span>{workoutExercise.reps} Reps</span>}
+            {workoutExercise.duration && <span>{workoutExercise.duration} Min</span>}
+            {workoutExercise.distance && <span>{workoutExercise.distance} Km</span>}
+            {workoutExercise.weight && (
+              <span className="text-amber-500">{workoutExercise.weight} Kg</span>
+            )}
           </div>
         </div>
       ))}
-      {block?.workoutExercises.length === 0 && (
-        <span className="italic text-zinc-600">No exercises planned</span>
-      )}
+      {block.length === 0 && <span className="italic text-zinc-600">No exercises planned</span>}
     </div>
   </div>
 );
