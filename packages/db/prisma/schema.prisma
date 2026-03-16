@@ -267,12 +267,25 @@ enum ProgressCustomerWorkoutExerciseStatus {
 }
 model ProgressCustomerWorkoutExercise {
   id        String    @id @default(uuid())
-  duration Int? //SECONDS
+  exercisetime Int? // SECONDS
   status ProgressCustomerWorkoutExerciseStatus @default(NOT_STARTED)
   progressCustomerWorkoutBlockId String
   progressCustomerWorkoutBlock ProgressCustomerWorkoutBlock? @relation(fields: [progressCustomerWorkoutBlockId], references: [id])
   workoutExerciseId String
   workoutExercise WorkoutExercise? @relation(fields: [workoutExerciseId], references: [id])
+  
+  // Snapshot of targets at the time the day was started
+  targetReps     Int?    // REPS
+  targetDuration Int?    // SECONDS
+  targetDistance Int?    // METERS
+  targetWeight   Float?  // KG
+
+  // Actual values performed by the customer
+  actualReps     Int?    // REPS
+  actualDuration Int?    // SECONDS
+  actualDistance Int?    // METERS
+  actualWeight   Float?  // KG
+
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   deletedAt DateTime?

@@ -21,25 +21,11 @@ export const TrainingDetailsScreen = ({ id }: { id: string }) => {
   const enrolment = myTrainings?.find((t) => t.trainingId === id) ?? null;
   const isEnrolled = enrolment !== null;
 
-  const ENROLMENT_STATUS_LABEL: Record<string, string> = {
-    NOT_STARTED: "Start Training",
-    IN_PROGRESS: "In Progress",
-    COMPLETED: "Completed",
-    CANCELLED: "Cancelled",
-  };
-
   const { mutate: joinTraining, isPending: isJoining } = trpc.training.enrolment.join.useMutation({
     onSuccess: () => {
       utils.training.enrolment.myTrainings.invalidate();
     },
   });
-
-  const { mutate: startTraining, isPending: isStarting } =
-    trpc.training.enrolment.start.useMutation({
-      onSuccess: () => {
-        utils.training.enrolment.myTrainings.invalidate();
-      },
-    });
 
   if (isLoading) {
     return (
@@ -97,25 +83,12 @@ export const TrainingDetailsScreen = ({ id }: { id: string }) => {
             </Pressable>
           ) : (
             <Pressable
-              onPress={() => (enrolment.status === "NOT_STARTED" ? startTraining({}) : undefined)}
-              disabled={enrolment.status !== "NOT_STARTED" || isStarting}
-              className="mb-5 items-center rounded-xl py-3.5"
-              style={{
-                backgroundColor: enrolment.status === "NOT_STARTED" ? "#fbbf24" : "#27272a",
-              }}
+              onPress={() => router.push(`/training/${id}/do`)}
+              className="mb-5 items-center rounded-xl bg-amber-400 py-3.5"
             >
-              {isStarting ? (
-                <ActivityIndicator color="#09090b" />
-              ) : (
-                <Text
-                  className="text-sm font-bold uppercase tracking-widest"
-                  style={{
-                    color: enrolment.status === "NOT_STARTED" ? "#09090b" : "#71717a",
-                  }}
-                >
-                  {ENROLMENT_STATUS_LABEL[enrolment.status]}
-                </Text>
-              )}
+              <Text className="text-sm font-bold uppercase tracking-widest text-black">
+                Start Training
+              </Text>
             </Pressable>
           )}
 

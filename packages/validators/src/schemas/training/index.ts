@@ -9,3 +9,6 @@ export * from "./update-status.schema";
 export * from "./enrolment/join.schema";
 export * from "./enrolment/my-trainings.schema";
 export * from "./enrolment/start.schema";
+export * from "./enrolment/start-day.schema";
+export * from "./enrolment/start-exercise.schema";
+export * from "./enrolment/get-current-exercise.schema";
