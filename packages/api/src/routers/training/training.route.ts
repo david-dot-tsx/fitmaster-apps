@@ -1,4 +1,5 @@
 import { TRPCError } from "@trpc/server";
+import { uniqueBy } from "remeda";
 
 import {
   canChangeStatus,
@@ -139,15 +140,13 @@ export const training = router({
           trainingDays: {
             where: { deletedAt: null },
             include: {
-              workoutBlocks: {
+              workoutExercises: {
                 where: { deletedAt: null },
-                include: {
-                  workoutExercises: {
-                    where: { deletedAt: null },
-                    include: { exercise: true },
-                  },
-                },
+                include: { exercise: true },
               },
+            },
+            orderBy: {
+              order: "asc",
             },
           },
         },
@@ -160,25 +159,14 @@ export const training = router({
         });
       }
 
-      const exerciseMap = new Map<
-        string,
-        (typeof training.trainingDays)[number]["workoutBlocks"][number]["workoutExercises"][number]["exercise"]
-      >();
-
-      for (const day of training.trainingDays) {
-        for (const block of day.workoutBlocks) {
-          for (const we of block.workoutExercises) {
-            if (!exerciseMap.has(we.exercise.id)) {
-              exerciseMap.set(we.exercise.id, we.exercise);
-            }
-          }
-        }
-      }
+      const exercises = training.trainingDays.flatMap((day) =>
+        day.workoutExercises.map((exercise) => exercise.exercise),
+      );
 
       return {
         ...training,
         daysAmount: training.trainingDays.length,
-        exercises: Array.from(exerciseMap.values()),
+        exercises: uniqueBy(exercises, (exercise) => exercise.id),
       };
     }),
   enrolment: trainingEnrolment,
