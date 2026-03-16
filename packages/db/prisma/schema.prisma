@@ -142,32 +142,23 @@ model WorkoutExercise {
   duration  Int? //SECONDS
   distance  Int? //METERS
   weight    Float? //KG
-  order     Int @default(0)
+  order     Int @default(0) 
   exerciseId String
   exercise  Exercise  @relation(fields: [exerciseId], references: [id])
-  workoutBlockId String
-  workoutBlock   WorkoutBlock   @relation(fields: [workoutBlockId], references: [id])
+  workoutBlockType WorkoutBlockType
   workoutType WorkoutType
+  trainingDayId String
+  trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
   progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt  
   deletedAt DateTime?
 }
 
-model WorkoutBlock {
-  id        String    @id @default(uuid())
-  workoutBlockType WorkoutBlockType
-  workoutExercises WorkoutExercise[]
-  trainingDayId String
-  trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
-  progressCustomerWorkoutBlocks ProgressCustomerWorkoutBlock[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-}
 model TrainingDay {
   id        String    @id @default(uuid())
-  workoutBlocks WorkoutBlock[]
+  workoutExercises WorkoutExercise[]
+  order     Int @default(0) 
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
   progressCustomerTrainingDays ProgressCustomerTrainingDay[]
@@ -234,25 +225,6 @@ model ProgressCustomerTrainingDay {
   progressCustomerTraining ProgressCustomerTraining? @relation(fields: [progressCustomerTrainingId], references: [id])
   trainingDayId String
   trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
-  progressCustomerWorkoutBlocks ProgressCustomerWorkoutBlock[]
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
-}
-
-enum ProgressCustomerWorkoutBlockStatus {
-  NOT_STARTED
-  IN_PROGRESS
-  COMPLETED
-  SKIPPED
-}
-model ProgressCustomerWorkoutBlock {
-  id        String    @id @default(uuid())
-  status ProgressCustomerWorkoutBlockStatus @default(NOT_STARTED)
-  progressCustomerTrainingDayId String
-  progressCustomerTrainingDay ProgressCustomerTrainingDay? @relation(fields: [progressCustomerTrainingDayId], references: [id])
-  workoutBlockId String
-  workoutBlock WorkoutBlock? @relation(fields: [workoutBlockId], references: [id])
   progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
@@ -269,8 +241,8 @@ model ProgressCustomerWorkoutExercise {
   id        String    @id @default(uuid())
   duration Int? //SECONDS
   status ProgressCustomerWorkoutExerciseStatus @default(NOT_STARTED)
-  progressCustomerWorkoutBlockId String
-  progressCustomerWorkoutBlock ProgressCustomerWorkoutBlock? @relation(fields: [progressCustomerWorkoutBlockId], references: [id])
+  progressCustomerTrainingDayId String
+  progressCustomerTrainingDay ProgressCustomerTrainingDay? @relation(fields: [progressCustomerTrainingDayId], references: [id])
   workoutExerciseId String
   workoutExercise WorkoutExercise? @relation(fields: [workoutExerciseId], references: [id])
   createdAt DateTime  @default(now())
