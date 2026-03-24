@@ -45,7 +45,7 @@ export const leaderboard = router({
     .output(leaderboardGetPositionOutputSchema)
     .query(async ({ input, ctx }) => {
       const profile = await ctx.prisma.profile.findFirst({
-        where: { nickname: input.nickname, deletedAt: null },
+        where: { nickname: input.nickname },
         select: {
           nickname: true,
           customerProfile: {

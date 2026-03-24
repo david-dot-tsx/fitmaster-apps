@@ -71,7 +71,12 @@ export const TrainingListScreen = () => {
         data={trainings}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <TrainingCard {...item} onPress={() => router.push(`/training/${item.id}`)} />
+          <TrainingCard
+            id={item.id}
+            title={item.name}
+            imageUrl={item.imageUrl}
+            onPress={() => router.push(`/training/${item.id}`)}
+          />
         )}
         onEndReached={handleEndReached}
         onEndReachedThreshold={0.3}

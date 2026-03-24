@@ -6,6 +6,4 @@ export * from "./list.schema";
 export * from "./delete.schema";
 export * from "./shared.schema";
 export * from "./update-status.schema";
-export * from "./enrolment/join.schema";
-export * from "./enrolment/my-trainings.schema";
-export * from "./enrolment/start.schema";
+export * from "./session";

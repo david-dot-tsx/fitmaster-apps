@@ -6,11 +6,11 @@ import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import { EnrolledTrainingCard } from "@/features/trainings/components/enrolled-training-card";
+import { EnrolledTrainingCard } from "@/features/main/components/enrolled-training-card";
 
 export const MainScreen = () => {
   const router = useRouter();
-  const { data: myTrainings, isLoading } = trpc.training.enrolment.myTrainings.useQuery();
+  const { data: myTrainings, isLoading } = trpc.training.session.myTrainings.useQuery();
 
   if (isLoading) {
     return (
@@ -23,7 +23,7 @@ export const MainScreen = () => {
   return (
     <ScreenWrapper className="pt-12">
       <Heading size="xl" className="px-4 pb-4 pt-6 text-center text-amber-400">
-        My Trainings
+        Hello XYZ!
       </Heading>
 
       <FlatList
@@ -31,10 +31,8 @@ export const MainScreen = () => {
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <EnrolledTrainingCard
-            trainingId={item.trainingId}
-            status={item.status as "NOT_STARTED" | "IN_PROGRESS" | "COMPLETED" | "CANCELLED"}
-            enrolledAt={item.createdAt}
-            onPress={() => router.push(`/training/${item.trainingId}`)}
+            trainingSession={item}
+            onPress={() => router.push(`/training/${item.training.id}`)}
           />
         )}
         contentContainerStyle={{ paddingBottom: 24 }}

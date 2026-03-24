@@ -23,7 +23,7 @@ import {
 
 import { protectedProcedure, router, staffProcedure } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
-import { trainingEnrolment } from "./enrolment/training-enrolment.route";
+import { trainingSession } from "./enrolment/training-session.route";
 
 export const training = router({
   create: staffProcedure
@@ -120,7 +120,7 @@ export const training = router({
         take: input.limit,
         skip: input.cursor ? 1 : 0,
         cursor: input.cursor ? { id: input.cursor } : undefined,
-        where: { status: "PUBLISHED", deletedAt: null },
+        where: { status: "PUBLISHED" },
         orderBy: { createdAt: "desc" },
       });
 
@@ -135,13 +135,11 @@ export const training = router({
     .output(trainingGetByIdCustomerOutputSchema)
     .query(async ({ input, ctx }) => {
       const training = await ctx.prisma.training.findUnique({
-        where: { id: input.id, status: "PUBLISHED", deletedAt: null },
+        where: { id: input.id, status: "PUBLISHED" },
         include: {
           trainingDays: {
-            where: { deletedAt: null },
             include: {
               workoutExercises: {
-                where: { deletedAt: null },
                 include: { exercise: true },
               },
             },
@@ -169,5 +167,5 @@ export const training = router({
         exercises: uniqueBy(exercises, (exercise) => exercise.id),
       };
     }),
-  enrolment: trainingEnrolment,
+  session: trainingSession,
 });

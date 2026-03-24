@@ -25,10 +25,10 @@ export const profile = router({
     .mutation(async ({ ctx, input }) => {
       const existing = await ctx.prisma.profile.findUnique({
         where: { userId: ctx.sessionUser.id },
-        select: { id: true, deletedAt: true },
+        select: { id: true },
       });
 
-      if (existing && !existing.deletedAt) {
+      if (existing) {
         throw new TRPCError({
           code: "CONFLICT",
           message: API_PROCEDURE_ERRORS.CONFLICT,

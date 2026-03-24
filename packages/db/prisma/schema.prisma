@@ -58,7 +58,6 @@ model User {
   id        String    @id @default(uuid())
   email     String    @unique
   createdAt DateTime  @default(now())
-  deletedAt DateTime?
   role      Role      @default(CUSTOMER)
   updatedAt DateTime  @updatedAt
   passwordHash  String?
@@ -78,7 +77,6 @@ model Profile {
   imageUrl        String?
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
-  deletedAt       DateTime?
   customerProfile CustomerProfile?
   user            User             @relation(fields: [userId], references: [id])
   trainerProfile  TrainerProfile?
@@ -89,7 +87,6 @@ model TrainerProfile {
   profileId String    @unique
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
   profile   Profile   @relation(fields: [profileId], references: [id])
 }
 
@@ -99,12 +96,11 @@ model CustomerProfile {
   height    Int
   weight    Int
   goal      String?
-  progressCustomerTrainings ProgressCustomerTraining[]
+  trainingSessions TrainingSession[]
   profile   Profile   @relation(fields: [profileId], references: [id])
   totalPoints Int @default(0)
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
 
 model Session {
@@ -132,7 +128,6 @@ model Exercise {
   imageUrl String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
   workoutExercises WorkoutExercise[]
 }
 
@@ -149,10 +144,9 @@ model WorkoutExercise {
   workoutType WorkoutType
   trainingDayId String
   trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
-  progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
+  workoutExerciseSessions WorkoutExerciseSession[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt  
-  deletedAt DateTime?
 }
 
 model TrainingDay {
@@ -161,10 +155,9 @@ model TrainingDay {
   order     Int @default(0) 
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
-  progressCustomerTrainingDays ProgressCustomerTrainingDay[]
+  trainingDaySessions TrainingDaySession[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
 
 enum TrainingStatus {
@@ -181,11 +174,10 @@ model Training {
   description String?
   status TrainingStatus  @default(DRAFT)
   trainingDays TrainingDay[]
-  progressCustomerTrainings ProgressCustomerTraining[]
+  trainingSessions TrainingSession[]
   imageUrl String?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
 
 /******************
@@ -193,59 +185,71 @@ model Training {
  ******************
  */
 
-enum CustomerProgressTrainingStatus {
+enum TrainingSessionStatus {
   NOT_STARTED
   IN_PROGRESS
   COMPLETED
   CANCELLED
 }
-model ProgressCustomerTraining {
+model TrainingSession {
   id        String    @id @default(uuid())
   customerProfileId String
   customerProfile CustomerProfile? @relation(fields: [customerProfileId], references: [id])
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
-  status CustomerProgressTrainingStatus @default(NOT_STARTED)
-  progressCustomerTrainingDays ProgressCustomerTrainingDay[]
+  status TrainingSessionStatus @default(NOT_STARTED)
+  trainingDaySessions TrainingDaySession[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
 
-enum ProgressCustomerTrainingDayStatus {
+enum TrainingDaySessionStatus {
   NOT_STARTED
   IN_PROGRESS
   COMPLETED
   SKIPPED
 }
-model ProgressCustomerTrainingDay {
+model TrainingDaySession {
   id        String    @id @default(uuid())
-  status ProgressCustomerTrainingDayStatus @default(NOT_STARTED)
-  progressCustomerTrainingId String
-  progressCustomerTraining ProgressCustomerTraining? @relation(fields: [progressCustomerTrainingId], references: [id])
+  status TrainingDaySessionStatus @default(NOT_STARTED)
+  trainingSessionId String
+  trainingSession TrainingSession? @relation(fields: [trainingSessionId], references: [id])
   trainingDayId String
   trainingDay TrainingDay? @relation(fields: [trainingDayId], references: [id])
-  progressCustomerWorkoutExercises ProgressCustomerWorkoutExercise[]
+  workoutExerciseSessions WorkoutExerciseSession[]
+  startedAt DateTime  @default(now())
+  finishedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
 
-enum ProgressCustomerWorkoutExerciseStatus {
+enum WorkoutExerciseSessionStatus {
   NOT_STARTED
   IN_PROGRESS
   COMPLETED
   SKIPPED
 }
-model ProgressCustomerWorkoutExercise {
+model WorkoutExerciseSession {
   id        String    @id @default(uuid())
-  duration Int? //SECONDS
-  status ProgressCustomerWorkoutExerciseStatus @default(NOT_STARTED)
-  progressCustomerTrainingDayId String
-  progressCustomerTrainingDay ProgressCustomerTrainingDay? @relation(fields: [progressCustomerTrainingDayId], references: [id])
+  timeSpent Int? // SECONDS
+  status WorkoutExerciseSessionStatus @default(NOT_STARTED)
+  trainingDaySessionId String
+  trainingDaySession TrainingDaySession? @relation(fields: [trainingDaySessionId], references: [id])
   workoutExerciseId String
   workoutExercise WorkoutExercise? @relation(fields: [workoutExerciseId], references: [id])
+  // Snapshot of targets at the time the day was started
+  targetReps     Int?    // REPS
+  targetDuration Int?    // SECONDS
+  targetDistance Int?    // METERS
+  targetWeight   Float?  // KG
+  // Actual values performed by the customer
+  actualReps     Int?    // REPS
+  actualDuration Int?    // SECONDS
+  actualDistance Int?    // METERS
+  actualWeight   Float?  // KG
+  // Tiemstamps
+  startedAt DateTime?
+  completedAt DateTime?
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  deletedAt DateTime?
 }
