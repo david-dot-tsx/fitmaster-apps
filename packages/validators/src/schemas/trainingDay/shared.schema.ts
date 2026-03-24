@@ -1,6 +1,10 @@
 import z from "zod";
 
-import { WorkoutType, WorkoutBlockType as DbWorkoutBlockType } from "@repo/db/types";
+import {
+  WorkoutType,
+  WorkoutBlockType as DbWorkoutBlockType,
+  WorkoutBlockType,
+} from "@repo/db/types";
 
 import { idSchema } from "../../utils/common-types";
 import { withIdSchema, withTimestampsSchema } from "../../utils/objects";
@@ -36,6 +40,7 @@ export const workoutExerciseBaseSchema = z
     weight: z.number().nullable(),
     exercise: exerciseBaseWithIdSchema,
     workoutType: z.enum(WorkoutType),
+    workoutBlockType: z.enum(WorkoutBlockType),
     order: z.number(),
   })
   .and(withIdSchema);
