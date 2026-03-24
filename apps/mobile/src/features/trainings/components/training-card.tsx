@@ -6,12 +6,12 @@ import { Text } from "@/components/ui/text";
 
 type TrainingCardProps = {
   id: string;
-  name: string;
+  title: string;
   imageUrl: string | null;
   onPress?: () => void;
 };
 
-export const TrainingCard = ({ name, imageUrl, onPress }: TrainingCardProps) => (
+export const TrainingCard = ({ title, imageUrl, onPress }: TrainingCardProps) => (
   <Pressable
     onPress={onPress}
     className="mx-4 mb-4 overflow-hidden rounded-2xl border border-zinc-800"
@@ -38,7 +38,7 @@ export const TrainingCard = ({ name, imageUrl, onPress }: TrainingCardProps) => 
           className="text-xl font-black uppercase italic tracking-tighter text-amber-400"
           numberOfLines={2}
         >
-          {name}
+          {title}
         </Text>
       </View>
     </ImageBackground>
