@@ -11,19 +11,23 @@ import { TrainingStats } from "@/features/trainings/components/training-stats";
 import { TrainingDescription } from "@/features/trainings/components/training-description";
 import { TrainingExerciseList } from "@/features/trainings/components/training-exercise-list";
 
-export const TrainingDetailsScreen = ({ id }: { id: string }) => {
+export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) => {
   const router = useRouter();
   const utils = trpc.useUtils();
 
-  const { data: training, isLoading, isError } = trpc.training.getByIdCustomer.useQuery({ id });
+  const {
+    data: training,
+    isLoading,
+    isError,
+  } = trpc.training.getByIdCustomer.useQuery({ id: trainingId });
 
-  const { data: myTrainings } = trpc.training.enrolment.myTrainings.useQuery();
-  const enrolment = myTrainings?.find((t) => t.trainingId === id) ?? null;
+  const { data: myTrainings } = trpc.training.session.myTrainings.useQuery();
+  const enrolment = myTrainings?.find((t) => t.trainingId === trainingId) ?? null;
   const isEnrolled = enrolment !== null;
 
-  const { mutate: joinTraining, isPending: isJoining } = trpc.training.enrolment.join.useMutation({
+  const { mutate: newTrainingSession, isPending } = trpc.training.session.new.useMutation({
     onSuccess: () => {
-      utils.training.enrolment.myTrainings.invalidate();
+      utils.training.session.myTrainings.invalidate();
     },
   });
 
@@ -69,11 +73,11 @@ export const TrainingDetailsScreen = ({ id }: { id: string }) => {
 
           {!isEnrolled ? (
             <Pressable
-              onPress={() => joinTraining({ trainingId: id })}
-              disabled={isJoining}
+              onPress={() => newTrainingSession({ trainingId })}
+              disabled={isPending}
               className="mb-5 items-center rounded-xl bg-amber-400 py-3.5"
             >
-              {isJoining ? (
+              {isPending ? (
                 <ActivityIndicator color="#09090b" />
               ) : (
                 <Text className="text-sm font-bold uppercase tracking-widest text-zinc-950">
@@ -83,7 +87,7 @@ export const TrainingDetailsScreen = ({ id }: { id: string }) => {
             </Pressable>
           ) : (
             <Pressable
-              onPress={() => router.push(`/training/${id}/do`)}
+              onPress={() => router.push(`/training/${trainingId}/do/${enrolment?.id}`)}
               className="mb-5 items-center rounded-xl bg-amber-400 py-3.5"
             >
               <Text className="text-sm font-bold uppercase tracking-widest text-black">

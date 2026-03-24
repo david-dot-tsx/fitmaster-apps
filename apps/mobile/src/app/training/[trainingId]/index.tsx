@@ -1,11 +1,10 @@
-// eslint-disable-next-line check-file/filename-naming-convention
 import React from "react";
 import { useLocalSearchParams } from "expo-router";
 
 import { TrainingDetailsScreen } from "@/features/trainings/screens/training-details.screen";
 
 export default function TrainingDetailsPage() {
-  const { id } = useLocalSearchParams<{ id: string }>();
+  const { trainingId } = useLocalSearchParams<{ trainingId: string }>();
 
-  return <TrainingDetailsScreen id={id} />;
+  return <TrainingDetailsScreen trainingId={trainingId} />;
 }
