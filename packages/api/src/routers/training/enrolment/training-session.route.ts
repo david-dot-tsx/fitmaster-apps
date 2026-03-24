@@ -15,8 +15,8 @@ import {
   trainingSessionGetCurrentExerciseOutputSchema,
 } from "@repo/validators";
 import {
-  CustomerProgressTrainingStatus,
   TrainingDaySessionStatus,
+  TrainingSessionStatus,
   WorkoutExerciseSessionStatus,
 } from "@repo/db/types";
 
@@ -216,10 +216,10 @@ export const trainingSession = router({
       // 5. Atomically create the full progress snapshot for this day
       const progressDay = await ctx.prisma.$transaction(async (tx) => {
         // Bump parent training to IN_PROGRESS if it hasn't started yet
-        if (trainingSession.status === CustomerProgressTrainingStatus.NOT_STARTED) {
+        if (trainingSession.status === TrainingSessionStatus.NOT_STARTED) {
           await tx.trainingSession.update({
             where: { id: trainingSession.id },
-            data: { status: CustomerProgressTrainingStatus.IN_PROGRESS },
+            data: { status: TrainingSessionStatus.IN_PROGRESS },
           });
         }
 
@@ -450,7 +450,7 @@ export const trainingSession = router({
               await tx.trainingSession.update({
                 where: { id: completedDay.trainingSessionId },
                 data: {
-                  status: CustomerProgressTrainingStatus.COMPLETED,
+                  status: TrainingSessionStatus.COMPLETED,
                 },
               });
             }

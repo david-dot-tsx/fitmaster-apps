@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { View } from "react-native";
 import { router } from "expo-router";
 
+import { TrainingDaySessionStatus } from "@repo/validators";
+
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Button, ButtonText } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc/client";
@@ -17,7 +19,7 @@ export const TrainingSessionScreen = ({
   trainingId: string;
   sessionId: string;
 }) => {
-  const { data: training } = trpc.training.getById.useQuery({ id: trainingId });
+  const { data: training } = trpc.training.getByIdCustomer.useQuery({ id: trainingId });
   const { data: dayData, mutate: startDayMutation } = trpc.training.session.startDay.useMutation();
 
   useEffect(() => {
@@ -46,13 +48,15 @@ export const TrainingSessionScreen = ({
         </Text>
       </View>
       <TrainingDaySessionPreview sessionExercises={dayData?.workoutExerciseSessions ?? []} />
-      <Button
-        size="lg"
-        className="bg-amber-400 font-bold tracking-widest text-zinc-950"
-        onPress={() => router.push(`/training/${trainingId}/session/${sessionId}/exercise`)}
-      >
-        <ButtonText>Start Exercise</ButtonText>
-      </Button>
+      {dayData?.status !== TrainingDaySessionStatus.COMPLETED && (
+        <Button
+          size="lg"
+          className="bg-amber-400 font-bold tracking-widest text-zinc-950"
+          onPress={() => router.push(`/training/${trainingId}/session/${sessionId}/exercise`)}
+        >
+          <ButtonText>Start Exercise</ButtonText>
+        </Button>
+      )}
     </ScreenWrapper>
   );
 };

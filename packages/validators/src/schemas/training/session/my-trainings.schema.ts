@@ -1,6 +1,6 @@
 import z from "zod";
 
-import { CustomerProgressTrainingStatus } from "@repo/db/types";
+import { TrainingSessionStatus } from "@repo/db/types";
 
 import { idSchema } from "../../../utils/common-types";
 import { withTimestampsSchema } from "../../../utils/objects";
@@ -12,7 +12,7 @@ export const trainingSessionSchema = z
     trainingId: idSchema,
     training: trainingSchema,
     customerProfileId: idSchema,
-    status: z.enum(CustomerProgressTrainingStatus),
+    status: z.enum(TrainingSessionStatus),
   })
   .and(withTimestampsSchema);
 

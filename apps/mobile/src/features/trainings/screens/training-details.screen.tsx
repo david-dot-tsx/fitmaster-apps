@@ -87,7 +87,7 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
             </Pressable>
           ) : (
             <Pressable
-              onPress={() => router.push(`/training/${trainingId}/do/${enrolment?.id}`)}
+              onPress={() => router.push(`/training/${trainingId}/session/${enrolment?.id}`)}
               className="mb-5 items-center rounded-xl bg-amber-400 py-3.5"
             >
               <Text className="text-sm font-bold uppercase tracking-widest text-black">

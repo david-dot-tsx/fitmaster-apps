@@ -1,6 +1,10 @@
 import z from "zod";
 
-import { WorkoutExerciseSessionStatus, WorkoutBlockType } from "@repo/db/types";
+import {
+  WorkoutExerciseSessionStatus,
+  WorkoutBlockType,
+  TrainingDaySessionStatus,
+} from "@repo/db/types";
 
 import { idSchema } from "../../../utils/common-types";
 import { withIdSchema, withTimestampsSchema } from "../../../utils/objects";
@@ -25,4 +29,4 @@ export const trainingSessionWorkoutSchema = z
   .and(withIdSchema);
 export type TrainingSessionWorkout = z.infer<typeof trainingSessionWorkoutSchema>;
 
-export { WorkoutBlockType, WorkoutExerciseSessionStatus };
+export { WorkoutBlockType, WorkoutExerciseSessionStatus, TrainingDaySessionStatus };

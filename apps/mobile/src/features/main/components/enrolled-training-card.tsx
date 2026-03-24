@@ -51,11 +51,11 @@ export const EnrolledTrainingCard = ({ trainingSession, onPress }: EnrolledTrain
         <Button
           className="mt-auto bg-amber-400"
           onPress={() =>
-            router.push(`/training/${trainingSession.training.id}/do/${trainingSession.id}`)
+            router.push(`/training/${trainingSession.training.id}/session/${trainingSession.id}`)
           }
         >
           <ButtonText className="text-sm font-bold uppercase tracking-widest text-black">
-            START TRAINING
+            GO TO TRAINING
           </ButtonText>
         </Button>
       </ImageBackground>

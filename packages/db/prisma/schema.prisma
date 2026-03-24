@@ -185,7 +185,7 @@ model Training {
  ******************
  */
 
-enum CustomerProgressTrainingStatus {
+enum TrainingSessionStatus {
   NOT_STARTED
   IN_PROGRESS
   COMPLETED
@@ -197,7 +197,7 @@ model TrainingSession {
   customerProfile CustomerProfile? @relation(fields: [customerProfileId], references: [id])
   trainingId String
   training Training? @relation(fields: [trainingId], references: [id])
-  status CustomerProgressTrainingStatus @default(NOT_STARTED)
+  status TrainingSessionStatus @default(NOT_STARTED)
   trainingDaySessions TrainingDaySession[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt

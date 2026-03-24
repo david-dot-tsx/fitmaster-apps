@@ -1,10 +1,8 @@
 import z from "zod";
 
-import { TrainingDaySessionStatus } from "@repo/db/types";
-
 import { idSchema } from "../../../utils/common-types";
 import { withIdSchema, withTimestampsSchema } from "../../../utils/objects";
-import { trainingSessionWorkoutSchema } from "./shared.schema";
+import { TrainingDaySessionStatus, trainingSessionWorkoutSchema } from "./shared.schema";
 import { workoutExerciseBaseSchema } from "../../trainingDay/shared.schema";
 
 export const trainingSessionStartDayInputSchema = z.object({
