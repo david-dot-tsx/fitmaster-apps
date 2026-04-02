@@ -41,7 +41,6 @@ enum WorkoutType {
 enum WorkoutBlockType {
   WARM_UP
   MAIN_WORKOUT
-  REST
   COOL_DOWN
 }
 
