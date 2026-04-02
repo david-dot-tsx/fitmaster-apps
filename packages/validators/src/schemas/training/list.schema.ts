@@ -4,6 +4,7 @@ import { TrainingStatus } from "@repo/db/types";
 
 import { idSchema } from "../../utils/common-types";
 import { trainingSchema } from "./shared.schema";
+import { trainingSessionSchema, baseTrainingSessionStatsSchema } from "./session/shared.schema";
 
 export const trainingListStaffInputSchema = z.object({
   status: z.array(z.enum(TrainingStatus)).optional(),
@@ -19,5 +20,19 @@ export const trainingListPublishedInputSchema = z.object({
 });
 export type TrainingListPublishedInput = z.infer<typeof trainingListPublishedInputSchema>;
 
-export const trainingListPublishedOutputSchema = z.array(trainingSchema);
+export const trainingListPublishedSessionItemSchema = trainingSessionSchema.and(
+  z.object({
+    stats: baseTrainingSessionStatsSchema,
+  }),
+);
+
+export const trainingListPublishedItemSchema = trainingSchema.and(
+  z.object({
+    totalDays: z.number().int().nonnegative(),
+    trainingSessions: z.array(trainingListPublishedSessionItemSchema),
+  }),
+);
+export type TrainingListPublishedItem = z.infer<typeof trainingListPublishedItemSchema>;
+
+export const trainingListPublishedOutputSchema = z.array(trainingListPublishedItemSchema);
 export type TrainingListPublishedOutput = z.infer<typeof trainingListPublishedOutputSchema>;
