@@ -32,7 +32,7 @@ export const TrainingExerciseRow = ({
 
   return (
     <Pressable onPress={() => router.push(`/exercise/${id}`)}>
-      <HStack className=" relative my-1.5 items-center gap-3 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-3 active:bg-zinc-800">
+      <HStack className="pointer-events-none relative my-1.5 items-center gap-3 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-3 active:bg-zinc-800">
         <Image
           source={{ uri: imageUrl }}
           className="size-14 rounded-lg bg-zinc-800"
@@ -53,7 +53,7 @@ export const TrainingExerciseRow = ({
             >
               {difficulty}
             </Text>
-            <Text className="ml-auto font-orbitron-medium text-xs text-sky-400">
+            <Text className="font-orbitron-medium ml-auto text-xs text-sky-400">
               {/* //TODO: implement XP */}
               15 XP
             </Text>
