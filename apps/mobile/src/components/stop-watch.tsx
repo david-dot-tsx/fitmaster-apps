@@ -71,7 +71,7 @@ export const StopWatch = ({
           size="lg"
           variant="outline"
           onPress={resetStopWatch}
-          className={cn("bg-error-500/10 border-0 border-none", { "opacity-0": disabled })}
+          className={cn("border-0 border-none bg-error-500/10", { "opacity-0": disabled })}
         >
           <ButtonIcon as={SquareIcon} className="text-error-500" />
         </Button>
