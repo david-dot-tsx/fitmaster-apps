@@ -4,12 +4,11 @@ import React, { useState } from "react";
 import { Button, ButtonText } from "@/components/ui/button";
 
 type FoldableTextProps = {
-  label: string;
   text: string;
   maxLines?: number;
 };
 
-export const FoldableText = ({ label, text, maxLines = 2 }: FoldableTextProps) => {
+export const FoldableText = ({ text, maxLines = 2 }: FoldableTextProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTextTruncated, setIsTextTruncated] = useState(false);
 
@@ -24,7 +23,6 @@ export const FoldableText = ({ label, text, maxLines = 2 }: FoldableTextProps) =
       >
         {text}
       </Text>
-      <Text className="mb-1 text-sm font-semibold capitalize text-amber-400">{label}</Text>
       <Text
         numberOfLines={isExpanded ? undefined : maxLines}
         className="text-sm leading-5 text-gray-600"
