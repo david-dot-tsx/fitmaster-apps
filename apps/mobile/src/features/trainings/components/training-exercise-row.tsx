@@ -1,6 +1,7 @@
 import React from "react";
 import { Image, Pressable } from "react-native";
 import { useRouter } from "expo-router";
+import { LinearGradient } from "expo-linear-gradient";
 
 import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
@@ -30,18 +31,18 @@ export const TrainingExerciseRow = ({
   const router = useRouter();
 
   return (
-    <Pressable
-      onPress={() => router.push(`/exercise/${id}`)}
-      style={({ pressed }) => ({ opacity: pressed ? 0.75 : 1 })}
-    >
-      <HStack className="mb-3 items-center gap-3 rounded-xl border border-zinc-800 bg-zinc-900 p-3">
+    <Pressable onPress={() => router.push(`/exercise/${id}`)}>
+      <HStack className=" relative my-1.5 items-center gap-3 overflow-hidden rounded-xl border border-zinc-800 bg-zinc-900 p-3 active:bg-zinc-800">
         <Image
           source={{ uri: imageUrl }}
           className="size-14 rounded-lg bg-zinc-800"
           resizeMode="cover"
         />
-        <VStack className="flex-1 gap-0.5">
-          <Text className="text-sm font-bold uppercase tracking-wide text-white" numberOfLines={1}>
+        <VStack className="relative flex-1 gap-0.5">
+          <Text
+            className="font-orbitron-medium text-sm uppercase tracking-widest text-white"
+            numberOfLines={1}
+          >
             {name}
           </Text>
           <HStack className="items-center gap-2">
@@ -52,8 +53,19 @@ export const TrainingExerciseRow = ({
             >
               {difficulty}
             </Text>
+            <Text className="ml-auto font-orbitron-medium text-xs text-sky-400">
+              {/* //TODO: implement XP */}
+              15 XP
+            </Text>
           </HStack>
         </VStack>
+        <LinearGradient
+          pointerEvents="none"
+          colors={["transparent", "rgba(251,191,36,0.35)", "transparent"]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+          className="absolute bottom-0 h-px w-full rounded-lg"
+        />
       </HStack>
     </Pressable>
   );
