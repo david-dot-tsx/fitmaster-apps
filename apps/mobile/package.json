@@ -15,6 +15,9 @@
     "check-env": "tsx ./scripts/check-env.ts"
   },
   "dependencies": {
+    "@expo-google-fonts/inter": "^0.4.2",
+    "@expo-google-fonts/orbitron": "^0.4.2",
+    "@expo-google-fonts/quantico": "^0.4.1",
     "@expo/html-elements": "^0.10.1",
     "@expo/vector-icons": "15.0.3",
     "@gluestack-ui/core": "^3.0.10",
@@ -40,7 +43,7 @@
     "expo": "~54.0.31",
     "expo-constants": "~18.0.13",
     "expo-device": "^8.0.10",
-    "expo-font": "~14.0.10",
+    "expo-font": "~14.0.11",
     "expo-haptics": "~15.0.8",
     "expo-image": "~3.0.11",
     "expo-image-manipulator": "~14.0.8",
