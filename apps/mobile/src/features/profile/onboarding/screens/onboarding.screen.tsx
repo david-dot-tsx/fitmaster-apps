@@ -25,7 +25,7 @@ export const OnboardingScreen = () => {
   });
 
   return (
-    <ScreenWrapper className="pt-12">
+    <ScreenWrapper>
       <FormProvider {...methods}>
         <StepStage />
       </FormProvider>
