@@ -69,7 +69,7 @@ export const TrainingSessionExerciseScreen = ({
     <ScreenWrapper>
       <TrainingHero imageUrl={data?.currentExercise?.workoutExercise?.exercise.imageUrl ?? null} />
       <VStack className="flex-1 gap-4">
-        <Heading size="2xl" className="font-black uppercase italic tracking-tighter text-amber-400">
+        <Heading size="2xl" className="uppercase tracking-tighter">
           {data?.currentExercise?.workoutExercise?.exercise.name}
         </Heading>
         <HStack className="items-center justify-between">
