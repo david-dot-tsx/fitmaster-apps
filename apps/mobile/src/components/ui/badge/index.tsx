@@ -13,17 +13,18 @@ import { type Svg } from "react-native-svg";
 const SCOPE = "BADGE";
 
 const badgeStyle = tva({
-  base: "flex-row items-center rounded-sm data-[disabled=true]:opacity-50 px-2 py-1",
+  base: "flex-row items-center rounded-md data-[disabled=true]:opacity-50 px-2 py-2 gap-1",
   variants: {
     action: {
+      primary: "bg-background-amber border-amber-400/30",
       error: "bg-background-error border-error-300",
       warning: "bg-background-warning border-warning-300",
       success: "bg-background-success border-success-300",
       info: "bg-background-info border-info-300",
-      muted: "bg-background-muted border-background-300",
+      muted: "bg-zinc-900 border-zinc-800",
     },
     variant: {
-      solid: "",
+      solid: "border",
       outline: "border",
     },
     size: {
@@ -39,6 +40,7 @@ const badgeTextStyle = tva({
 
   parentVariants: {
     action: {
+      primary: "text-amber-400",
       error: "text-error-600",
       warning: "text-warning-600",
       success: "text-success-600",
@@ -80,6 +82,7 @@ const badgeIconStyle = tva({
   base: "fill-none",
   parentVariants: {
     action: {
+      primary: "text-amber-400",
       error: "text-error-600",
       warning: "text-warning-600",
       success: "text-success-600",
@@ -113,7 +116,7 @@ type IBadgeProps = React.ComponentPropsWithoutRef<typeof ContextView> &
   VariantProps<typeof badgeStyle>;
 function Badge({
   children,
-  action = "muted",
+  action = "primary",
   variant = "solid",
   size = "md",
   className,
