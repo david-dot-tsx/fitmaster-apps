@@ -6,10 +6,10 @@ import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
 import { Heading } from "@/components/ui/heading";
+import { Section } from "@/components/ui/section";
 
 import { ExerciseHero } from "../components/exercise-hero";
 import { ExerciseMeta } from "../components/exercise-meta";
-import { ExerciseDescription } from "../components/exercise-description";
 
 export const ExerciseDetailsScreen = ({ id }: { id: string }) => {
   const router = useRouter();
@@ -43,16 +43,17 @@ export const ExerciseDetailsScreen = ({ id }: { id: string }) => {
         <ExerciseHero imageUrl={exercise.imageUrl} />
 
         <View className="px-4 pt-6">
-          <Heading
-            size="2xl"
-            className="mb-1 font-black uppercase italic tracking-tighter text-amber-400"
-          >
-            {exercise.name}
-          </Heading>
+          <Heading size="2xl">{exercise.name}</Heading>
 
           <ExerciseMeta difficulty={exercise.difficulty} bodyPart={exercise.bodyPart} />
 
-          {exercise.description ? <ExerciseDescription description={exercise.description} /> : null}
+          <Section title="Description">
+            <Text className="text-zinc-300">
+              {exercise.description && exercise.description.length > 0
+                ? exercise.description
+                : "No description provided for this exercise."}
+            </Text>
+          </Section>
         </View>
       </ScrollView>
     </ScreenWrapper>
