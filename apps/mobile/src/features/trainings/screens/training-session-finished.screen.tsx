@@ -15,7 +15,7 @@ export const TrainingSessionFinishedScreen = (_props: {
   return (
     <ScreenWrapper>
       <VStack className="flex-1 items-center justify-center gap-4">
-        <Heading size="2xl" className="font-black uppercase italic tracking-tighter text-amber-400">
+        <Heading size="2xl" className="uppercase tracking-tighter">
           Training Finished<Text className="text-zinc-200">!</Text>
         </Heading>
         <View>

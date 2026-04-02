@@ -13,7 +13,7 @@ export const StepWrapper = ({ title, children }: StepWrapperProps) => {
   return (
     <ScreenWrapper>
       <VStack className="flex flex-1">
-        <Heading className="mb-8 text-center text-2xl font-bold text-amber-400"> {title}</Heading>
+        <Heading className="mb-8 text-center text-2xl"> {title}</Heading>
         {children}
       </VStack>
     </ScreenWrapper>

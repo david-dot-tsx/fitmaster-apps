@@ -42,7 +42,7 @@ export const RegisterScreen = () => {
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
         <Card className={cn("gap-4", "border border-amber-400/30 bg-zinc-950 opacity-70")}>
-          <Heading className="space-y-1 font-black uppercase tracking-[0.2em] text-amber-400">
+          <Heading className="space-y-1 uppercase tracking-[0.2em] text-amber-400">
             {t("register")}
           </Heading>
           <VStack className="gap-4">

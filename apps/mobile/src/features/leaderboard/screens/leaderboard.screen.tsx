@@ -1,9 +1,10 @@
 import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
+import { TrophyIcon } from "lucide-react-native";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Heading } from "@/components/ui/heading";
+import { Text } from "@/components/ui/text";
 
 import { LeaderboardRow } from "../components/leaderboard-row";
 import { MyPositionCard } from "../components/my-position-card";
@@ -84,10 +85,14 @@ export const LeaderboardScreen = () => {
   }
 
   return (
-    <ScreenWrapper className="pt-12">
-      <Heading size="xl" className="px-4 pb-4 pt-6 text-center text-amber-400">
-        Leaderboard
-      </Heading>
+    <ScreenWrapper
+      header={{
+        title: "Leaderboard",
+        description: "Compete",
+        subtitle: "See who leads and where you rank today.",
+        icon: TrophyIcon,
+      }}
+    >
       {myPosition && (
         <MyPositionCard
           position={myPosition.position}
@@ -107,6 +112,14 @@ export const LeaderboardScreen = () => {
         onEndReached={handleEndReached}
         onEndReachedThreshold={0.3}
         ListFooterComponent={renderFooter}
+        ListEmptyComponent={
+          <View className="mx-4 mt-10 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
+            <Text className="text-center text-zinc-400">
+              No leaderboard entries yet.{"\n"}Be the first to score points.
+            </Text>
+          </View>
+        }
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 24 }}
       />
     </ScreenWrapper>

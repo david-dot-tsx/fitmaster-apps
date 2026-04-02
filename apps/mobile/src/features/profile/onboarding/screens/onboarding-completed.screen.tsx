@@ -15,7 +15,7 @@ export const OnboardingCompletedScreen = () => {
       <View className="flex-1 items-center justify-center gap-6 px-8">
         <Icon as={CheckCircle2} size="4xl" className="text-amber-400" />
         <View className="items-center gap-2">
-          <Heading size="3xl" className="text-center text-amber-400">
+          <Heading size="3xl" className="text-center">
             You&apos;re all set!
           </Heading>
           <Text size="md" className="text-center text-typography-500">

@@ -2,7 +2,11 @@ import z from "zod";
 
 import { idSchema } from "../../../utils/common-types";
 import { withIdSchema, withTimestampsSchema } from "../../../utils/objects";
-import { TrainingDaySessionStatus, trainingSessionWorkoutSchema } from "./shared.schema";
+import {
+  TrainingDaySessionStatus,
+  trainingSessionWorkoutSchema,
+  baseTrainingSessionStatsSchema,
+} from "./shared.schema";
 import { workoutExerciseBaseSchema } from "../../trainingDay/shared.schema";
 
 export const trainingSessionStartDayInputSchema = z.object({
@@ -27,11 +31,11 @@ export const trainingSessionStartDayOutputSchema = z
     workoutExerciseSessions: z.array(trainingSessionWorkoutWithDetailsSchema),
     startedAt: z.date(),
     finishedAt: z.date().nullable(),
-    stats: z.object({
-      todaysExercisesAmount: z.number(),
-      currentDay: z.number(),
-      totalDays: z.number(),
-    }),
+    stats: baseTrainingSessionStatsSchema.and(
+      z.object({
+        todaysExercisesAmount: z.number(),
+      }),
+    ),
   })
   .and(withIdSchema)
   .and(withTimestampsSchema);

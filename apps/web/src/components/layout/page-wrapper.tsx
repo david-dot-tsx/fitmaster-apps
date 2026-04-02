@@ -45,7 +45,9 @@ export const PageWrapper = ({
           </h1>
 
           {subtitle && (
-            <p className="max-w-2xl text-sm leading-relaxed text-zinc-500">{subtitle}</p>
+            <p className="font-orbitron max-w-2xl text-sm leading-relaxed text-zinc-500">
+              {subtitle}
+            </p>
           )}
         </header>
       )}

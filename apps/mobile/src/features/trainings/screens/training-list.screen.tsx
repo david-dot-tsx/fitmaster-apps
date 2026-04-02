@@ -1,20 +1,14 @@
-import React, { useCallback, useMemo } from "react";
+import React, { useCallback } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
+import { DumbbellIcon } from "lucide-react-native";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Heading } from "@/components/ui/heading";
-
-import { TrainingCard } from "../components/training-card";
+import { Text } from "@/components/ui/text";
+import TrainingCard from "@/components/modules/training-card/training-card";
 
 const LIMIT = 25;
-
-type Training = {
-  id: string;
-  name: string;
-  imageUrl: string | null;
-};
 
 export const TrainingListScreen = () => {
   const router = useRouter();
@@ -31,12 +25,6 @@ export const TrainingListScreen = () => {
         },
       },
     );
-
-  const trainings = useMemo<Training[]>(() => {
-    if (!data) return [];
-
-    return data.pages.flat();
-  }, [data]);
 
   const handleEndReached = useCallback(() => {
     if (hasNextPage && !isFetchingNextPage) {
@@ -63,24 +51,46 @@ export const TrainingListScreen = () => {
   }
 
   return (
-    <ScreenWrapper className="pt-12">
-      <Heading size="xl" className="px-4 pb-4 pt-6 text-center text-amber-400">
-        Trainings
-      </Heading>
+    <ScreenWrapper
+      header={{
+        title: "Trainings",
+        description: "Discover",
+        subtitle: "Pick a plan and start your next session.",
+        icon: DumbbellIcon,
+      }}
+    >
       <FlatList
-        data={trainings}
+        data={data?.pages.flat()}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
           <TrainingCard
-            id={item.id}
-            title={item.name}
-            imageUrl={item.imageUrl}
-            onPress={() => router.push(`/training/${item.id}`)}
+            imageUrl={item.imageUrl ?? undefined}
+            stats={
+              item.trainingSessions[0]?.stats ?? {
+                totalDays: item.totalDays,
+                currentDay: 1,
+                hasUserCompletedThisDay: false,
+              }
+            }
+            trainingName={item.name}
+            status={item.trainingSessions[0]?.status}
+            action={{
+              onPress: () => router.push(`/training/${item.id}`),
+              text: "Go to training details",
+            }}
           />
         )}
         onEndReached={handleEndReached}
         onEndReachedThreshold={0.3}
         ListFooterComponent={renderFooter}
+        ListEmptyComponent={
+          <View className="mx-4 mt-14 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
+            <Text className="text-center text-zinc-400">
+              No trainings published yet.{"\n"}Please check back soon.
+            </Text>
+          </View>
+        }
+        showsVerticalScrollIndicator={false}
         contentContainerStyle={{ paddingBottom: 24 }}
       />
     </ScreenWrapper>

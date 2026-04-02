@@ -18,7 +18,7 @@ export default function Index() {
     (authStatus === AUTH_STATUS.AUTHENTICATED && isMeLoading)
   ) {
     return (
-      <ScreenWrapper className="flex flex-1 items-center justify-center">
+      <ScreenWrapper className="items-center justify-center">
         <Text className="text-2xl font-bold text-slate-500">Loading...</Text>
       </ScreenWrapper>
     );

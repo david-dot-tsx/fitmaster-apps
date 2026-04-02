@@ -1,17 +1,17 @@
 import React from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
+import { SparklesIcon } from "lucide-react-native";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Heading } from "@/components/ui/heading";
 import { Text } from "@/components/ui/text";
-import { EnrolledTrainingCard } from "@/features/main/components/enrolled-training-card";
+import TrainingCard from "@/components/modules/training-card/training-card";
 
 export const MainScreen = () => {
   const router = useRouter();
   const { data: myTrainings, isLoading } = trpc.training.session.myTrainings.useQuery();
-
+  const { data: me } = trpc.user.me.useQuery();
   if (isLoading) {
     return (
       <ScreenWrapper className="items-center justify-center">
@@ -21,24 +21,35 @@ export const MainScreen = () => {
   }
 
   return (
-    <ScreenWrapper className="pt-12">
-      <Heading size="xl" className="px-4 pb-4 pt-6 text-center text-amber-400">
-        Hello XYZ!
-      </Heading>
-
+    <ScreenWrapper
+      className="gap-4"
+      header={{
+        title: `Hello ${me?.profile?.nickname ?? ""}!`,
+        description: "Your training hub",
+        subtitle: "Jump back into your active plans and sessions.",
+        icon: SparklesIcon,
+      }}
+    >
       <FlatList
         data={myTrainings ?? []}
         keyExtractor={(item) => item.id}
         renderItem={({ item }) => (
-          <EnrolledTrainingCard
-            trainingSession={item}
-            onPress={() => router.push(`/training/${item.training.id}`)}
+          <TrainingCard
+            imageUrl={item.training.imageUrl ?? ""}
+            stats={item.stats}
+            status={item.status}
+            trainingName={item.training.name}
+            action={{
+              onPress: () => router.push(`/training/${item.training.id}/session/${item.id}`),
+              text: "Start training day",
+            }}
           />
         )}
         contentContainerStyle={{ paddingBottom: 24 }}
+        showsVerticalScrollIndicator={false}
         ListEmptyComponent={
-          <View className="items-center px-8 pt-16">
-            <Text className="text-center text-zinc-500">
+          <View className="mx-4 mt-14 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
+            <Text className="text-center text-zinc-400">
               You have not joined any trainings yet.{"\n"}Browse trainings to get started!
             </Text>
           </View>
