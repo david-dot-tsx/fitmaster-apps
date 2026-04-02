@@ -23,7 +23,8 @@ import {
 
 import { protectedProcedure, router, staffProcedure } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
-import { trainingSession } from "./enrolment/training-session.route";
+import { trainingSession } from "./session/training-session.route";
+import { getBaseTrainingSessionStats } from "./session/training-session-base-stats";
 
 export const training = router({
   create: staffProcedure
@@ -111,6 +112,13 @@ export const training = router({
       return trainings;
     }),
 
+  /**
+   * TODO: To refactor. This will work slowly for large datasets. Optimization needed.
+   * First popped in head solution:
+   *  -Remove stats from there.
+   *  -Add another endpoint for stats,
+   *  -Wrap training card component to load stats separately.
+   */
   listPublished: protectedProcedure
     .meta({ openapi: { method: "GET", path: "/training.listPublished", tags: ["Training"] } })
     .input(trainingListPublishedInputSchema)
@@ -122,9 +130,58 @@ export const training = router({
         cursor: input.cursor ? { id: input.cursor } : undefined,
         where: { status: "PUBLISHED" },
         orderBy: { createdAt: "desc" },
+        include: {
+          _count: {
+            select: { trainingDays: true },
+          },
+          trainingSessions: {
+            where: {
+              customerProfile: {
+                profile: {
+                  userId: ctx.sessionUser.id,
+                },
+              },
+            },
+            take: 1,
+            include: {
+              _count: {
+                select: {
+                  trainingDaySessions: true,
+                },
+              },
+            },
+          },
+        },
       });
 
-      return trainings;
+      const response = await Promise.all(
+        trainings.map(async ({ _count, trainingSessions, ...training }) => {
+          const totalDays = _count.trainingDays;
+          const rawSession = trainingSessions[0];
+
+          if (!rawSession) {
+            return {
+              ...training,
+              totalDays,
+              trainingSessions: [],
+            };
+          }
+
+          const { _count: _stripSessionCount, ...sessionRest } = rawSession;
+          const stats = await getBaseTrainingSessionStats(ctx.prisma, {
+            trainingSessionId: rawSession.id,
+            totalDays,
+          });
+
+          return {
+            ...training,
+            totalDays,
+            trainingSessions: [{ ...sessionRest, stats }],
+          };
+        }),
+      );
+
+      return response;
     }),
 
   getByIdCustomer: protectedProcedure
@@ -147,6 +204,19 @@ export const training = router({
               order: "asc",
             },
           },
+          trainingSessions: {
+            where: {
+              customerProfile: {
+                profile: {
+                  userId: ctx.sessionUser.id,
+                },
+              },
+            },
+            orderBy: {
+              createdAt: "desc",
+            },
+            take: 1,
+          },
         },
       });
 
@@ -161,11 +231,23 @@ export const training = router({
         day.workoutExercises.map((exercise) => exercise.exercise),
       );
 
-      return {
+      const totalDays = training.trainingDays.length;
+      const enrichedSessions = await Promise.all(
+        training.trainingSessions.map(async (session) => ({
+          ...session,
+          stats: await getBaseTrainingSessionStats(ctx.prisma, {
+            trainingSessionId: session.id,
+            totalDays,
+          }),
+        })),
+      );
+
+      return trainingGetByIdCustomerOutputSchema.parse({
         ...training,
-        daysAmount: training.trainingDays.length,
+        trainingSessions: enrichedSessions,
+        daysAmount: totalDays,
         exercises: uniqueBy(exercises, (exercise) => exercise.id),
-      };
+      });
     }),
   session: trainingSession,
 });

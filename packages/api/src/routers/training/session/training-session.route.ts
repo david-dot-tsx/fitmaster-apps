@@ -22,6 +22,7 @@ import {
 
 import { router, customerProcedure } from "../../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../../consts/api-procedure-errors";
+import { getBaseTrainingSessionStats } from "./training-session-base-stats";
 
 export const trainingSession = router({
   new: customerProcedure
@@ -55,7 +56,9 @@ export const trainingSession = router({
 
       return { id: trainingSession.id };
     }),
-
+  /**
+   * TODO: observe performance.
+   */
   myTrainings: customerProcedure
     .meta({
       openapi: {
@@ -82,11 +85,29 @@ export const trainingSession = router({
           customerProfileId: customerProfile.id,
         },
         include: {
-          training: true,
+          training: {
+            include: {
+              trainingDays: true,
+            },
+          },
         },
       });
 
-      return trainingSessionMyTrainingsOutputSchema.parse(trainingSessions);
+      const enriched = await Promise.all(
+        trainingSessions.map(async (session) => {
+          const stats = await getBaseTrainingSessionStats(ctx.prisma, {
+            trainingSessionId: session.id,
+            totalDays: session.training?.trainingDays.length ?? 0,
+          });
+
+          return {
+            ...session,
+            stats,
+          };
+        }),
+      );
+
+      return trainingSessionMyTrainingsOutputSchema.parse(enriched);
     }),
   /**
    * Creates TrainingDaySession + all nested blocks & exercises in one transaction.
@@ -174,6 +195,7 @@ export const trainingSession = router({
         todaysExercisesAmount: existingProgressDay?.workoutExerciseSessions.length ?? 0,
         currentDay: existingProgressDay?.trainingDay?.order ?? 1,
         totalDays: trainingSession.training?.trainingDays.length ?? 0,
+        hasUserCompletedThisDay: existingProgressDay?.status === TrainingDaySessionStatus.COMPLETED,
       };
 
       if (existingProgressDay) {
@@ -267,6 +289,7 @@ export const trainingSession = router({
           currentDay: progressDay.trainingDay?.order ?? 1,
           totalDays: trainingSession.training?.trainingDays.length ?? 0,
           todaysExercisesAmount: progressDay.workoutExerciseSessions.length,
+          hasUserCompletedThisDay: false,
         },
       };
 
