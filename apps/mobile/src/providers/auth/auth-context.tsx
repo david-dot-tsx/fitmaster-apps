@@ -1,10 +1,11 @@
-import { createContext, useContext, useEffect } from "react";
+import React, { createContext, useContext, useEffect } from "react";
 import { router } from "expo-router";
 import { type MutationStatus, useQueryClient } from "@tanstack/react-query";
 
 import { useAuthStoreActions, useAuthStoreState } from "@/providers/auth/auth.store";
 import { AUTH_STATUS } from "@/providers/auth/types";
 import { trpc } from "@/lib/trpc/client";
+import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 interface AuthContextType {
   login: ({ email, password }: { email: string; password: string }) => void;
@@ -24,7 +25,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const queryClient = useQueryClient();
   const { setAuthenticated, setUnauthenticated, loadTokens } = useAuthStoreActions();
   const { authStatus, refreshToken } = useAuthStoreState();
-
+  const { openToast } = useToastNotification();
   const {
     mutate: mutateLogin,
     status: loginStatus,
@@ -33,6 +34,13 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     onSuccess: async (result) => {
       await setAuthenticated(result.token, result.refreshToken);
       router.push("/");
+    },
+    onError: (_error) => {
+      openToast({
+        title: "Login Failed",
+        description: "Something went wrong. Try again.",
+        action: "error",
+      });
     },
   });
 
