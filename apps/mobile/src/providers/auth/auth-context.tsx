@@ -37,10 +37,12 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   });
 
   const { mutate: mutateLogout } = trpc.auth.logout.useMutation({
-    onSettled: () => {
+    onSettled: async () => {
+      router.replace("/auth/login");
       setUnauthenticated();
+      await queryClient.cancelQueries();
+      queryClient.removeQueries();
       queryClient.clear();
-      router.push("/auth/login");
     },
   });
 
@@ -50,7 +52,7 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     },
     onError: (_error) => {
       setUnauthenticated();
-      router.push("/auth/login");
+      router.replace("/auth/login");
     },
   });
 

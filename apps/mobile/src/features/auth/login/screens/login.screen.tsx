@@ -1,10 +1,10 @@
 import React from "react";
-import { KeyboardAvoidingView, Platform } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { useTranslation } from "react-i18next";
-import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { LogIn } from "lucide-react-native";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { NAMESPACES } from "@repo/i18n/mobile";
@@ -16,8 +16,7 @@ import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Link, LinkText } from "@/components/ui/link";
-import { Card } from "@/components/ui/card";
-import { Heading } from "@/components/ui/heading";
+import { Section } from "@/components/ui/section";
 
 export const LoginScreen = () => {
   const { login, loginStatus } = useAuthContext();
@@ -32,50 +31,63 @@ export const LoginScreen = () => {
   });
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper
+      header={{
+        title: t("login"),
+        description: "Account",
+        subtitle: "Welcome back. Sign in to continue.",
+        icon: LogIn,
+      }}
+    >
       <KeyboardAvoidingView
-        className="flex flex-1 justify-center"
+        className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Card className={cn("gap-4", "border border-amber-400/30 bg-zinc-950 opacity-70")}>
-          <Heading className="space-y-1 uppercase tracking-[0.2em] text-amber-400">
-            {t("login")}
-          </Heading>
-          <VStack className="gap-4">
-            <FormProvider {...methods}>
-              <FormInput
-                name="email"
-                label="Email"
-                placeholder="Email Address"
-                textContentType="emailAddress"
-                keyboardType="email-address"
-              />
-              <FormInput
-                name="password"
-                label={t("password")}
-                placeholder={t("password")}
-                secureTextEntry
-                textContentType="password"
-              />
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 40, paddingTop: 8 }}
+        >
+          <VStack className="gap-6 px-4">
+            <Section title="Credentials">
+              <VStack className="gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
+                <FormProvider {...methods}>
+                  <FormInput
+                    name="email"
+                    label="Email"
+                    placeholder="Email Address"
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                  />
+                  <FormInput
+                    name="password"
+                    label={t("password")}
+                    placeholder={t("password")}
+                    secureTextEntry
+                    textContentType="password"
+                  />
 
-              <Button onPress={methods.handleSubmit(login)}>
-                <ButtonText>Login</ButtonText>
-              </Button>
-            </FormProvider>
-            <HStack className="flex-wrap justify-between">
+                  <Button action="primary" onPress={methods.handleSubmit(login)}>
+                    <ButtonText className="font-semibold text-zinc-950">Login</ButtonText>
+                  </Button>
+                </FormProvider>
+              </VStack>
+            </Section>
+            <HStack className="flex-wrap justify-between gap-2">
               <Link onPress={() => router.push("/auth/register")}>
-                <LinkText className="text-2xs uppercase tracking-[2px] text-zinc-500">
+                <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-500">
                   {t("register")}
                 </LinkText>
               </Link>
               <Link onPress={() => router.push("/auth/forgot-password")}>
-                <LinkText className="text-2xs uppercase tracking-[2px] text-zinc-700">
+                <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-400">
                   {t("forgot_password")}
                 </LinkText>
               </Link>
             </HStack>
           </VStack>
-        </Card>
+        </ScrollView>
       </KeyboardAvoidingView>
     </ScreenWrapper>
   );

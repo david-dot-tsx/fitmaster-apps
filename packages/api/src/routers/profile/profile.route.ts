@@ -55,6 +55,7 @@ export const profile = router({
         },
         select: {
           id: true,
+          userId: true,
           bio: true,
           nickname: true,
           firstName: true,
@@ -73,7 +74,7 @@ export const profile = router({
         },
       });
 
-      return customerProfileCreateOutputSchema.parse(profile);
+      return profile;
     }),
 
   getCustomerProfile: protectedProcedure

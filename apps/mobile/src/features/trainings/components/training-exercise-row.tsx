@@ -53,7 +53,7 @@ export const TrainingExerciseRow = ({
             >
               {difficulty}
             </Text>
-            <Text className="font-orbitron-medium ml-auto text-xs text-sky-400">
+            <Text className="ml-auto font-orbitron-medium text-xs text-sky-400">
               {/* //TODO: implement XP */}
               15 XP
             </Text>

@@ -7,7 +7,7 @@ import { StepWrapper } from "@/features/profile/onboarding/components/steps/step
 export const StepWorkoutGoals = () => {
   return (
     <StepWrapper title="Workout Goals">
-      <VStack className="flex flex-1 justify-center">
+      <VStack className="flex flex-1">
         <FormTextarea
           name="goal"
           label="Goal"

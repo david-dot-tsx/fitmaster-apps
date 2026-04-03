@@ -18,21 +18,21 @@ export const StepNavigation = ({
   handleSubmit: () => void;
 }) => {
   return (
-    <HStack className="mb-12 w-full justify-between px-8">
+    <HStack className="mb-10 w-full justify-between px-4">
       <View>
         {!isFirstStep() && (
-          <Button onPress={() => previous()} variant="outline">
+          <Button onPress={() => previous()} variant="outline" className="border-transparent">
             <ButtonText>Previous</ButtonText>
           </Button>
         )}
       </View>
       <View>
         {isLastStep() ? (
-          <Button onPress={handleSubmit} action="primary" className="bg-amber-400">
+          <Button onPress={handleSubmit} action="primary">
             <ButtonText className="text-zinc-950">Submit</ButtonText>
           </Button>
         ) : (
-          <Button onPress={() => next()} action="primary" className="bg-amber-400">
+          <Button onPress={next} action="primary">
             <ButtonText className="text-zinc-950">Next</ButtonText>
           </Button>
         )}
