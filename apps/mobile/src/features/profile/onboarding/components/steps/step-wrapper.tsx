@@ -1,7 +1,6 @@
 import React from "react";
 
 import { Heading } from "@/components/ui/heading";
-import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { VStack } from "@/components/ui/vstack";
 
 interface StepWrapperProps {
@@ -11,11 +10,14 @@ interface StepWrapperProps {
 
 export const StepWrapper = ({ title, children }: StepWrapperProps) => {
   return (
-    <ScreenWrapper>
-      <VStack className="flex flex-1">
-        <Heading className="mb-8 text-center text-2xl"> {title}</Heading>
-        {children}
-      </VStack>
-    </ScreenWrapper>
+    <VStack className="flex-1 px-4">
+      <Heading
+        size="lg"
+        className="mb-6 font-orbitron-semibold uppercase tracking-tight text-zinc-100"
+      >
+        {title}
+      </Heading>
+      {children}
+    </VStack>
   );
 };

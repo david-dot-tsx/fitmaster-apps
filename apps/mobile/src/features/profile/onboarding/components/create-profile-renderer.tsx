@@ -13,11 +13,11 @@ import { StepProfileImage } from "@/features/profile/onboarding/components/steps
 
 const steps = {
   [CUSTOMER_PROFILE_CREATE_STEPS.INTRODUCTION]: <StepIntroduction />,
-  [CUSTOMER_PROFILE_CREATE_STEPS.BIRTH_DATE]: <StepBirthDate />,
-  [CUSTOMER_PROFILE_CREATE_STEPS.BODY_MEASUREMENTS]: <StepBodyMeasurements />,
   [CUSTOMER_PROFILE_CREATE_STEPS.PROFILE_IMAGE]: <StepProfileImage />,
   [CUSTOMER_PROFILE_CREATE_STEPS.BIO]: <StepBio />,
   [CUSTOMER_PROFILE_CREATE_STEPS.WORKOUT_GOALS]: <StepWorkoutGoals />,
+  [CUSTOMER_PROFILE_CREATE_STEPS.BIRTH_DATE]: <StepBirthDate />,
+  [CUSTOMER_PROFILE_CREATE_STEPS.BODY_MEASUREMENTS]: <StepBodyMeasurements />,
 };
 
 export const CreateProfileRenderer = ({

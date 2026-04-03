@@ -7,7 +7,7 @@ import { StepWrapper } from "@/features/profile/onboarding/components/steps/step
 export const StepBio = () => {
   return (
     <StepWrapper title="Bio">
-      <VStack className="flex flex-1 justify-center">
+      <VStack className="flex flex-1">
         <FormTextarea
           name="bio"
           label="Bio"

@@ -36,7 +36,6 @@ export const StepStage = () => {
   const [showErrorModal, setShowErrorModal] = useState(false);
 
   const { trigger, handleSubmit, reset: resetForm } = useFormContext<CustomerProfileCreateInput>();
-
   const createCustomerProfileMutation = trpc.profile.createCustomerProfile.useMutation();
 
   const submitData = (data: CustomerProfileCreateInput) => {
@@ -55,7 +54,6 @@ export const StepStage = () => {
       },
     );
   };
-
   const onSubmit = handleSubmit(submitData);
 
   const handleTryAgain = () => {
@@ -86,7 +84,7 @@ export const StepStage = () => {
   };
 
   return (
-    <View className="mb-12 flex-1 bg-zinc-950">
+    <View className="mb-8 flex-1">
       <SubmitErrorModal
         isOpen={showErrorModal}
         onTryAgain={handleTryAgain}
@@ -94,7 +92,7 @@ export const StepStage = () => {
       />
       <HStack className="w-full gap-4 px-4">
         <ProgressBar
-          className="mb-8 mt-2"
+          className="mb-6 mt-1"
           currentValue={getStepIndex(currentStep)}
           maxValue={stepOrder.length - 1}
         />
