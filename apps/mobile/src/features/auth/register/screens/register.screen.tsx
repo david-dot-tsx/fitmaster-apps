@@ -1,10 +1,10 @@
 import React from "react";
-import { KeyboardAvoidingView, Platform } from "react-native";
+import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useTranslation } from "react-i18next";
-import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { UserPlus } from "lucide-react-native";
 
 import { type UserCreateInputForm, userCreateInputFormSchema } from "@repo/validators";
 import { NAMESPACES } from "@repo/i18n/mobile";
@@ -15,8 +15,7 @@ import { HStack } from "@/components/ui/hstack";
 import { Link, LinkText } from "@/components/ui/link";
 import { Button, ButtonText } from "@/components/ui/button";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Card } from "@/components/ui/card";
-import { Heading } from "@/components/ui/heading";
+import { Section } from "@/components/ui/section";
 import { FormInput } from "@/components/form/form-input";
 
 export const RegisterScreen = () => {
@@ -26,66 +25,84 @@ export const RegisterScreen = () => {
       router.push("/auth/login");
     },
   });
+
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
       email: "",
       password: "",
+      passwordConfirmation: "",
     },
     disabled: registerStatus === "pending",
   });
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper
+      header={{
+        title: t("register"),
+        description: "Account",
+        subtitle: "Create an account to start training.",
+        icon: UserPlus,
+      }}
+    >
       <KeyboardAvoidingView
-        className="flex flex-1 justify-center"
+        className="flex-1"
         behavior={Platform.OS === "ios" ? "padding" : "height"}
       >
-        <Card className={cn("gap-4", "border border-amber-400/30 bg-zinc-950 opacity-70")}>
-          <Heading className="space-y-1 uppercase tracking-[0.2em] text-amber-400">
-            {t("register")}
-          </Heading>
-          <VStack className="gap-4">
-            <FormProvider {...methods}>
-              <FormInput
-                name="email"
-                label="Email"
-                placeholder="Email Address"
-                textContentType="emailAddress"
-                keyboardType="email-address"
-              />
-              <FormInput
-                name="password"
-                label={t("password")}
-                placeholder={t("password")}
-                secureTextEntry
-                textContentType="password"
-              />
-              <FormInput
-                name="passwordConfirmation"
-                label={t("password_confirmation")}
-                placeholder={t("password_confirmation")}
-                secureTextEntry
-                textContentType="password"
-              />
-              <Button onPress={methods.handleSubmit((data) => mutateRegister(data))}>
-                <ButtonText>Register</ButtonText>
-              </Button>
-            </FormProvider>
-            <HStack className="flex-wrap justify-between">
+        <ScrollView
+          className="flex-1"
+          showsVerticalScrollIndicator={false}
+          keyboardShouldPersistTaps="handled"
+          contentContainerStyle={{ flexGrow: 1, paddingBottom: 40, paddingTop: 8 }}
+        >
+          <VStack className="gap-6 px-4">
+            <Section title="Your details">
+              <VStack className="gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
+                <FormProvider {...methods}>
+                  <FormInput
+                    name="email"
+                    label="Email"
+                    placeholder="Email Address"
+                    textContentType="emailAddress"
+                    keyboardType="email-address"
+                  />
+                  <FormInput
+                    name="password"
+                    label={t("password")}
+                    placeholder={t("password")}
+                    secureTextEntry
+                    textContentType="password"
+                  />
+                  <FormInput
+                    name="passwordConfirmation"
+                    label={t("password_confirmation")}
+                    placeholder={t("password_confirmation")}
+                    secureTextEntry
+                    textContentType="password"
+                  />
+                  <Button
+                    action="primary"
+                    onPress={methods.handleSubmit((data) => mutateRegister(data))}
+                  >
+                    <ButtonText className="font-semibold text-zinc-950">Register</ButtonText>
+                  </Button>
+                </FormProvider>
+              </VStack>
+            </Section>
+            <HStack className="flex-wrap justify-between gap-2">
               <Link onPress={() => router.push("/auth/login")}>
-                <LinkText className="text-2xs uppercase tracking-[2px] text-zinc-500">
+                <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-500">
                   {t("login")}
                 </LinkText>
               </Link>
               <Link onPress={() => router.push("/auth/forgot-password")}>
-                <LinkText className="text-2xs uppercase tracking-[2px] text-zinc-700">
+                <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-400">
                   {t("forgot_password")}
                 </LinkText>
               </Link>
             </HStack>
           </VStack>
-        </Card>
+        </ScrollView>
       </KeyboardAvoidingView>
     </ScreenWrapper>
   );
