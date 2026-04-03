@@ -20,9 +20,8 @@ type LeaderboardEntry = {
 
 export const LeaderboardScreen = () => {
   const { data: me } = trpc.user.me.useQuery();
-
   const { data: myProfile } = trpc.profile.getCustomerProfile.useQuery(
-    { userId: me!.id },
+    { userId: me?.id },
     { enabled: !!me?.id },
   );
 
