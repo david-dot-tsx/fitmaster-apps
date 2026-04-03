@@ -254,27 +254,22 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
                     </Alert>
                   )}
 
-                  <Button
-                    onPress={openCamera(saved)}
-                    className="flex-row items-center gap-3 rounded-xl bg-zinc-800 p-4 active:bg-zinc-700"
-                  >
-                    <Camera size={20} color="#a1a1aa" />
-                    <ButtonText className="text-base text-white">Take Photo</ButtonText>
+                  <Button onPress={openCamera(saved)}>
+                    <Camera size={20} />
+                    <ButtonText>Take Photo</ButtonText>
+                  </Button>
+
+                  <Button onPress={openGallery(saved)}>
+                    <Images size={20} />
+                    <ButtonText>Choose from Gallery</ButtonText>
                   </Button>
 
                   <Button
-                    onPress={openGallery(saved)}
-                    className="flex-row items-center gap-3 rounded-xl bg-zinc-800 p-4 active:bg-zinc-700"
-                  >
-                    <Images size={20} color="#a1a1aa" />
-                    <ButtonText className="text-base text-white">Choose from Gallery</ButtonText>
-                  </Button>
-
-                  <Button
+                    variant="outline"
                     onPress={handleCloseSourcePicker}
-                    className="items-center rounded-xl px-4 py-3 active:bg-zinc-800"
+                    className="border-transparent"
                   >
-                    <ButtonText className="text-base text-zinc-400">Cancel</ButtonText>
+                    <ButtonText>Cancel</ButtonText>
                   </Button>
                 </View>
               </ModalContent>
@@ -316,19 +311,11 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
 
                   {/* Action buttons */}
                   <View className="mt-10 flex-row gap-4">
-                    <Button
-                      onPress={handleCancel}
-                      className="rounded-xl bg-zinc-700 px-8 py-3 active:bg-zinc-600"
-                    >
-                      <ButtonText className="text-base font-semibold text-white">Cancel</ButtonText>
+                    <Button variant="outline" onPress={handleCancel} className="border-transparent">
+                      <ButtonText>Cancel</ButtonText>
                     </Button>
-                    <Button
-                      onPress={handleConfirm}
-                      className="rounded-xl bg-primary-500 px-8 py-3 active:bg-primary-600"
-                    >
-                      <ButtonText className="text-base font-semibold text-white">
-                        Confirm
-                      </ButtonText>
+                    <Button onPress={handleConfirm}>
+                      <ButtonText>Confirm</ButtonText>
                     </Button>
                   </View>
                 </View>
