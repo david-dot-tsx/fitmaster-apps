@@ -11,11 +11,12 @@ import { TrainingExerciseList } from "@/features/trainings/components/training-e
 import { VStack } from "@/components/ui/vstack";
 import { Section } from "@/components/ui/section";
 import TrainingCard from "@/components/modules/training-card/training-card";
+import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) => {
   const router = useRouter();
   const utils = trpc.useUtils();
-
+  const { openToast } = useToastNotification();
   const {
     data: training,
     isLoading,
@@ -30,6 +31,13 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
       onSuccess: () => {
         utils.training.session.myTrainings.invalidate();
         router.push(`/training/${trainingId}/session/${trainingSession?.id}`);
+      },
+      onError: () => {
+        openToast({
+          title: "Failed to enroll in training",
+          description: "Please try again later.",
+          action: "error",
+        });
       },
     });
 

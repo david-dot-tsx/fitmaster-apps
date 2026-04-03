@@ -14,6 +14,7 @@ import { StopWatch, useStopWatch } from "@/components/stop-watch";
 import { HStack } from "@/components/ui/hstack";
 import { Badge, BadgeText } from "@/components/ui/badge";
 import { VStack } from "@/components/ui/vstack";
+import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 //
 /**
@@ -31,7 +32,7 @@ export const TrainingSessionExerciseScreen = ({
 }) => {
   const stopWatchProps = useStopWatch();
   const utils = trpc.useUtils();
-
+  const { openToast } = useToastNotification();
   const { data } = trpc.training.session.getCurrentExercise.useQuery({
     trainingSessionId: sessionId,
   });
@@ -45,8 +46,12 @@ export const TrainingSessionExerciseScreen = ({
       }
       utils.training.session.getCurrentExercise.invalidate();
     },
-    onError: (error) => {
-      console.error(error);
+    onError: (_error) => {
+      openToast({
+        title: "Failed to start exercise",
+        description: "Please try again later.",
+        action: "error",
+      });
     },
   });
 
@@ -57,8 +62,12 @@ export const TrainingSessionExerciseScreen = ({
         router.push(`/training/${trainingId}/session/${sessionId}/finished`);
       }
     },
-    onError: (error) => {
-      console.error(error);
+    onError: (_error) => {
+      openToast({
+        title: "Failed to finish exercise",
+        description: "Please try again.",
+        action: "error",
+      });
     },
     onSettled: () => {
       stopWatchProps.resetStopWatch();

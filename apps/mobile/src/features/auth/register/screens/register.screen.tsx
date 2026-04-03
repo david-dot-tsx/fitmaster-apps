@@ -17,12 +17,21 @@ import { Button, ButtonText } from "@/components/ui/button";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Section } from "@/components/ui/section";
 import { FormInput } from "@/components/form/form-input";
+import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 export const RegisterScreen = () => {
   const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { openToast } = useToastNotification();
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
     onSuccess: () => {
       router.push("/auth/login");
+    },
+    onError: (_error) => {
+      openToast({
+        title: "Register Failed",
+        description: "Something went wrong. Try again later.",
+        action: "error",
+      });
     },
   });
 
