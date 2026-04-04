@@ -6,8 +6,10 @@ import {
   TrainingDaySessionStatus,
   trainingSessionWorkoutSchema,
   baseTrainingSessionStatsSchema,
+  trainingSessionSchema,
 } from "./shared.schema";
 import { workoutExerciseBaseSchema } from "../../trainingDay/shared.schema";
+import { trainingSchema } from "../shared.schema";
 
 export const trainingSessionStartDayInputSchema = z.object({
   trainingSessionId: idSchema,
@@ -27,6 +29,7 @@ export const trainingSessionStartDayOutputSchema = z
   .object({
     trainingDayId: idSchema,
     trainingSessionId: idSchema,
+    trainingSession: trainingSessionSchema.and(z.object({ training: trainingSchema })),
     status: z.enum(TrainingDaySessionStatus),
     workoutExerciseSessions: z.array(trainingSessionWorkoutWithDetailsSchema),
     startedAt: z.date(),
