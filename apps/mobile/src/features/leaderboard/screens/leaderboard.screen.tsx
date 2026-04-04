@@ -5,6 +5,7 @@ import { TrophyIcon } from "lucide-react-native";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
+import { QueryErrorHandler } from "@/components/modules/query-error-handler/query-error-handler";
 
 import { LeaderboardRow } from "../components/leaderboard-row";
 import { MyPositionCard } from "../components/my-position-card";
@@ -34,19 +35,26 @@ export const LeaderboardScreen = () => {
     },
   );
 
-  const { data, fetchNextPage, hasNextPage, isFetchingNextPage, isLoading } =
-    trpc.leaderboard.list.useInfiniteQuery(
-      { limit: LIMIT },
-      {
-        getNextPageParam: (lastPage) => {
-          if (lastPage.length < LIMIT) return undefined;
-          const last = lastPage.at(-1);
-          if (!last) return undefined;
+  const {
+    data,
+    fetchNextPage,
+    hasNextPage,
+    isFetchingNextPage,
+    status: leaderboardStatus,
+    refetch: refetchLeaderboard,
+    isFetching: isFetchingLeaderboard,
+  } = trpc.leaderboard.list.useInfiniteQuery(
+    { limit: LIMIT },
+    {
+      getNextPageParam: (lastPage) => {
+        if (lastPage.length < LIMIT) return undefined;
+        const last = lastPage.at(-1);
+        if (!last) return undefined;
 
-          return last.customerProfileId;
-        },
+        return last.customerProfileId;
       },
-    );
+    },
+  );
 
   const entries = useMemo<LeaderboardEntry[]>(() => {
     if (!data) return [];
@@ -75,14 +83,6 @@ export const LeaderboardScreen = () => {
     );
   };
 
-  if (isLoading) {
-    return (
-      <ScreenWrapper className="items-center justify-center">
-        <ActivityIndicator size="large" color="#fbbf24" />
-      </ScreenWrapper>
-    );
-  }
-
   return (
     <ScreenWrapper
       header={{
@@ -99,28 +99,39 @@ export const LeaderboardScreen = () => {
           points={myPosition.points}
         />
       )}
-      <FlatList
-        data={entries}
-        keyExtractor={(item) => item.customerProfileId}
-        renderItem={({ item }) => (
-          <LeaderboardRow
-            {...item}
-            isCurrentUser={item.customerProfileId === myPosition?.customerProfileId}
-          />
-        )}
-        onEndReached={handleEndReached}
-        onEndReachedThreshold={0.3}
-        ListFooterComponent={renderFooter}
-        ListEmptyComponent={
-          <View className="mx-4 mt-10 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
-            <Text className="text-center text-zinc-400">
-              No leaderboard entries yet.{"\n"}Be the first to score points.
-            </Text>
-          </View>
-        }
-        showsVerticalScrollIndicator={false}
-        contentContainerStyle={{ paddingBottom: 24 }}
-      />
+
+      {leaderboardStatus === "pending" && (
+        <ScreenWrapper className="items-center justify-center">
+          <ActivityIndicator size="large" color="#fbbf24" />
+        </ScreenWrapper>
+      )}
+      {leaderboardStatus === "error" && (
+        <QueryErrorHandler refetch={refetchLeaderboard} isFetching={isFetchingLeaderboard} />
+      )}
+      {leaderboardStatus === "success" && (
+        <FlatList
+          data={entries}
+          keyExtractor={(item) => item.customerProfileId}
+          renderItem={({ item }) => (
+            <LeaderboardRow
+              {...item}
+              isCurrentUser={item.customerProfileId === myPosition?.customerProfileId}
+            />
+          )}
+          onEndReached={handleEndReached}
+          onEndReachedThreshold={0.3}
+          ListFooterComponent={renderFooter}
+          ListEmptyComponent={
+            <View className="mx-4 mt-10 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
+              <Text className="text-center text-zinc-400">
+                No leaderboard entries yet.{"\n"}Be the first to score points.
+              </Text>
+            </View>
+          }
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{ paddingBottom: 24 }}
+        />
+      )}
     </ScreenWrapper>
   );
 };
