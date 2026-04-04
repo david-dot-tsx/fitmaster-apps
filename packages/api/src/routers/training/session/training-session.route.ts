@@ -188,6 +188,11 @@ export const trainingSession = router({
             },
           },
           trainingDay: true,
+          trainingSession: {
+            include: {
+              training: true,
+            },
+          },
         },
       });
 

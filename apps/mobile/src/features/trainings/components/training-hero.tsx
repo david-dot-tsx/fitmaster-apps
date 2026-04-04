@@ -3,7 +3,6 @@ import { Image, View } from "react-native";
 import { DumbbellIcon } from "lucide-react-native";
 
 import { Icon } from "@/components/ui/icon";
-import { BackButton } from "@/components/back-button";
 
 type TrainingHeroProps = {
   imageUrl: string | null;
@@ -22,8 +21,6 @@ export const TrainingHero = ({ imageUrl }: TrainingHeroProps) => (
 
       {/* Gradient overlay */}
       <View className="absolute inset-0 bg-gradient-to-b from-transparent to-zinc-950/80" />
-
-      <BackButton className="absolute left-4 top-12" />
     </View>
   </View>
 );

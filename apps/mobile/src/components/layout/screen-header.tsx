@@ -1,6 +1,5 @@
 import { View, Text } from "react-native";
 import React from "react";
-import { cn } from "@gluestack-ui/utils/nativewind-utils";
 
 import { HStack } from "@/components/ui/hstack";
 import { Heading } from "@/components/ui/heading";
@@ -9,7 +8,7 @@ import { BackButton } from "@/components/back-button";
 
 export interface ScreenHeaderProps {
   title: string;
-  subtitle: string;
+  subtitle?: string;
   description: string;
   backButton?: boolean;
   icon: React.ComponentProps<typeof Icon>["as"];
@@ -36,7 +35,7 @@ export const ScreenHeader = ({
       >
         {title}
       </Heading>
-      <Text className={cn("mt-1 text-zinc-400", { hidden: !subtitle })}>{subtitle}</Text>
+      {subtitle && <Text className="mt-1 text-zinc-400">{subtitle}</Text>}
     </View>
   );
 };
