@@ -20,14 +20,14 @@ export const HeroSection = () => {
         {/* Eyebrow */}
         <div className="mx-auto flex w-fit items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/5 px-4 py-1 backdrop-blur-md">
           <div className="size-1.5 animate-pulse rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)]" />
-          <span className="text-[10px] font-black uppercase tracking-[0.3em] text-amber-400">
+          <span className="text-xs font-black uppercase tracking-[0.3em] text-amber-400">
             MOBILE APP AVAILABLE NOW
           </span>
         </div>
 
         {/* Main H1 */}
         <h1 className="max-w-4xl text-6xl font-black uppercase italic tracking-tighter text-zinc-100 md:text-8xl lg:text-9xl">
-          Forge Your <span className="text-glow text-amber-400">Legacy</span>
+          Forge Your <span className="text-glow text-amber-400">Limits</span>
           <span className="text-zinc-500">.</span>
         </h1>
 
