@@ -9,13 +9,9 @@ import {
 
 import { VStack } from "@/components/ui/vstack";
 import { TrainingDaySessionBlock } from "@/features/trainings/components/session/training-day-session-block";
+import { BLOCK_ORDER, type BlockType } from "@/features/trainings/constants/workout-block-display";
 
-export const BLOCK_ORDER = {
-  WARM_UP: 1,
-  MAIN_WORKOUT: 2,
-  COOL_DOWN: 3,
-} as const;
-export type BlockType = keyof typeof BLOCK_ORDER;
+export { BLOCK_ORDER, type BlockType };
 
 interface TrainingDaySessionPlanProps {
   sessionExercises: TrainingSessionWorkoutWithDetails[];

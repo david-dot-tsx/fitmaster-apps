@@ -1,47 +1,16 @@
 import React from "react";
 import { Text, View } from "react-native";
-import { FlameIcon, SnowflakeIcon, ZapIcon } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
 
 import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
-import { type BlockType } from "@/features/trainings/components/session/training-day-session-plan";
 import { TrainingDaySessionExerciseRow } from "@/features/trainings/components/session/training-day-session-exercise-row";
-
-const BLOCK_CONFIG: Record<
-  BlockType,
-  {
-    label: string;
-    icon: React.ElementType;
-    accentClass: string;
-    barClass: string;
-    shadowClass: string;
-  }
-> = {
-  WARM_UP: {
-    label: "Warm up",
-    icon: ZapIcon,
-    accentClass: "text-amber-400",
-    barClass: "bg-amber-400",
-    shadowClass: "shadow-amber-400/20",
-  },
-  MAIN_WORKOUT: {
-    label: "Main workout",
-    icon: FlameIcon,
-    accentClass: "text-amber-500",
-    barClass: "bg-amber-500",
-    shadowClass: "shadow-amber-500/20",
-  },
-  COOL_DOWN: {
-    label: "Cool down",
-    icon: SnowflakeIcon,
-    accentClass: "text-blue-400",
-    barClass: "bg-blue-400",
-    shadowClass: "shadow-blue-400/20",
-  },
-};
+import {
+  type BlockType,
+  WORKOUT_BLOCK_DISPLAY,
+} from "@/features/trainings/constants/workout-block-display";
 
 export const TrainingDaySessionBlock = ({
   blockType,
@@ -52,7 +21,7 @@ export const TrainingDaySessionBlock = ({
   exercises: TrainingSessionWorkoutWithDetails[];
   currentExercise: TrainingSessionWorkoutWithDetails | undefined;
 }) => {
-  const config = BLOCK_CONFIG[blockType];
+  const config = WORKOUT_BLOCK_DISPLAY[blockType];
 
   return (
     <VStack className={cn("mb-4 ", config.shadowClass)}>
