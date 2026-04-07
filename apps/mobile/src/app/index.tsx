@@ -1,36 +1,55 @@
+import { useEffect, useState } from "react";
 import { Redirect } from "expo-router";
 
 import { trpc } from "@/lib/trpc/client";
 import { useAuthStoreState } from "@/providers/auth/auth.store";
 import { AUTH_STATUS } from "@/providers/auth/types";
-import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Text } from "@/components/ui/text";
+import { AppBootstrapScreen } from "@/components/layout/app-bootstrap-screen";
+
+const MIN_LOADING_MS = 1000;
 
 export default function Index() {
   const { authStatus } = useAuthStoreState();
+  const [minLoadingElapsed, setMinLoadingElapsed] = useState(false);
+
+  useEffect(() => {
+    const id = setTimeout(() => setMinLoadingElapsed(true), MIN_LOADING_MS);
+
+    return () => clearTimeout(id);
+  }, []);
 
   const { data: me, isLoading: isMeLoading } = trpc.user.me.useQuery(undefined, {
     enabled: authStatus === AUTH_STATUS.AUTHENTICATED,
   });
 
+  const isBootstrapping =
+    authStatus === AUTH_STATUS.LOADING || (authStatus === AUTH_STATUS.AUTHENTICATED && isMeLoading);
+
+  /** Keeps the loading UI visible for at least {@link MIN_LOADING_MS} after mount. */
+  const showLoadingPhase = isBootstrapping || !minLoadingElapsed;
+
   if (
-    authStatus === AUTH_STATUS.LOADING ||
-    (authStatus === AUTH_STATUS.AUTHENTICATED && isMeLoading)
+    !showLoadingPhase &&
+    authStatus === AUTH_STATUS.AUTHENTICATED &&
+    me != null &&
+    me.profile !== null
   ) {
-    return (
-      <ScreenWrapper className="items-center justify-center">
-        <Text className="text-2xl font-bold text-slate-500">Loading...</Text>
-      </ScreenWrapper>
-    );
+    return <Redirect href="/main" />;
   }
 
-  if (authStatus === AUTH_STATUS.UNAUTHENTICATED) {
-    return <Redirect href="/auth/login" />;
-  }
+  const phase = (() => {
+    if (showLoadingPhase) {
+      return "loading" as const;
+    }
+    if (authStatus === AUTH_STATUS.UNAUTHENTICATED) {
+      return "login" as const;
+    }
+    if (authStatus === AUTH_STATUS.AUTHENTICATED && me?.profile === null) {
+      return "onboarding" as const;
+    }
 
-  if (me?.profile === null) {
-    return <Redirect href="/onboarding" />;
-  }
+    return "loading" as const;
+  })();
 
-  return <Redirect href="/main" />;
+  return <AppBootstrapScreen phase={phase} />;
 }
