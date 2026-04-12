@@ -1,0 +1,13 @@
+{
+  "screens": {
+    "bootstrap": {
+      "strength": "Strength",
+      "focus": "Focus",
+      "progress": "Progress",
+      "phaseCta": {
+        "login": "Sign in to continue your training journey.",
+        "onboarding": "Finish setting up your profile to unlock your plan."
+      }
+    }
+  }
+}

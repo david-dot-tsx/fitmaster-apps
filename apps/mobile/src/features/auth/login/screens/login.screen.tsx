@@ -3,8 +3,8 @@ import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
-import { useTranslation } from "react-i18next";
 import { LogIn } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { NAMESPACES } from "@repo/i18n/mobile";
@@ -67,7 +67,6 @@ export const LoginScreen = () => {
                     secureTextEntry
                     textContentType="password"
                   />
-
                   <Button action="primary" onPress={methods.handleSubmit(login)}>
                     <ButtonText className="font-semibold text-zinc-950">Login</ButtonText>
                   </Button>
@@ -77,12 +76,12 @@ export const LoginScreen = () => {
             <HStack className="flex-wrap justify-between gap-2">
               <Link onPress={() => router.push("/auth/register")}>
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-500">
-                  {t("register")}
+                  {/* {t("register")} */}
                 </LinkText>
               </Link>
               <Link onPress={() => router.push("/auth/forgot-password")}>
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-400">
-                  {t("forgot_password")}
+                  {/* {t("forgot_password")} */}
                 </LinkText>
               </Link>
             </HStack>

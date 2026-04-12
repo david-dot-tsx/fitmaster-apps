@@ -14,6 +14,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
+import { title } from "process";
 
 export default function RegisterPage() {
   const trpc = useTRPC();

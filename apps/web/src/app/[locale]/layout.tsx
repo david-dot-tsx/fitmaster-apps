@@ -8,6 +8,7 @@ import RootProvider from "@/providers/root-provider";
 import { hasSessionTokensAction } from "@/actions/session.actions";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
 import { cn } from "@/lib/utils";
+import { setRequestLocale } from "@/lib/i18n/locale";
 
 const orbitron = Orbitron({
   subsets: ["latin"],
@@ -40,10 +41,11 @@ export default async function RootLayout({
   params: Promise<{ locale: string }>;
 }): Promise<ReactElement> {
   const { locale } = await params;
+  setRequestLocale(locale);
   const { hasRefreshToken } = await hasSessionTokensAction();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={cn("font-sans", orbitron.variable, inter.variable, quantico.variable)}>
         <RootProvider session={hasRefreshToken} locale={locale}>
           <LayoutWrapper>{children}</LayoutWrapper>

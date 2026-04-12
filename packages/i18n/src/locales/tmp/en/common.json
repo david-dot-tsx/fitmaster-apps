@@ -1,0 +1,9 @@
+{
+  "email": "email",
+  "herosectionbackendkey": "herosectionbackendkey",
+  "login": "common:login",
+  "logout": "logout",
+  "password": "password",
+  "password_confirmation": "password_confirmation",
+  "register": "register"
+}

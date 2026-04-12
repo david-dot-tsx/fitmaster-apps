@@ -1,0 +1,9 @@
+{
+  "screens": {
+    "bootstrap": {
+      "strength": "Strength",
+      "focus": "Focus",
+      "progress": "Progress"
+    }
+  }
+}

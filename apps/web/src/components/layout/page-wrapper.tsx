@@ -34,7 +34,7 @@ export const PageWrapper = ({
         <header className="mb-10 flex flex-col gap-1">
           <div className="mb-2 flex items-center gap-2">
             <div className="h-[2px] w-8 bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.5)]" />
-            <span className="text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
+            <span className="text-2xs font-black uppercase tracking-[0.3em] text-zinc-500">
               {eyebrow}
             </span>
           </div>
@@ -45,7 +45,7 @@ export const PageWrapper = ({
           </h1>
 
           {subtitle && (
-            <p className="font-orbitron max-w-2xl text-sm leading-relaxed text-zinc-500">
+            <p className="max-w-2xl font-orbitron text-sm leading-relaxed text-zinc-500">
               {subtitle}
             </p>
           )}

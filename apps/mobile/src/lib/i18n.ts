@@ -1,9 +1,16 @@
 import i18n, { type LanguageDetectorAsyncModule } from "i18next";
-import { initReactI18next } from "react-i18next";
+import { initReactI18next, useTranslation as useTranslationReactI18next } from "react-i18next";
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-import { resourcesToMobile, initOptions } from "@repo/i18n/mobile";
+import {
+  resourcesToMobile,
+  initOptions,
+  NAMESPACES,
+  type MobileNamespaces,
+} from "@repo/i18n/mobile";
+
+type ExtraNamespace = Exclude<MobileNamespaces, typeof NAMESPACES.COMMON>;
 
 const LANGUAGE_DETECTOR: LanguageDetectorAsyncModule = {
   type: "languageDetector",
@@ -35,3 +42,19 @@ i18nextInstance
   });
 
 export default i18nextInstance;
+
+export function useTranslation(): ReturnType<
+  typeof useTranslationReactI18next<typeof NAMESPACES.COMMON>
+>;
+export function useTranslation<const TNamespace extends ExtraNamespace>(
+  namespaces: readonly TNamespace[],
+): ReturnType<typeof useTranslationReactI18next<readonly [typeof NAMESPACES.COMMON, TNamespace]>>;
+export function useTranslation<const TNamespace extends ExtraNamespace>(
+  namespaces?: readonly TNamespace[],
+) {
+  const scopedNamespaces = [NAMESPACES.COMMON, ...(namespaces ?? [])] as const;
+
+  return useTranslationReactI18next(
+    scopedNamespaces as readonly [typeof NAMESPACES.COMMON, TNamespace],
+  );
+}

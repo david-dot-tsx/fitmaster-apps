@@ -8,13 +8,28 @@ interface Resources {
     "USER_ALREADY_EXISTS": "User already exists"
   },
   "common": {
+    "continue": "Continue",
     "email": "Email",
     "forgot_password": "Forgot Password",
     "login": "Login",
     "logout": "Logout",
     "password": "Password",
     "password_confirmation": "Password Confirmation",
-    "register": "Register"
+    "register": "Register",
+    "start": "Start"
+  },
+  "mobile": {
+    "screens": {
+      "bootstrap": {
+        "focus": "Focus",
+        "phaseCta": {
+          "login": "Sign in to continue your training journey.",
+          "onboarding": "Finish setting up your profile to unlock your plan."
+        },
+        "progress": "Progress",
+        "strength": "Strength"
+      }
+    }
   }
 }
 

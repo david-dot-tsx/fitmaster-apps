@@ -6,12 +6,14 @@ import { FinalCTASection } from "@/app/[locale]/_components/final-cta-section";
 import { MainContentAreaWrapper } from "@/app/[locale]/_components/main-content-area-wrapper";
 import { ExercisesSection } from "@/app/[locale]/_components/exercises-section";
 
-export default async function Home() {
+export default async function Home({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+
   return (
     <PageWrapper className="overflow-hidden p-0 md:p-0 lg:p-0">
       <HeroSection />
       <StatsSection />
-      <MainContentAreaWrapper>
+      <MainContentAreaWrapper locale={locale}>
         <FeaturesSection />
         <ExercisesSection />
         <FinalCTASection />
