@@ -3,6 +3,7 @@ import { Dumbbell } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
 export const ExercisesSection = () => {
   return (
@@ -17,22 +18,24 @@ export const ExercisesSection = () => {
   );
 };
 
-const Header = () => {
+const Header = async () => {
+  const { t } = await getServerTranslations();
+
   return (
     <header className="mb-12 flex items-end justify-between border-b border-zinc-700 pb-6">
       <div className="flex flex-col">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
-          Visual Assets
+          {t("visualAssets")}
         </span>
         <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-200">
-          Library <span className="text-zinc-500">Preview</span>
+          {t("library")} <span className="text-zinc-500">{t("preview")}</span>
         </h2>
       </div>
       <Button
         variant="link"
         className="text-[10px] font-black uppercase tracking-widest text-amber-400 hover:no-underline"
       >
-        View All Exercises →
+        {t("viewAllExercises")} →
       </Button>
     </header>
   );

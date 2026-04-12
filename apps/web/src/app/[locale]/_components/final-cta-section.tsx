@@ -3,8 +3,11 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
-export const FinalCTASection = () => {
+export const FinalCTASection = async () => {
+  const { t } = await getServerTranslations();
+
   return (
     <section
       className={cn(
@@ -20,19 +23,19 @@ export const FinalCTASection = () => {
 
       <div className="relative z-10 mx-auto max-w-2xl">
         <span className="text-[10px] font-black uppercase tracking-[0.5em] text-amber-400/80">
-          Final Phase
+          {t("finalCta.finalPhase")}
         </span>
 
         <h2 className="mt-4 text-4xl font-black uppercase italic tracking-tighter text-zinc-100 md:text-6xl">
-          Commit to the <br />
+          {t("finalCta.commitToThe")} <br />
           <span className="text-glow text-amber-400">
-            Protocol<span className="text-zinc-500">.</span>
+            {t("finalCta.protocol")}
+            <span className="text-zinc-500">.</span>
           </span>
         </h2>
 
         <p className="mx-auto mt-6 max-w-md text-sm leading-relaxed text-zinc-300 md:text-base">
-          Your transformation is no longer a matter of chance. Secure your access to the system and
-          deploy your training via our mobile interface.
+          {t("finalCta.finalCTA")}
         </p>
 
         <div className="mt-10 flex flex-col items-center justify-center gap-4">
@@ -40,11 +43,11 @@ export const FinalCTASection = () => {
             asChild
             className="h-16 w-full bg-amber-400 px-12 font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all hover:scale-105 hover:bg-amber-500 md:w-auto"
           >
-            <Link href="/auth/register">Initialize Transformation</Link>
+            <Link href="/auth/register">{t("finalCta.initializeTransformation")}</Link>
           </Button>
 
           <span className="text-[9px] font-bold uppercase tracking-widest text-zinc-500">
-            Compatible with iOS & Android
+            {t("finalCta.compatibleWithiOSAndAndroid")}
           </span>
         </div>
       </div>

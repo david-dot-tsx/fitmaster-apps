@@ -1,14 +1,19 @@
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
-export const StatsSection = () => (
-  <section className="border-y border-zinc-900 bg-black/40 py-20 backdrop-blur-md">
-    <div className="mx-auto flex max-w-7xl flex-wrap justify-around gap-12 px-6">
-      <StatBox label="Active Users" value="12.4K" accent="bg-amber-400" />
-      <StatBox label="Launched Workouts" value="1.2M" accent="bg-blue-400" />
-      <StatBox label="Satisfied Clients" value="99.9%" accent="bg-emerald-400" />
-    </div>
-  </section>
-);
+export const StatsSection = async () => {
+  const { t } = await getServerTranslations();
+
+  return (
+    <section className="border-y border-zinc-900 bg-black/40 py-20 backdrop-blur-md">
+      <div className="mx-auto flex max-w-7xl flex-wrap justify-around gap-12 px-6">
+        <StatBox label={t("activeUsers")} value="12.4K" accent="bg-amber-400" />
+        <StatBox label={t("launchedWorkouts")} value="1.2M" accent="bg-blue-400" />
+        <StatBox label={t("satisfiedClients")} value="99.9%" accent="bg-emerald-400" />
+      </div>
+    </section>
+  );
+};
 
 const StatBox = ({ label, value, accent }: { label: string; value: string; accent: string }) => (
   <div className="flex flex-col items-center gap-2">

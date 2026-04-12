@@ -3,19 +3,19 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 import Link from "next/link";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
 
+import { useTranslation } from "@/lib/i18n/i18n";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS]);
+  const { t } = useTranslation([NAMESPACES.API_ERRORS]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
