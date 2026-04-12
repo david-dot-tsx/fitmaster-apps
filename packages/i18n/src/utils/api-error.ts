@@ -18,5 +18,6 @@ export const getApiErrorNamespacedTranslationKey = (
     return null;
   }
 
-  return `${NAMESPACES.API_ERRORS}:${errorMessage}`;
+  // TODO: Type assertion is a workaround to avoid type errors
+  return `${NAMESPACES.API_ERRORS}:${errorMessage}` as ApiErrorNamespacedTranslationKey;
 };
