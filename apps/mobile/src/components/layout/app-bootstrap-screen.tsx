@@ -16,7 +16,6 @@ import { HStack } from "@/components/ui/hstack";
 import bgLandingImage from "@/assets/images/bg-landing.jpg";
 import appLogoImage from "@/assets/images/app-logo.png";
 import appHeroImage from "@/assets/images/app-hero.png";
-import { Heading } from "@/components/ui/heading";
 
 const LOGO_HEIGHT_PX = 24;
 const logoAsset = Image.resolveAssetSource(appLogoImage);
@@ -41,7 +40,6 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
     NAMESPACES.API_ERRORS,
     // I18N_NAMESPACES.MOBILE,
   ]);
-  console.log("phase", phase);
 
   return (
     <View className="flex-1 bg-zinc-950">
@@ -74,8 +72,6 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                 accessibilityLabel="FitMaster"
               />
               <View className="flex-1 justify-center pt-14">
-                <Text className="text-white">{t("login")}</Text>
-
                 <VStack className="w-full items-center gap-5">
                   <View className="aspect-[4/3] w-full max-w-sm">
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
