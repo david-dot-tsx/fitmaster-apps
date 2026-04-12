@@ -1,0 +1,10 @@
+{
+  "screens": {
+    "bootstrap": {
+      "phaseCta": {
+        "login": "Sign in to continue your training journey.",
+        "onboarding": "Finish setting up your profile to unlock your plan."
+      }
+    }
+  }
+}

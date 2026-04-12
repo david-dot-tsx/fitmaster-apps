@@ -1,8 +1,53 @@
 {
+  "accessToPersonalizedTrainingProtocols": "",
+  "activeUsers": "",
+  "availableModules": "",
+  "capabilities": "",
+  "continue": "",
+  "email": "Email",
+  "finalCta": {
+    "commitToThe": "",
+    "compatibleWithiOSAndAndroid": "",
+    "finalCTA": "",
+    "finalPhase": "",
+    "initializeTransformation": "",
+    "protocol": ""
+  },
+  "forgeYour": "",
+  "forgot_password": "Zapomniałeś hasła?",
+  "initializeAccess": "",
+  "launch": "",
+  "launchedWorkouts": "",
+  "library": "",
+  "limits": "",
   "login": "Login",
   "logout": "Wyloguj",
-  "email": "Email",
+  "mobileAppAvailableNow": "",
+  "mobileIntegration": {
+    "description": "",
+    "title": ""
+  },
   "password": "Hasło",
   "password_confirmation": "Potwierdź hasło",
-  "register": "Zarejestruj się"
+  "precisionAnalytics": {
+    "description": "",
+    "title": ""
+  },
+  "preview": "",
+  "register": "Zarejestruj się",
+  "satisfiedClients": "",
+  "select_your_language": "",
+  "slogan": {
+    "focus": "",
+    "progress": "",
+    "strength": ""
+  },
+  "system": "",
+  "tacticalProgramming": {
+    "description": "",
+    "title": ""
+  },
+  "viewAllExercises": "",
+  "viewProtocol": "",
+  "visualAssets": ""
 }

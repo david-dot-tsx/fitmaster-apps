@@ -1,0 +1,10 @@
+{
+  "screens": {
+    "bootstrap": {
+      "phaseCta": {
+        "login": "",
+        "onboarding": ""
+      }
+    }
+  }
+}

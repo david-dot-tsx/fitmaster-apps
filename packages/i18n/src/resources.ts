@@ -1,20 +1,69 @@
 interface Resources {
   "api-errors": {
-    "FAILED_TO_LOGOUT": "Failed to logout",
-    "INVALID_CREDENTIALS": "Invalid credentials",
-    "NOT_FOUND": "not found",
-    "SESSION_EXPIRED_OR_INVALID": "Session expired or invalid",
-    "SESSION_INVALID": "Session invalid",
-    "USER_ALREADY_EXISTS": "User already exists"
+
   },
   "common": {
+    "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
+    "activeUsers": "Active Users",
+    "availableModules": "Available Modules",
+    "capabilities": "Capabilities",
+    "continue": "Continue",
     "email": "Email",
+    "finalCta": {
+      "commitToThe": "Commit to the",
+      "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
+      "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
+      "finalPhase": "Final Phase",
+      "initializeTransformation": "Initialize Transformation",
+      "protocol": "Protocol"
+    },
+    "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "initializeAccess": "Initialize Access",
+    "launch": "Launch",
+    "launchedWorkouts": "Launched Workouts",
+    "library": "library",
+    "limits": "Limits",
     "login": "Login",
     "logout": "Logout",
+    "mobileAppAvailableNow": "Mobile App Available Now",
+    "mobileIntegration": {
+      "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
+      "title": "Mobile Integration"
+    },
     "password": "Password",
     "password_confirmation": "Password Confirmation",
-    "register": "Register"
+    "precisionAnalytics": {
+      "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
+      "title": "Precision Analytics"
+    },
+    "preview": "preview",
+    "register": "Register",
+    "satisfiedClients": "Satisfied Clients",
+    "select_your_language": "Select your language",
+    "slogan": {
+      "focus": "Focus",
+      "progress": "Progress",
+      "strength": "Strength"
+    },
+    "system": "System",
+    "tacticalProgramming": {
+      "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
+      "title": "Tactical Programming"
+    },
+    "viewAllExercises": "View All Exercises",
+    "viewProtocol": "View Protocol",
+    "visualAssets": "Visual Assets"
+  },
+  "mobile": {
+    "screens": {
+      "bootstrap": {
+        "phaseCta": {
+          "login": "Sign in to continue your training journey.",
+          "onboarding": "Finish setting up your profile to unlock your plan."
+        }
+      }
+    }
   }
 }
 
