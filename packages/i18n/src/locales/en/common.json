@@ -95,6 +95,7 @@
     "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
     "title": "Mobile Integration"
   },
+  "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
   "noExercisesAddedYet": "No exercises added yet.",
   "noLeaderboardEntriesYet": "No leaderboard entries yet.",
   "noTrainingsPublishedYet": "No trainings published yet.",
@@ -115,8 +116,8 @@
   "satisfiedClients": "Satisfied Clients",
   "selectYourLanguage": "Select your language",
   "settings": "settings",
-  "showLess": "showLess",
-  "showMore": "showMore",
+  "showLess": "show less",
+  "showMore": "show more",
   "skipped": "skipped",
   "slogan": {
     "focus": "Focus",

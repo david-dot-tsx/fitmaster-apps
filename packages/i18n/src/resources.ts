@@ -99,6 +99,7 @@ interface Resources {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
       "title": "Mobile Integration"
     },
+    "noDescriptionProvidedForThisExercise": "noDescriptionProvidedForThisExercise",
     "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
     "noTrainingsPublishedYet": "No trainings published yet.",
@@ -177,6 +178,11 @@ interface Resources {
         "description": "Ask professionals",
         "subtitle": "Connect with professionals and share your progress.",
         "title": "Chat"
+      },
+      "exerciseDetails": {
+        "description": "mobile:screens.exerciseDetails.description",
+        "subtitle": "mobile:screens.exerciseDetails.subtitle",
+        "title": "mobile:screens.exerciseDetails.title"
       },
       "leaderboard": {
         "description": "Compete",

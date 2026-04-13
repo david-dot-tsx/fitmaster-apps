@@ -12,7 +12,7 @@ interface SectionProps {
 export const Section = ({ title, children }: SectionProps) => {
   return (
     <VStack>
-      <Heading size="sm" className=" uppercase tracking-widest text-zinc-400">
+      <Heading size="sm" className="uppercase tracking-widest text-zinc-400">
         {title}
       </Heading>
       <LinearGradient

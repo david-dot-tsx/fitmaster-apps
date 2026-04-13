@@ -11,6 +11,11 @@
       "subtitle": "Connect with professionals and share your progress.",
       "title": "Chat"
     },
+    "exerciseDetails": {
+      "description": "Exercise library",
+      "subtitle": "Technique, traits, and difficulty.",
+      "title": "Exercise details"
+    },
     "leaderboard": {
       "description": "Compete",
       "subtitle": "See who leads and where you rank.",
