@@ -35,6 +35,10 @@
     "onboarding": {
       "description": "Onboarding",
       "steps": {
+        "bio": {
+          "placeholder": "Tell others a little about yourself… 😊",
+          "title": "About you"
+        },
         "introduction": {
           "title": "Introduce yourself"
         },

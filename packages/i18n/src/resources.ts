@@ -224,11 +224,15 @@ interface Resources {
       "onboarding": {
         "description": "Onboarding",
         "steps": {
+          "bio": {
+            "placeholder": "mobile:screens.onboarding.steps.bio.placeholder",
+            "title": "mobile:screens.onboarding.steps.bio.title"
+          },
           "introduction": {
-            "title": "mobile:screens.onboarding.steps.introduction.title"
+            "title": "Introduce yourself"
           },
           "profileImage": {
-            "title": "mobile:screens.onboarding.steps.profileImage.title"
+            "title": "Profile Image"
           }
         },
         "subtitle": "Tell us about you so we can personalize your training.",
