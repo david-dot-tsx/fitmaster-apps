@@ -27,6 +27,15 @@
           "new": "New"
         }
       },
+      "delete": {
+        "description": {
+          "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
+          "warning": "WARNING"
+        },
+        "title": {
+          "deleteExercise": "Delete Exercise"
+        }
+      },
       "edit": {
         "description": "Edit the parameters of the exercise.",
         "form": {

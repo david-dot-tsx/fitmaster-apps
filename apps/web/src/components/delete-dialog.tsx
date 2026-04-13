@@ -5,6 +5,8 @@ import { Loader2, Trash2, AlertTriangle } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
 
+import { NAMESPACES } from "@repo/i18n/web";
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -16,6 +18,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 type DeleteDialogProps = Pick<AlertDialogProps, "open" | "onOpenChange"> & {
   onConfirm: () => void;
@@ -30,6 +33,8 @@ export const DeleteDialog = ({
   status,
   entityName,
 }: DeleteDialogProps) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
+
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="border-red-900/30 bg-zinc-950/90 backdrop-blur-2xl sm:max-w-[450px]">
@@ -40,23 +45,28 @@ export const DeleteDialog = ({
             <div className="flex size-10 items-center justify-center rounded-xl border border-red-500/20 bg-red-500/10">
               <AlertTriangle className="size-5 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.4)]" />
             </div>
-            <AlertDialogTitle className="text-xl font-black uppercase italic tracking-tighter text-zinc-100">
-              Delete <span className="text-red-500">{entityName}</span>
+            <AlertDialogTitle className="text-xl font-black uppercase italic text-zinc-100">
+              {t("web:dialog.exercise.delete.title.deleteExercise")}: <br />
+              <span className="text-red-500">{entityName}</span>
             </AlertDialogTitle>
           </div>
 
           <AlertDialogDescription className="text-xs font-bold uppercase leading-relaxed tracking-widest text-zinc-500">
-            WARNING: This action is irreversible. You are attempting to permanently delete the
-            following record:
-            <span className="mt-2 block text-sm font-black normal-case italic tracking-normal text-zinc-200">
-              &quot;{entityName}&quot;
+            <span className="mr-1 text-red-600">
+              {t("web:dialog.exercise.delete.description.warning")}!
+            </span>
+            {t("web:dialog.exercise.delete.description.paragraph")}
+            <span className="flex flex-col">
+              <span className="mt-2 block font-orbitron text-[16px] uppercase tracking-wider text-zinc-300">
+                {entityName}
+              </span>
             </span>
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter className="mt-8 gap-3 sm:gap-0">
           <AlertDialogCancel className="border-zinc-800 bg-transparent text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200">
-            Abort
+            {t("cancel")}
           </AlertDialogCancel>
 
           <AlertDialogAction
@@ -75,7 +85,7 @@ export const DeleteDialog = ({
             ) : (
               <Trash2 className="mr-2 size-3" />
             )}
-            Confirm Delete
+            {t("confirmDelete")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

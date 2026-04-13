@@ -18,6 +18,7 @@ interface Resources {
     "completeExercise": "Complete exercise",
     "completed": "completed",
     "confirm": "confirm",
+    "confirmDelete": "Confirm Delete",
     "continue": "Continue",
     "create": "create",
     "current": "current",
@@ -350,27 +351,36 @@ interface Resources {
             "new": "New"
           }
         },
+        "delete": {
+          "description": {
+            "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
+            "warning": "WARNING"
+          },
+          "title": {
+            "deleteExercise": "Delete Exercise"
+          }
+        },
         "edit": {
-          "description": "web:dialog.exercise.edit.description",
+          "description": "Edit the parameters of the exercise.",
           "form": {
             "bodyPart": {
-              "label": "web:dialog.exercise.edit.form.bodyPart.label"
+              "label": "Target Anatomy"
             },
             "description": {
-              "label": "web:dialog.exercise.edit.form.description.label"
+              "label": "Details"
             },
             "difficulty": {
-              "label": "web:dialog.exercise.edit.form.difficulty.label"
+              "label": "Intensity Level"
             },
             "exerciseName": {
-              "label": "web:dialog.exercise.edit.form.exerciseName.label"
+              "label": "Exercise Name"
             },
             "imageUrl": {
-              "label": "web:dialog.exercise.edit.form.imageUrl.label"
+              "label": "Visual Asset (URL)"
             }
           },
           "title": {
-            "editExercise": "web:dialog.exercise.edit.title.editExercise"
+            "editExercise": "Edit Exercise"
           }
         }
       }

@@ -88,7 +88,7 @@ export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExercis
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                 <DialogTitle className="text-2xl font-black uppercase italic tracking-wider text-zinc-100">
-                  {t("web:dialog.exercise.edit.title.editExercise")}{" "}
+                  {t("web:dialog.exercise.edit.title.editExercise")}: <br />
                   <span className="text-amber-400">{exercise?.name}</span>
                 </DialogTitle>
               </div>
