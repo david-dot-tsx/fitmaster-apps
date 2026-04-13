@@ -5,6 +5,9 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import { Controller, useFormContext } from "react-hook-form";
 import { Camera, Images, User } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Alert, AlertIcon, AlertText } from "@/components/ui/alert";
@@ -35,6 +38,7 @@ interface FormProfilePictureProps {
 
 export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps) => {
   const { control } = useFormContext();
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   const [adjustModalVisible, setAdjustModalVisible] = useState(false);
   const [pendingImageUri, setPendingImageUri] = useState<string | null>(null);
@@ -140,7 +144,7 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
   const openCamera = (fieldValue: ProfilePictureValue | null) => async () => {
     const { status } = await ImagePicker.requestCameraPermissionsAsync();
     if (status !== "granted") {
-      setPermissionError("Camera access is needed to take a photo.");
+      setPermissionError(t("cameraAccessNeededToTakePhoto"));
 
       return;
     }
@@ -159,7 +163,7 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
   const openGallery = (fieldValue: ProfilePictureValue | null) => async () => {
     const { status } = await ImagePicker.requestMediaLibraryPermissionsAsync();
     if (status !== "granted") {
-      setPermissionError("Gallery access is needed to pick a photo.");
+      setPermissionError(t("galleryAccessNeededToPickPhoto"));
 
       return;
     }
@@ -235,7 +239,7 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
                   <User size={56} color="#a1a1aa" />
                 )}
               </View>
-              <Text className="mt-2 text-sm text-zinc-400">Tap to set photo</Text>
+              <Text className="mt-2 text-sm text-zinc-400">{t("tapToSetPhoto")}</Text>
             </Pressable>
 
             {/* Source picker modal */}
@@ -244,7 +248,7 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
               <ModalContent className="border-zinc-800 bg-zinc-900">
                 <View className="gap-3">
                   <Text className="mb-1 text-center text-lg font-bold text-white">
-                    Profile Picture
+                    {t("profilePicture")}
                   </Text>
 
                   {permissionError && (
@@ -256,12 +260,12 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
 
                   <Button onPress={openCamera(saved)}>
                     <Camera size={20} />
-                    <ButtonText>Take Photo</ButtonText>
+                    <ButtonText>{t("takePhoto")}</ButtonText>
                   </Button>
 
                   <Button onPress={openGallery(saved)}>
                     <Images size={20} />
-                    <ButtonText>Choose from Gallery</ButtonText>
+                    <ButtonText>{t("chooseFromGallery")}</ButtonText>
                   </Button>
 
                   <Button
@@ -269,7 +273,7 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
                     onPress={handleCloseSourcePicker}
                     className="border-transparent"
                   >
-                    <ButtonText>Cancel</ButtonText>
+                    <ButtonText>{t("cancel")}</ButtonText>
                   </Button>
                 </View>
               </ModalContent>
@@ -280,9 +284,9 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
               <ModalBackdrop />
               <ModalContent className="h-full rounded-none border-0 bg-zinc-950">
                 <View className="flex-1 items-center justify-center">
-                  <Text className="mb-2 text-xl font-bold text-white">Adjust Photo</Text>
+                  <Text className="mb-2 text-xl font-bold text-white">{t("adjustPhoto")}</Text>
                   <Text className="mb-8 text-sm text-zinc-400">
-                    Pinch to zoom · Drag to reposition
+                    {t("pinchToZoomDragToReposition")}
                   </Text>
 
                   {/* Circular crop frame */}
@@ -312,10 +316,10 @@ export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps)
                   {/* Action buttons */}
                   <View className="mt-10 flex-row gap-4">
                     <Button variant="outline" onPress={handleCancel} className="border-transparent">
-                      <ButtonText>Cancel</ButtonText>
+                      <ButtonText>{t("cancel")}</ButtonText>
                     </Button>
                     <Button onPress={handleConfirm}>
-                      <ButtonText>Confirm</ButtonText>
+                      <ButtonText>{t("confirm")}</ButtonText>
                     </Button>
                   </View>
                 </View>

@@ -20,7 +20,7 @@ export const StepIntroduction = () => {
   const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   return (
-    <StepWrapper title={t("introduceYourself")}>
+    <StepWrapper title={t("mobile:screens.onboarding.steps.introduction.title")}>
       <VStack className="gap-6">
         <FormInput name="firstName" label={t("firstName")} placeholder={t("firstName")} />
         <FormInput name="lastName" label={t("lastName")} placeholder={t("lastName")} />

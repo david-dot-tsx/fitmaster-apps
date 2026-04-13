@@ -34,6 +34,14 @@
     },
     "onboarding": {
       "description": "Onboarding",
+      "steps": {
+        "introduction": {
+          "title": "Introduce yourself"
+        },
+        "profileImage": {
+          "title": "Profile Image"
+        }
+      },
       "subtitle": "Tell us about you so we can personalize your training.",
       "title": "Profile setup"
     },

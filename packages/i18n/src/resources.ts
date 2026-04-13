@@ -7,15 +7,20 @@ interface Resources {
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "active": "active",
     "activeUsers": "Active Users",
+    "adjustPhoto": "Adjust photo",
     "availableModules": "Available Modules",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "bio",
     "block": "block",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
+    "cameraAccessNeededToTakePhoto": "Camera access is needed to take a photo.",
+    "cancel": "cancel",
     "capabilities": "Capabilities",
     "chatIsComingSoon": "Chat is coming soon.",
+    "chooseFromGallery": "Choose from Gallery",
     "completeExercise": "Complete exercise",
     "completed": "completed",
+    "confirm": "confirm",
     "continue": "Continue",
     "current": "current",
     "currentTrainings": "Current trainings",
@@ -30,9 +35,9 @@ interface Resources {
     "emailAddress": "Email Address",
     "enums": {
       "gender": {
-        "female": "common:enums.gender.female",
-        "male": "common:enums.gender.male",
-        "other": "common:enums.gender.other"
+        "female": "female",
+        "male": "male",
+        "other": "other"
       }
     },
     "error": "error",
@@ -84,13 +89,13 @@ interface Resources {
     "focus": "focus",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
     "goToTrainingDetails": "Go to training details",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
-    "introduceYourself": "Introduce yourself",
     "joinTraining": "Join training",
     "languages": {
       "english": "English",
@@ -119,12 +124,14 @@ interface Resources {
     "passwordConfirmation": "Password Confirmation",
     "password_confirmation": "Password Confirmation",
     "pending": "pending",
+    "pinchToZoomDragToReposition": "Pinch to zoom · Drag to reposition",
     "pleaseCheckBackSoon": "Please check back soon.",
     "precisionAnalytics": {
       "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
       "title": "Precision Analytics"
     },
     "preview": "preview",
+    "profilePicture": "Profile Picture",
     "progress": "progress",
     "pts": "pts",
     "register": "Register",
@@ -149,6 +156,8 @@ interface Resources {
       "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
       "title": "Tactical Programming"
     },
+    "takePhoto": "Take Photo",
+    "tapToSetPhoto": "Tap to set photo",
     "training": {
       "block": {
         "coolDown": "Cool Down",
@@ -214,6 +223,14 @@ interface Resources {
       },
       "onboarding": {
         "description": "Onboarding",
+        "steps": {
+          "introduction": {
+            "title": "mobile:screens.onboarding.steps.introduction.title"
+          },
+          "profileImage": {
+            "title": "mobile:screens.onboarding.steps.profileImage.title"
+          }
+        },
         "subtitle": "Tell us about you so we can personalize your training.",
         "title": "Profile setup"
       },
