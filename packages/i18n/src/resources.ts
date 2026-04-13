@@ -10,7 +10,7 @@ interface Resources {
     "bio": "bio",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
-    "chatIsComingSoon": "chatIsComingSoon",
+    "chatIsComingSoon": "Chat is coming soon.",
     "continue": "Continue",
     "currentTrainings": "Current trainings",
     "day": "day",
@@ -29,6 +29,7 @@ interface Resources {
     "finishedTrainings": "Finished trainings",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "goToTrainingDetails": "Go to training details",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "languages": {
@@ -48,9 +49,11 @@ interface Resources {
       "title": "Mobile Integration"
     },
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
+    "noTrainingsPublishedYet": "No trainings published yet.",
     "password": "Password",
     "passwordConfirmation": "passwordConfirmation",
     "password_confirmation": "Password Confirmation",
+    "pleaseCheckBackSoon": "Please check back soon.",
     "precisionAnalytics": {
       "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
       "title": "Precision Analytics"
@@ -77,7 +80,7 @@ interface Resources {
     "visualAssets": "Visual Assets",
     "yo": "yo",
     "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
-    "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere",
+    "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "You will be able to message and discuss trainings with professionals here.",
     "yourPosition": "Your Position"
   },
   "mobile": {
@@ -89,9 +92,9 @@ interface Resources {
         }
       },
       "chat": {
-        "description": "mobile:screens.chat.description",
-        "subtitle": "mobile:screens.chat.subtitle",
-        "title": "mobile:screens.chat.title"
+        "description": "Ask professionals",
+        "subtitle": "Connect with professionals and share your progress.",
+        "title": "Chat"
       },
       "leaderboard": {
         "description": "Compete",
@@ -135,6 +138,32 @@ interface Resources {
         "description": "Account",
         "subtitle": "Create an account to start training.",
         "title": "Register"
+      },
+      "trainingList": {
+        "description": "Discover",
+        "subtitle": "Pick a plan and start your next session.",
+        "title": "Trainings"
+      }
+    },
+    "training": {
+      "sesssion": {
+        "card": {
+          "badge": {
+            "cancelled": "mobile:training.sesssion.card.badge.cancelled",
+            "finished": "mobile:training.sesssion.card.badge.finished",
+            "inProgress": "mobile:training.sesssion.card.badge.inProgress",
+            "joinNow": "mobile:training.sesssion.card.badge.joinNow",
+            "joined": "mobile:training.sesssion.card.badge.joined"
+          },
+          "subtitle": {
+            "awaitingToday": "mobile:training.sesssion.card.subtitle.awaitingToday",
+            "cancelled": "mobile:training.sesssion.card.subtitle.cancelled",
+            "completed": "mobile:training.sesssion.card.subtitle.completed",
+            "completedToday": "mobile:training.sesssion.card.subtitle.completedToday",
+            "joined": "mobile:training.sesssion.card.subtitle.joined",
+            "notJoined": "mobile:training.sesssion.card.subtitle.notJoined"
+          }
+        }
       }
     }
   }

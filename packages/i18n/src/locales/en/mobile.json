@@ -53,6 +53,32 @@
       "description": "Account",
       "subtitle": "Create an account to start training.",
       "title": "Register"
+    },
+    "trainingList": {
+      "description": "Discover",
+      "subtitle": "Pick a plan and start your next session.",
+      "title": "Trainings"
+    }
+  },
+  "training": {
+    "sesssion": {
+      "card": {
+        "badge": {
+          "cancelled": "Cancelled",
+          "finished": "Finished",
+          "inProgress": "In Progress",
+          "joined": "Joined",
+          "joinNow": "Join Now"
+        },
+        "subtitle": {
+          "awaitingToday": "Complete today's session",
+          "cancelled": "Training cancelled",
+          "completed": "Training completed! Congratulations!",
+          "completedToday": "Today's session completed",
+          "joined": "Start your training",
+          "notJoined": "The training is available"
+        }
+      }
     }
   }
 }
