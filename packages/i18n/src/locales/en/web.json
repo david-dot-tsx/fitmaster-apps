@@ -26,6 +26,29 @@
           "exercise": "Exercise",
           "new": "New"
         }
+      },
+      "edit": {
+        "description": "Edit the parameters of the exercise.",
+        "form": {
+          "bodyPart": {
+            "label": "Target Anatomy"
+          },
+          "description": {
+            "label": "Details"
+          },
+          "difficulty": {
+            "label": "Intensity Level"
+          },
+          "exerciseName": {
+            "label": "Exercise Name"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          }
+        },
+        "title": {
+          "editExercise": "Edit Exercise"
+        }
       }
     }
   },

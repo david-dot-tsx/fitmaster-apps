@@ -13,6 +13,7 @@ import {
   exerciseUpdateInputFormSchema,
   exerciseUpdateInputSchema,
 } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -28,6 +29,7 @@ import {
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { FormSelect } from "@/components/form/form-select";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 // TODO: move to a separate file, create use the same options for the create form, take into account i18n
 const difficultyOptions = [
@@ -49,6 +51,7 @@ interface EditExerciseDialogProps extends Pick<DialogProps, "open" | "onOpenChan
 }
 
 export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExerciseDialogProps) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const methods = useForm<ExerciseUpdateInputForm>({
@@ -59,12 +62,12 @@ export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExercis
   const editExerciseMutation = useMutation(
     trpc.exercise.update.mutationOptions({
       onSuccess: () => {
-        toast.success("Exercise updated!");
+        toast.success(t("success.generic.description"));
         onOpenChange?.(false);
         queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
       },
       onError: (error) => {
-        toast.error("Failed to update exercise");
+        toast.error(t("errors.generic.description"));
         console.error(error);
         onOpenChange?.(false);
       },
@@ -84,29 +87,47 @@ export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExercis
             <DialogHeader className="space-y-3">
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
-                  Edit <span className="text-amber-400">Exercise</span> {exercise?.name}
+                <DialogTitle className="text-2xl font-black uppercase italic tracking-wider text-zinc-100">
+                  {t("web:dialog.exercise.edit.title.editExercise")}{" "}
+                  <span className="text-amber-400">{exercise?.name}</span>
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                Edit the parameters of the exercise.
+                {t("web:dialog.exercise.edit.description")}
               </DialogDescription>
             </DialogHeader>
             <div className="my-8 space-y-6">
               <FieldGroup className="grid grid-cols-2 gap-4">
                 {/* Full width Name */}
                 <div className="col-span-2">
-                  <FormInput name="name" label="Exercise Identity" placeholder="e.g. Bench Press" />
+                  <FormInput
+                    name="name"
+                    label={t("web:dialog.exercise.edit.form.exerciseName.label")}
+                  />
                 </div>
 
                 {/* Row for selects */}
-                <FormSelect name="difficulty" label="Intensity Level" options={difficultyOptions} />
-                <FormSelect name="bodyPart" label="Target Anatomy" options={bodyPartOptions} />
+                <FormSelect
+                  name="difficulty"
+                  label={t("web:dialog.exercise.edit.form.difficulty.label")}
+                  options={difficultyOptions}
+                />
+                <FormSelect
+                  name="bodyPart"
+                  label={t("web:dialog.exercise.edit.form.bodyPart.label")}
+                  options={bodyPartOptions}
+                />
 
                 {/* Description & URL */}
                 <div className="col-span-2 space-y-4">
-                  <FormInput name="description" label="Details" />
-                  <FormInput name="imageUrl" label="Visual Asset (URL)" />
+                  <FormInput
+                    name="description"
+                    label={t("web:dialog.exercise.edit.form.description.label")}
+                  />
+                  <FormInput
+                    name="imageUrl"
+                    label={t("web:dialog.exercise.edit.form.imageUrl.label")}
+                  />
                 </div>
               </FieldGroup>
             </div>
@@ -117,14 +138,14 @@ export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExercis
                   type="button"
                   className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"
                 >
-                  Abort
+                  {t("cancel")}
                 </Button>
               </DialogClose>
               <Button
                 type="submit"
                 className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
               >
-                Create
+                {t("update")}
               </Button>
             </DialogFooter>
           </form>

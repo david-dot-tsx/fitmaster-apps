@@ -25,12 +25,12 @@ interface Resources {
     "day": "day",
     "day_one": "day",
     "day_other": "days",
-    "delete": "delete",
+    "delete": "Delete",
     "description": "description",
     "distance": "distance",
     "done": "done",
     "duration": "duration",
-    "edit": "edit",
+    "edit": "Edit",
     "email": "Email",
     "emailAddress": "Email Address",
     "enums": {
@@ -175,6 +175,7 @@ interface Resources {
       "seconds": "s",
       "xp": "xp"
     },
+    "update": "update",
     "volume": "volume",
     "warmup": "warm up",
     "weight": "Weight",
@@ -347,6 +348,29 @@ interface Resources {
           "title": {
             "exercise": "Exercise",
             "new": "New"
+          }
+        },
+        "edit": {
+          "description": "web:dialog.exercise.edit.description",
+          "form": {
+            "bodyPart": {
+              "label": "web:dialog.exercise.edit.form.bodyPart.label"
+            },
+            "description": {
+              "label": "web:dialog.exercise.edit.form.description.label"
+            },
+            "difficulty": {
+              "label": "web:dialog.exercise.edit.form.difficulty.label"
+            },
+            "exerciseName": {
+              "label": "web:dialog.exercise.edit.form.exerciseName.label"
+            },
+            "imageUrl": {
+              "label": "web:dialog.exercise.edit.form.imageUrl.label"
+            }
+          },
+          "title": {
+            "editExercise": "web:dialog.exercise.edit.title.editExercise"
           }
         }
       }

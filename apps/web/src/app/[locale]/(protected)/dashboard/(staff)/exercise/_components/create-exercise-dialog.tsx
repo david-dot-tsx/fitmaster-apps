@@ -103,7 +103,7 @@ export const CreateExerciseDialog = () => {
             <DialogHeader className="space-y-3">
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
-                <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
+                <DialogTitle className="text-2xl font-black uppercase italic tracking-wider text-zinc-100">
                   {t("web:dialog.exercise.create.title.new")}{" "}
                   <span className="text-amber-400">
                     {t("web:dialog.exercise.create.title.exercise")}
