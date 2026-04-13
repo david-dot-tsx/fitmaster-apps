@@ -54,6 +54,11 @@
       "subtitle": "Create an account to start training.",
       "title": "Register"
     },
+    "trainingDetails": {
+      "description": "Discover",
+      "subtitle": "Training plan details.",
+      "title": "Training overview"
+    },
     "trainingList": {
       "description": "Discover",
       "subtitle": "Pick a plan and start your next session.",

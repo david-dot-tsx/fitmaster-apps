@@ -1,4 +1,5 @@
 {
+  "about": "about",
   "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
   "active": "active",
   "activeUsers": "Active Users",
@@ -9,6 +10,7 @@
   "browseTrainingsToGetStarted": "Browse trainings to get started!",
   "capabilities": "Capabilities",
   "chatIsComingSoon": "Chat is coming soon.",
+  "completed": "completed",
   "completeExercise": "Complete exercise",
   "continue": "Continue",
   "current": "current",
@@ -40,12 +42,24 @@
     },
     "generic": {
       "description": "An error occurred while loading this content. Please try again."
+    },
+    "training": {
+      "session": {
+        "new": {
+          "failed": {
+            "description": "Please try again later.",
+            "title": "Failed to join training"
+          }
+        }
+      }
     }
   },
   "exercise_one": "exercise",
   "exercise_other": "exercises",
   "exerciseInThisSession": "Exercise in this session",
   "exercises": "exercises",
+  "exercises_one": "exercise",
+  "exercises_other": "exercises",
   "finalCta": {
     "commitToThe": "Commit to the",
     "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
@@ -62,6 +76,7 @@
   "goToTrainingDetails": "Go to training details",
   "initializeAccess": "Initialize Access",
   "intensity": "intensity",
+  "joinTraining": "Join training",
   "languages": {
     "english": "English",
     "polish": "Polish",
@@ -79,6 +94,7 @@
     "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
     "title": "Mobile Integration"
   },
+  "noExercisesAddedYet": "No exercises added yet.",
   "noLeaderboardEntriesYet": "No leaderboard entries yet.",
   "noTrainingsPublishedYet": "No trainings published yet.",
   "password": "Password",
@@ -107,6 +123,7 @@
     "strength": "Strength"
   },
   "startExercise": "Start exercise",
+  "startTraining": "Start training",
   "startTrainingDay": "Start training day",
   "system": "System",
   "tacticalProgramming": {
@@ -126,7 +143,8 @@
     "kg": "kg",
     "meters": "m",
     "reps": "x",
-    "seconds": "s"
+    "seconds": "s",
+    "xp": "xp"
   },
   "viewAllExercises": "View All Exercises",
   "viewProtocol": "View Protocol",

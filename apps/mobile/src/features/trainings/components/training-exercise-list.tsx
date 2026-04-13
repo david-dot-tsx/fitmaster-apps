@@ -1,4 +1,7 @@
 import React from "react";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { Text } from "@/components/ui/text";
 import { Section } from "@/components/ui/section";
@@ -18,8 +21,10 @@ type TrainingExerciseListProps = {
 };
 
 export const TrainingExerciseList = ({ exercises }: TrainingExerciseListProps) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+
   return (
-    <Section title="Exercises">
+    <Section title={t("exercises")}>
       {exercises.length > 0 ? (
         exercises.map((exercise) => (
           <TrainingExerciseRow
@@ -32,7 +37,7 @@ export const TrainingExerciseList = ({ exercises }: TrainingExerciseListProps) =
           />
         ))
       ) : (
-        <Text className="text-center text-zinc-500">No exercises added yet.</Text>
+        <Text className="text-center text-zinc-500">{t("noExercisesAddedYet")}</Text>
       )}
     </Section>
   );

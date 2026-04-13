@@ -3,6 +3,7 @@ interface Resources {
 
   },
   "common": {
+    "about": "about",
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "active": "active",
     "activeUsers": "Active Users",
@@ -14,6 +15,7 @@ interface Resources {
     "capabilities": "Capabilities",
     "chatIsComingSoon": "Chat is coming soon.",
     "completeExercise": "Complete exercise",
+    "completed": "completed",
     "continue": "Continue",
     "current": "current",
     "currentTrainings": "Current trainings",
@@ -44,12 +46,24 @@ interface Resources {
       },
       "generic": {
         "description": "An error occurred while loading this content. Please try again."
+      },
+      "training": {
+        "session": {
+          "new": {
+            "failed": {
+              "description": "errors.training.session.new.failed.description",
+              "title": "errors.training.session.new.failed.title"
+            }
+          }
+        }
       }
     },
     "exerciseInThisSession": "Exercise in this session",
     "exercise_one": "exercise",
     "exercise_other": "exercises",
     "exercises": "exercises",
+    "exercises_one": "exercise",
+    "exercises_other": "exercises",
     "finalCta": {
       "commitToThe": "Commit to the",
       "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
@@ -66,6 +80,7 @@ interface Resources {
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
+    "joinTraining": "joinTraining",
     "languages": {
       "english": "English",
       "polish": "Polish",
@@ -83,6 +98,7 @@ interface Resources {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
       "title": "Mobile Integration"
     },
+    "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
     "noTrainingsPublishedYet": "No trainings published yet.",
     "password": "Password",
@@ -111,6 +127,7 @@ interface Resources {
       "strength": "Strength"
     },
     "startExercise": "Start exercise",
+    "startTraining": "Start training",
     "startTrainingDay": "Start training day",
     "system": "System",
     "tacticalProgramming": {
@@ -130,7 +147,8 @@ interface Resources {
       "kg": "kg",
       "meters": "m",
       "reps": "x",
-      "seconds": "s"
+      "seconds": "s",
+      "xp": "units.xp"
     },
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",
@@ -199,6 +217,11 @@ interface Resources {
         "description": "Account",
         "subtitle": "Create an account to start training.",
         "title": "Register"
+      },
+      "trainingDetails": {
+        "description": "Discover",
+        "subtitle": "Training plan details.",
+        "title": "Training overview"
       },
       "trainingList": {
         "description": "Discover",

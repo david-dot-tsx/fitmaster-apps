@@ -2,6 +2,9 @@ import React from "react";
 import { Image, Pressable } from "react-native";
 import { useRouter } from "expo-router";
 import { LinearGradient } from "expo-linear-gradient";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
@@ -29,6 +32,7 @@ export const TrainingExerciseRow = ({
   bodyPart,
 }: TrainingExerciseRowProps) => {
   const router = useRouter();
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   return (
     <Pressable onPress={() => router.push(`/exercise/${id}`)}>
@@ -53,9 +57,9 @@ export const TrainingExerciseRow = ({
             >
               {difficulty}
             </Text>
-            <Text className="ml-auto font-orbitron-medium text-xs text-sky-400">
+            <Text className="font-orbitron-medium ml-auto text-xs text-sky-400">
               {/* //TODO: implement XP */}
-              15 XP
+              15 {t("units.xp")}
             </Text>
           </HStack>
         </VStack>

@@ -2,6 +2,9 @@ import React from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -15,6 +18,7 @@ import { useToastNotification } from "@/components/modules/toast-notifcation/toa
 import { QueryErrorHandler } from "@/components/modules/query-error-handler/query-error-handler";
 
 export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const router = useRouter();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
@@ -36,8 +40,8 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
       },
       onError: () => {
         openToast({
-          title: "Failed to enroll in training",
-          description: "Please try again later.",
+          title: t("errors.training.session.new.failed.title"),
+          description: t("errors.training.session.new.failed.description"),
           action: "error",
         });
       },
@@ -46,9 +50,9 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
   return (
     <ScreenWrapper
       header={{
-        title: training?.name ?? "Training overview",
-        description: "Discover",
-        subtitle: "Training plan details.",
+        title: training?.name ?? t("mobile:screens.trainingDetails.title"),
+        description: t("mobile:screens.trainingDetails.description"),
+        subtitle: t("mobile:screens.trainingDetails.subtitle"),
         icon: DumbbellIcon,
         backButton: true,
       }}
@@ -84,7 +88,7 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
                   newTrainingSession({ trainingId });
                 }
               },
-              text: trainingSession ? "Start Training" : "Join Training",
+              text: trainingSession ? t("startTraining") : t("joinTraining"),
               disabled: newTrainingSessionStatus === "pending",
             }}
           />
@@ -94,7 +98,7 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
               exercisesAmount={training.exercises.length}
             />
 
-            <Section title="About">
+            <Section title={t("about")}>
               <Text className="text-zinc-300">{training.description}</Text>
             </Section>
             <TrainingExerciseList exercises={training.exercises} />
