@@ -6,6 +6,7 @@ interface Resources {
     "about": "about",
     "active": "active",
     "adjustPhoto": "Adjust photo",
+    "appStore": "App Store",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "Bio",
     "block": "block",
@@ -90,6 +91,7 @@ interface Resources {
     "goToTrainingDetails": "Go to training details",
     "goal": "Goal",
     "goals": "goals",
+    "googlePlay": "Google Play",
     "height": "Height",
     "initializeRegistration": "Initialize registration",
     "intensity": "intensity",
@@ -118,6 +120,7 @@ interface Resources {
     "profilePicture": "Profile Picture",
     "progress": "progress",
     "pts": "pts",
+    "quickScan": "Quick Scan",
     "register": "Register",
     "reps": "reps",
     "selectYourLanguage": "Select your language",
@@ -145,6 +148,7 @@ interface Resources {
     "system": "System",
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
+    "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
     "training": {
       "block": {
         "coolDown": "Cool Down",
@@ -155,6 +159,7 @@ interface Resources {
     "trainingFinished": "Training finished",
     "traits": "traits",
     "tryAgain": "Try again",
+    "unavailable": "Unavailable",
     "units": {
       "cm": "cm",
       "kg": "kg",
@@ -326,6 +331,60 @@ interface Resources {
       }
     },
     "pages": {
+      "dashboard": {
+        "customer": {
+          "description": {
+            "downloadItBelowAndLogInToSyncYourData": "Download it below and log in to sync your data.",
+            "mobileApp": "Mobile App",
+            "toStartYourFirstSessionAndTrackYourProgress": "To start your first session and track your progress, you'll need our"
+          },
+          "eyebrow": "Personal Progress",
+          "getReadyForTraining": "Get Ready for training",
+          "startYour": "Start your",
+          "subtitle": "Track your metrics and follow your active programs.",
+          "title": "Training Hub",
+          "workout": "Workout"
+        },
+        "staff": {
+          "cards": {
+            "analytics": {
+              "label": "Reports",
+              "title": "Analytics"
+            },
+            "chat": {
+              "label": "Chat with users",
+              "title": "Chat"
+            },
+            "exercises": {
+              "label": "Library",
+              "title": "Exercises"
+            },
+            "programs": {
+              "label": "View Trainings",
+              "title": "Programs"
+            },
+            "settings": {
+              "label": "App Settings",
+              "title": "Settings"
+            },
+            "users": {
+              "label": "Manage Users",
+              "title": "Users"
+            }
+          },
+          "eyebrow": "Professional Insights",
+          "sections": {
+            "newestTrainings": {
+              "title": {
+                "newest": "Newest",
+                "trainings": "Trainings"
+              }
+            }
+          },
+          "subtitle": "Review client progress and optimize training protocols.",
+          "title": "Coach Console"
+        }
+      },
       "landing": {
         "mainContent": {
           "subtitle": {
@@ -401,7 +460,7 @@ interface Resources {
         "title": "Login"
       },
       "register": {
-        "existingProfileLogIn": "web:pages.register.existingProfileLogIn",
+        "existingProfileLogIn": "Existing profile? Log in",
         "eyebrow": "Registration",
         "subtitle": "Create a new account to forge yourself.",
         "title": "Register"

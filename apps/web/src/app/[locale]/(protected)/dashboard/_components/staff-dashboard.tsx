@@ -1,49 +1,69 @@
 import Link from "next/link";
 import React from "react";
-import { Dumbbell, LayoutGrid, BarChart3, Users2, Settings2, Wrench } from "lucide-react";
+import {
+  Dumbbell,
+  LayoutGrid,
+  BarChart3,
+  Users2,
+  Settings2,
+  Wrench,
+  ChevronRight,
+} from "lucide-react";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
 export const StaffDashboard = async () => {
   const queryClient = getQueryClient();
   await queryClient.prefetchQuery(trpcServerOptionsProxy.user.me.queryOptions());
+  const { t } = await getServerTranslations();
 
   return (
-    <PageWrapper title="Dashboard" subtitle="Dashboard panel">
+    <PageWrapper
+      title={t("web:pages.dashboard.staff.title")}
+      subtitle={t("web:pages.dashboard.staff.subtitle")}
+      eyebrow={t("web:pages.dashboard.staff.eyebrow")}
+    >
       <div className="flex flex-col gap-10">
         <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
           <ModuleCard
-            title="Programs"
-            label="View Trainings"
+            title={t("web:pages.dashboard.staff.cards.programs.title")}
+            label={t("web:pages.dashboard.staff.cards.programs.label")}
             href="/dashboard/training"
             icon={LayoutGrid}
           />
           <ModuleCard
-            title="Exercises"
-            label="Library"
+            title={t("web:pages.dashboard.staff.cards.exercises.title")}
+            label={t("web:pages.dashboard.staff.cards.exercises.label")}
             href="/dashboard/exercise"
             icon={Dumbbell}
           />
           <ModuleCard
-            title="Analytics"
-            label="Reports"
+            title={t("web:pages.dashboard.staff.cards.analytics.title")}
+            label={t("web:pages.dashboard.staff.cards.analytics.label")}
             href="/dashboard/analytics"
             icon={BarChart3}
             disabled={true}
           />
-          <ModuleCard title="Chat" label="Chat with users" href="#" icon={Wrench} disabled={true} />
           <ModuleCard
-            title="Users"
-            label="Manage Users"
+            title={t("web:pages.dashboard.staff.cards.chat.title")}
+            label={t("web:pages.dashboard.staff.cards.chat.label")}
+            href="#"
+            icon={Wrench}
+            disabled={true}
+          />
+          <ModuleCard
+            title={t("web:pages.dashboard.staff.cards.users.title")}
+            label={t("web:pages.dashboard.staff.cards.users.label")}
             href="/dashboard/users"
             icon={Users2}
             disabled
           />
           <ModuleCard
-            title="Settings"
-            label="App Settings"
+            title={t("web:pages.dashboard.staff.cards.settings.title")}
+            label={t("web:pages.dashboard.staff.cards.settings.label")}
             href="#"
             icon={Settings2}
             disabled={true}
@@ -51,10 +71,13 @@ export const StaffDashboard = async () => {
         </div>
         <div className="space-y-4">
           <h2 className="text-lg font-black uppercase italic tracking-tighter text-zinc-100">
-            Newest <span className="text-amber-400">Trainings</span>
+            {t("web:pages.dashboard.staff.sections.newestTrainings.title.newest")}{" "}
+            <span className="text-amber-400">
+              {t("web:pages.dashboard.staff.sections.newestTrainings.title.trainings")}
+            </span>
           </h2>
-          <div className="w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
-            Tutaj Twoja komponent TrainingTable lub uproszczona wersja
+          <div className="w-full overflow-hidden rounded-xl border border-zinc-800/70 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
+            <div className="p-8">{t("thisFeatureIsTemporarilyUnavailable")}</div>
           </div>
         </div>
       </div>
@@ -62,7 +85,7 @@ export const StaffDashboard = async () => {
   );
 };
 
-const ModuleCard = ({
+const ModuleCard = async ({
   title,
   label,
   href,
@@ -76,6 +99,7 @@ const ModuleCard = ({
   disabled?: boolean;
 }) => {
   const Container = disabled ? "div" : Link;
+  const { t } = await getServerTranslations();
 
   return (
     <Container
@@ -115,16 +139,20 @@ const ModuleCard = ({
 
         <div className="flex flex-col">
           <span
-            className={cn("text-xl font-black uppercase italic tracking-tight", {
-              "text-zinc-600": disabled,
-              "text-zinc-100": !disabled,
-            })}
+            className={cn(
+              "ml-2.5 flex flex-row items-center text-xl font-black uppercase italic tracking-tight",
+              {
+                "text-zinc-600": disabled,
+                "text-zinc-100": !disabled,
+              },
+            )}
           >
-            {label}
+            {label}{" "}
+            <ChevronRight className="ml-1 size-6 transition-colors duration-300 group-hover:text-amber-400" />
           </span>
           {disabled && (
-            <span className="mt-1 text-[8px] font-bold uppercase tracking-widest text-amber-500/50">
-              Unavailable
+            <span className="mt-6 text-[10px] font-medium uppercase tracking-widest text-zinc-500">
+              {t("thisFeatureIsTemporarilyUnavailable")}
             </span>
           )}
         </div>

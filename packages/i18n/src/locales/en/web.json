@@ -16,6 +16,60 @@
     }
   },
   "pages": {
+    "dashboard": {
+      "customer": {
+        "description": {
+          "downloadItBelowAndLogInToSyncYourData": "Download it below and log in to sync your data.",
+          "mobileApp": "Mobile App",
+          "toStartYourFirstSessionAndTrackYourProgress": "To start your first session and track your progress, you'll need our"
+        },
+        "eyebrow": "Personal Progress",
+        "getReadyForTraining": "Get Ready for training",
+        "startYour": "Start your",
+        "subtitle": "Track your metrics and follow your active programs.",
+        "title": "Training Hub",
+        "workout": "Workout"
+      },
+      "staff": {
+        "cards": {
+          "analytics": {
+            "label": "Reports",
+            "title": "Analytics"
+          },
+          "chat": {
+            "label": "Chat with users",
+            "title": "Chat"
+          },
+          "exercises": {
+            "label": "Library",
+            "title": "Exercises"
+          },
+          "programs": {
+            "label": "View Trainings",
+            "title": "Programs"
+          },
+          "settings": {
+            "label": "App Settings",
+            "title": "Settings"
+          },
+          "users": {
+            "label": "Manage Users",
+            "title": "Users"
+          }
+        },
+        "eyebrow": "Professional Insights",
+        "sections": {
+          "newestTrainings": {
+            "title": {
+              "newest": "Newest",
+              "trainings": "Trainings"
+            }
+          }
+        },
+        "subtitle": "Review client progress and optimize training protocols.",
+        "title": "Coach Console"
+      }
+    },
     "landing": {
       "mainContent": {
         "subtitle": {

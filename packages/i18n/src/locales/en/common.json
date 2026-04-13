@@ -2,6 +2,7 @@
   "about": "about",
   "active": "active",
   "adjustPhoto": "Adjust photo",
+  "appStore": "App Store",
   "beTheFirstToScorePoints": "Be the first to score points.",
   "bio": "Bio",
   "block": "block",
@@ -84,6 +85,7 @@
   "getBackToMainScreen": "Get back to main screen",
   "goal": "Goal",
   "goals": "goals",
+  "googlePlay": "Google Play",
   "goToMainPage": "Go to main page",
   "goToTrainingDetails": "Go to training details",
   "height": "Height",
@@ -114,6 +116,7 @@
   "profilePicture": "Profile Picture",
   "progress": "progress",
   "pts": "pts",
+  "quickScan": "Quick Scan",
   "register": "Register",
   "reps": "reps",
   "selectYourLanguage": "Select your language",
@@ -141,6 +144,7 @@
   "system": "System",
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",
+  "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
   "training": {
     "block": {
       "coolDown": "Cool Down",
@@ -151,6 +155,7 @@
   "trainingFinished": "Training finished",
   "traits": "traits",
   "tryAgain": "Try again",
+  "unavailable": "Unavailable",
   "units": {
     "cm": "cm",
     "kg": "kg",
