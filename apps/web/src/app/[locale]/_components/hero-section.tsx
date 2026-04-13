@@ -23,7 +23,7 @@ export const HeroSection = async () => {
         <div className="mx-auto flex w-fit items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/5 px-4 py-1 backdrop-blur-md">
           <div className="size-1.5 animate-pulse rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)]" />
           <span className="text-xs font-black uppercase tracking-[0.3em] text-amber-400">
-            {t("web:pages.landing.hero-section.mobileAppAvailableNow")}
+            {t("web:pages.landing.sections.hero.mobileAppAvailableNow")}
           </span>
         </div>
         {/* Main H1 */}
@@ -34,7 +34,7 @@ export const HeroSection = async () => {
         </h1>
 
         <p className="mx-auto mb-10 max-w-2xl text-lg font-medium text-zinc-300 drop-shadow-2xl">
-          {t("web:pages.landing.hero-section.trainWithTheSamePrecisionAsWorldClassAthletes")}
+          {t("web:pages.landing.sections.hero.trainWithTheSamePrecisionAsWorldClassAthletes")}
         </p>
 
         {/* CTAs */}
@@ -43,14 +43,14 @@ export const HeroSection = async () => {
             size="lg"
             className="h-14 bg-amber-400 px-8 font-black uppercase tracking-widest text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:bg-amber-500"
           >
-            {t("web:pages.landing.hero-section.buttonJoinTheProgram")}
+            {t("web:pages.landing.sections.hero.buttonJoinTheProgram")}
           </Button>
           <Button
             variant="ghost"
             size="lg"
             className="h-14 border border-zinc-800 px-8 font-black uppercase tracking-widest text-zinc-400 backdrop-blur-sm hover:bg-zinc-900/50"
           >
-            {t("web:pages.landing.hero-section.buttonBrowseTrainings")}
+            {t("web:pages.landing.sections.hero.buttonBrowseTrainings")}
           </Button>
         </div>
       </div>

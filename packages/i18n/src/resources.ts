@@ -4,18 +4,14 @@ interface Resources {
   },
   "common": {
     "about": "about",
-    "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "active": "active",
-    "activeUsers": "Active Users",
     "adjustPhoto": "Adjust photo",
-    "availableModules": "Available Modules",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "Bio",
     "block": "block",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "cameraAccessNeededToTakePhoto": "Camera access is needed to take a photo.",
     "cancel": "cancel",
-    "capabilities": "Capabilities",
     "chatIsComingSoon": "Chat is coming soon.",
     "chooseFromGallery": "Choose from Gallery",
     "completeExercise": "Complete exercise",
@@ -76,18 +72,9 @@ interface Resources {
     "exercises": "exercises",
     "exercises_one": "exercise",
     "exercises_other": "exercises",
-    "finalCta": {
-      "commitToThe": "Commit to the",
-      "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
-      "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
-      "finalPhase": "Final Phase",
-      "initializeTransformation": "Initialize Transformation",
-      "protocol": "Protocol"
-    },
     "finishedTrainings": "Finished trainings",
     "firstName": "First Name",
     "focus": "focus",
-    "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
@@ -96,7 +83,6 @@ interface Resources {
     "goal": "Goal",
     "goals": "goals",
     "height": "Height",
-    "initializeAccess": "Initialize Access",
     "intensity": "intensity",
     "joinTraining": "Join training",
     "languages": {
@@ -106,17 +92,9 @@ interface Resources {
     },
     "lastName": "Last Name",
     "launch": "Launch",
-    "launchedWorkouts": "Launched Workouts",
-    "library": "library",
-    "limits": "Limits",
     "login": "Login",
     "logout": "Logout",
     "main": "main",
-    "mobileAppAvailableNow": "Mobile App Available Now",
-    "mobileIntegration": {
-      "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
-      "title": "Mobile Integration"
-    },
     "nickname": "nickname",
     "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
     "noExercisesAddedYet": "No exercises added yet.",
@@ -128,17 +106,11 @@ interface Resources {
     "pending": "pending",
     "pinchToZoomDragToReposition": "Pinch to zoom · Drag to reposition",
     "pleaseCheckBackSoon": "Please check back soon.",
-    "precisionAnalytics": {
-      "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
-      "title": "Precision Analytics"
-    },
-    "preview": "preview",
     "profilePicture": "Profile Picture",
     "progress": "progress",
     "pts": "pts",
     "register": "Register",
     "reps": "reps",
-    "satisfiedClients": "Satisfied Clients",
     "selectYourLanguage": "Select your language",
     "settings": "settings",
     "showLess": "show less",
@@ -146,9 +118,9 @@ interface Resources {
     "skipped": "skipped",
     "slogan": {
       "keywords": {
-      "focus": "Focus",
-      "progress": "Progress",
-      "strength": "Strength"
+        "focus": "Focus",
+        "progress": "Progress",
+        "strength": "Strength"
       },
       "main": {
         "forge": "Forge your",
@@ -160,11 +132,6 @@ interface Resources {
     "startTraining": "Start training",
     "startTrainingDay": "Start training day",
     "stats": "stats",
-    "system": "System",
-    "tacticalProgramming": {
-      "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
-      "title": "Tactical Programming"
-    },
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
     "training": {
@@ -185,9 +152,6 @@ interface Resources {
       "seconds": "s",
       "xp": "xp"
     },
-    "viewAllExercises": "View All Exercises",
-    "viewProtocol": "View Protocol",
-    "visualAssets": "Visual Assets",
     "volume": "volume",
     "warmup": "warm up",
     "weight": "Weight",
@@ -245,9 +209,9 @@ interface Resources {
             "title": "Your body measurements"
           },
           "completed": {
-            "button": "mobile:screens.onboarding.steps.completed.button",
-            "description": "mobile:screens.onboarding.steps.completed.description",
-            "title": "mobile:screens.onboarding.steps.completed.title"
+            "button": "Let's Go",
+            "description": "Your profile has been created. Time to start your fitness journey.",
+            "title": "You're all set!"
           },
           "introduction": {
             "title": "Introduce yourself"
@@ -328,6 +292,79 @@ interface Resources {
             "completedToday": "Today's session completed",
             "joined": "Start your training",
             "notJoined": "The training is available"
+          }
+        }
+      }
+    }
+  },
+  "web": {
+    "pages": {
+      "landing": {
+        "mainContent": {
+          "subtitle": {
+            "availableModules": "Available Modules"
+          },
+          "title": {
+            "core": "Core",
+            "features": "Features"
+          }
+        },
+        "sections": {
+          "exercises": {
+            "header": {
+              "button": {
+                "viewAllExercises": "View All Exercises"
+              },
+              "subtitle": {
+                "visualAssets": "Visual Assets"
+              },
+              "title": {
+                "library": "Library",
+                "preview": "Preview"
+              }
+            }
+          },
+          "features": {
+            "01": {
+              "description": "Establish a 1-on-1 uplink with elite performance coaches. Tactical adjustments and technical support delivered via a secure communication channel.",
+              "id": "01",
+              "title": "Coach Support"
+            },
+            "02": {
+              "description": "Your sequence delivered via a dedicated mobile application. Real-time execution and guidance in any environment.",
+              "id": "02",
+              "title": "Mobile App"
+            },
+            "03": {
+              "description": "Full-spectrum monitoring of every set, rep, and load. Leverage data-driven diagnostics to optimize your progression curve.",
+              "id": "03",
+              "title": "Performance Metrics"
+            }
+          },
+          "finalCta": {
+            "button": {
+              "compatibleWithiOSAndAndroid": "web:pages.landing.sections.finalCta.button.compatibleWithiOSAndAndroid",
+              "initializeTransformation": "web:pages.landing.sections.finalCta.button.initializeTransformation"
+            },
+            "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
+            "subtitle": {
+              "finalPhase": "Final Phase"
+            },
+            "title": {
+              "commitToThe": "Commit to the",
+              "protocol": "Protocol"
+            }
+          },
+          "hero": {
+            "buttonBrowseTrainings": "Browse Trainings",
+            "buttonJoinTheProgram": "Join the program",
+            "mobileAppAvailableNow": "Mobile App Available Now",
+            "trainWithTheSamePrecisionAsWorldClassAthletes": "Train with the same precision as world-class athletes. Custom-built programs designed to break your limits and redefine your performance."
+          },
+          "stats": {
+            "activeUsers": "Active Users",
+            "launchedWorkouts": "Launched Workouts",
+            "satisfiedClients": "Satisfied Clients"
           }
         }
       }

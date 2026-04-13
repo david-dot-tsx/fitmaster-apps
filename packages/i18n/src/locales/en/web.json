@@ -1,0 +1,73 @@
+{
+  "pages": {
+    "landing": {
+      "mainContent": {
+        "subtitle": {
+          "availableModules": "Available Modules"
+        },
+        "title": {
+          "core": "Core",
+          "features": "Features"
+        }
+      },
+      "sections": {
+        "exercises": {
+          "header": {
+            "button": {
+              "viewAllExercises": "View All Exercises"
+            },
+            "subtitle": {
+              "visualAssets": "Visual Assets"
+            },
+            "title": {
+              "library": "Library",
+              "preview": "Preview"
+            }
+          }
+        },
+        "features": {
+          "01": {
+            "description": "Establish a 1-on-1 uplink with elite performance coaches. Tactical adjustments and technical support delivered via a secure communication channel.",
+            "id": "01",
+            "title": "Coach Support"
+          },
+          "02": {
+            "description": "Your sequence delivered via a dedicated mobile application. Real-time execution and guidance in any environment.",
+            "id": "02",
+            "title": "Mobile App"
+          },
+          "03": {
+            "description": "Full-spectrum monitoring of every set, rep, and load. Leverage data-driven diagnostics to optimize your progression curve.",
+            "id": "03",
+            "title": "Performance Metrics"
+          }
+        },
+        "finalCta": {
+          "button": {
+            "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
+            "initializeTransformation": "Initialize Transformation"
+          },
+          "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
+          "subtitle": {
+            "finalPhase": "Final Phase"
+          },
+          "title": {
+            "commitToThe": "Commit to the",
+            "protocol": "Protocol"
+          }
+        },
+        "hero": {
+          "buttonBrowseTrainings": "Browse Trainings",
+          "buttonJoinTheProgram": "Join the program",
+          "mobileAppAvailableNow": "Mobile App Available Now",
+          "trainWithTheSamePrecisionAsWorldClassAthletes": "Train with the same precision as world-class athletes. Custom-built programs designed to break your limits and redefine your performance."
+        },
+        "stats": {
+          "activeUsers": "Active Users",
+          "launchedWorkouts": "Launched Workouts",
+          "satisfiedClients": "Satisfied Clients"
+        }
+      }
+    }
+  }
+}

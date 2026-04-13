@@ -25,17 +25,20 @@ const Header = async () => {
     <header className="mb-12 flex items-end justify-between border-b border-zinc-700 pb-6">
       <div className="flex flex-col">
         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-zinc-500">
-          {t("visualAssets")}
+          {t("web:pages.landing.sections.exercises.header.subtitle.visualAssets")}
         </span>
         <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-200">
-          {t("library")} <span className="text-zinc-500">{t("preview")}</span>
+          {t("web:pages.landing.sections.exercises.header.title.library")}{" "}
+          <span className="text-zinc-500">
+            {t("web:pages.landing.sections.exercises.header.title.preview")}
+          </span>
         </h2>
       </div>
       <Button
         variant="link"
         className="text-[10px] font-black uppercase tracking-widest text-amber-400 hover:no-underline"
       >
-        {t("viewAllExercises")} →
+        {t("web:pages.landing.sections.exercises.header.button.viewAllExercises")} →
       </Button>
     </header>
   );

@@ -7,9 +7,21 @@ export const StatsSection = async () => {
   return (
     <section className="border-y border-zinc-900 bg-black/40 py-20 backdrop-blur-md">
       <div className="mx-auto flex max-w-7xl flex-wrap justify-around gap-12 px-6">
-        <StatBox label={t("activeUsers")} value="12.4K" accent="bg-amber-400" />
-        <StatBox label={t("launchedWorkouts")} value="1.2M" accent="bg-blue-400" />
-        <StatBox label={t("satisfiedClients")} value="99.9%" accent="bg-emerald-400" />
+        <StatBox
+          label={t("web:pages.landing.sections.stats.activeUsers")}
+          value="12.4K"
+          accent="bg-amber-400"
+        />
+        <StatBox
+          label={t("web:pages.landing.sections.stats.launchedWorkouts")}
+          value="1.2M"
+          accent="bg-blue-400"
+        />
+        <StatBox
+          label={t("web:pages.landing.sections.stats.satisfiedClients")}
+          value="99.9%"
+          accent="bg-emerald-400"
+        />
       </div>
     </section>
   );

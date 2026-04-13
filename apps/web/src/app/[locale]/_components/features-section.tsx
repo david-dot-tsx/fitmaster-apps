@@ -6,19 +6,19 @@ export const FeaturesSection = async () => {
 
   const features = [
     {
-      id: "01",
-      title: t("tacticalProgramming.title"),
-      desc: t("tacticalProgramming.description"),
+      id: t("web:pages.landing.sections.features.01.id"),
+      title: t("web:pages.landing.sections.features.01.title"),
+      desc: t("web:pages.landing.sections.features.01.description"),
     },
     {
-      id: "02",
-      title: t("mobileIntegration.title"),
-      desc: t("mobileIntegration.description"),
+      id: t("web:pages.landing.sections.features.02.id"),
+      title: t("web:pages.landing.sections.features.02.title"),
+      desc: t("web:pages.landing.sections.features.02.description"),
     },
     {
-      id: "03",
-      title: t("precisionAnalytics.title"),
-      desc: t("precisionAnalytics.description"),
+      id: t("web:pages.landing.sections.features.03.id"),
+      title: t("web:pages.landing.sections.features.03.title"),
+      desc: t("web:pages.landing.sections.features.03.description"),
     },
   ];
 

@@ -1,17 +1,13 @@
 {
   "about": "about",
-  "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
   "active": "active",
-  "activeUsers": "Active Users",
   "adjustPhoto": "Adjust photo",
-  "availableModules": "Available Modules",
   "beTheFirstToScorePoints": "Be the first to score points.",
   "bio": "Bio",
   "block": "block",
   "browseTrainingsToGetStarted": "Browse trainings to get started!",
   "cameraAccessNeededToTakePhoto": "Camera access is needed to take a photo.",
   "cancel": "cancel",
-  "capabilities": "Capabilities",
   "chatIsComingSoon": "Chat is coming soon.",
   "chooseFromGallery": "Choose from Gallery",
   "completed": "completed",
@@ -72,18 +68,9 @@
   "exercises": "exercises",
   "exercises_one": "exercise",
   "exercises_other": "exercises",
-  "finalCta": {
-    "commitToThe": "Commit to the",
-    "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
-    "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
-    "finalPhase": "Final Phase",
-    "initializeTransformation": "Initialize Transformation",
-    "protocol": "Protocol"
-  },
   "finishedTrainings": "Finished trainings",
   "firstName": "First Name",
   "focus": "focus",
-  "forgeYour": "Forge your",
   "forgot_password": "Forgot Password",
   "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
   "gender": "gender",
@@ -92,7 +79,6 @@
   "goals": "goals",
   "goToTrainingDetails": "Go to training details",
   "height": "Height",
-  "initializeAccess": "Initialize Access",
   "intensity": "intensity",
   "joinTraining": "Join training",
   "languages": {
@@ -102,17 +88,9 @@
   },
   "lastName": "Last Name",
   "launch": "Launch",
-  "launchedWorkouts": "Launched Workouts",
-  "library": "library",
-  "limits": "Limits",
   "login": "Login",
   "logout": "Logout",
   "main": "main",
-  "mobileAppAvailableNow": "Mobile App Available Now",
-  "mobileIntegration": {
-    "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
-    "title": "Mobile Integration"
-  },
   "nickname": "nickname",
   "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
   "noExercisesAddedYet": "No exercises added yet.",
@@ -124,17 +102,11 @@
   "pending": "pending",
   "pinchToZoomDragToReposition": "Pinch to zoom · Drag to reposition",
   "pleaseCheckBackSoon": "Please check back soon.",
-  "precisionAnalytics": {
-    "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
-    "title": "Precision Analytics"
-  },
-  "preview": "preview",
   "profilePicture": "Profile Picture",
   "progress": "progress",
   "pts": "pts",
   "register": "Register",
   "reps": "reps",
-  "satisfiedClients": "Satisfied Clients",
   "selectYourLanguage": "Select your language",
   "settings": "settings",
   "showLess": "show less",
@@ -142,10 +114,10 @@
   "skipped": "skipped",
   "slogan": {
     "keywords": {
-    "focus": "Focus",
-    "progress": "Progress",
-    "strength": "Strength"
-},
+      "focus": "Focus",
+      "progress": "Progress",
+      "strength": "Strength"
+    },
     "main": {
       "forge": "Forge your",
       "limits": "Limits",
@@ -156,11 +128,6 @@
   "startTraining": "Start training",
   "startTrainingDay": "Start training day",
   "stats": "stats",
-  "system": "System",
-  "tacticalProgramming": {
-    "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
-    "title": "Tactical Programming"
-  },
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",
   "training": {
@@ -181,9 +148,6 @@
     "seconds": "s",
     "xp": "xp"
   },
-  "viewAllExercises": "View All Exercises",
-  "viewProtocol": "View Protocol",
-  "visualAssets": "Visual Assets",
   "volume": "volume",
   "warmup": "warm up",
   "weight": "Weight",
