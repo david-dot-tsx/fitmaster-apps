@@ -58,6 +58,11 @@
       "description": "Discover",
       "subtitle": "Pick a plan and start your next session.",
       "title": "Trainings"
+    },
+    "trainingSession": {
+      "description": "Your training plan",
+      "subtitle": "Today's training plan",
+      "title": "Today"
     }
   },
   "training": {

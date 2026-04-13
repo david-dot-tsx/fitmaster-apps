@@ -3,6 +3,9 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 import { type MutationStatus } from "@tanstack/react-query";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { trpc } from "@/lib/trpc/client";
 import { TrainingDaySessionPreview } from "@/features/trainings/components/session/training-day-session-preview";
@@ -35,6 +38,7 @@ export const TrainingSessionScreen = ({
   trainingId: string;
   sessionId: string;
 }) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const {
     data: dayData,
     mutate: startDayMutation,
@@ -62,9 +66,9 @@ export const TrainingSessionScreen = ({
   return (
     <ScreenWrapper
       header={{
-        title: dayData?.trainingSession.training.name ?? "Today",
-        description: "Your training plan",
-        subtitle: "Today's training plan",
+        title: dayData?.trainingSession.training.name ?? t("mobile:screens.trainingSession.title"),
+        description: t("mobile:screens.trainingSession.description"),
+        subtitle: t("mobile:screens.trainingSession.subtitle"),
         icon: DumbbellIcon,
         backButton: true,
       }}
@@ -92,7 +96,7 @@ export const TrainingSessionScreen = ({
               status={dayData.trainingSession.status}
               action={{
                 onPress: () => router.push(`/training/${trainingId}/session/${sessionId}/exercise`),
-                text: "Start Exercise",
+                text: t("startExercise"),
               }}
             />
             <TrainingDaySessionPreview sessionExercises={dayData.workoutExerciseSessions} />

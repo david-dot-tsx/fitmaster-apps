@@ -4,6 +4,7 @@ interface Resources {
   },
   "common": {
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
+    "active": "active",
     "activeUsers": "Active Users",
     "availableModules": "Available Modules",
     "beTheFirstToScorePoints": "Be the first to score points.",
@@ -12,12 +13,19 @@ interface Resources {
     "capabilities": "Capabilities",
     "chatIsComingSoon": "Chat is coming soon.",
     "continue": "Continue",
+    "current": "current",
     "currentTrainings": "Current trainings",
     "day": "day",
     "day_one": "day",
     "day_other": "days",
+    "distance": "distance",
+    "done": "done",
+    "duration": "duration",
     "email": "Email",
     "emailAddress": "Email Address",
+    "exercise_one": "exercise",
+    "exercise_other": "exercises",
+    "exercises": "exercises",
     "finalCta": {
       "commitToThe": "Commit to the",
       "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
@@ -27,11 +35,13 @@ interface Resources {
       "protocol": "Protocol"
     },
     "finishedTrainings": "Finished trainings",
+    "focus": "focus",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
     "goToTrainingDetails": "Go to training details",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
+    "intensity": "intensity",
     "languages": {
       "english": "English",
       "polish": "Polish",
@@ -43,6 +53,7 @@ interface Resources {
     "limits": "Limits",
     "login": "Login",
     "logout": "Logout",
+    "main": "main",
     "mobileAppAvailableNow": "Mobile App Available Now",
     "mobileIntegration": {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
@@ -53,31 +64,53 @@ interface Resources {
     "password": "Password",
     "passwordConfirmation": "passwordConfirmation",
     "password_confirmation": "Password Confirmation",
+    "pending": "pending",
     "pleaseCheckBackSoon": "Please check back soon.",
     "precisionAnalytics": {
       "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
       "title": "Precision Analytics"
     },
     "preview": "preview",
+    "progress": "progress",
     "pts": "pts",
     "register": "Register",
+    "reps": "reps",
     "satisfiedClients": "Satisfied Clients",
     "selectYourLanguage": "Select your language",
     "settings": "settings",
+    "skipped": "skipped",
     "slogan": {
       "focus": "Focus",
       "progress": "Progress",
       "strength": "Strength"
     },
+    "startExercise": "Start exercise",
     "startTrainingDay": "Start training day",
     "system": "System",
     "tacticalProgramming": {
       "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
       "title": "Tactical Programming"
     },
+    "training": {
+      "block": {
+        "coolDown": "Cool Down",
+        "mainWorkout": "Main Workout",
+        "warmUp": "Warm Up"
+      }
+    },
+    "units": {
+      "kg": "units.kg",
+      "meters": "m",
+      "reps": "x",
+      "seconds": "s"
+    },
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",
     "visualAssets": "Visual Assets",
+    "volume": "volume",
+    "warmup": "warm up",
+    "weight": "weight",
+    "weightUsage": "Weight use",
     "yo": "yo",
     "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
     "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "You will be able to message and discuss trainings with professionals here.",
@@ -143,25 +176,30 @@ interface Resources {
         "description": "Discover",
         "subtitle": "Pick a plan and start your next session.",
         "title": "Trainings"
+      },
+      "trainingSession": {
+        "description": "Your training plan",
+        "subtitle": "Today's training plan",
+        "title": "Today"
       }
     },
     "training": {
       "sesssion": {
         "card": {
           "badge": {
-            "cancelled": "mobile:training.sesssion.card.badge.cancelled",
-            "finished": "mobile:training.sesssion.card.badge.finished",
-            "inProgress": "mobile:training.sesssion.card.badge.inProgress",
-            "joinNow": "mobile:training.sesssion.card.badge.joinNow",
-            "joined": "mobile:training.sesssion.card.badge.joined"
+            "cancelled": "Cancelled",
+            "finished": "Finished",
+            "inProgress": "In Progress",
+            "joinNow": "Join Now",
+            "joined": "Joined"
           },
           "subtitle": {
-            "awaitingToday": "mobile:training.sesssion.card.subtitle.awaitingToday",
-            "cancelled": "mobile:training.sesssion.card.subtitle.cancelled",
-            "completed": "mobile:training.sesssion.card.subtitle.completed",
-            "completedToday": "mobile:training.sesssion.card.subtitle.completedToday",
-            "joined": "mobile:training.sesssion.card.subtitle.joined",
-            "notJoined": "mobile:training.sesssion.card.subtitle.notJoined"
+            "awaitingToday": "Complete today's session",
+            "cancelled": "Training cancelled",
+            "completed": "Training completed! Congratulations!",
+            "completedToday": "Today's session completed",
+            "joined": "Start your training",
+            "notJoined": "The training is available"
           }
         }
       }
