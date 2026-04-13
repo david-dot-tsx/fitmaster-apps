@@ -1,4 +1,4 @@
-import { type InitOptions } from "i18next";
+import { type ParseKeys, type InitOptions, type AppendNamespace } from "i18next";
 
 import type Resources from "./resources";
 import { type Namespace, NAMESPACES } from "./types/namespaces";
@@ -33,3 +33,7 @@ export type ResourcesType = Resources;
 
 export { type Namespace, NAMESPACES };
 export { type Locale, LOCALES };
+
+export function getTKey<TKey extends AppendNamespace<Namespace, ParseKeys<Namespace>>>(key: TKey) {
+  return key;
+}

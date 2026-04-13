@@ -13,6 +13,7 @@ export default defineConfig({
       "../../apps/web/src/**/*.{js,jsx,ts,tsx}",
       "../../apps/mobile/src/**/*.{js,jsx,ts,tsx}",
     ],
+    functions: ["t", "getTKey"],
     output: "src/locales/{{language}}/{{namespace}}.json",
     defaultNS: NAMESPACES.COMMON,
   },
