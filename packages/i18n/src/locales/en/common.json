@@ -33,6 +33,7 @@
     }
   },
   "error": "error",
+  "errorCode": "Error code",
   "errors": {
     "exercise": {
       "finish": {
@@ -77,6 +78,7 @@
   "getBackToMainScreen": "Get back to main screen",
   "goal": "Goal",
   "goals": "goals",
+  "goToMainPage": "Go to main page",
   "goToTrainingDetails": "Go to training details",
   "height": "Height",
   "intensity": "intensity",
@@ -124,10 +126,12 @@
       "your": "Your"
     }
   },
+  "somethingWentWrong": "Something went wrong",
   "startExercise": "Start exercise",
   "startTraining": "Start training",
   "startTrainingDay": "Start training day",
   "stats": "stats",
+  "system": "System",
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",
   "training": {

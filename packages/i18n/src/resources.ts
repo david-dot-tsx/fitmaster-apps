@@ -37,6 +37,7 @@ interface Resources {
       }
     },
     "error": "error",
+    "errorCode": "errorCode",
     "errors": {
       "exercise": {
         "finish": {
@@ -79,6 +80,7 @@ interface Resources {
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
+    "goToMainPage": "goToMainPage",
     "goToTrainingDetails": "Go to training details",
     "goal": "Goal",
     "goals": "goals",
@@ -128,10 +130,12 @@ interface Resources {
         "your": "Your"
       }
     },
+    "somethingWentWrong": "somethingWentWrong",
     "startExercise": "Start exercise",
     "startTraining": "Start training",
     "startTrainingDay": "Start training day",
     "stats": "stats",
+    "system": "system",
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
     "training": {
@@ -343,8 +347,8 @@ interface Resources {
           },
           "finalCta": {
             "button": {
-              "compatibleWithiOSAndAndroid": "web:pages.landing.sections.finalCta.button.compatibleWithiOSAndAndroid",
-              "initializeTransformation": "web:pages.landing.sections.finalCta.button.initializeTransformation"
+              "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
+              "initializeTransformation": "Initialize Transformation"
             },
             "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
             "subtitle": {
