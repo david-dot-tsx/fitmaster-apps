@@ -15,6 +15,7 @@
   "completeExercise": "Complete exercise",
   "confirm": "confirm",
   "continue": "Continue",
+  "create": "create",
   "current": "current",
   "currentTrainings": "Current trainings",
   "day": "day",
@@ -155,7 +156,6 @@
   "trainingFinished": "Training finished",
   "traits": "traits",
   "tryAgain": "Try again",
-  "unavailable": "Unavailable",
   "units": {
     "cm": "cm",
     "kg": "kg",

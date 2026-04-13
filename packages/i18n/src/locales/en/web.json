@@ -1,4 +1,34 @@
 {
+  "dialog": {
+    "exercise": {
+      "create": {
+        "button": "Create Exercise",
+        "description": "Insert the parameters of the new exercise.",
+        "form": {
+          "bodyPart": {
+            "label": "Target Anatomy"
+          },
+          "description": {
+            "label": "Details"
+          },
+          "difficulty": {
+            "label": "Intensity Level"
+          },
+          "exerciseName": {
+            "label": "Exercise Name",
+            "placeholder": "e.g. Bench Press"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          }
+        },
+        "title": {
+          "exercise": "Exercise",
+          "new": "New"
+        }
+      }
+    }
+  },
   "layout": {
     "footer": {
       "contact": "Contact",
@@ -69,6 +99,11 @@
         "subtitle": "Review client progress and optimize training protocols.",
         "title": "Coach Console"
       }
+    },
+    "exercise": {
+      "eyebrow": "Asset Management",
+      "subtitle": "Create, edit, and organize movements within the global system.",
+      "title": "Exercise"
     },
     "landing": {
       "mainContent": {

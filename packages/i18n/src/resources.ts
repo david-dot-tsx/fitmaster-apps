@@ -19,6 +19,7 @@ interface Resources {
     "completed": "completed",
     "confirm": "confirm",
     "continue": "Continue",
+    "create": "create",
     "current": "current",
     "currentTrainings": "Current trainings",
     "day": "day",
@@ -159,7 +160,6 @@ interface Resources {
     "trainingFinished": "Training finished",
     "traits": "traits",
     "tryAgain": "Try again",
-    "unavailable": "Unavailable",
     "units": {
       "cm": "cm",
       "kg": "kg",
@@ -314,6 +314,36 @@ interface Resources {
     }
   },
   "web": {
+    "dialog": {
+      "exercise": {
+        "create": {
+          "button": "Create Exercise",
+          "description": "Insert the parameters of the new exercise.",
+          "form": {
+            "bodyPart": {
+              "label": "Target Anatomy"
+            },
+            "description": {
+              "label": "Details"
+            },
+            "difficulty": {
+              "label": "Intensity Level"
+            },
+            "exerciseName": {
+              "label": "Exercise Name",
+              "placeholder": "e.g. Bench Press"
+            },
+            "imageUrl": {
+              "label": "Visual Asset (URL)"
+            }
+          },
+          "title": {
+            "exercise": "Exercise",
+            "new": "New"
+          }
+        }
+      }
+    },
     "layout": {
       "footer": {
         "contact": "Contact",
@@ -384,6 +414,11 @@ interface Resources {
           "subtitle": "Review client progress and optimize training protocols.",
           "title": "Coach Console"
         }
+      },
+      "exercise": {
+        "eyebrow": "Asset Management",
+        "subtitle": "Create, edit, and organize movements within the global system.",
+        "title": "Exercise"
       },
       "landing": {
         "mainContent": {
