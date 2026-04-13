@@ -2,6 +2,7 @@
   "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
   "activeUsers": "Active Users",
   "availableModules": "Available Modules",
+  "beTheFirstToScorePoints": "Be the first to score points.",
   "browseTrainingsToGetStarted": "Browse trainings to get started!",
   "capabilities": "Capabilities",
   "continue": "Continue",
@@ -32,6 +33,7 @@
     "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
     "title": "Mobile Integration"
   },
+  "noLeaderboardEntriesYet": "No leaderboard entries yet.",
   "password": "Password",
   "password_confirmation": "Password Confirmation",
   "passwordConfirmation": "passwordConfirmation",
@@ -40,6 +42,7 @@
     "title": "Precision Analytics"
   },
   "preview": "preview",
+  "pts": "pts",
   "register": "Register",
   "satisfiedClients": "Satisfied Clients",
   "select_your_language": "Select your language",
@@ -57,5 +60,6 @@
   "viewAllExercises": "View All Exercises",
   "viewProtocol": "View Protocol",
   "visualAssets": "Visual Assets",
-  "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet."
+  "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
+  "yourPosition": "Your Position"
 }

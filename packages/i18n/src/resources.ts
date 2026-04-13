@@ -6,6 +6,7 @@ interface Resources {
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "activeUsers": "Active Users",
     "availableModules": "Available Modules",
+    "beTheFirstToScorePoints": "beTheFirstToScorePoints",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
     "continue": "Continue",
@@ -36,6 +37,7 @@ interface Resources {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
       "title": "Mobile Integration"
     },
+    "noLeaderboardEntriesYet": "noLeaderboardEntriesYet",
     "password": "Password",
     "passwordConfirmation": "passwordConfirmation",
     "password_confirmation": "Password Confirmation",
@@ -44,6 +46,7 @@ interface Resources {
       "title": "Precision Analytics"
     },
     "preview": "preview",
+    "pts": "pts",
     "register": "Register",
     "satisfiedClients": "Satisfied Clients",
     "select_your_language": "Select your language",
@@ -61,7 +64,8 @@ interface Resources {
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",
     "visualAssets": "Visual Assets",
-    "youHaveNotJoinedAnyTrainingsYet": "youHaveNotJoinedAnyTrainingsYet"
+    "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
+    "yourPosition": "yourPosition"
   },
   "mobile": {
     "screens": {
@@ -70,6 +74,11 @@ interface Resources {
           "login": "Sign in to continue your training journey.",
           "onboarding": "Finish setting up your profile to unlock your plan."
         }
+      },
+      "leaderboard": {
+        "description": "mobile:screens.leaderboard.description",
+        "subtitle": "mobile:screens.leaderboard.subtitle",
+        "title": "mobile:screens.leaderboard.title"
       },
       "login": {
         "credentials": "Credentials",
