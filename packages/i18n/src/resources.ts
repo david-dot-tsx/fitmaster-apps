@@ -200,6 +200,11 @@ interface Resources {
         "subtitle": "Jump back into your active plans and sessions.",
         "title": "Hello"
       },
+      "onboarding": {
+        "description": "Onboarding",
+        "subtitle": "Tell us about you so we can personalize your training.",
+        "title": "Profile setup"
+      },
       "profile": {
         "loading": {
           "myProfile": {
