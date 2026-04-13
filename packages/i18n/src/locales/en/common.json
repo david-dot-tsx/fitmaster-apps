@@ -19,6 +19,26 @@
   "duration": "duration",
   "email": "Email",
   "emailAddress": "Email Address",
+  "error": "error",
+  "errors": {
+    "exercise": {
+      "finish": {
+        "failed": {
+          "description": "Please try again.",
+          "title": "Failed to finish exercise"
+        }
+      },
+      "start": {
+        "failed": {
+          "description": "Please try again later.",
+          "title": "Failed to start exercise"
+        }
+      }
+    },
+    "generic": {
+      "description": "An error occurred while loading this content. Please try again."
+    }
+  },
   "exercise_one": "exercise",
   "exercise_other": "exercises",
   "exercises": "exercises",
@@ -94,6 +114,8 @@
       "warmUp": "Warm Up"
     }
   },
+  "traits": "traits",
+  "tryAgain": "Try again",
   "units": {
     "kg": "kg",
     "meters": "m",
