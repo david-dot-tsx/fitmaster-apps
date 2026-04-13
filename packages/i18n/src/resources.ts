@@ -10,7 +10,7 @@ interface Resources {
     "adjustPhoto": "Adjust photo",
     "availableModules": "Available Modules",
     "beTheFirstToScorePoints": "Be the first to score points.",
-    "bio": "bio",
+    "bio": "Bio",
     "block": "block",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "cameraAccessNeededToTakePhoto": "Camera access is needed to take a photo.",
@@ -93,6 +93,7 @@ interface Resources {
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
     "goToTrainingDetails": "Go to training details",
+    "goal": "goal",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
@@ -225,14 +226,18 @@ interface Resources {
         "description": "Onboarding",
         "steps": {
           "bio": {
-            "placeholder": "mobile:screens.onboarding.steps.bio.placeholder",
-            "title": "mobile:screens.onboarding.steps.bio.title"
+            "placeholder": "Tell others a little about yourself… 😊",
+            "title": "About you"
           },
           "introduction": {
             "title": "Introduce yourself"
           },
           "profileImage": {
             "title": "Profile Image"
+          },
+          "workoutGoals": {
+            "placeholder": "mobile:screens.onboarding.steps.workoutGoals.placeholder",
+            "title": "mobile:screens.onboarding.steps.workoutGoals.title"
           }
         },
         "subtitle": "Tell us about you so we can personalize your training.",

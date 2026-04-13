@@ -44,6 +44,10 @@
         },
         "profileImage": {
           "title": "Profile Image"
+        },
+        "workoutGoals": {
+          "placeholder": "What is your fitness goal? (e.g. lose weight, gain muscle, etc.)",
+          "title": "Workout Goals"
         }
       },
       "subtitle": "Tell us about you so we can personalize your training.",
