@@ -23,17 +23,18 @@ export const HeroSection = async () => {
         <div className="mx-auto flex w-fit items-center gap-2 rounded-full border border-amber-400/20 bg-amber-400/5 px-4 py-1 backdrop-blur-md">
           <div className="size-1.5 animate-pulse rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,1)]" />
           <span className="text-xs font-black uppercase tracking-[0.3em] text-amber-400">
-            {t("mobileAppAvailableNow")}
+            {t("web:pages.landing.hero-section.mobileAppAvailableNow")}
           </span>
         </div>
         {/* Main H1 */}
         <h1 className="max-w-4xl text-6xl font-black uppercase italic tracking-tighter text-zinc-100 md:text-8xl lg:text-9xl">
-          {t("forgeYour")} <span className="text-glow text-amber-400">{t("limits")}</span>
+          {t("slogan.main.forge")} {t("slogan.main.your")}{" "}
+          <span className="text-glow text-amber-400">{t("slogan.main.limits")}</span>
           <span className="text-zinc-500">.</span>
         </h1>
 
         <p className="mx-auto mb-10 max-w-2xl text-lg font-medium text-zinc-300 drop-shadow-2xl">
-          {t("accessToPersonalizedTrainingProtocols")}
+          {t("web:pages.landing.hero-section.trainWithTheSamePrecisionAsWorldClassAthletes")}
         </p>
 
         {/* CTAs */}
@@ -42,14 +43,14 @@ export const HeroSection = async () => {
             size="lg"
             className="h-14 bg-amber-400 px-8 font-black uppercase tracking-widest text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] hover:bg-amber-500"
           >
-            {t("initializeAccess")}
+            {t("web:pages.landing.hero-section.buttonJoinTheProgram")}
           </Button>
           <Button
             variant="ghost"
             size="lg"
-            className="h-14 border border-zinc-800 px-8 font-black uppercase tracking-widest text-zinc-400 hover:bg-zinc-900/50"
+            className="h-14 border border-zinc-800 px-8 font-black uppercase tracking-widest text-zinc-400 backdrop-blur-sm hover:bg-zinc-900/50"
           >
-            {t("viewProtocol")}
+            {t("web:pages.landing.hero-section.buttonBrowseTrainings")}
           </Button>
         </div>
       </div>

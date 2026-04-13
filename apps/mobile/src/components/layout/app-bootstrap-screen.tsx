@@ -72,7 +72,8 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
                   </View>
                   <Text className="font-orbitron-semibold text-center text-xs uppercase tracking-[0.28em] text-zinc-400">
-                    {t("slogan.strength")} · {t("slogan.focus")} · {t("slogan.progress")}
+                    {t("slogan.keywords.strength")} · {t("slogan.keywords.focus")} ·{" "}
+                    {t("slogan.keywords.progress")}
                   </Text>
                   {isLoading ? (
                     <ActivityIndicator size="large" color="#fbbf24" />

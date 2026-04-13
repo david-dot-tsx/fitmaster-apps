@@ -145,9 +145,16 @@ interface Resources {
     "showMore": "show more",
     "skipped": "skipped",
     "slogan": {
+      "keywords": {
       "focus": "Focus",
       "progress": "Progress",
       "strength": "Strength"
+      },
+      "main": {
+        "forge": "Forge your",
+        "limits": "Limits",
+        "your": "Your"
+      }
     },
     "startExercise": "Start exercise",
     "startTraining": "Start training",
