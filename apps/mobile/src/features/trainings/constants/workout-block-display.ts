@@ -1,5 +1,8 @@
 import type { ElementType } from "react";
 import { FlameIcon, SnowflakeIcon, ZapIcon } from "lucide-react-native";
+import { type ResourceKey } from "i18next";
+
+import { getTKey } from "@repo/i18n/mobile";
 
 export const BLOCK_ORDER = {
   WARM_UP: 1,
@@ -12,7 +15,7 @@ export type BlockType = keyof typeof BLOCK_ORDER;
 export const WORKOUT_BLOCK_DISPLAY: Record<
   BlockType,
   {
-    label: string;
+    label: ResourceKey;
     icon: ElementType;
     accentClass: string;
     barClass: string;
@@ -21,7 +24,7 @@ export const WORKOUT_BLOCK_DISPLAY: Record<
   }
 > = {
   WARM_UP: {
-    label: "Warm up",
+    label: getTKey("common:training.block.warmUp"),
     icon: ZapIcon,
     accentClass: "text-amber-400",
     barClass: "bg-amber-400",
@@ -29,7 +32,7 @@ export const WORKOUT_BLOCK_DISPLAY: Record<
     pillBorderClass: "border-amber-400/40",
   },
   MAIN_WORKOUT: {
-    label: "Main workout",
+    label: getTKey("common:training.block.mainWorkout"),
     icon: FlameIcon,
     accentClass: "text-amber-500",
     barClass: "bg-amber-500",
@@ -37,7 +40,7 @@ export const WORKOUT_BLOCK_DISPLAY: Record<
     pillBorderClass: "border-amber-500/40",
   },
   COOL_DOWN: {
-    label: "Cool down",
+    label: getTKey("common:training.block.coolDown"),
     icon: SnowflakeIcon,
     accentClass: "text-blue-400",
     barClass: "bg-blue-400",

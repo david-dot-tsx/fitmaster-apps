@@ -1,8 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { useTranslation } from "react-i18next";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
@@ -22,6 +24,7 @@ export const TrainingDaySessionBlock = ({
   currentExercise: TrainingSessionWorkoutWithDetails | undefined;
 }) => {
   const config = WORKOUT_BLOCK_DISPLAY[blockType];
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   return (
     <VStack className={cn("mb-4 ", config.shadowClass)}>
@@ -31,14 +34,14 @@ export const TrainingDaySessionBlock = ({
         </View>
         <View className="flex-1">
           <Text className="font-orbitron-semibold text-lg tracking-widest text-zinc-100">
-            {config.label}
+            {t(config.label)}
           </Text>
           <Text className="text-xs uppercase tracking-wider text-zinc-500">
-            {exercises.length} exercise{exercises.length === 1 ? "" : "s"}
+            {exercises.length} {t("exercise", { count: exercises.length })}
           </Text>
         </View>
         <View className="aspect-square rounded-md border border-amber-400/25 bg-zinc-900 p-1">
-          <Text className="aspect-square text-center font-orbitron-bold text-sm text-amber-400/90">
+          <Text className="font-orbitron-bold aspect-square text-center text-sm text-amber-400/90">
             {exercises.length}
           </Text>
         </View>
