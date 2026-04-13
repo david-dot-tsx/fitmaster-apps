@@ -48,7 +48,7 @@ export const NavbarAuth = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
+          className="text-[10px] font-medium uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
           onClick={() => logout()}
         >
           {t("logout")}
@@ -59,14 +59,14 @@ export const NavbarAuth = () => {
             asChild
             variant="ghost"
             size="sm"
-            className="text-[10px] font-black uppercase tracking-widest text-zinc-400"
+            className="text-[10px] font-medium uppercase tracking-widest text-zinc-400"
           >
             <Link href="/auth/login">{t("login")}</Link>
           </Button>
           <Button
             asChild
             size="sm"
-            className="bg-amber-400 text-[10px] font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
+            className="bg-amber-400 text-[10px] font-medium uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
           >
             <Link href="/auth/register">{t("register")}</Link>
           </Button>

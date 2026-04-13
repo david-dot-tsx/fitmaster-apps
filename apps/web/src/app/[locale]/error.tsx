@@ -28,10 +28,10 @@ export default function RootError({
           </div>
 
           <div className="flex justify-end gap-3">
-            <Button onClick={() => (window.location.href = "/")} className="font-bold">
+            <Button onClick={() => (window.location.href = "/")} className="font-medium">
               Go to main page
             </Button>
-            <Button onClick={reset} className="font-bold">
+            <Button onClick={reset} className="font-medium">
               Try again
             </Button>
           </div>
