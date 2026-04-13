@@ -67,7 +67,7 @@ const TrainingCard = ({
             <View className={cn("opacity-100", { "opacity-0": !action })}>
               <Button
                 disabled={!action || action?.disabled}
-                className="mr-auto "
+                className="mr-auto"
                 variant="link"
                 onPress={action?.onPress}
               >

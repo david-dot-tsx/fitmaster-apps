@@ -6,8 +6,12 @@ interface Resources {
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "activeUsers": "Active Users",
     "availableModules": "Available Modules",
+    "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
     "continue": "Continue",
+    "day": "day",
+    "day_one": "day",
+    "day_other": "days",
     "email": "Email",
     "emailAddress": "Email Address",
     "finalCta": {
@@ -48,6 +52,7 @@ interface Resources {
       "progress": "Progress",
       "strength": "Strength"
     },
+    "startTrainingDay": "Start training day",
     "system": "System",
     "tacticalProgramming": {
       "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
@@ -55,7 +60,8 @@ interface Resources {
     },
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",
-    "visualAssets": "Visual Assets"
+    "visualAssets": "Visual Assets",
+    "youHaveNotJoinedAnyTrainingsYet": "youHaveNotJoinedAnyTrainingsYet"
   },
   "mobile": {
     "screens": {
@@ -70,6 +76,11 @@ interface Resources {
         "description": "Account",
         "subtitle": "Welcome back. Sign in to continue.",
         "title": "Login"
+      },
+      "main": {
+        "description": "Your training hub",
+        "subtitle": "Jump back into your active plans and sessions.",
+        "title": "Hello"
       },
       "register": {
         "description": "Account",

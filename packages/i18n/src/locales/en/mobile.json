@@ -12,6 +12,11 @@
       "subtitle": "Welcome back. Sign in to continue.",
       "title": "Login"
     },
+    "main": {
+      "description": "Your training hub",
+      "subtitle": "Jump back into your active plans and sessions.",
+      "title": "Hello"
+    },
     "register": {
       "description": "Account",
       "subtitle": "Create an account to start training.",

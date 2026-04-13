@@ -2,6 +2,9 @@ import React from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SparklesIcon } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -18,14 +21,15 @@ export const MainScreen = () => {
     refetch: refetchMyTrainings,
   } = trpc.training.session.myTrainings.useQuery();
   const { data: me } = trpc.user.me.useQuery();
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   return (
     <ScreenWrapper
       className="gap-4"
       header={{
-        title: `Hello ${me?.profile?.nickname ?? ""}!`,
-        description: "Your training hub",
-        subtitle: "Jump back into your active plans and sessions.",
+        title: `${t("mobile:screens.main.title")} ${me?.profile?.nickname ?? ""}!`,
+        description: t("mobile:screens.main.description"),
+        subtitle: t("mobile:screens.main.subtitle"),
         icon: SparklesIcon,
       }}
     >
@@ -49,7 +53,7 @@ export const MainScreen = () => {
               trainingName={item.training.name}
               action={{
                 onPress: () => router.push(`/training/${item.training.id}/session/${item.id}`),
-                text: "Start training day",
+                text: t("startTrainingDay"),
               }}
             />
           )}
@@ -58,7 +62,8 @@ export const MainScreen = () => {
           ListEmptyComponent={
             <View className="mx-4 mt-14 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
               <Text className="text-center text-zinc-400">
-                You have not joined any trainings yet.{"\n"}Browse trainings to get started!
+                {t("youHaveNotJoinedAnyTrainingsYet")} {"\n"}
+                {t("browseTrainingsToGetStarted")}
               </Text>
             </View>
           }
