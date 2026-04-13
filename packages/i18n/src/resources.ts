@@ -95,7 +95,7 @@ interface Resources {
     "goToTrainingDetails": "Go to training details",
     "goal": "Goal",
     "goals": "goals",
-    "height": "height",
+    "height": "Height",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
     "joinTraining": "Join training",
@@ -171,7 +171,7 @@ interface Resources {
     "traits": "traits",
     "tryAgain": "Try again",
     "units": {
-      "cm": "units.cm",
+      "cm": "cm",
       "kg": "kg",
       "meters": "m",
       "reps": "x",
@@ -183,7 +183,7 @@ interface Resources {
     "visualAssets": "Visual Assets",
     "volume": "volume",
     "warmup": "warm up",
-    "weight": "weight",
+    "weight": "Weight",
     "weightUsage": "Weight use",
     "yo": "yo",
     "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
@@ -235,7 +235,12 @@ interface Resources {
             "title": "Your date of birth"
           },
           "bodyMeasurements": {
-            "title": "mobile:screens.onboarding.steps.bodyMeasurements.title"
+            "title": "Your body measurements"
+          },
+          "completed": {
+            "button": "mobile:screens.onboarding.steps.completed.button",
+            "description": "mobile:screens.onboarding.steps.completed.description",
+            "title": "mobile:screens.onboarding.steps.completed.title"
           },
           "introduction": {
             "title": "Introduce yourself"

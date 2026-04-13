@@ -45,6 +45,11 @@
         "bodyMeasurements": {
           "title": "Your body measurements"
         },
+        "completed": {
+          "button": "Let's Go",
+          "description": "Your profile has been created. Time to start your fitness journey.",
+          "title": "You're all set!"
+        },
         "introduction": {
           "title": "Introduce yourself"
         },
