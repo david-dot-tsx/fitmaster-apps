@@ -11,6 +11,11 @@
       "description": "Account",
       "subtitle": "Welcome back. Sign in to continue.",
       "title": "Login"
+    },
+    "register": {
+      "description": "Account",
+      "subtitle": "Create an account to start training.",
+      "title": "Register"
     }
   }
 }

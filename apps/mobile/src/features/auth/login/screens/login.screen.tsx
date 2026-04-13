@@ -34,8 +34,8 @@ export const LoginScreen = () => {
     <ScreenWrapper
       header={{
         title: t("mobile:screens.login.title"),
-        description: t("mobile:screens.login.description"), //"Account",
-        subtitle: t("mobile:screens.login.subtitle"), //"Welcome back. Sign in to continue.",
+        description: t("mobile:screens.login.description"),
+        subtitle: t("mobile:screens.login.subtitle"),
         icon: LogIn,
       }}
     >

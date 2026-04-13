@@ -9,7 +9,7 @@ interface Resources {
     "capabilities": "Capabilities",
     "continue": "Continue",
     "email": "Email",
-    "emailAddress": "emailAddress",
+    "emailAddress": "Email Address",
     "finalCta": {
       "commitToThe": "Commit to the",
       "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
@@ -33,6 +33,7 @@ interface Resources {
       "title": "Mobile Integration"
     },
     "password": "Password",
+    "passwordConfirmation": "passwordConfirmation",
     "password_confirmation": "Password Confirmation",
     "precisionAnalytics": {
       "description": "Monitor every set, rep, and kilo. Data-driven insights to ensure you never plateau in your progression.",
@@ -65,10 +66,15 @@ interface Resources {
         }
       },
       "login": {
-        "credentials": "mobile:screens.login.credentials",
-        "description": "mobile:screens.login.description",
-        "subtitle": "mobile:screens.login.subtitle",
-        "title": "mobile:screens.login.title"
+        "credentials": "Credentials",
+        "description": "Account",
+        "subtitle": "Welcome back. Sign in to continue.",
+        "title": "Login"
+      },
+      "register": {
+        "description": "Account",
+        "subtitle": "Create an account to start training.",
+        "title": "Register"
       }
     }
   }

@@ -20,7 +20,7 @@ import { FormInput } from "@/components/form/form-input";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 export const RegisterScreen = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const { openToast } = useToastNotification();
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
     onSuccess: () => {
@@ -48,9 +48,9 @@ export const RegisterScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: t("register"),
-        description: "Account",
-        subtitle: "Create an account to start training.",
+        title: t("mobile:screens.register.title"),
+        description: t("mobile:screens.register.description"),
+        subtitle: t("mobile:screens.register.subtitle"),
         icon: UserPlus,
       }}
     >
@@ -70,8 +70,8 @@ export const RegisterScreen = () => {
                 <FormProvider {...methods}>
                   <FormInput
                     name="email"
-                    label="Email"
-                    placeholder="Email Address"
+                    label={t("email")}
+                    placeholder={t("emailAddress")}
                     textContentType="emailAddress"
                     keyboardType="email-address"
                   />
@@ -84,8 +84,8 @@ export const RegisterScreen = () => {
                   />
                   <FormInput
                     name="passwordConfirmation"
-                    label={t("password_confirmation")}
-                    placeholder={t("password_confirmation")}
+                    label={t("passwordConfirmation")}
+                    placeholder={t("passwordConfirmation")}
                     secureTextEntry
                     textContentType="password"
                   />
@@ -93,7 +93,7 @@ export const RegisterScreen = () => {
                     action="primary"
                     onPress={methods.handleSubmit((data) => mutateRegister(data))}
                   >
-                    <ButtonText className="font-semibold text-zinc-950">Register</ButtonText>
+                    <ButtonText className="font-semibold text-zinc-950">{t("register")}</ButtonText>
                   </Button>
                 </FormProvider>
               </VStack>
