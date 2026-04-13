@@ -6,6 +6,7 @@ interface Resources {
     "about": "about",
     "active": "active",
     "adjustPhoto": "Adjust photo",
+    "authenticating": "authenticating",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "Bio",
     "block": "block",
@@ -39,6 +40,11 @@ interface Resources {
     "error": "error",
     "errorCode": "Error code",
     "errors": {
+      "auth": {
+        "login": {
+          "failed": "Login failed. Please Check your credentials and try again."
+        }
+      },
       "exercise": {
         "finish": {
           "failed": {
@@ -76,6 +82,7 @@ interface Resources {
     "finishedTrainings": "Finished trainings",
     "firstName": "First Name",
     "focus": "focus",
+    "forgotPassword": "Forgot password?",
     "forgot_password": "Forgot Password",
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
@@ -85,6 +92,7 @@ interface Resources {
     "goal": "Goal",
     "goals": "goals",
     "height": "Height",
+    "initializeRegistration": "Initialize registration",
     "intensity": "intensity",
     "joinTraining": "Join training",
     "languages": {
@@ -125,8 +133,8 @@ interface Resources {
         "strength": "Strength"
       },
       "main": {
+        "body": "slogan.main.body",
         "forge": "Forge your",
-        "limits": "Limits",
         "your": "Your"
       }
     },
@@ -304,11 +312,11 @@ interface Resources {
   "web": {
     "layout": {
       "footer": {
-        "contact": "web:layout.footer.contact",
-        "copyright": "web:layout.footer.copyright",
-        "developedBy": "web:layout.footer.developedBy",
-        "privacy": "web:layout.footer.privacy",
-        "terms": "web:layout.footer.terms"
+        "contact": "Contact",
+        "copyright": "Copyright",
+        "developedBy": "Developed by",
+        "privacy": "Privacy",
+        "terms": "Terms"
       },
       "navbar": {
         "links": {
@@ -387,6 +395,11 @@ interface Resources {
             "satisfiedClients": "Satisfied Clients"
           }
         }
+      },
+      "login": {
+        "eyebrow": "Authentication",
+        "subtitle": "Verify credentials to forge yourself.",
+        "title": "System Login"
       }
     }
   }

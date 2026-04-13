@@ -2,6 +2,7 @@
   "about": "about",
   "active": "active",
   "adjustPhoto": "Adjust photo",
+  "authenticating": "authenticating",
   "beTheFirstToScorePoints": "Be the first to score points.",
   "bio": "Bio",
   "block": "block",
@@ -35,6 +36,11 @@
   "error": "error",
   "errorCode": "Error code",
   "errors": {
+    "auth": {
+      "login": {
+        "failed": "Login failed. Please Check your credentials and try again."
+      }
+    },
     "exercise": {
       "finish": {
         "failed": {
@@ -73,6 +79,7 @@
   "firstName": "First Name",
   "focus": "focus",
   "forgot_password": "Forgot Password",
+  "forgotPassword": "Forgot password?",
   "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
   "gender": "gender",
   "getBackToMainScreen": "Get back to main screen",
@@ -81,6 +88,7 @@
   "goToMainPage": "Go to main page",
   "goToTrainingDetails": "Go to training details",
   "height": "Height",
+  "initializeRegistration": "Initialize registration",
   "intensity": "intensity",
   "joinTraining": "Join training",
   "languages": {
@@ -121,8 +129,8 @@
       "strength": "Strength"
     },
     "main": {
-      "forge": "Forge your",
-      "limits": "Limits",
+      "body": "Body",
+      "forge": "forge",
       "your": "Your"
     }
   },

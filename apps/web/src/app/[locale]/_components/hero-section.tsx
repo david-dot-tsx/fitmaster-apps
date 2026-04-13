@@ -29,7 +29,7 @@ export const HeroSection = async () => {
         {/* Main H1 */}
         <h1 className="max-w-4xl text-6xl font-black uppercase italic tracking-tighter text-zinc-100 md:text-8xl lg:text-9xl">
           {t("slogan.main.forge")} {t("slogan.main.your")}{" "}
-          <span className="text-glow text-amber-400">{t("slogan.main.limits")}</span>
+          <span className="text-glow text-amber-400">{t("slogan.main.body")}</span>
           <span className="text-zinc-500">.</span>
         </h1>
 

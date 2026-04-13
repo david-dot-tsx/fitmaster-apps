@@ -84,6 +84,11 @@
           "satisfiedClients": "Satisfied Clients"
         }
       }
+    },
+    "login": {
+      "eyebrow": "Authentication",
+      "subtitle": "Verify credentials to forge yourself.",
+      "title": "Login"
     }
   }
 }

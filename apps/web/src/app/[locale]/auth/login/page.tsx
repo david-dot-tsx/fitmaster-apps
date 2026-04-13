@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
+import { toast } from "sonner";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
@@ -15,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useTranslation([NAMESPACES.API_ERRORS]);
+  const { t } = useTranslation([NAMESPACES.API_ERRORS, NAMESPACES.WEB]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
@@ -51,10 +52,17 @@ export default function LoginPage() {
       router.push("/dashboard");
       router.refresh();
     },
+    onError: () => {
+      toast.error(t("errors.auth.login.failed"));
+    },
   });
 
   return (
-    <PageWrapper title={t("login")} subtitle={"Access to your training modules"}>
+    <PageWrapper
+      title={t("web:pages.login.title")}
+      subtitle={t("web:pages.login.subtitle")}
+      eyebrow={t("web:pages.login.eyebrow")}
+    >
       <div className="group m-auto max-w-xs">
         <Card className="relative overflow-hidden border-zinc-900 bg-zinc-950/50 backdrop-blur-md transition-all duration-700 ease-out group-hover:border-amber-400/30 group-hover:shadow-[0_0_50px_rgba(251,191,36,0.05)]">
           <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
@@ -92,7 +100,7 @@ export default function LoginPage() {
                   disabled={loginMutation.isPending}
                   className="relative mt-4 w-full overflow-hidden rounded-none border-t border-amber-400/20 bg-zinc-900 py-6 font-black uppercase tracking-widest text-zinc-400 transition-all duration-300 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] disabled:opacity-20"
                 >
-                  {loginMutation.isPending ? "Authenticating..." : t("login")}
+                  {loginMutation.isPending ? `${t("authenticating")}...` : t("login")}
                 </Button>
               </form>
             </FormProvider>
@@ -102,13 +110,13 @@ export default function LoginPage() {
                 href="/auth/register"
                 className="text-xs uppercase tracking-widest text-zinc-500 transition-colors hover:text-zinc-300"
               >
-                Initialize registration
+                {t("initializeRegistration")}
               </Link>
               <Link
                 href="#"
                 className="text-[10px] uppercase tracking-widest text-zinc-700 transition-colors hover:text-zinc-300"
               >
-                Forgot password?
+                {t("forgotPassword")}
               </Link>
             </div>
           </CardContent>
