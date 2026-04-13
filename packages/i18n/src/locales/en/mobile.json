@@ -22,6 +22,28 @@
       "subtitle": "Jump back into your active plans and sessions.",
       "title": "Hello"
     },
+    "profile": {
+      "loading": {
+        "myProfile": {
+          "description": "Profile",
+          "subtitle": "Loading my profile details...",
+          "title": "My Profile"
+        },
+        "userProfile": {
+          "description": "Profile",
+          "subtitle": "Loading profile details...",
+          "title": "User Profile"
+        }
+      },
+      "myProfile": {
+        "description": "My Profile",
+        "subtitle": "My profile details"
+      },
+      "userProfile": {
+        "description": "Profile",
+        "subtitle": "User profile details"
+      }
+    },
     "register": {
       "description": "Account",
       "subtitle": "Create an account to start training.",

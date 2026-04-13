@@ -2,8 +2,10 @@ import { ScrollView } from "react-native";
 import React, { useState } from "react";
 import { differenceInCalendarYears } from "date-fns";
 import { SettingsIcon, UserIcon } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 
 import type { CustomerProfileGetOutput } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -24,13 +26,18 @@ export const Profile = ({
   isMyProfile: boolean;
 }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   return (
     <ScreenWrapper
       header={{
-        title: profile?.nickname ?? "User Profile",
-        description: isMyProfile ? "My Profile" : "User Profile",
-        subtitle: "Profile details",
+        title: profile.nickname,
+        description: isMyProfile
+          ? t("mobile:screens.profile.myProfile.description")
+          : t("mobile:screens.profile.userProfile.description"),
+        subtitle: isMyProfile
+          ? t("mobile:screens.profile.myProfile.subtitle")
+          : t("mobile:screens.profile.userProfile.subtitle"),
         icon: UserIcon,
         backButton: !isMyProfile,
       }}
@@ -46,7 +53,7 @@ export const Profile = ({
                 {profile?.firstName && `${profile?.firstName}, `}
                 {profile?.birthDate &&
                   differenceInCalendarYears(new Date(), profile.birthDate)}{" "}
-                <Text className="text-zinc-500">yo.</Text>
+                <Text className="text-zinc-500">{t("yo")}.</Text>
               </Text>
               <LeaderboardPosition nickname={profile?.nickname ?? ""} />
 
@@ -64,18 +71,16 @@ export const Profile = ({
               </Button>
             )}
           </HStack>
-          <Section title="Bio">
+          <Section title={t("bio")}>
             <FoldableText text={profile?.bio ?? "—"} />
           </Section>
-          <Section title="Goals">
+          <Section title={t("goals")}>
             <FoldableText text={profile?.customerProfile.goal ?? "—"} />
           </Section>
-          <Section title="Current trainings">
-            <Text>TODO</Text>
-          </Section>
-          <Section title="Finished trainings">
-            <Text>TODO</Text>
-          </Section>
+          {/* //TODO: add current trainings */}
+          <Section title={t("currentTrainings")}>—</Section>
+          {/* //TODO: add finished trainings */}
+          <Section title={t("finishedTrainings")}>—</Section>
         </VStack>
       </ScrollView>
       <SettingsSheet isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />

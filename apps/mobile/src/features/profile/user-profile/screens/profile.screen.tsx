@@ -1,6 +1,7 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
 import { UserIcon } from "lucide-react-native";
+import { t } from "i18next";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -26,9 +27,9 @@ export const ProfileScreen = ({ nickname }: { nickname: string }) => {
   return (
     <ScreenWrapper
       header={{
-        title: "User Profile",
-        description: "Profile",
-        subtitle: "Loading profile details...",
+        title: t("mobile:screens.profile.loading.userProfile.title"),
+        description: t("mobile:screens.profile.loading.userProfile.description"),
+        subtitle: t("mobile:screens.profile.loading.userProfile.subtitle"),
         icon: UserIcon,
       }}
     >

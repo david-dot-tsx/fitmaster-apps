@@ -6,10 +6,12 @@ interface Resources {
     "accessToPersonalizedTrainingProtocols": " Access to personalized training protocols that will push your boundaries. Technology used by professional athletes, now at your fingertips.",
     "activeUsers": "Active Users",
     "availableModules": "Available Modules",
-    "beTheFirstToScorePoints": "beTheFirstToScorePoints",
+    "beTheFirstToScorePoints": "Be the first to score points.",
+    "bio": "bio",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
     "continue": "Continue",
+    "currentTrainings": "currentTrainings",
     "day": "day",
     "day_one": "day",
     "day_other": "days",
@@ -23,8 +25,10 @@ interface Resources {
       "initializeTransformation": "Initialize Transformation",
       "protocol": "Protocol"
     },
+    "finishedTrainings": "finishedTrainings",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "goals": "goals",
     "initializeAccess": "Initialize Access",
     "launch": "Launch",
     "launchedWorkouts": "Launched Workouts",
@@ -37,7 +41,7 @@ interface Resources {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
       "title": "Mobile Integration"
     },
-    "noLeaderboardEntriesYet": "noLeaderboardEntriesYet",
+    "noLeaderboardEntriesYet": "No leaderboard entries yet.",
     "password": "Password",
     "passwordConfirmation": "passwordConfirmation",
     "password_confirmation": "Password Confirmation",
@@ -64,8 +68,9 @@ interface Resources {
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",
     "visualAssets": "Visual Assets",
+    "yo": "yo",
     "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
-    "yourPosition": "yourPosition"
+    "yourPosition": "Your Position"
   },
   "mobile": {
     "screens": {
@@ -76,9 +81,9 @@ interface Resources {
         }
       },
       "leaderboard": {
-        "description": "mobile:screens.leaderboard.description",
-        "subtitle": "mobile:screens.leaderboard.subtitle",
-        "title": "mobile:screens.leaderboard.title"
+        "description": "Compete",
+        "subtitle": "See who leads and where you rank.",
+        "title": "Leaderboard"
       },
       "login": {
         "credentials": "Credentials",
@@ -90,6 +95,28 @@ interface Resources {
         "description": "Your training hub",
         "subtitle": "Jump back into your active plans and sessions.",
         "title": "Hello"
+      },
+      "profile": {
+        "loading": {
+          "myProfile": {
+            "description": "Profile",
+            "subtitle": "Loading my profile details...",
+            "title": "My Profile"
+          },
+          "userProfile": {
+            "description": "Profile",
+            "subtitle": "Loading profile details...",
+            "title": "User Profile"
+          }
+        },
+        "myProfile": {
+          "description": "My Profile",
+          "subtitle": "My profile details"
+        },
+        "userProfile": {
+          "description": "Profile",
+          "subtitle": "User profile details"
+        }
       },
       "register": {
         "description": "Account",

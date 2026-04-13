@@ -1,6 +1,9 @@
 import React from "react";
 import { ActivityIndicator } from "react-native";
 import { UserIcon } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
+
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -9,6 +12,7 @@ import { QueryErrorHandler } from "@/components/modules/query-error-handler/quer
 
 export const MyProfileScreen = () => {
   const { data: me } = trpc.user.me.useQuery();
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
 
   const {
     data: profile,
@@ -24,9 +28,9 @@ export const MyProfileScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: "My Profile",
-        description: "Profile",
-        subtitle: "Loading profile details...",
+        title: t("mobile:screens.profile.loading.myProfile.title"),
+        description: t("mobile:screens.profile.loading.myProfile.description"),
+        subtitle: t("mobile:screens.profile.loading.myProfile.subtitle"),
         icon: UserIcon,
       }}
     >

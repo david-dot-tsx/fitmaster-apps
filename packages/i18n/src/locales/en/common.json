@@ -3,9 +3,11 @@
   "activeUsers": "Active Users",
   "availableModules": "Available Modules",
   "beTheFirstToScorePoints": "Be the first to score points.",
+  "bio": "bio",
   "browseTrainingsToGetStarted": "Browse trainings to get started!",
   "capabilities": "Capabilities",
   "continue": "Continue",
+  "currentTrainings": "Current trainings",
   "day": "day",
   "day_one": "day",
   "day_other": "days",
@@ -19,8 +21,10 @@
     "initializeTransformation": "Initialize Transformation",
     "protocol": "Protocol"
   },
+  "finishedTrainings": "Finished trainings",
   "forgeYour": "Forge your",
   "forgot_password": "Forgot Password",
+  "goals": "goals",
   "initializeAccess": "Initialize Access",
   "launch": "Launch",
   "launchedWorkouts": "Launched Workouts",
@@ -60,6 +64,7 @@
   "viewAllExercises": "View All Exercises",
   "viewProtocol": "View Protocol",
   "visualAssets": "Visual Assets",
+  "yo": "yo",
   "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
   "yourPosition": "Your Position"
 }
