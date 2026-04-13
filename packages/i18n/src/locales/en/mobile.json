@@ -63,6 +63,11 @@
       "description": "Your training plan",
       "subtitle": "Today's training plan",
       "title": "Today"
+    },
+    "trainingSessionExercise": {
+      "description": "Session workout",
+      "subtitle": "Track time and complete this exercise.",
+      "title": "Exercise"
     }
   },
   "training": {

@@ -3,8 +3,10 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import { router } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { useTranslation } from "react-i18next";
 
 import { WorkoutExerciseSessionStatus } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Button, ButtonText } from "@/components/ui/button";
@@ -29,6 +31,7 @@ export const TrainingSessionExerciseScreen = ({
   trainingId: string;
   sessionId: string;
 }) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const stopWatchProps = useStopWatch();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
@@ -49,8 +52,8 @@ export const TrainingSessionExerciseScreen = ({
     },
     onError: (_error) => {
       openToast({
-        title: "Failed to start exercise",
-        description: "Please try again later.",
+        title: t("errors.exercise.start.failed.title"),
+        description: t("errors.exercise.start.failed.description"),
         action: "error",
       });
     },
@@ -65,8 +68,8 @@ export const TrainingSessionExerciseScreen = ({
     },
     onError: (_error) => {
       openToast({
-        title: "Failed to finish exercise",
-        description: "Please try again.",
+        title: t("errors.exercise.finish.failed.title"),
+        description: t("errors.exercise.finish.failed.description"),
         action: "error",
       });
     },
@@ -78,9 +81,9 @@ export const TrainingSessionExerciseScreen = ({
   return (
     <ScreenWrapper
       header={{
-        title: exerciseEntity?.name ?? "Exercise",
-        description: "Session workout",
-        subtitle: "Track time and complete this exercise.",
+        title: exerciseEntity?.name ?? t("mobile:screens.trainingSessionExercise.title"),
+        description: t("mobile:screens.trainingSessionExercise.description"),
+        subtitle: t("mobile:screens.trainingSessionExercise.subtitle"),
         icon: DumbbellIcon,
         backButton: true,
       }}
@@ -121,11 +124,11 @@ export const TrainingSessionExerciseScreen = ({
                 disabled={currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED}
               />
 
-              <Section title="Description">
+              <Section title={t("description")}>
                 <FoldableText text={exerciseEntity?.description ?? ""} />
               </Section>
 
-              <Section title="Traits">
+              <Section title={t("traits")}>
                 <TraitList sessionExercise={currentExercise} />
               </Section>
             </VStack>
@@ -152,8 +155,8 @@ export const TrainingSessionExerciseScreen = ({
             >
               <ButtonText className="font-semibold text-zinc-950">
                 {currentExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS
-                  ? "Complete exercise"
-                  : "Start exercise"}
+                  ? t("completeExercise")
+                  : t("startExercise")}
               </ButtonText>
             </Button>
           </View>
@@ -190,6 +193,7 @@ const SessionExerciseOverview = ({
   totalExercisesAmount?: number;
   currentExerciseStatus: WorkoutExerciseSessionStatus;
 }) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const hasProgress =
     exercisesLeftAmount != null && totalExercisesAmount != null && totalExercisesAmount > 0;
   const currentIndex =
@@ -206,7 +210,7 @@ const SessionExerciseOverview = ({
           <>
             <View className="min-w-0 flex-1">
               <Text className="font-orbitron-semibold text-2xs uppercase tracking-widest text-zinc-500">
-                Progress
+                {t("progress")}
               </Text>
               <HStack className="mt-1 items-baseline gap-1">
                 <Text className="font-orbitron-semibold text-2xl tabular-nums tracking-tighter text-zinc-100">
@@ -217,7 +221,7 @@ const SessionExerciseOverview = ({
                   {totalExercisesAmount}
                 </Text>
               </HStack>
-              <Text className="text-2xs mt-1 text-zinc-600">Exercise in this session</Text>
+              <Text className="text-2xs mt-1 text-zinc-600">{t("exerciseInThisSession")}</Text>
             </View>
             <View className="h-14 w-px self-stretch bg-zinc-800" />
           </>
@@ -229,7 +233,7 @@ const SessionExerciseOverview = ({
               hasProgress && "text-right",
             )}
           >
-            Block
+            {t("block")}
           </Text>
           <HStack
             className={cn(
@@ -243,7 +247,7 @@ const SessionExerciseOverview = ({
               className={cn("flex-1 text-sm font-semibold tracking-wide", block.accentClass)}
               numberOfLines={2}
             >
-              {block.label}
+              {t(block.label)}
             </Text>
           </HStack>
         </View>

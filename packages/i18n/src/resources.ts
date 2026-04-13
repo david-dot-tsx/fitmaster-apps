@@ -9,20 +9,44 @@ interface Resources {
     "availableModules": "Available Modules",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "bio",
+    "block": "block",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
     "chatIsComingSoon": "Chat is coming soon.",
+    "completeExercise": "Complete exercise",
     "continue": "Continue",
     "current": "current",
     "currentTrainings": "Current trainings",
     "day": "day",
     "day_one": "day",
     "day_other": "days",
+    "description": "description",
     "distance": "distance",
     "done": "done",
     "duration": "duration",
     "email": "Email",
     "emailAddress": "Email Address",
+    "error": "error",
+    "errors": {
+      "exercise": {
+        "finish": {
+          "failed": {
+            "description": "Please try again.",
+            "title": "Failed to finish exercise"
+          }
+        },
+        "start": {
+          "failed": {
+            "description": "Please try again later.",
+            "title": "Failed to start exercise"
+          }
+        }
+      },
+      "generic": {
+        "description": "An error occurred while loading this content. Please try again."
+      }
+    },
+    "exerciseInThisSession": "Exercise in this session",
     "exercise_one": "exercise",
     "exercise_other": "exercises",
     "exercises": "exercises",
@@ -78,6 +102,8 @@ interface Resources {
     "satisfiedClients": "Satisfied Clients",
     "selectYourLanguage": "Select your language",
     "settings": "settings",
+    "showLess": "showLess",
+    "showMore": "showMore",
     "skipped": "skipped",
     "slogan": {
       "focus": "Focus",
@@ -98,8 +124,10 @@ interface Resources {
         "warmUp": "Warm Up"
       }
     },
+    "traits": "traits",
+    "tryAgain": "Try again",
     "units": {
-      "kg": "units.kg",
+      "kg": "kg",
       "meters": "m",
       "reps": "x",
       "seconds": "s"
@@ -181,6 +209,11 @@ interface Resources {
         "description": "Your training plan",
         "subtitle": "Today's training plan",
         "title": "Today"
+      },
+      "trainingSessionExercise": {
+        "description": "Session workout",
+        "subtitle": "Track time and complete this exercise.",
+        "title": "Exercise"
       }
     },
     "training": {

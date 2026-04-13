@@ -1,7 +1,9 @@
 import React, { useMemo } from "react";
 import { DumbbellIcon } from "lucide-react-native";
+import { useTranslation } from "react-i18next";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/mobile";
 
 import { Text } from "@/components/ui/text";
 import { Icon } from "@/components/ui/icon";
@@ -24,29 +26,51 @@ export const TraitList = ({
 }: {
   sessionExercise: TrainingSessionWorkoutWithDetails;
 }) => {
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const traitsComponents = useMemo(() => {
     const components = [];
     if (sessionExercise?.targetReps) {
-      components.push(<Trait key="reps" name="Reps" value={sessionExercise?.targetReps} />);
+      components.push(<Trait key="reps" name={t("reps")} value={sessionExercise?.targetReps} />);
     }
     if (sessionExercise?.targetWeight) {
       components.push(
-        <Trait key="weight" name="Weight" value={sessionExercise?.targetWeight} unit="kg" />,
+        <Trait
+          key="weight"
+          name={t("weight")}
+          value={sessionExercise?.targetWeight}
+          unit={t("units.kg")}
+        />,
       );
     }
     if (sessionExercise?.targetDistance) {
       components.push(
-        <Trait key="distance" name="Distance" value={sessionExercise?.targetDistance} unit="m" />,
+        <Trait
+          key="distance"
+          name={t("distance")}
+          value={sessionExercise?.targetDistance}
+          unit={t("units.meters")}
+        />,
       );
     }
     if (sessionExercise?.targetDuration) {
       components.push(
-        <Trait key="time" name="Time" value={sessionExercise?.targetDuration} unit="s" />,
+        <Trait
+          key="time"
+          name={t("duration")}
+          value={sessionExercise?.targetDuration}
+          unit={t("units.seconds")}
+        />,
       );
     }
 
     return components;
-  }, [sessionExercise]);
+  }, [
+    sessionExercise?.targetDistance,
+    sessionExercise?.targetDuration,
+    sessionExercise?.targetReps,
+    sessionExercise?.targetWeight,
+    t,
+  ]);
 
   return <VStack className="flex w-full flex-row flex-wrap gap-4 ">{traitsComponents}</VStack>;
 };
