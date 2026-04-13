@@ -11,6 +11,7 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { type ExerciseListOutput, type ExerciseBaseWithId, Difficulty } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell";
@@ -25,10 +26,12 @@ import { DateCell } from "@/components/table/cells/date-cell";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 import { NoDataFoundRow } from "@/components/table/no-data-found-row";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
 export const ExerciseTable = () => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -41,12 +44,12 @@ export const ExerciseTable = () => {
   const { mutate: deleteExercise, status: deleteStatus } = useMutation(
     trpc.exercise.delete.mutationOptions({
       onSuccess: () => {
-        toast.success("Exercise deleted!");
+        toast.success(t("success.generic.description"));
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
       },
       onError: (error) => {
-        toast.error("Failed to delete exercise");
+        toast.error(t("errors.generic.description"));
         console.error(error);
         setOpenDeleteDialog(false);
       },
@@ -56,20 +59,21 @@ export const ExerciseTable = () => {
   const columns = useMemo(
     () => [
       columnHelper.accessor("name", {
-        header: "Exercise Name",
+        header: t("web:table.exercise.columns.name.label"),
         cell: ({ row }) => (
-          <div className="flex flex-col">
-            <span className="font-bold text-zinc-200 transition-colors group-hover:text-amber-400">
+          <div className="flex flex-col gap-1">
+            <span className="font-bold tracking-wider text-zinc-200 transition-colors group-hover:text-amber-400">
               {row.original.name}
             </span>
-            <span className="text-[10px] uppercase tracking-tighter text-zinc-600">
-              ID: {row.original.id.slice(0, 8)}
+            {/* //TODO: add tooltip with full ID */}
+            <span className="font-mono text-xs uppercase tracking-tighter text-zinc-400">
+              {t("web:table.exercise.columns.id.label")}: {row.original.id.slice(0, 8)}…
             </span>
           </div>
         ),
       }),
       columnHelper.accessor("difficulty", {
-        header: "Intensity",
+        header: t("web:table.exercise.columns.difficulty.label"),
         cell: ({ getValue }) => {
           const value = getValue();
 
@@ -90,24 +94,24 @@ export const ExerciseTable = () => {
         },
       }),
       columnHelper.accessor("bodyPart", {
-        header: "Target",
+        header: t("web:table.exercise.columns.bodyPart.label"),
         cell: ({ getValue }) => (
-          <span className="text-xs font-bold uppercase italic tracking-tight text-zinc-400">
+          <span className="text-xs font-bold uppercase tracking-wider text-zinc-400">
             {getValue()}
           </span>
         ),
       }),
       columnHelper.accessor("description", {
-        header: "Protocol Details",
+        header: t("web:table.exercise.columns.description.label"),
         cell: ({ getValue }) => (
           <TextTruncatedCell
             text={getValue() || "—"}
-            className="text-xs leading-relaxed text-zinc-500 group-hover:text-zinc-400"
+            className="font-inter text-xs text-zinc-400 group-hover:text-zinc-300"
           />
         ),
       }),
       columnHelper.accessor("imageUrl", {
-        header: "Preview",
+        header: t("web:table.exercise.columns.imageUrl.label"),
         cell: ({ row }) => (
           <div className="relative h-10 w-16 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 transition-colors group-hover:border-amber-400/30">
             <ImageCell src={row.original.imageUrl} alt="Image" className="object-cover" />
@@ -115,12 +119,12 @@ export const ExerciseTable = () => {
         ),
       }),
       columnHelper.accessor("updatedAt", {
-        header: "Last Update",
+        header: t("web:table.exercise.columns.updatedAt.label"),
         cell: ({ getValue }) => (
           <DateCell
             date={getValue()}
             dateFormat={DATE_FORMATS.DATE}
-            className="font-mono text-[10px] text-zinc-600"
+            className="font-orbitron text-xs tracking-wide text-zinc-400"
           />
         ),
       }),
@@ -142,7 +146,7 @@ export const ExerciseTable = () => {
         ),
       }),
     ],
-    [setOpenDeleteDialog],
+    [setOpenDeleteDialog, t],
   );
 
   const table = useReactTable({
@@ -185,7 +189,7 @@ export const ExerciseTable = () => {
                 {headerGroup.headers.map((header) => (
                   <th
                     key={header.id}
-                    className="p-4 text-left text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500"
+                    className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-400"
                   >
                     {header.isPlaceholder
                       ? null

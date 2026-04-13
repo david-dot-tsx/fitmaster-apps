@@ -21,10 +21,12 @@
   "day": "day",
   "day_one": "day",
   "day_other": "days",
+  "delete": "Delete",
   "description": "description",
   "distance": "distance",
   "done": "done",
   "duration": "duration",
+  "edit": "Edit",
   "email": "Email",
   "emailAddress": "Email Address",
   "enums": {
@@ -142,6 +144,11 @@
   "startTraining": "Start training",
   "startTrainingDay": "Start training day",
   "stats": "stats",
+  "success": {
+    "generic": {
+      "description": "Operation completed successfully."
+    }
+  },
   "system": "System",
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",

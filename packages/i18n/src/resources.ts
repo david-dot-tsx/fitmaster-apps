@@ -25,10 +25,12 @@ interface Resources {
     "day": "day",
     "day_one": "day",
     "day_other": "days",
+    "delete": "delete",
     "description": "description",
     "distance": "distance",
     "done": "done",
     "duration": "duration",
+    "edit": "edit",
     "email": "Email",
     "emailAddress": "Email Address",
     "enums": {
@@ -146,6 +148,11 @@ interface Resources {
     "startTraining": "Start training",
     "startTrainingDay": "Start training day",
     "stats": "stats",
+    "success": {
+      "generic": {
+        "description": "Operation completed successfully."
+      }
+    },
     "system": "System",
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
@@ -499,6 +506,33 @@ interface Resources {
         "eyebrow": "Registration",
         "subtitle": "Create a new account to forge yourself.",
         "title": "Register"
+      }
+    },
+    "table": {
+      "exercise": {
+        "columns": {
+          "bodyPart": {
+            "label": "Target"
+          },
+          "description": {
+            "label": "Protocol Details"
+          },
+          "difficulty": {
+            "label": "Intensity"
+          },
+          "id": {
+            "label": "ID"
+          },
+          "imageUrl": {
+            "label": "Preview"
+          },
+          "name": {
+            "label": "Exercise Name"
+          },
+          "updatedAt": {
+            "label": "Last Update"
+          }
+        }
       }
     }
   }
