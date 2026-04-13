@@ -26,6 +26,11 @@
   "forgot_password": "Forgot Password",
   "goals": "goals",
   "initializeAccess": "Initialize Access",
+  "languages": {
+    "english": "English",
+    "polish": "Polish",
+    "spanish": "Spanish"
+  },
   "launch": "Launch",
   "launchedWorkouts": "Launched Workouts",
   "library": "library",
@@ -49,7 +54,8 @@
   "pts": "pts",
   "register": "Register",
   "satisfiedClients": "Satisfied Clients",
-  "select_your_language": "Select your language",
+  "selectYourLanguage": "Select your language",
+  "settings": "settings",
   "slogan": {
     "focus": "Focus",
     "progress": "Progress",

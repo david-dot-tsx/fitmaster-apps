@@ -11,7 +11,7 @@ interface Resources {
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
     "continue": "Continue",
-    "currentTrainings": "currentTrainings",
+    "currentTrainings": "Current trainings",
     "day": "day",
     "day_one": "day",
     "day_other": "days",
@@ -25,11 +25,16 @@ interface Resources {
       "initializeTransformation": "Initialize Transformation",
       "protocol": "Protocol"
     },
-    "finishedTrainings": "finishedTrainings",
+    "finishedTrainings": "Finished trainings",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
+    "languages": {
+      "english": "languages.english",
+      "polish": "languages.polish",
+      "spanish": "languages.spanish"
+    },
     "launch": "Launch",
     "launchedWorkouts": "Launched Workouts",
     "library": "library",
@@ -53,7 +58,8 @@ interface Resources {
     "pts": "pts",
     "register": "Register",
     "satisfiedClients": "Satisfied Clients",
-    "select_your_language": "Select your language",
+    "selectYourLanguage": "selectYourLanguage",
+    "settings": "settings",
     "slogan": {
       "focus": "Focus",
       "progress": "Progress",

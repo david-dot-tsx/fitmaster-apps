@@ -78,9 +78,13 @@ export const Profile = ({
             <FoldableText text={profile?.customerProfile.goal ?? "—"} />
           </Section>
           {/* //TODO: add current trainings */}
-          <Section title={t("currentTrainings")}>—</Section>
+          <Section title={t("currentTrainings")}>
+            <Text>—</Text>
+          </Section>
           {/* //TODO: add finished trainings */}
-          <Section title={t("finishedTrainings")}>—</Section>
+          <Section title={t("finishedTrainings")}>
+            <Text>—</Text>
+          </Section>
         </VStack>
       </ScrollView>
       <SettingsSheet isOpen={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
