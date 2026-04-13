@@ -6,6 +6,11 @@
         "onboarding": "Finish setting up your profile to unlock your plan."
       }
     },
+    "chat": {
+      "description": "Ask professionals",
+      "subtitle": "Connect with professionals and share your progress.",
+      "title": "Chat"
+    },
     "leaderboard": {
       "description": "Compete",
       "subtitle": "See who leads and where you rank.",

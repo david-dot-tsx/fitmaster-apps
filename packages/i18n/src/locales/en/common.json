@@ -6,6 +6,7 @@
   "bio": "bio",
   "browseTrainingsToGetStarted": "Browse trainings to get started!",
   "capabilities": "Capabilities",
+  "chatIsComingSoon": "Chat is coming soon.",
   "continue": "Continue",
   "currentTrainings": "Current trainings",
   "day": "day",
@@ -72,5 +73,6 @@
   "visualAssets": "Visual Assets",
   "yo": "yo",
   "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
-  "yourPosition": "Your Position"
+  "yourPosition": "Your Position",
+  "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "You will be able to message and discuss trainings with professionals here."
 }

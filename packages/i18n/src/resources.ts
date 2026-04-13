@@ -10,6 +10,7 @@ interface Resources {
     "bio": "bio",
     "browseTrainingsToGetStarted": "Browse trainings to get started!",
     "capabilities": "Capabilities",
+    "chatIsComingSoon": "chatIsComingSoon",
     "continue": "Continue",
     "currentTrainings": "Current trainings",
     "day": "day",
@@ -31,9 +32,9 @@ interface Resources {
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "languages": {
-      "english": "languages.english",
-      "polish": "languages.polish",
-      "spanish": "languages.spanish"
+      "english": "English",
+      "polish": "Polish",
+      "spanish": "Spanish"
     },
     "launch": "Launch",
     "launchedWorkouts": "Launched Workouts",
@@ -58,7 +59,7 @@ interface Resources {
     "pts": "pts",
     "register": "Register",
     "satisfiedClients": "Satisfied Clients",
-    "selectYourLanguage": "selectYourLanguage",
+    "selectYourLanguage": "Select your language",
     "settings": "settings",
     "slogan": {
       "focus": "Focus",
@@ -76,6 +77,7 @@ interface Resources {
     "visualAssets": "Visual Assets",
     "yo": "yo",
     "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
+    "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere",
     "yourPosition": "Your Position"
   },
   "mobile": {
@@ -85,6 +87,11 @@ interface Resources {
           "login": "Sign in to continue your training journey.",
           "onboarding": "Finish setting up your profile to unlock your plan."
         }
+      },
+      "chat": {
+        "description": "mobile:screens.chat.description",
+        "subtitle": "mobile:screens.chat.subtitle",
+        "title": "mobile:screens.chat.title"
       },
       "leaderboard": {
         "description": "Compete",
