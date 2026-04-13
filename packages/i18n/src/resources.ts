@@ -51,8 +51,8 @@ interface Resources {
         "session": {
           "new": {
             "failed": {
-              "description": "errors.training.session.new.failed.description",
-              "title": "errors.training.session.new.failed.title"
+              "description": "Please try again later.",
+              "title": "Failed to join training"
             }
           }
         }
@@ -76,11 +76,12 @@ interface Resources {
     "focus": "focus",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "getBackToMainScreen": "Get back to main screen",
     "goToTrainingDetails": "Go to training details",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
-    "joinTraining": "joinTraining",
+    "joinTraining": "Join training",
     "languages": {
       "english": "English",
       "polish": "Polish",
@@ -129,6 +130,7 @@ interface Resources {
     "startExercise": "Start exercise",
     "startTraining": "Start training",
     "startTrainingDay": "Start training day",
+    "stats": "stats",
     "system": "System",
     "tacticalProgramming": {
       "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
@@ -141,6 +143,7 @@ interface Resources {
         "warmUp": "Warm Up"
       }
     },
+    "trainingFinished": "Training finished",
     "traits": "traits",
     "tryAgain": "Try again",
     "units": {
@@ -148,7 +151,7 @@ interface Resources {
       "meters": "m",
       "reps": "x",
       "seconds": "s",
-      "xp": "units.xp"
+      "xp": "xp"
     },
     "viewAllExercises": "View All Exercises",
     "viewProtocol": "View Protocol",

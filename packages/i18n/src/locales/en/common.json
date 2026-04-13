@@ -72,6 +72,7 @@
   "focus": "focus",
   "forgeYour": "Forge your",
   "forgot_password": "Forgot Password",
+  "getBackToMainScreen": "Get back to main screen",
   "goals": "goals",
   "goToTrainingDetails": "Go to training details",
   "initializeAccess": "Initialize Access",
@@ -125,6 +126,7 @@
   "startExercise": "Start exercise",
   "startTraining": "Start training",
   "startTrainingDay": "Start training day",
+  "stats": "stats",
   "system": "System",
   "tacticalProgramming": {
     "description": "Access pro-level training protocols designed for maximum hyper-trophy and structural integrity.",
@@ -137,6 +139,7 @@
       "warmUp": "Warm Up"
     }
   },
+  "trainingFinished": "Training finished",
   "traits": "traits",
   "tryAgain": "Try again",
   "units": {
