@@ -3,9 +3,11 @@ import Image from "next/image";
 import { Github, Globe, ShieldCheck } from "lucide-react";
 
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
-export const Footer = ({ className }: { className?: string }) => {
+export const Footer = async ({ className }: { className?: string }) => {
   const currentYear = new Date().getFullYear();
+  const { t } = await getServerTranslations();
 
   return (
     <footer className={cn("relative mt-auto w-full px-8 pb-8 pt-12 md:px-16", className)}>
@@ -25,7 +27,7 @@ export const Footer = ({ className }: { className?: string }) => {
 
           <div className="flex flex-col">
             <p className="text-[10px] font-black uppercase tracking-widest text-zinc-500">
-              © {currentYear} Training System
+              © {currentYear} {t("web:layout.footer.copyright")}
             </p>
             <Link
               href="https://github.com/david-dot-tsx"
@@ -34,7 +36,7 @@ export const Footer = ({ className }: { className?: string }) => {
             >
               <Github className="size-3" />
               <span>
-                Developed by{" "}
+                {t("web:layout.footer.developedBy")}{" "}
                 <span className="text-zinc-400 transition-colors group-hover:text-amber-400">
                   david-dot-tsx
                 </span>
@@ -45,18 +47,18 @@ export const Footer = ({ className }: { className?: string }) => {
 
         <div className="flex items-center gap-8">
           <FooterLink href="#" icon={<ShieldCheck className="size-3" />}>
-            Privacy
+            {t("web:layout.footer.privacy")}
           </FooterLink>
           <FooterLink href="#" icon={<Globe className="size-3" />}>
-            Terms
+            {t("web:layout.footer.terms")}
           </FooterLink>
           <FooterLink
-            href="#"
+            href="https://github.com/david-dot-tsx"
             icon={
               <div className="size-1 rounded-full bg-amber-400 shadow-[0_0_5px_rgba(251,191,36,0.5)]" />
             }
           >
-            Contact
+            {t("web:layout.footer.contact")}
           </FooterLink>
         </div>
       </div>

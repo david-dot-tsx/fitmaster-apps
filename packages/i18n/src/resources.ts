@@ -37,7 +37,7 @@ interface Resources {
       }
     },
     "error": "error",
-    "errorCode": "errorCode",
+    "errorCode": "Error code",
     "errors": {
       "exercise": {
         "finish": {
@@ -80,7 +80,7 @@ interface Resources {
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
-    "goToMainPage": "goToMainPage",
+    "goToMainPage": "Go to main page",
     "goToTrainingDetails": "Go to training details",
     "goal": "Goal",
     "goals": "goals",
@@ -130,12 +130,12 @@ interface Resources {
         "your": "Your"
       }
     },
-    "somethingWentWrong": "somethingWentWrong",
+    "somethingWentWrong": "Something went wrong",
     "startExercise": "Start exercise",
     "startTraining": "Start training",
     "startTrainingDay": "Start training day",
     "stats": "stats",
-    "system": "system",
+    "system": "System",
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
     "training": {
@@ -302,6 +302,22 @@ interface Resources {
     }
   },
   "web": {
+    "layout": {
+      "footer": {
+        "contact": "web:layout.footer.contact",
+        "copyright": "web:layout.footer.copyright",
+        "developedBy": "web:layout.footer.developedBy",
+        "privacy": "web:layout.footer.privacy",
+        "terms": "web:layout.footer.terms"
+      },
+      "navbar": {
+        "links": {
+          "dashboard": "Dashboard",
+          "exercises": "Exercises",
+          "trainings": "Trainings"
+        }
+      }
+    },
     "pages": {
       "landing": {
         "mainContent": {

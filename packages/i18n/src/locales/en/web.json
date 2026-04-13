@@ -1,4 +1,20 @@
 {
+  "layout": {
+    "footer": {
+      "contact": "Contact",
+      "copyright": "Copyright",
+      "developedBy": "Developed by",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "navbar": {
+      "links": {
+        "dashboard": "Dashboard",
+        "exercises": "Exercises",
+        "trainings": "Trainings"
+      }
+    }
+  },
   "pages": {
     "landing": {
       "mainContent": {

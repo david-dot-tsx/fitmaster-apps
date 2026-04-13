@@ -6,16 +6,18 @@ import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
 import { LocaleSwitch } from "@/components/locale-switch";
 import { NavLink } from "@/components/layout/navbar/nav-link";
 import { getSessionUser } from "@/lib/session-user";
+import { getServerTranslations } from "@/lib/i18n/server";
 
 export const Navbar = async () => {
   const sessionUser = await getSessionUser();
+  const { t } = await getServerTranslations();
 
   const navLinks = [
     ...(sessionUser.isStaff
       ? [
-          { href: "/dashboard", label: "Dashboard" },
-          { href: "/dashboard/training", label: "Trainings" },
-          { href: "/dashboard/exercise", label: "Exercises" },
+          { href: "/dashboard", label: t("web:layout.navbar.links.dashboard") },
+          { href: "/dashboard/training", label: t("web:layout.navbar.links.trainings") },
+          { href: "/dashboard/exercise", label: t("web:layout.navbar.links.exercises") },
         ]
       : []),
   ];
