@@ -5,6 +5,12 @@
         "login": "Sign in to continue your training journey.",
         "onboarding": "Finish setting up your profile to unlock your plan."
       }
+    },
+    "login": {
+      "credentials": "Credentials",
+      "description": "Account",
+      "subtitle": "Welcome back. Sign in to continue.",
+      "title": "Login"
     }
   }
 }

@@ -20,7 +20,7 @@ import { Section } from "@/components/ui/section";
 
 export const LoginScreen = () => {
   const { login, loginStatus } = useAuthContext();
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
     defaultValues: {
@@ -33,9 +33,9 @@ export const LoginScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: t("login"),
-        description: "Account",
-        subtitle: "Welcome back. Sign in to continue.",
+        title: t("mobile:screens.login.title"),
+        description: t("mobile:screens.login.description"), //"Account",
+        subtitle: t("mobile:screens.login.subtitle"), //"Welcome back. Sign in to continue.",
         icon: LogIn,
       }}
     >
@@ -50,13 +50,13 @@ export const LoginScreen = () => {
           contentContainerStyle={{ flexGrow: 1, paddingBottom: 40, paddingTop: 8 }}
         >
           <VStack className="gap-6 px-4">
-            <Section title="Credentials">
+            <Section title={t("mobile:screens.login.credentials")}>
               <VStack className="gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
                 <FormProvider {...methods}>
                   <FormInput
                     name="email"
-                    label="Email"
-                    placeholder="Email Address"
+                    label={t("email")}
+                    placeholder={t("emailAddress")}
                     textContentType="emailAddress"
                     keyboardType="email-address"
                   />
@@ -68,7 +68,7 @@ export const LoginScreen = () => {
                     textContentType="password"
                   />
                   <Button action="primary" onPress={methods.handleSubmit(login)}>
-                    <ButtonText className="font-semibold text-zinc-950">Login</ButtonText>
+                    <ButtonText className="font-semibold text-zinc-950">{t("login")}</ButtonText>
                   </Button>
                 </FormProvider>
               </VStack>

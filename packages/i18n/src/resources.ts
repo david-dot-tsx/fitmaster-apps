@@ -9,6 +9,7 @@ interface Resources {
     "capabilities": "Capabilities",
     "continue": "Continue",
     "email": "Email",
+    "emailAddress": "emailAddress",
     "finalCta": {
       "commitToThe": "Commit to the",
       "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
@@ -62,6 +63,12 @@ interface Resources {
           "login": "Sign in to continue your training journey.",
           "onboarding": "Finish setting up your profile to unlock your plan."
         }
+      },
+      "login": {
+        "credentials": "mobile:screens.login.credentials",
+        "description": "mobile:screens.login.description",
+        "subtitle": "mobile:screens.login.subtitle",
+        "title": "mobile:screens.login.title"
       }
     }
   }
