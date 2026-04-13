@@ -93,7 +93,7 @@ interface Resources {
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
     "goToTrainingDetails": "Go to training details",
-    "goal": "goal",
+    "goal": "Goal",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
@@ -229,6 +229,9 @@ interface Resources {
             "placeholder": "Tell others a little about yourself… 😊",
             "title": "About you"
           },
+          "birthDate": {
+            "title": "mobile:screens.onboarding.steps.birthDate.title"
+          },
           "introduction": {
             "title": "Introduce yourself"
           },
@@ -236,8 +239,8 @@ interface Resources {
             "title": "Profile Image"
           },
           "workoutGoals": {
-            "placeholder": "mobile:screens.onboarding.steps.workoutGoals.placeholder",
-            "title": "mobile:screens.onboarding.steps.workoutGoals.title"
+            "placeholder": "What is your fitness goal? (e.g. lose weight, gain muscle, etc.)",
+            "title": "Workout Goals"
           }
         },
         "subtitle": "Tell us about you so we can personalize your training.",

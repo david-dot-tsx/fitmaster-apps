@@ -39,6 +39,9 @@
           "placeholder": "Tell others a little about yourself… 😊",
           "title": "About you"
         },
+        "birthDate": {
+          "title": "Your date of birth"
+        },
         "introduction": {
           "title": "Introduce yourself"
         },
