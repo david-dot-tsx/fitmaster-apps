@@ -24,6 +24,13 @@
   "duration": "duration",
   "email": "Email",
   "emailAddress": "Email Address",
+  "enums": {
+    "gender": {
+      "female": "female",
+      "male": "male",
+      "other": "other"
+    }
+  },
   "error": "error",
   "errors": {
     "exercise": {
@@ -69,20 +76,24 @@
     "protocol": "Protocol"
   },
   "finishedTrainings": "Finished trainings",
+  "firstName": "First Name",
   "focus": "focus",
   "forgeYour": "Forge your",
   "forgot_password": "Forgot Password",
+  "gender": "gender",
   "getBackToMainScreen": "Get back to main screen",
   "goals": "goals",
   "goToTrainingDetails": "Go to training details",
   "initializeAccess": "Initialize Access",
   "intensity": "intensity",
+  "introduceYourself": "Introduce yourself",
   "joinTraining": "Join training",
   "languages": {
     "english": "English",
     "polish": "Polish",
     "spanish": "Spanish"
   },
+  "lastName": "Last Name",
   "launch": "Launch",
   "launchedWorkouts": "Launched Workouts",
   "library": "library",
@@ -95,13 +106,14 @@
     "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
     "title": "Mobile Integration"
   },
+  "nickname": "nickname",
   "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
   "noExercisesAddedYet": "No exercises added yet.",
   "noLeaderboardEntriesYet": "No leaderboard entries yet.",
   "noTrainingsPublishedYet": "No trainings published yet.",
   "password": "Password",
   "password_confirmation": "Password Confirmation",
-  "passwordConfirmation": "passwordConfirmation",
+  "passwordConfirmation": "Password Confirmation",
   "pending": "pending",
   "pleaseCheckBackSoon": "Please check back soon.",
   "precisionAnalytics": {

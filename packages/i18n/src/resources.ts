@@ -28,6 +28,13 @@ interface Resources {
     "duration": "duration",
     "email": "Email",
     "emailAddress": "Email Address",
+    "enums": {
+      "gender": {
+        "female": "common:enums.gender.female",
+        "male": "common:enums.gender.male",
+        "other": "common:enums.gender.other"
+      }
+    },
     "error": "error",
     "errors": {
       "exercise": {
@@ -73,20 +80,24 @@ interface Resources {
       "protocol": "Protocol"
     },
     "finishedTrainings": "Finished trainings",
+    "firstName": "First Name",
     "focus": "focus",
     "forgeYour": "Forge your",
     "forgot_password": "Forgot Password",
+    "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
     "goToTrainingDetails": "Go to training details",
     "goals": "goals",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
+    "introduceYourself": "Introduce yourself",
     "joinTraining": "Join training",
     "languages": {
       "english": "English",
       "polish": "Polish",
       "spanish": "Spanish"
     },
+    "lastName": "Last Name",
     "launch": "Launch",
     "launchedWorkouts": "Launched Workouts",
     "library": "library",
@@ -99,12 +110,13 @@ interface Resources {
       "description": "Your entire workout sequence delivered via our dedicated mobile interface. Real-time guidance, anywhere.",
       "title": "Mobile Integration"
     },
-    "noDescriptionProvidedForThisExercise": "noDescriptionProvidedForThisExercise",
+    "nickname": "nickname",
+    "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
     "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
     "noTrainingsPublishedYet": "No trainings published yet.",
     "password": "Password",
-    "passwordConfirmation": "passwordConfirmation",
+    "passwordConfirmation": "Password Confirmation",
     "password_confirmation": "Password Confirmation",
     "pending": "pending",
     "pleaseCheckBackSoon": "Please check back soon.",
@@ -120,8 +132,8 @@ interface Resources {
     "satisfiedClients": "Satisfied Clients",
     "selectYourLanguage": "Select your language",
     "settings": "settings",
-    "showLess": "showLess",
-    "showMore": "showMore",
+    "showLess": "show less",
+    "showMore": "show more",
     "skipped": "skipped",
     "slogan": {
       "focus": "Focus",
@@ -180,9 +192,9 @@ interface Resources {
         "title": "Chat"
       },
       "exerciseDetails": {
-        "description": "mobile:screens.exerciseDetails.description",
-        "subtitle": "mobile:screens.exerciseDetails.subtitle",
-        "title": "mobile:screens.exerciseDetails.title"
+        "description": "Exercise library",
+        "subtitle": "Technique, traits, and difficulty.",
+        "title": "Exercise details"
       },
       "leaderboard": {
         "description": "Compete",
