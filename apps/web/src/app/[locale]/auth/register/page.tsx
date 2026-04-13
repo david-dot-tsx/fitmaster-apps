@@ -17,7 +17,7 @@ import { FormInput } from "@/components/form/form-input";
 
 export default function RegisterPage() {
   const trpc = useTRPC();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS]);
+  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS, NAMESPACES.WEB]);
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
@@ -44,8 +44,12 @@ export default function RegisterPage() {
   );
 
   return (
-    <PageWrapper title={t("register")} subtitle={"Initialize new operative profile"}>
-      <div className="group m-auto max-w-xs">
+    <PageWrapper
+      title={t("web:pages.register.title")}
+      subtitle={t("web:pages.register.subtitle")}
+      eyebrow={t("web:pages.register.eyebrow")}
+    >
+      <div className="group m-auto max-w-md">
         <Card className="relative overflow-hidden border-zinc-900 bg-zinc-950/50 backdrop-blur-md transition-all duration-700 ease-out group-hover:border-amber-400/30 group-hover:shadow-[0_0_50px_rgba(251,191,36,0.05)]">
           <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -60,7 +64,7 @@ export default function RegisterPage() {
           <CardContent>
             <FormProvider {...methods}>
               <form
-                className="flex flex-col gap-5"
+                className="flex flex-col gap-6 px-8"
                 onSubmit={methods.handleSubmit((data) => registerMutation.mutate(data))}
               >
                 <div className="space-y-4">
@@ -78,7 +82,7 @@ export default function RegisterPage() {
                   />
                   <FormInput
                     name="passwordConfirmation"
-                    label={t("password_confirmation")}
+                    label={t("passwordConfirmation")}
                     type="password"
                     className="border-zinc-800 bg-zinc-900/50 text-zinc-100 transition-all focus:border-amber-400/50"
                   />
@@ -89,7 +93,7 @@ export default function RegisterPage() {
                   disabled={registerMutation.isPending}
                   className="relative mt-4 w-full overflow-hidden rounded-none border-t border-amber-400/20 bg-zinc-900 py-6 font-black uppercase tracking-widest text-zinc-400 transition-all duration-300 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] disabled:opacity-20"
                 >
-                  {registerMutation.isPending ? "Processing..." : "Initialize Transformation"}
+                  {registerMutation.isPending ? `${t("processing")}...` : t("register")}
                 </Button>
               </form>
             </FormProvider>
@@ -99,7 +103,7 @@ export default function RegisterPage() {
                 href="/auth/login"
                 className="text-xs uppercase tracking-widest text-zinc-500 transition-colors hover:text-zinc-300"
               >
-                Existing profile? Log in
+                {t("web:pages.register.existingProfileLogIn")}
               </Link>
 
               <div className="mt-2 flex gap-1">

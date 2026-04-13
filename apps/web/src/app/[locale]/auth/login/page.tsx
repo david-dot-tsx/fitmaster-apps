@@ -63,7 +63,7 @@ export default function LoginPage() {
       subtitle={t("web:pages.login.subtitle")}
       eyebrow={t("web:pages.login.eyebrow")}
     >
-      <div className="group m-auto max-w-xs">
+      <div className="group m-auto max-w-md">
         <Card className="relative overflow-hidden border-zinc-900 bg-zinc-950/50 backdrop-blur-md transition-all duration-700 ease-out group-hover:border-amber-400/30 group-hover:shadow-[0_0_50px_rgba(251,191,36,0.05)]">
           <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-amber-400/50 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
@@ -78,7 +78,7 @@ export default function LoginPage() {
           <CardContent>
             <FormProvider {...methods}>
               <form
-                className="flex flex-col gap-5"
+                className="flex flex-col gap-6 px-8"
                 onSubmit={methods.handleSubmit((data) => loginMutation.mutate(data))}
               >
                 <div className="space-y-4">
@@ -100,7 +100,7 @@ export default function LoginPage() {
                   disabled={loginMutation.isPending}
                   className="relative mt-4 w-full overflow-hidden rounded-none border-t border-amber-400/20 bg-zinc-900 py-6 font-black uppercase tracking-widest text-zinc-400 transition-all duration-300 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] disabled:opacity-20"
                 >
-                  {loginMutation.isPending ? `${t("authenticating")}...` : t("login")}
+                  {loginMutation.isPending ? `${t("processing")}...` : t("login")}
                 </Button>
               </form>
             </FormProvider>
@@ -118,6 +118,11 @@ export default function LoginPage() {
               >
                 {t("forgotPassword")}
               </Link>
+              <div className="mt-2 flex gap-1">
+                <div className="h-1 w-8 bg-amber-400/20" />
+                <div className="h-1 w-2 bg-amber-400/40" />
+                <div className="size-1 bg-amber-400/60" />
+              </div>
             </div>
           </CardContent>
         </Card>

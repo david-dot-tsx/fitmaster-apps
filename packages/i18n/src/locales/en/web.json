@@ -89,6 +89,12 @@
       "eyebrow": "Authentication",
       "subtitle": "Verify credentials to forge yourself.",
       "title": "Login"
+    },
+    "register": {
+      "existingProfileLogIn": "Existing profile? Log in",
+      "eyebrow": "Registration",
+      "subtitle": "Create a new account to forge yourself.",
+      "title": "Register"
     }
   }
 }

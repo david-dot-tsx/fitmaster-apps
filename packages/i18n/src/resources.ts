@@ -6,7 +6,6 @@ interface Resources {
     "about": "about",
     "active": "active",
     "adjustPhoto": "Adjust photo",
-    "authenticating": "authenticating",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "Bio",
     "block": "block",
@@ -112,10 +111,10 @@ interface Resources {
     "noTrainingsPublishedYet": "No trainings published yet.",
     "password": "Password",
     "passwordConfirmation": "Password Confirmation",
-    "password_confirmation": "Password Confirmation",
     "pending": "pending",
     "pinchToZoomDragToReposition": "Pinch to zoom · Drag to reposition",
     "pleaseCheckBackSoon": "Please check back soon.",
+    "processing": "processing",
     "profilePicture": "Profile Picture",
     "progress": "progress",
     "pts": "pts",
@@ -133,8 +132,8 @@ interface Resources {
         "strength": "Strength"
       },
       "main": {
-        "body": "slogan.main.body",
-        "forge": "Forge your",
+        "body": "Body",
+        "forge": "forge",
         "your": "Your"
       }
     },
@@ -399,7 +398,13 @@ interface Resources {
       "login": {
         "eyebrow": "Authentication",
         "subtitle": "Verify credentials to forge yourself.",
-        "title": "System Login"
+        "title": "Login"
+      },
+      "register": {
+        "existingProfileLogIn": "web:pages.register.existingProfileLogIn",
+        "eyebrow": "Registration",
+        "subtitle": "Create a new account to forge yourself.",
+        "title": "Register"
       }
     }
   }
