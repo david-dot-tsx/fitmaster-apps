@@ -36,13 +36,14 @@ export async function initI18nInstance({
   }
 
   instance.use(
-    resourcesToBackend((language: Locale, namespace: WebNamespaces) =>
-      resourcesToBackendPaths(language)[namespace](),
-    ),
+    resourcesToBackend((language: Locale, namespace: WebNamespaces) => {
+      return resourcesToBackendPaths(language)[namespace]();
+    }),
   );
 
   await instance.init({
     ...initOptions,
+    ns: [...initOptions.ns, NAMESPACES.WEB],
     defaultNS: NAMESPACES.COMMON,
     lng: locale,
   });
