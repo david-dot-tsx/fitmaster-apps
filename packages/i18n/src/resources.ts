@@ -95,6 +95,7 @@ interface Resources {
     "goToTrainingDetails": "Go to training details",
     "goal": "Goal",
     "goals": "goals",
+    "height": "height",
     "initializeAccess": "Initialize Access",
     "intensity": "intensity",
     "joinTraining": "Join training",
@@ -170,6 +171,7 @@ interface Resources {
     "traits": "traits",
     "tryAgain": "Try again",
     "units": {
+      "cm": "units.cm",
       "kg": "kg",
       "meters": "m",
       "reps": "x",
@@ -230,7 +232,10 @@ interface Resources {
             "title": "About you"
           },
           "birthDate": {
-            "title": "mobile:screens.onboarding.steps.birthDate.title"
+            "title": "Your date of birth"
+          },
+          "bodyMeasurements": {
+            "title": "mobile:screens.onboarding.steps.bodyMeasurements.title"
           },
           "introduction": {
             "title": "Introduce yourself"

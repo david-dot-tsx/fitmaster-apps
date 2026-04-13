@@ -42,6 +42,9 @@
         "birthDate": {
           "title": "Your date of birth"
         },
+        "bodyMeasurements": {
+          "title": "Your body measurements"
+        },
         "introduction": {
           "title": "Introduce yourself"
         },
