@@ -1,53 +1,195 @@
 {
-  "accessToPersonalizedTrainingProtocols": "",
-  "activeUsers": "",
-  "availableModules": "",
-  "capabilities": "",
-  "continue": "",
+  "active": "activo",
+  "adjustPhoto": "Ajustar foto",
+  "appStore": "App Store",
+  "back": "Atrás",
+  "beTheFirstToScorePoints": "Sé el primero en ganar puntos.",
+  "bio": "Biografía",
+  "block": "bloquear",
+  "browseTrainingsToGetStarted": "¡Explora los entrenamientos para empezar!",
+  "cameraAccessNeededToTakePhoto": "Se requiere acceso a la cámara para tomar una foto.",
+  "cancel": "cancelar",
+  "chatIsComingSoon": "El chat estará disponible pronto.",
+  "chooseFromGallery": "Elegir de la galería",
+  "completed": "completado",
+  "completeExercise": "Finalizar ejercicio",
+  "confirm": "confirmar",
+  "confirmDelete": "Confirmar eliminación",
+  "continue": "Continuar",
+  "create": "crear",
+  "current": "actual",
+  "currentTrainings": "Entrenamientos actuales",
+  "day": "día",
+  "day_one": "día",
+  "day_many": "",
+  "day_other": "días",
+  "delete": "Eliminar",
+  "description": "descripción",
+  "distance": "distancia",
+  "done": "listo",
+  "duration": "duración",
+  "edit": "Editar",
   "email": "Correo electrónico",
-  "finalCta": {
-    "commitToThe": "",
-    "compatibleWithiOSAndAndroid": "",
-    "finalCTA": "",
-    "finalPhase": "",
-    "initializeTransformation": "",
-    "protocol": ""
+  "emailAddress": "Dirección de correo",
+  "enums": {
+    "gender": {
+      "female": "mujer",
+      "male": "hombre",
+      "other": "otro"
+    }
   },
-  "forgeYour": "",
-  "forgot_password": "",
-  "initializeAccess": "",
-  "launch": "",
-  "launchedWorkouts": "",
-  "library": "",
-  "limits": "",
-  "login": "Login",
+  "error": "error",
+  "errorCode": "Código de error",
+  "errors": {
+    "auth": {
+      "login": {
+        "failed": "Error al iniciar sesión. Compruebe sus credenciales e intente de nuevo."
+      }
+    },
+    "exercise": {
+      "finish": {
+        "failed": {
+          "description": "Por favor, inténtelo de nuevo.",
+          "title": "Error al finalizar el ejercicio"
+        }
+      },
+      "start": {
+        "failed": {
+          "description": "Por favor, inténtelo más tarde.",
+          "title": "Error al iniciar el ejercicio"
+        }
+      }
+    },
+    "generic": {
+      "description": "Ocurrió un error al cargar este contenido. Por favor, inténtelo de nuevo."
+    },
+    "training": {
+      "session": {
+        "new": {
+          "failed": {
+            "description": "Por favor, inténtelo más tarde.",
+            "title": "Error al unirse al entrenamiento"
+          }
+        }
+      }
+    }
+  },
+  "exercise_one": "ejercicio",
+  "exercise_many": "",
+  "exercise_other": "ejercicios",
+  "exerciseInThisSession": "Ejercicio en esta sesión",
+  "exercises": "ejercicios",
+  "exercises_one": "ejercicio",
+  "exercises_many": "",
+  "exercises_other": "ejercicios",
+  "exercisesCount_one": "{{count}} ejercicio",
+  "exercisesCount_many": "",
+  "exercisesCount_other": "{{count}} ejercicios",
+  "expiring": "Caduca",
+  "finishedTrainings": "Entrenamientos finalizados",
+  "firstName": "Nombre",
+  "focus": "enfoque",
+  "forgot_password": "Contraseña olvidada",
+  "forgotPassword": "¿Olvidaste tu contraseña?",
+  "galleryAccessNeededToPickPhoto": "Se requiere acceso a la galería para elegir una foto.",
+  "gender": "género",
+  "getBackToMainScreen": "Volver a la pantalla principal",
+  "goal": "Objetivo",
+  "goals": "objetivos",
+  "googlePlay": "Google Play",
+  "goToMainPage": "Ir a la página principal",
+  "goToTrainingDetails": "Ir a detalles del entrenamiento",
+  "height": "Altura",
+  "initializeRegistration": "Iniciar registro",
+  "intensity": "intensidad",
+  "joinTraining": "Unirse al entrenamiento",
+  "languages": {
+    "english": "Inglés",
+    "polish": "Polaco",
+    "spanish": "Español"
+  },
+  "lastName": "Apellido",
+  "launch": "Lanzar",
+  "loading": "Cargando",
+  "login": "Iniciar sesión",
   "logout": "Cerrar sesión",
-  "mobileAppAvailableNow": "",
-  "mobileIntegration": {
-    "description": "",
-    "title": ""
-  },
+  "main": "principal",
+  "nickname": "apodo",
+  "noDataFound": "No se encontraron datos.",
+  "noDescriptionProvidedForThisExercise": "No se proporcionó descripción para este ejercicio.",
+  "noExercisesAddedYet": "Aún no se han añadido ejercicios.",
+  "noLeaderboardEntriesYet": "Aún no hay entradas en la tabla de clasificación.",
+  "noTrainingsPublishedYet": "Aún no hay entrenamientos publicados.",
   "password": "Contraseña",
-  "password_confirmation": "Confirmación de contraseña",
-  "precisionAnalytics": {
-    "description": "",
-    "title": ""
-  },
-  "preview": "",
+  "passwordConfirmation": "Confirmar contraseña",
+  "pending": "pendiente",
+  "pinchToZoomDragToReposition": "Pellizca para ampliar · Arrastra para reposicionar",
+  "pleaseCheckBackSoon": "Por favor, vuelve pronto.",
+  "processing": "procesando",
+  "profilePicture": "Foto de perfil",
+  "progress": "progreso",
+  "pts": "pts",
+  "published": "Publicado",
+  "quickScan": "Escaneo rápido",
   "register": "Registrarse",
-  "satisfiedClients": "",
-  "select_your_language": "",
+  "reps": "reps",
+  "selectYourLanguage": "Selecciona tu idioma",
+  "settings": "ajustes",
+  "showLess": "mostrar menos",
+  "showMore": "mostrar más",
+  "skipped": "omitido",
   "slogan": {
-    "focus": "",
-    "progress": "",
-    "strength": ""
+    "keywords": {
+      "focus": "Enfoque",
+      "progress": "Progreso",
+      "strength": "Fuerza"
+    },
+    "main": {
+      "body": "Cuerpo",
+      "forge": "forja",
+      "your": "Tu"
+    }
   },
-  "system": "",
-  "tacticalProgramming": {
-    "description": "",
-    "title": ""
+  "somethingWentWrong": "Algo salió mal",
+  "startExercise": "Empezar ejercicio",
+  "startTraining": "Empezar entrenamiento",
+  "startTrainingDay": "Empezar día de entrenamiento",
+  "stats": "estadísticas",
+  "success": {
+    "generic": {
+      "description": "Operación completada con éxito."
+    }
   },
-  "viewAllExercises": "",
-  "viewProtocol": "",
-  "visualAssets": ""
+  "system": "Sistema",
+  "takePhoto": "Tomar foto",
+  "tapToSetPhoto": "Toca para establecer foto",
+  "thisFeatureIsTemporarilyUnavailable": "Esta función no está disponible temporalmente",
+  "training": {
+    "block": {
+      "coolDown": "Enfriamiento",
+      "mainWorkout": "Entrenamiento principal",
+      "warmUp": "Calentamiento"
+    }
+  },
+  "trainingFinished": "Entrenamiento finalizado",
+  "traits": "rasgos",
+  "tryAgain": "Intentar de nuevo",
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "meters": "m",
+    "reps": "x",
+    "seconds": "s",
+    "xp": "xp"
+  },
+  "unpublished": "No publicado",
+  "update": "actualizar",
+  "volume": "volumen",
+  "warmup": "calentamiento",
+  "weight": "Peso",
+  "weightUsage": "Uso de peso",
+  "yo": "años",
+  "youHaveNotJoinedAnyTrainingsYet": "Aún no te has unido a ningún entrenamiento.",
+  "yourPosition": "Tu posición",
+  "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "Aquí podrás enviar mensajes y discutir los entrenamientos con profesionales."
 }

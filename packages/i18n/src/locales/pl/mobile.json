@@ -2,8 +2,135 @@
   "screens": {
     "bootstrap": {
       "phaseCta": {
-        "login": "",
-        "onboarding": ""
+        "login": "Zaloguj się, aby kontynuować swoją podróż treningową.",
+        "onboarding": "Dokończ konfigurację profilu, aby odblokować swój plan."
+      }
+    },
+    "chat": {
+      "description": "Zapytaj ekspertów",
+      "subtitle": "Połącz się z profesjonalistami i udostępniaj swoje postępy.",
+      "title": "Czat"
+    },
+    "exerciseDetails": {
+      "description": "Biblioteka ćwiczeń",
+      "subtitle": "Technika, cechy i poziom trudności.",
+      "title": "Szczegóły ćwiczenia"
+    },
+    "leaderboard": {
+      "description": "Rywalizuj",
+      "subtitle": "Sprawdź, kto prowadzi i jaką zajmujesz pozycję.",
+      "title": "Ranking"
+    },
+    "login": {
+      "credentials": "Dane logowania",
+      "description": "Konto",
+      "subtitle": "Witaj z powrotem. Zaloguj się, aby kontynuować.",
+      "title": "Logowanie"
+    },
+    "main": {
+      "description": "Twoje centrum treningowe",
+      "subtitle": "Wróć do swoich aktywnych planów i sesji.",
+      "title": "Witaj"
+    },
+    "onboarding": {
+      "description": "Wdrożenie",
+      "steps": {
+        "bio": {
+          "placeholder": "Powiedz innym coś o sobie… 😊",
+          "title": "O Tobie"
+        },
+        "birthDate": {
+          "title": "Twoja data urodzenia"
+        },
+        "bodyMeasurements": {
+          "title": "Wymiary Twojego ciała"
+        },
+        "completed": {
+          "button": "Zaczynajmy",
+          "description": "Twój profil został utworzony. Czas rozpocząć Trenning",
+          "title": "Wszystko gotowe!"
+        },
+        "introduction": {
+          "title": "Przedstaw się"
+        },
+        "profileImage": {
+          "title": "Zdjęcie profilowe"
+        },
+        "workoutGoals": {
+          "placeholder": "Jaki jest Twój cel fitness? (np. redukcja wagi, budowa mięśni itp.)",
+          "title": "Cele treningowe"
+        }
+      },
+      "subtitle": "Opowiedz coś o sobie",
+      "title": "Konfiguracja profilu"
+    },
+    "profile": {
+      "loading": {
+        "myProfile": {
+          "description": "Profil",
+          "subtitle": "Ładowanie szczegółów mojego profilu...",
+          "title": "Mój Profil"
+        },
+        "userProfile": {
+          "description": "Profil",
+          "subtitle": "Ładowanie szczegółów profilu...",
+          "title": "Profil użytkownika"
+        }
+      },
+      "myProfile": {
+        "description": "Mój Profil",
+        "subtitle": "Szczegóły mojego profilu"
+      },
+      "userProfile": {
+        "description": "Profil",
+        "subtitle": "Szczegóły profilu użytkownika"
+      }
+    },
+    "register": {
+      "description": "Konto",
+      "subtitle": "Utwórz konto, aby rozpocząć treningi.",
+      "title": "Rejestracja"
+    },
+    "trainingDetails": {
+      "aboutTraining": "O treningu",
+      "description": "Odkrywaj",
+      "subtitle": "Szczegóły planu treningowego.",
+      "title": "Przegląd treningu"
+    },
+    "trainingList": {
+      "description": "Odkrywaj",
+      "subtitle": "Wybierz plan i rozpocznij kolejną sesję.",
+      "title": "Treningi"
+    },
+    "trainingSession": {
+      "description": "Twój plan treningowy",
+      "subtitle": "Dzisiejszy plan treningowy",
+      "title": "Dzisiaj"
+    },
+    "trainingSessionExercise": {
+      "description": "Sesja treningowa",
+      "subtitle": "Monitoruj czas i ukończ to ćwiczenie.",
+      "title": "Ćwiczenie"
+    }
+  },
+  "training": {
+    "sesssion": {
+      "card": {
+        "badge": {
+          "cancelled": "Anulowano",
+          "finished": "Zakończono",
+          "inProgress": "W toku",
+          "joined": "Dołączono",
+          "joinNow": "Dołącz teraz"
+        },
+        "subtitle": {
+          "awaitingToday": "Ukończ dzisiejszą sesję",
+          "cancelled": "Trening anulowany",
+          "completed": "Trening ukończony! Gratulacje!",
+          "completedToday": "Dzisiejsza sesja ukończona",
+          "joined": "Rozpocznij swój trening",
+          "notJoined": "Trening jest dostępny"
+        }
       }
     }
   }

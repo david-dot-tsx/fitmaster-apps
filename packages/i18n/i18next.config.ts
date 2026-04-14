@@ -3,11 +3,7 @@ import { LOCALES } from "./src/types/locales";
 import { NAMESPACES } from "./src/types/namespaces";
 
 export default defineConfig({
-  locales: [
-    LOCALES.EN,
-    // LOCALES.ES,
-    //  LOCALES.PL
-  ],
+  locales: [LOCALES.EN, LOCALES.ES, LOCALES.PL],
   extract: {
     input: [
       "../../apps/web/src/**/*.{js,jsx,ts,tsx}",

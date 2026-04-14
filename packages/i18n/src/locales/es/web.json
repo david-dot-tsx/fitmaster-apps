@@ -1,0 +1,419 @@
+{
+  "dialog": {
+    "delete": {
+      "description": {
+        "paragraph": "Esta acción es irreversible. Estás intentando eliminar permanentemente el siguiente registro:",
+        "warning": "ADVERTENCIA"
+      },
+      "titleTrans": "Eliminar entidad: <br/> <1>{{entityName}}</1>"
+    },
+    "exercise": {
+      "create": {
+        "button": "Crear Ejercicio",
+        "description": "Inserta los parámetros del nuevo ejercicio.",
+        "form": {
+          "bodyPart": {
+            "label": "Anatomía Objetivo"
+          },
+          "description": {
+            "label": "Detalles"
+          },
+          "difficulty": {
+            "label": "Nivel de Intensidad"
+          },
+          "exerciseName": {
+            "label": "Nombre del Ejercicio",
+            "placeholder": "ej. Press de Banca"
+          },
+          "imageUrl": {
+            "label": "Recurso Visual (URL)"
+          }
+        },
+        "title": {
+          "exercise": "Ejercicio",
+          "new": "Nuevo"
+        }
+      },
+      "edit": {
+        "description": "Edita los parámetros del ejercicio.",
+        "form": {
+          "bodyPart": {
+            "label": "Anatomía Objetivo"
+          },
+          "description": {
+            "label": "Detalles"
+          },
+          "difficulty": {
+            "label": "Nivel de Intensidad"
+          },
+          "exerciseName": {
+            "label": "Nombre del Ejercicio"
+          },
+          "imageUrl": {
+            "label": "Recurso Visual (URL)"
+          }
+        },
+        "title": {
+          "editExerciseTrans": "Editar Ejercicio: <br/> <1>{{exerciseName}}</1>"
+        }
+      }
+    },
+    "training": {
+      "create": {
+        "button": "Crear Entrenamiento",
+        "description": "Inserta los parámetros del nuevo entrenamiento.",
+        "form": {
+          "description": {
+            "label": "Detalles",
+            "placeholder": "Descripción del entrenamiento"
+          },
+          "imageUrl": {
+            "label": "Recurso Visual (URL)"
+          },
+          "name": {
+            "label": "Identidad del Entrenamiento",
+            "placeholder": "ej. Cardio II"
+          }
+        },
+        "title": {
+          "new": "Nuevo",
+          "training": "Entrenamiento"
+        }
+      },
+      "edit": {
+        "description": "Edita los parámetros del entrenamiento.",
+        "form": {
+          "description": {
+            "label": "Detalles",
+            "placeholder": "Descripción del entrenamiento"
+          },
+          "imageUrl": {
+            "label": "Recurso Visual (URL)"
+          },
+          "name": {
+            "label": "Identidad del Entrenamiento",
+            "placeholder": "ej. Cardio II"
+          }
+        },
+        "title": {
+          "editTrainingTrans": "Editar Entrenamiento: <br/> <1>{{trainingName}}</1>"
+        }
+      },
+      "updateStatus": {
+        "description": {
+          "availableActions": "Acciones disponibles tras el cambio de estado:",
+          "disabled": "Significa que el entrenamiento es visible pero los clientes no pueden iniciarlo.",
+          "draft": "Significa que el entrenamiento está en modo borrador, puede editarse y no es visible para los clientes.",
+          "hidden": "Significa que el entrenamiento es visible pero los clientes no pueden iniciarlo.",
+          "paragraphTrans": "¿Estás seguro de que quieres actualizar el estado del entrenamiento <1>{{trainingName}}</1> de <2>{{fromStatus}}</2> a <3>{{toStatus}}</3>?",
+          "published": "Significa que el entrenamiento está publicado y es visible para los clientes.",
+          "readyToPublish": "Significa que el entrenamiento está listo para ser publicado y es visible para los clientes."
+        },
+        "select": {
+          "ariaLabel": "Actualizar estado del entrenamiento",
+          "title": "Actualizar estado del entrenamiento"
+        }
+      }
+    },
+    "warning": {
+      "cancelButton": "Cancelar",
+      "confirmButton": "Confirmar",
+      "description": "Esta acción puede tener consecuencias no deseadas. Por favor, confirma para continuar.",
+      "title": "Advertencia"
+    }
+  },
+  "layout": {
+    "footer": {
+      "contact": "Contacto",
+      "copyright": "Copyright",
+      "developedBy": "Desarrollado por",
+      "privacy": "Privacidad",
+      "terms": "Términos"
+    },
+    "navbar": {
+      "links": {
+        "dashboard": "Panel",
+        "exercises": "Ejercicios",
+        "trainings": "Entrenamientos"
+      }
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "customer": {
+        "description": {
+          "downloadItBelowAndLogInToSyncYourData": "Descárgala a continuación e inicia sesión para sincronizar tus datos.",
+          "mobileApp": "Aplicación Móvil",
+          "toStartYourFirstSessionAndTrackYourProgress": "Para comenzar tu primera sesión y rastrear tu progreso, necesitarás nuestra"
+        },
+        "eyebrow": "Progreso Personal",
+        "getReadyForTraining": "Prepárate para entrenar",
+        "startYour": "Inicia tu",
+        "subtitle": "Rastrea tus métricas y sigue tus programas activos.",
+        "title": "Training Hub",
+        "workout": "Entrenamiento"
+      },
+      "staff": {
+        "cards": {
+          "analytics": {
+            "label": "Reportes",
+            "title": "Analítica"
+          },
+          "chat": {
+            "label": "Chat con usuarios",
+            "title": "Chat"
+          },
+          "exercises": {
+            "label": "Biblioteca",
+            "title": "Ejercicios"
+          },
+          "programs": {
+            "label": "Ver Entrenamientos",
+            "title": "Programas"
+          },
+          "settings": {
+            "label": "Ajustes de App",
+            "title": "Ajustes"
+          },
+          "users": {
+            "label": "Gestionar Usuarios",
+            "title": "Usuarios"
+          }
+        },
+        "eyebrow": "Insights Profesionales",
+        "sections": {
+          "newestTrainings": {
+            "title": {
+              "newest": "Nuevos",
+              "trainings": "Entrenamientos"
+            }
+          }
+        },
+        "subtitle": "Revisa el progreso del cliente y optimiza los protocolos de entrenamiento.",
+        "title": "Coach Console"
+      }
+    },
+    "exerciseDetail": {
+      "eyebrow": "Asset Management",
+      "noDescriptionProvidedForThisExercise": "No se ha proporcionado descripción para este ejercicio.",
+      "subtitle": "Ver los detalles de un ejercicio."
+    },
+    "exerciseList": {
+      "eyebrow": "Asset Management",
+      "subtitle": "Crea, edita y organiza movimientos dentro del sistema global.",
+      "title": "Ejercicios"
+    },
+    "landing": {
+      "mainContent": {
+        "subtitle": {
+          "availableModules": "Módulos Disponibles"
+        },
+        "title": {
+          "core": "Core",
+          "features": "Features"
+        }
+      },
+      "sections": {
+        "exercises": {
+          "header": {
+            "button": {
+              "viewAllExercises": "Ver todos los ejercicios"
+            },
+            "subtitle": {
+              "visualAssets": "Recursos Visuales"
+            },
+            "title": {
+              "library": "Biblioteca",
+              "preview": "Vista Previa"
+            }
+          }
+        },
+        "features": {
+          "01": {
+            "description": "Establece un uplink 1-a-1 con entrenadores de élite. Ajustes tácticos y soporte técnico entregados vía un canal de comunicación seguro.",
+            "id": "01",
+            "title": "Soporte de Coach"
+          },
+          "02": {
+            "description": "Tu secuencia entregada a través de una aplicación móvil dedicada. Ejecución y guía en tiempo real en cualquier entorno.",
+            "id": "02",
+            "title": "App Móvil"
+          },
+          "03": {
+            "description": "Monitoreo de espectro completo de cada serie, repetición y carga. Aprovecha diagnósticos basados en datos para optimizar tu curva de progresión.",
+            "id": "03",
+            "title": "Métricas de Rendimiento"
+          }
+        },
+        "finalCta": {
+          "button": {
+            "compatibleWithiOSAndAndroid": "Compatible con iOS y Android",
+            "initializeTransformation": "Inicializar Transformación"
+          },
+          "finalCTA": "Tu transformación ya no es cuestión de azar. Asegura tu acceso al sistema y despliega tu entrenamiento vía nuestra interfaz móvil.",
+          "subtitle": {
+            "finalPhase": "Fase Final"
+          },
+          "title": {
+            "commitToThe": "Comprométete con el",
+            "protocol": "Protocolo"
+          }
+        },
+        "hero": {
+          "buttonBrowseTrainings": "Explorar Entrenamientos",
+          "buttonJoinTheProgram": "Unirse al programa",
+          "mobileAppAvailableNow": "App Móvil Disponible Ahora",
+          "trainWithTheSamePrecisionAsWorldClassAthletes": "Entrena con la misma precisión que los atletas de clase mundial. Programas personalizados diseñados para romper tus límites y redefinir tu rendimiento."
+        },
+        "stats": {
+          "activeUsers": "Usuarios Activos",
+          "launchedWorkouts": "Entrenamientos Iniciados",
+          "satisfiedClients": "Clientes Satisfechos"
+        }
+      }
+    },
+    "login": {
+      "eyebrow": "Autenticación",
+      "subtitle": "Verifica credenciales para forjarte a ti mismo.",
+      "title": "Iniciar Sesión"
+    },
+    "register": {
+      "existingProfileLogIn": "¿Ya tienes perfil? Inicia sesión",
+      "eyebrow": "Registro",
+      "subtitle": "Crea una cuenta nueva para forjarte a ti mismo.",
+      "title": "Registrarse"
+    },
+    "trainingDayCreator": {
+      "eyebrow": "Gestión de Entrenamiento",
+      "form": {
+        "distance": {
+          "label": "Distancia",
+          "placeholder": "Distancia en metros"
+        },
+        "duration": {
+          "label": "Duración",
+          "placeholder": "Duración en segundos"
+        },
+        "exercise": {
+          "label": "Ejercicio",
+          "placeholder": "Selecciona un ejercicio"
+        },
+        "removeExercise": {
+          "label": "Eliminar Ejercicio"
+        },
+        "reps": {
+          "label": "Reps",
+          "placeholder": "Cantidad de repeticiones"
+        },
+        "weight": {
+          "label": "Peso",
+          "placeholder": "Peso en kilogramos"
+        },
+        "workoutType": {
+          "label": "Tipo de Entrenamiento",
+          "placeholder": "Selecciona un tipo"
+        }
+      },
+      "stepper": {
+        "addNextExercise": "Añadir Siguiente Ejercicio",
+        "coolDown": {
+          "description": "Relaja tu corazón y cuida la recuperación post-entrenamiento.",
+          "label": "Enfriamiento"
+        },
+        "currentBlock": "Bloque Actual",
+        "finalizeTrainingDay": "Finalizar Día de Entrenamiento",
+        "mainWorkout": {
+          "description": "Parte principal del entrenamiento: enfoque en técnica e intensidad.",
+          "label": "Entrenamiento Principal"
+        },
+        "selectExercise": "Seleccionar un ejercicio",
+        "summary": {
+          "description": "Resumen del entrenamiento y ejercicios realizados.",
+          "label": "Resumen"
+        },
+        "warmUp": {
+          "description": "Prepara tu cuerpo para el entrenamiento y aumenta la temperatura muscular.",
+          "label": "Calentamiento"
+        }
+      },
+      "subtitle": "Construye y organiza días de entrenamiento. Define el flujo de trabajo para cada fase.",
+      "title": "Creador de Día de Entrenamiento"
+    },
+    "trainingDetail": {
+      "dayConfiguration": "Configuración del Día",
+      "eyebrow": "Gestión de Entrenamiento",
+      "hero": {
+        "createdAt": "Creado en",
+        "id": "ID"
+      },
+      "noExercisesPlanned": "No hay ejercicios planeados",
+      "subtitle": "Construye y organiza días de entrenamiento. Define el flujo de trabajo para cada fase.",
+      "timeline": {
+        "addDay": "Añadir Día",
+        "createNewTrainingDay": "Crear nuevo día de entrenamiento",
+        "title": "Timeline de <1>Entrenamiento<1>",
+        "totalDays_one": "Total de Días {{count}}",
+        "totalDays_many": "",
+        "totalDays_other": "Total de Días {{count}}"
+      },
+      "title": "Training Designer"
+    },
+    "trainingList": {
+      "eyebrow": "Gestión de Entrenamiento",
+      "subtitle": "Crea, edita y organiza planes de entrenamiento dentro del sistema global.",
+      "title": "Entrenamientos"
+    }
+  },
+  "table": {
+    "exercise": {
+      "columns": {
+        "bodyPart": {
+          "label": "Objetivo"
+        },
+        "description": {
+          "label": "Detalles del Protocolo"
+        },
+        "difficulty": {
+          "label": "Intensidad"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Previa"
+        },
+        "name": {
+          "label": "Nombre del Ejercicio"
+        },
+        "updatedAt": {
+          "label": "Última Actualización"
+        }
+      }
+    },
+    "training": {
+      "columns": {
+        "createdAt": {
+          "label": "Creado en"
+        },
+        "description": {
+          "label": "Vista General"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Portada"
+        },
+        "name": {
+          "label": "Título del Programa"
+        },
+        "status": {
+          "label": "Estado"
+        },
+        "updatedAt": {
+          "label": "Última Actualización"
+        }
+      }
+    }
+  }
+}

@@ -2,8 +2,135 @@
   "screens": {
     "bootstrap": {
       "phaseCta": {
-        "login": "",
-        "onboarding": ""
+        "login": "Inicia sesión para continuar tu trayectoria de entrenamiento.",
+        "onboarding": "Completa la configuración de tu perfil para desbloquear tu plan."
+      }
+    },
+    "chat": {
+      "description": "Consulta a expertos",
+      "subtitle": "Conecta con profesionales y comparte tus progresos.",
+      "title": "Chat"
+    },
+    "exerciseDetails": {
+      "description": "Biblioteca de ejercicios",
+      "subtitle": "Técnica, rasgos y dificultad.",
+      "title": "Detalles del ejercicio"
+    },
+    "leaderboard": {
+      "description": "Compite",
+      "subtitle": "Mira quién lidera y cuál es tu posición.",
+      "title": "Clasificación"
+    },
+    "login": {
+      "credentials": "Credenciales",
+      "description": "Cuenta",
+      "subtitle": "Bienvenido de nuevo. Inicia sesión para continuar.",
+      "title": "Iniciar sesión"
+    },
+    "main": {
+      "description": "Tu centro de entrenamiento",
+      "subtitle": "Vuelve a tus planes y sesiones activas.",
+      "title": "Hola"
+    },
+    "onboarding": {
+      "description": "Incorporación",
+      "steps": {
+        "bio": {
+          "placeholder": "Cuéntales un poco sobre ti… 😊",
+          "title": "Sobre ti"
+        },
+        "birthDate": {
+          "title": "Tu fecha de nacimiento"
+        },
+        "bodyMeasurements": {
+          "title": "Tus medidas corporales"
+        },
+        "completed": {
+          "button": "Vamos",
+          "description": "Tu perfil ha sido creado. Es hora de empezar tu trayectoria fitness.",
+          "title": "¡Todo listo!"
+        },
+        "introduction": {
+          "title": "Preséntate"
+        },
+        "profileImage": {
+          "title": "Imagen de perfil"
+        },
+        "workoutGoals": {
+          "placeholder": "¿Cuál es tu objetivo? (ej. perder peso, ganar músculo, etc.)",
+          "title": "Objetivos de entrenamiento"
+        }
+      },
+      "subtitle": "Cuéntanos sobre ti para que podamos personalizar tu entrenamiento.",
+      "title": "Configuración del perfil"
+    },
+    "profile": {
+      "loading": {
+        "myProfile": {
+          "description": "Perfil",
+          "subtitle": "Cargando detalles de mi perfil...",
+          "title": "Mi Perfil"
+        },
+        "userProfile": {
+          "description": "Perfil",
+          "subtitle": "Cargando detalles del perfil...",
+          "title": "Perfil de usuario"
+        }
+      },
+      "myProfile": {
+        "description": "Mi Perfil",
+        "subtitle": "Detalles de mi perfil"
+      },
+      "userProfile": {
+        "description": "Perfil",
+        "subtitle": "Detalles del perfil de usuario"
+      }
+    },
+    "register": {
+      "description": "Cuenta",
+      "subtitle": "Crea una cuenta para empezar a entrenar.",
+      "title": "Registrarse"
+    },
+    "trainingDetails": {
+      "aboutTraining": "Sobre el entrenamiento",
+      "description": "Descubrir",
+      "subtitle": "Detalles del plan de entrenamiento.",
+      "title": "Vista general"
+    },
+    "trainingList": {
+      "description": "Descubrir",
+      "subtitle": "Elige un plan y comienza tu próxima sesión.",
+      "title": "Entrenamientos"
+    },
+    "trainingSession": {
+      "description": "Tu plan de entrenamiento",
+      "subtitle": "Plan de entrenamiento de hoy",
+      "title": "Hoy"
+    },
+    "trainingSessionExercise": {
+      "description": "Sesión de entrenamiento",
+      "subtitle": "Monitorea el tiempo y completa este ejercicio.",
+      "title": "Ejercicio"
+    }
+  },
+  "training": {
+    "sesssion": {
+      "card": {
+        "badge": {
+          "cancelled": "Cancelado",
+          "finished": "Finalizado",
+          "inProgress": "En curso",
+          "joined": "Inscrito",
+          "joinNow": "Unirse ahora"
+        },
+        "subtitle": {
+          "awaitingToday": "Completa la sesión de hoy",
+          "cancelled": "Entrenamiento cancelado",
+          "completed": "¡Entrenamiento completado! ¡Felicidades!",
+          "completedToday": "Sesión de hoy completada",
+          "joined": "Empieza tu entrenamiento",
+          "notJoined": "El entrenamiento está disponible"
+        }
       }
     }
   }

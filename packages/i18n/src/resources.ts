@@ -287,7 +287,7 @@ interface Resources {
         "title": "Register"
       },
       "trainingDetails": {
-        "aboutTraining": "mobile:screens.trainingDetails.aboutTraining",
+        "aboutTraining": "About training",
         "description": "Discover",
         "subtitle": "Training plan details.",
         "title": "Training overview"
@@ -684,8 +684,8 @@ interface Resources {
           "addDay": "Add Day",
           "createNewTrainingDay": "Create new training day",
           "title": "Training <1>Timeline<1>",
-          "totalDays_one": "Total Days",
-          "totalDays_other": "Total Days"
+          "totalDays_one": "Total Days {{count}}",
+          "totalDays_other": "Total Days {{count}}"
         },
         "title": "Training Designer"
       },
