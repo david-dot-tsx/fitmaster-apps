@@ -16,8 +16,8 @@ export default async function ExerciseDetailPage({ params }: { params: { id: str
   return (
     <PageWrapper
       title={data.name}
-      subtitle={t("web:pages.exercise-detail.subtitle")}
-      eyebrow={t("web:pages.exercise-detail.eyebrow")}
+      subtitle={t("web:pages.exerciseDetail.subtitle")}
+      eyebrow={t("web:pages.exerciseDetail.eyebrow")}
       className=""
       divider={true}
     >
@@ -38,8 +38,7 @@ export default async function ExerciseDetailPage({ params }: { params: { id: str
         <div className="rounded-2xl border border-white/5 bg-slate-900/50 p-6">
           <h2 className="mb-4 text-xl font-bold capitalize text-amber-400">{t("description")}</h2>
           <p className="text-lg leading-relaxed text-slate-300">
-            {data.description ||
-              t("web:pages.exercise-detail.noDescriptionProvidedForThisExercise")}
+            {data.description || t("web:pages.exerciseDetail.noDescriptionProvidedForThisExercise")}
           </p>
         </div>
       </div>

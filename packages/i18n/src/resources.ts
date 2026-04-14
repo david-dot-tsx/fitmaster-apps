@@ -456,12 +456,12 @@ interface Resources {
           "title": "Coach Console"
         }
       },
-      "exercise-detail": {
+      "exerciseDetail": {
         "eyebrow": "Asset Management",
-        "noDescriptionProvidedForThisExercise": "web:pages.exercise-detail.noDescriptionProvidedForThisExercise",
+        "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
         "subtitle": "View the details of an exercise."
       },
-      "exercise-list": {
+      "exerciseList": {
         "eyebrow": "Asset Management",
         "subtitle": "Create, edit, and organize movements within the global system.",
         "title": "Exercise"
@@ -545,6 +545,11 @@ interface Resources {
         "eyebrow": "Registration",
         "subtitle": "Create a new account to forge yourself.",
         "title": "Register"
+      },
+      "trainingList": {
+        "eyebrow": "Training Management",
+        "subtitle": "Create, edit, and organize training plans within the global system.",
+        "title": "Trainings"
       }
     },
     "table": {
