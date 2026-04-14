@@ -19,9 +19,9 @@ export default async function ExercisePage() {
 
   return (
     <PageWrapper
-      title={t("web:pages.exercise.title")}
-      subtitle={t("web:pages.exercise.subtitle")}
-      eyebrow={t("web:pages.exercise.eyebrow")}
+      title={t("web:pages.exercise-list.title")}
+      subtitle={t("web:pages.exercise-list.subtitle")}
+      eyebrow={t("web:pages.exercise-list.eyebrow")}
     >
       <div className="flex w-full flex-col">
         <div className="flex flex-row justify-end">

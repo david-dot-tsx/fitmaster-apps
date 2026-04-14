@@ -48,9 +48,15 @@ const bodyPartOptions = [
 
 interface EditExerciseDialogProps extends Pick<DialogProps, "open" | "onOpenChange"> {
   exercise: ExerciseUpdateInputForm | null;
+  onSuccess?: () => void;
 }
 
-export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExerciseDialogProps) => {
+export const EditExerciseDialog = ({
+  exercise,
+  open,
+  onOpenChange,
+  onSuccess,
+}: EditExerciseDialogProps) => {
   const { t } = useTranslation([NAMESPACES.WEB]);
   const queryClient = useQueryClient();
   const trpc = useTRPC();
@@ -65,6 +71,10 @@ export const EditExerciseDialog = ({ exercise, open, onOpenChange }: EditExercis
         toast.success(t("success.generic.description"));
         onOpenChange?.(false);
         queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
+        queryClient.invalidateQueries(
+          trpc.exercise.getById.queryOptions({ id: exercise?.id ?? "" }),
+        );
+        onSuccess?.();
       },
       onError: (error) => {
         toast.error(t("errors.generic.description"));

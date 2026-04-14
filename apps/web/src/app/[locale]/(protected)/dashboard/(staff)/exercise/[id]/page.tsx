@@ -1,29 +1,34 @@
 import React from "react";
 import { notFound } from "next/navigation";
 import Image from "next/image";
-import Link from "next/link";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { trpcServerClient } from "@/lib/trpc/client-server";
-import { Button } from "@/components/ui/button";
+import { getServerTranslations } from "@/lib/i18n/server";
+import { ExerciseActions } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/[id]/_components/exercise-actions";
 
 export default async function ExerciseDetailPage({ params }: { params: { id: string } }) {
   const { id } = await params;
   const data = await trpcServerClient.exercise.getById.query({ id });
+  const { t } = await getServerTranslations();
   if (!data) notFound();
 
   return (
-    <PageWrapper title={data.name} className="mx-auto max-w-5xl" divider={true}>
-      <div className="flex w-full flex-col gap-8">
+    <PageWrapper
+      title={data.name}
+      subtitle={t("web:pages.exercise-detail.subtitle")}
+      eyebrow={t("web:pages.exercise-detail.eyebrow")}
+      className=""
+      divider={true}
+    >
+      <div className="mx-auto flex w-full max-w-5xl flex-col gap-8">
         <div className="flex items-end justify-between">
           <div>
             <span className="text-sm font-bold uppercase tracking-widest text-foreground">
               {data.bodyPart} • {data.difficulty}
             </span>
           </div>
-          <Button asChild>
-            <Link href={`/dashboard/exercise/${id}/edit`}>Edit</Link>
-          </Button>
+          <ExerciseActions exercise={data} />
         </div>
 
         <div className="relative aspect-video max-h-full overflow-hidden rounded-2xl border border-white/10 bg-slate-900 shadow-2xl">
@@ -31,9 +36,10 @@ export default async function ExerciseDetailPage({ params }: { params: { id: str
         </div>
 
         <div className="rounded-2xl border border-white/5 bg-slate-900/50 p-6">
-          <h2 className="mb-4 text-xl font-bold text-amber-400">Description</h2>
+          <h2 className="mb-4 text-xl font-bold capitalize text-amber-400">{t("description")}</h2>
           <p className="text-lg leading-relaxed text-slate-300">
-            {data.description || "No description provided for this exercise."}
+            {data.description ||
+              t("web:pages.exercise-detail.noDescriptionProvidedForThisExercise")}
           </p>
         </div>
       </div>

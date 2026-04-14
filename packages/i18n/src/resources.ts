@@ -456,7 +456,12 @@ interface Resources {
           "title": "Coach Console"
         }
       },
-      "exercise": {
+      "exercise-detail": {
+        "eyebrow": "Asset Management",
+        "noDescriptionProvidedForThisExercise": "web:pages.exercise-detail.noDescriptionProvidedForThisExercise",
+        "subtitle": "View the details of an exercise."
+      },
+      "exercise-list": {
         "eyebrow": "Asset Management",
         "subtitle": "Create, edit, and organize movements within the global system.",
         "title": "Exercise"
