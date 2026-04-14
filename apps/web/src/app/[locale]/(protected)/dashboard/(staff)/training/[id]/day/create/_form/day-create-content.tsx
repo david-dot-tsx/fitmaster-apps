@@ -1,41 +1,57 @@
 "use client";
 
 import { Zap, Flame, Snowflake, ListCheck } from "lucide-react";
+import { type ResourceKey } from "i18next";
+import { useTranslation } from "react-i18next";
+
+import { getTKey, NAMESPACES } from "@repo/i18n/web";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { FormStepRenderer } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/form-step-renderer";
-import { DAY_CREATOR_STEPS } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+import {
+  DAY_CREATOR_STEPS,
+  type DayCreatorStepKey,
+} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 
-export const stepConfig = {
+export const stepConfig: Record<
+  DayCreatorStepKey,
+  { label: ResourceKey; icon: React.ReactNode; description: ResourceKey; accent: string }
+> = {
   [DAY_CREATOR_STEPS.WARM_UP]: {
-    label: "Warm up Section",
+    label: getTKey("web:pages.trainingDayCreator.stepper.warmUp.label"),
     icon: <Zap className="size-8 text-amber-400" />,
-    description: "Prepare your body for the workout and increase the muscle temperature.",
+    description: getTKey("web:pages.trainingDayCreator.stepper.warmUp.description"),
     accent: "bg-amber-400",
   },
   [DAY_CREATOR_STEPS.MAIN_WORKOUT]: {
-    label: "Main Workout",
+    label: getTKey("web:pages.trainingDayCreator.stepper.mainWorkout.label"),
     icon: <Flame className="size-8 text-amber-500" />,
-    description: "Main part of the workout - focus on technique and intensity.",
+    description: getTKey("web:pages.trainingDayCreator.stepper.mainWorkout.description"),
     accent: "bg-amber-500",
   },
   [DAY_CREATOR_STEPS.COOL_DOWN]: {
-    label: "Cool Down",
+    label: getTKey("web:pages.trainingDayCreator.stepper.coolDown.label"),
     icon: <Snowflake className="size-8 text-blue-400" />,
-    description: "Relax your heart and take care of post-workout recovery.",
+    description: getTKey("web:pages.trainingDayCreator.stepper.coolDown.description"),
     accent: "bg-blue-400",
   },
   [DAY_CREATOR_STEPS.SUMMARY]: {
-    label: "Summary",
+    label: getTKey("web:pages.trainingDayCreator.stepper.summary.label"),
     icon: <ListCheck className="size-8 text-green-400" />,
-    description: "Summary of the workout and performed exercises.",
+    description: getTKey("web:pages.trainingDayCreator.stepper.summary.description"),
     accent: "bg-green-400",
   },
 } as const;
 
 export const DayCreateContent = ({ trainingId }: { trainingId: string }) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
+
   return (
-    <PageWrapper title="Training day creator">
+    <PageWrapper
+      title={t("web:pages.trainingDayCreator.title")}
+      subtitle={t("web:pages.trainingDayCreator.subtitle")}
+      eyebrow={t("web:pages.trainingDayCreator.eyebrow")}
+    >
       <div className="flex w-full flex-col gap-4">
         <FormStepRenderer trainingId={trainingId} />
       </div>

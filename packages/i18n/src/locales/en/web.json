@@ -280,6 +280,62 @@
       "subtitle": "Create a new account to forge yourself.",
       "title": "Register"
     },
+    "trainingDayCreator": {
+      "eyebrow": "Training Management",
+      "form": {
+        "distance": {
+          "label": "Distance",
+          "placeholder": "Distance in meters"
+        },
+        "duration": {
+          "label": "Duration",
+          "placeholder": "Duration in seconds"
+        },
+        "exercise": {
+          "label": "Exercise",
+          "placeholder": "Select an exercise"
+        },
+        "removeExercise": {
+          "label": "Remove Exercise"
+        },
+        "reps": {
+          "label": "Reps",
+          "placeholder": "Amount of reps"
+        },
+        "weight": {
+          "label": "Weight",
+          "placeholder": "Weight in kilograms"
+        },
+        "workoutType": {
+          "label": "Workout Type",
+          "placeholder": "Select a workout type"
+        }
+      },
+      "stepper": {
+        "addNextExercise": "Add Next Exercise",
+        "coolDown": {
+          "description": "Relax your heart and take care of post-workout recovery.",
+          "label": "Cool Down"
+        },
+        "currentBlock": "Current Block",
+        "finalizeTrainingDay": "Finalize Training Day",
+        "mainWorkout": {
+          "description": "Main part of the workout - focus on technique and intensity.",
+          "label": "Main Workout"
+        },
+        "selectExercise": "Select an exercise",
+        "summary": {
+          "description": "Summary of the workout and performed exercises.",
+          "label": "Summary"
+        },
+        "warmUp": {
+          "description": "Prepare your body for the workout and increase the muscle temperature.",
+          "label": "Warm Up"
+        }
+      },
+      "subtitle": "Construct and organize training days. Define the workflow for each phase.",
+      "title": "Training Day Creator"
+    },
     "trainingDetail": {
       "dayConfiguration": "Day Configuration",
       "eyebrow": "Training Management",

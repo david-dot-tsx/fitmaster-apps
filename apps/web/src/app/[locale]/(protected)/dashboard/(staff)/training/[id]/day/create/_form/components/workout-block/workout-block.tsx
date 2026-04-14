@@ -4,14 +4,17 @@ import { useEffect, useState } from "react";
 import { PlusIcon } from "lucide-react";
 
 import { type WorkoutCreateBlockBase } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 import { WorkoutBlockRow } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block-row";
 import { cn } from "@/lib/utils";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 export const WorkoutBlock = () => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const [expandedItem, setExpandedItem] = useState<string | undefined>(undefined);
   const { control } = useFormContext<WorkoutCreateBlockBase>();
   const { fields, append, remove } = useFieldArray({
@@ -72,7 +75,9 @@ export const WorkoutBlock = () => {
           <div className="flex size-10 items-center justify-center rounded-full border border-zinc-800 bg-zinc-900 transition-colors group-hover:border-amber-400/50 group-hover:bg-zinc-800">
             <PlusIcon className="size-5 transition-transform group-hover:rotate-90" />
           </div>
-          <span className="text-xs font-bold uppercase tracking-widest">Add Next Exercise</span>
+          <span className="text-xs font-bold uppercase tracking-widest">
+            {t("web:pages.trainingDayCreator.stepper.addNextExercise")}
+          </span>
         </div>
       </Button>
     </div>

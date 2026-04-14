@@ -1,8 +1,11 @@
 import React from "react";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "lucide-react";
 
+import { NAMESPACES } from "@repo/i18n/web";
+
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 interface StepsNavigationProps {
   className?: string;
@@ -15,6 +18,8 @@ export const StepsNavigation = ({
   handlePrevious,
   isLastStep,
 }: StepsNavigationProps) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
+
   return (
     <div
       className={cn(
@@ -30,7 +35,7 @@ export const StepsNavigation = ({
         className="h-12 px-6 text-zinc-500 hover:bg-zinc-900 hover:text-white"
       >
         <ArrowLeftIcon className="mr-2 size-4" />
-        Back
+        {t("back")}
       </Button>
 
       <Button
@@ -42,7 +47,11 @@ export const StepsNavigation = ({
             : "bg-amber-400 text-black shadow-[0_0_20px_rgba(251,191,36,0.3)] hover:bg-amber-500",
         )}
       >
-        <span>{isLastStep ? "Finalize Training" : "Continue"}</span>
+        <span>
+          {isLastStep
+            ? t("web:pages.trainingDayCreator.stepper.finalizeTrainingDay")
+            : t("continue")}
+        </span>
         {isLastStep ? (
           <CheckIcon className="ml-2 size-5" />
         ) : (

@@ -8,6 +8,7 @@ import {
   WorkoutType,
   type WorkoutCreateBlockBase,
 } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { Button } from "@/components/ui/button";
 import { FormSelect, type SelectOption } from "@/components/form/form-select";
@@ -18,6 +19,7 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/
 import { cn } from "@/lib/utils";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 const getExerciseSelectOptions = (exercises: ExerciseBaseWithId[]) => {
   return exercises.map((exercise) => ({ children: exercise.name, value: exercise.id })) || [];
@@ -29,6 +31,7 @@ interface WorkoutBlockRowProps {
   remove: (index: number) => void;
 }
 
+//TODO: create translations for db enums
 const workoutTypeOptions: SelectOption[] = [
   { children: "Strength", value: WorkoutType.STRENGTH },
   { children: "Hypertrophy", value: WorkoutType.HYPERTROPHY },
@@ -41,6 +44,7 @@ const workoutTypeOptions: SelectOption[] = [
 ];
 
 export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const trpc = useTRPC();
   const {
     control,
@@ -69,7 +73,8 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
             {index + 1}
           </div>
           <span className="text-lg font-semibold tracking-tight">
-            {exercises?.find((e) => e.id === watchedExerciseId)?.name || "Select Exercise"}
+            {exercises?.find((e) => e.id === watchedExerciseId)?.name ||
+              t("web:pages.trainingDayCreator.stepper.selectExercise")}
           </span>
         </div>
       </AccordionTrigger>
@@ -78,11 +83,7 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
           <LoadingState message="Loading exercises…" className="justify-start py-2" />
         )}
         {exercisesStatus === "error" && (
-          <ErrorState
-            title="Failed to load exercises"
-            onTryAgain={refetchExercises}
-            className="mb-6 items-start text-left"
-          />
+          <ErrorState onTryAgain={refetchExercises} className="mb-6 items-start text-left" />
         )}
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-12">
           {/* Exercise Preview */}
@@ -97,40 +98,46 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
                 <FormSelect
                   disabled={exercisesStatus !== "success"}
                   name={getFieldName("exerciseId")}
-                  label={"Exercise"}
+                  label={t("web:pages.trainingDayCreator.form.exercise.label")}
+                  placeholder={t("web:pages.trainingDayCreator.form.exercise.placeholder")}
                   options={exercises ? getExerciseSelectOptions(exercises) : []}
                 />
               </div>
               <FormSelect
                 name={getFieldName("workoutType")}
-                label={"Workout Type"}
+                label={t("web:pages.trainingDayCreator.form.workoutType.label")}
+                placeholder={t("web:pages.trainingDayCreator.form.workoutType.placeholder")}
                 options={workoutTypeOptions}
               />
               <FormInputNumber
                 name={getFieldName("reps")}
-                label={"Reps"}
+                placeholder={t("web:pages.trainingDayCreator.form.reps.placeholder")}
+                label={t("web:pages.trainingDayCreator.form.reps.label")}
                 decimalScale={0}
                 allowNegative={false}
               />
               <FormInputNumber
                 name={getFieldName("duration")}
-                label={"Duration"}
+                placeholder={t("web:pages.trainingDayCreator.form.duration.placeholder")}
+                label={t("web:pages.trainingDayCreator.form.duration.label")}
                 decimalScale={0}
                 allowNegative={false}
-                suffix=" sec"
+                suffix={t("units.seconds")}
               />
               <FormInputNumber
                 name={getFieldName("distance")}
-                label={"Distance"}
-                suffix=" m"
+                placeholder={t("web:pages.trainingDayCreator.form.distance.placeholder")}
+                label={t("web:pages.trainingDayCreator.form.distance.label")}
+                suffix={t("units.meters")}
                 decimalScale={0}
                 thousandSeparator=" "
                 allowNegative={false}
               />
               <FormInputNumber
                 name={getFieldName("weight")}
-                label={"Weight"}
-                suffix=" kg"
+                placeholder={t("web:pages.trainingDayCreator.form.weight.placeholder")}
+                label={t("web:pages.trainingDayCreator.form.weight.label")}
+                suffix={t("units.kg")}
                 decimalScale={2}
                 allowNegative={false}
               />
@@ -142,7 +149,7 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
                   onClick={() => remove(index)}
                 >
                   <TrashIcon className="mr-2 size-4" />
-                  Remove Exercise
+                  {t("web:pages.trainingDayCreator.form.removeExercise.label")}
                 </Button>
               </div>
             </div>

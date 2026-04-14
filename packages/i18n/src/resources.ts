@@ -7,6 +7,7 @@ interface Resources {
     "active": "active",
     "adjustPhoto": "Adjust photo",
     "appStore": "App Store",
+    "back": "Back",
     "beTheFirstToScorePoints": "Be the first to score points.",
     "bio": "Bio",
     "block": "block",
@@ -81,6 +82,8 @@ interface Resources {
     "exercise_one": "exercise",
     "exercise_other": "exercises",
     "exercises": "exercises",
+    "exercisesCount_one": "{{count}} exercise",
+    "exercisesCount_other": "{{count}} exercises",
     "exercises_one": "exercise",
     "exercises_other": "exercises",
     "expiring": "Expiring",
@@ -610,6 +613,62 @@ interface Resources {
         "eyebrow": "Registration",
         "subtitle": "Create a new account to forge yourself.",
         "title": "Register"
+      },
+      "trainingDayCreator": {
+        "eyebrow": "Training Management",
+        "form": {
+          "distance": {
+            "label": "Distance",
+            "placeholder": "web:pages.trainingDayCreator.form.distance.placeholder"
+          },
+          "duration": {
+            "label": "Duration",
+            "placeholder": "web:pages.trainingDayCreator.form.duration.placeholder"
+          },
+          "exercise": {
+            "label": "Exercise",
+            "placeholder": "web:pages.trainingDayCreator.form.exercise.placeholder"
+          },
+          "removeExercise": {
+            "label": "Remove Exercise"
+          },
+          "reps": {
+            "label": "Reps",
+            "placeholder": "web:pages.trainingDayCreator.form.reps.placeholder"
+          },
+          "weight": {
+            "label": "Weight",
+            "placeholder": "web:pages.trainingDayCreator.form.weight.placeholder"
+          },
+          "workoutType": {
+            "label": "Workout Type",
+            "placeholder": "web:pages.trainingDayCreator.form.workoutType.placeholder"
+          }
+        },
+        "stepper": {
+          "addNextExercise": "Add Next Exercise",
+          "coolDown": {
+            "description": "Relax your heart and take care of post-workout recovery.",
+            "label": "Cool Down"
+          },
+          "currentBlock": "Current Block",
+          "finalizeTrainingDay": "Finalize Training Day",
+          "mainWorkout": {
+            "description": "Main part of the workout - focus on technique and intensity.",
+            "label": "Main Workout"
+          },
+          "selectExercise": "web:pages.trainingDayCreator.stepper.selectExercise",
+          "summary": {
+            "description": "Summary of the workout and performed exercises.",
+            "label": "Summary"
+          },
+          "warmUp": {
+            "description": "Prepare your body for the workout and increase the muscle temperature.",
+            "label": "Warm Up"
+          }
+        },
+        "subtitle": "Construct and organize training days. Define the workflow for each phase.",
+        "title": "Training Day Creator"
       },
       "trainingDetail": {
         "dayConfiguration": "Day Configuration",

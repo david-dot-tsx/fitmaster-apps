@@ -5,6 +5,8 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
+import { NAMESPACES } from "@repo/i18n/web";
+
 import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
 import {
   storedTrainingDayCreateInputSchema,
@@ -20,8 +22,10 @@ import {
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 export const StepSummary = ({ trainingId }: { trainingId: string }) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -44,12 +48,16 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const createTrainingDayMutation = useMutation(
     trpc.trainingDay.create.mutationOptions({
       onSuccess: () => {
-        toast.success("Training day created!");
+        toast.success(t("success.generic.description"));
         resetStore();
         queryClient.invalidateQueries(
           trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId }),
         );
         router.push(`/dashboard/training/${trainingId}`);
+      },
+      onError: (error) => {
+        toast.error(t("errors.generic.description"));
+        console.error(error);
       },
     }),
   );
@@ -63,12 +71,12 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const stepIterator = getStepIterator();
 
   if (trainingStatus === "pending" || exercisesStatus === "pending") {
-    return <LoadingState message="Loading summary…" />;
+    return <LoadingState message={`${t("loading")}...`} />;
   }
   if (trainingStatus === "error" || exercisesStatus === "error") {
     return (
       <ErrorState
-        title="Failed to load summary data"
+        title={t("errors.generic.description")}
         onTryAgain={() => {
           if (trainingError) void refetchTraining();
           if (exercisesError) void refetchExercises();
