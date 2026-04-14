@@ -48,11 +48,11 @@ export const CreateTrainingDialog = () => {
   const createTrainingMutation = useMutation(
     trpc.training.create.mutationOptions({
       onSuccess: () => {
-        toast.success("Training created!");
+        toast.success(t("success.generic.description"));
         onOpenChange(false);
       },
       onError: (error) => {
-        toast.error("Failed to create training");
+        toast.error(t("errors.generic.description"));
         console.error(error);
         onOpenChange(false);
       },
