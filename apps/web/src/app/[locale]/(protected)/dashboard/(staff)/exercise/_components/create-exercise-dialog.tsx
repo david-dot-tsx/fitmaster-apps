@@ -73,12 +73,12 @@ export const CreateExerciseDialog = () => {
   const createExerciseMutation = useMutation(
     trpc.exercise.create.mutationOptions({
       onSuccess: () => {
-        toast.success("Exercise created!");
+        toast.success(t("success.generic.description"));
         queryClient.invalidateQueries(trpc.exercise.list.queryOptions());
         onOpenChange(false);
       },
       onError: (error) => {
-        toast.error("Failed to create exercise");
+        toast.error(t("errors.generic.description"));
         console.error(error);
       },
     }),
@@ -111,7 +111,6 @@ export const CreateExerciseDialog = () => {
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                {/* Insert the parameters of the new exercise. */}
                 {t("web:dialog.exercise.create.description")}
               </DialogDescription>
             </DialogHeader>

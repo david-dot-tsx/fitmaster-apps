@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { type DialogProps } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
+import { Trans } from "react-i18next";
 
 import {
   BodyPart,
@@ -98,8 +99,16 @@ export const EditExerciseDialog = ({
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                 <DialogTitle className="text-2xl font-black uppercase italic tracking-wider text-zinc-100">
-                  {t("web:dialog.exercise.edit.title.editExercise")}: <br />
-                  <span className="text-amber-400">{exercise?.name}</span>
+                  <Trans
+                    i18nKey="web:dialog.exercise.edit.title.editExerciseTrans"
+                    t={t}
+                    values={{
+                      exerciseName: exercise?.name,
+                    }}
+                    components={{
+                      1: <span className="text-amber-400" />,
+                    }}
+                  />
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">

@@ -4,6 +4,7 @@ import React from "react";
 import { Loader2, Trash2, AlertTriangle } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
+import { Trans } from "react-i18next";
 
 import { NAMESPACES } from "@repo/i18n/web";
 
@@ -46,9 +47,16 @@ export const DeleteDialog = ({
               <AlertTriangle className="size-5 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.4)]" />
             </div>
             <AlertDialogTitle className="text-xl font-black uppercase italic text-zinc-100">
-              {/* //TODO: delete dialog is shared, remove exercise from path */}
-              {t("web:dialog.delete.title.deleteExercise")}: <br />
-              <span className="text-red-500">{entityName}</span>
+              <Trans
+                i18nKey="web:dialog.delete.titleTrans"
+                t={t}
+                values={{
+                  entityName,
+                }}
+                components={{
+                  1: <span className="text-red-500" />,
+                }}
+              />
             </AlertDialogTitle>
           </div>
 

@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ArrowUpDown, Check } from "lucide-react";
 import { map } from "remeda";
+import { Trans } from "react-i18next";
 
 import {
   TRAINER_TRAINING_STATUS_FLOW,
@@ -11,7 +12,7 @@ import {
   type Role,
   canChangeStatus,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
+import { getTKey, NAMESPACES } from "@repo/i18n/web";
 
 import { WarningDialog, type WarningDialogProps } from "@/components/warning-dialog";
 import { useTRPC } from "@/lib/trpc/client";
@@ -33,15 +34,15 @@ interface UpdateStatusDialogProps extends Pick<WarningDialogProps, "open" | "onO
 const statusChangeConsequencesDescription = (newStatus: TrainingStatus) => {
   switch (newStatus) {
     case TrainingStatus.READY_TO_PUBLISH:
-      return "It means that the training is ready to be published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.readyToPublish");
     case TrainingStatus.PUBLISHED:
-      return "It means that the training is published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.published");
     case TrainingStatus.DISABLED:
-      return "It means that the training is visible but customers cannot launch it.";
+      return getTKey("web:dialog.training.updateStatus.description.disabled");
     case TrainingStatus.HIDDEN:
-      return "The training will be published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.hidden");
     case TrainingStatus.DRAFT:
-      return "It means that the training is in draft mode, can be edited and it is not visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.draft");
   }
 };
 
@@ -82,16 +83,24 @@ export const UpdateStatusDialog = ({
       }}
       description={
         <>
-          {t("web:dialog.training.updateStatus.description.paragraph")}: <br />
-          <span className="font-black italic text-zinc-300">{training?.name}</span> {t("from")}{" "}
-          <span className="text-sm font-black tracking-wide text-amber-400">
-            {training?.status}
-          </span>{" "}
-          {t("to")} <span className="text-sm font-black text-amber-500">{newStatus}</span>?
+          <Trans
+            i18nKey="web:dialog.training.updateStatus.description.paragraphTrans"
+            t={t}
+            values={{
+              trainingName: training?.name,
+              fromStatus: training?.status,
+              toStatus: newStatus,
+            }}
+            components={{
+              1: <span className="text-sm font-black italic text-zinc-300" />,
+              2: <span className="text-sm font-black tracking-wide text-amber-400" />,
+              3: <span className="text-sm font-black text-amber-500" />,
+            }}
+          />
           {newStatus && (
             <>
               <span className="mt-4 block"></span>
-              <span className="italic">{statusChangeConsequencesDescription(newStatus)}</span>
+              <span className="italic">{t(statusChangeConsequencesDescription(newStatus))}</span>
               <span className="mt-4 block"></span>
               <span>
                 {" "}

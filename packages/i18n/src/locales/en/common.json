@@ -88,7 +88,6 @@
   "focus": "focus",
   "forgot_password": "Forgot Password",
   "forgotPassword": "Forgot password?",
-  "from": "from",
   "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
   "gender": "gender",
   "getBackToMainScreen": "Get back to main screen",
@@ -162,7 +161,6 @@
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",
   "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
-  "to": "to",
   "training": {
     "block": {
       "coolDown": "Cool Down",

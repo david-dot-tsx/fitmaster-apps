@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { type DialogProps } from "@radix-ui/react-dialog";
 import { toast } from "sonner";
+import { Trans } from "react-i18next";
 
 import {
   type Training,
@@ -75,8 +76,16 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                 <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
-                  {t("web:dialog.training.edit.title.editTraining")}: <br />
-                  <span className="text-amber-400">{training?.name}</span>
+                  <Trans
+                    i18nKey="web:dialog.training.edit.title.editTrainingTrans"
+                    t={t}
+                    values={{
+                      trainingName: training?.name,
+                    }}
+                    components={{
+                      1: <span className="text-amber-400" />,
+                    }}
+                  />
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">

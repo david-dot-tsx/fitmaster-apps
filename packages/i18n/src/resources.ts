@@ -92,7 +92,6 @@ interface Resources {
     "focus": "focus",
     "forgotPassword": "Forgot password?",
     "forgot_password": "Forgot Password",
-    "from": "from",
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
@@ -166,7 +165,6 @@ interface Resources {
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
     "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
-    "to": "to",
     "training": {
       "block": {
         "coolDown": "Cool Down",
@@ -339,9 +337,7 @@ interface Resources {
           "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
           "warning": "WARNING"
         },
-        "title": {
-          "deleteExercise": "Delete Exercise"
-        }
+        "titleTrans": "web:dialog.delete.titleTrans"
       },
       "exercise": {
         "create": {
@@ -390,7 +386,7 @@ interface Resources {
             }
           },
           "title": {
-            "editExercise": "Edit Exercise"
+            "editExerciseTrans": "Edit Exercise: <br/> <1>{{exerciseName}}</1>"
           }
         }
       },
@@ -432,13 +428,18 @@ interface Resources {
             }
           },
           "title": {
-            "editTraining": "Edit Training"
+            "editTrainingTrans": "Edit Training: <br/> <1>{{trainingName}}</1>"
           }
         },
         "updateStatus": {
           "description": {
             "availableActions": "Available actions after the status change:",
-            "paragraph": "Are you sure you want to update the status of the training"
+            "disabled": "It means that the training is visible but customers cannot launch it .",
+            "draft": "It means that the training is in draft mode, can be edited and it is not visible to customers.",
+            "hidden": "It means that the training is visible but customers cannot launch it.",
+            "paragraphTrans": "Are you sure you want to update the status of the training <1>{{trainingName}}</1> from <2>{{fromStatus}}</2> to <3>{{toStatus}}</3>?",
+            "published": "It means that the training is published and visible to customers.",
+            "readyToPublish": "It means that the training is ready to be published and visible to customers."
           },
           "select": {
             "ariaLabel": "Update training status",
@@ -619,30 +620,30 @@ interface Resources {
         "form": {
           "distance": {
             "label": "Distance",
-            "placeholder": "web:pages.trainingDayCreator.form.distance.placeholder"
+            "placeholder": "Distance in meters"
           },
           "duration": {
             "label": "Duration",
-            "placeholder": "web:pages.trainingDayCreator.form.duration.placeholder"
+            "placeholder": "Duration in seconds"
           },
           "exercise": {
             "label": "Exercise",
-            "placeholder": "web:pages.trainingDayCreator.form.exercise.placeholder"
+            "placeholder": "Select an exercise"
           },
           "removeExercise": {
             "label": "Remove Exercise"
           },
           "reps": {
             "label": "Reps",
-            "placeholder": "web:pages.trainingDayCreator.form.reps.placeholder"
+            "placeholder": "Amount of reps"
           },
           "weight": {
             "label": "Weight",
-            "placeholder": "web:pages.trainingDayCreator.form.weight.placeholder"
+            "placeholder": "Weight in kilograms"
           },
           "workoutType": {
             "label": "Workout Type",
-            "placeholder": "web:pages.trainingDayCreator.form.workoutType.placeholder"
+            "placeholder": "Select a workout type"
           }
         },
         "stepper": {
@@ -657,7 +658,7 @@ interface Resources {
             "description": "Main part of the workout - focus on technique and intensity.",
             "label": "Main Workout"
           },
-          "selectExercise": "web:pages.trainingDayCreator.stepper.selectExercise",
+          "selectExercise": "Select an exercise",
           "summary": {
             "description": "Summary of the workout and performed exercises.",
             "label": "Summary"

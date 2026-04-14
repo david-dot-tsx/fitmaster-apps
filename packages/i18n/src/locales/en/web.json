@@ -5,9 +5,7 @@
         "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
         "warning": "WARNING"
       },
-      "title": {
-        "deleteExercise": "Delete Exercise"
-      }
+      "titleTrans": "Delete entity: <br/> <1>{{entityName}}</1>"
     },
     "exercise": {
       "create": {
@@ -56,7 +54,7 @@
           }
         },
         "title": {
-          "editExercise": "Edit Exercise"
+          "editExerciseTrans": "Edit Exercise: <br/> <1>{{exerciseName}}</1>"
         }
       }
     },
@@ -98,13 +96,18 @@
           }
         },
         "title": {
-          "editTraining": "Edit Training"
+          "editTrainingTrans": "Edit Training: <br/> <1>{{trainingName}}</1>"
         }
       },
       "updateStatus": {
         "description": {
           "availableActions": "Available actions after the status change:",
-          "paragraph": "Are you sure you want to update the status of the training"
+          "disabled": "It means that the training is visible but customers cannot launch it .",
+          "draft": "It means that the training is in draft mode, can be edited and it is not visible to customers.",
+          "hidden": "It means that the training is visible but customers cannot launch it.",
+          "paragraphTrans": "Are you sure you want to update the status of the training <1>{{trainingName}}</1> from <2>{{fromStatus}}</2> to <3>{{toStatus}}</3>?",
+          "published": "It means that the training is published and visible to customers.",
+          "readyToPublish": "It means that the training is ready to be published and visible to customers."
         },
         "select": {
           "ariaLabel": "Update training status",
