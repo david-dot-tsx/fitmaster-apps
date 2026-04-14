@@ -114,7 +114,7 @@ interface Resources {
     "logout": "Logout",
     "main": "main",
     "nickname": "nickname",
-    "noDataFound": "noDataFound",
+    "noDataFound": "No data found.",
     "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
     "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
@@ -610,6 +610,24 @@ interface Resources {
         "eyebrow": "Registration",
         "subtitle": "Create a new account to forge yourself.",
         "title": "Register"
+      },
+      "trainingDetail": {
+        "dayConfiguration": "Day Configuration",
+        "eyebrow": "Training Management",
+        "hero": {
+          "createdAt": "Created At",
+          "id": "ID"
+        },
+        "noExercisesPlanned": "No exercises planned",
+        "subtitle": "Construct and organize training days. Define the workflow for each phase.",
+        "timeline": {
+          "addDay": "Add Day",
+          "createNewTrainingDay": "Create new training day",
+          "title": "Training <1>Timeline<1>",
+          "totalDays_one": "Total Days",
+          "totalDays_other": "Total Days"
+        },
+        "title": "Training Designer"
       },
       "trainingList": {
         "eyebrow": "Training Management",

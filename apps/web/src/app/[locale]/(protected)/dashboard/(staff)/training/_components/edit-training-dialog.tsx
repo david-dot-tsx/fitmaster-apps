@@ -44,7 +44,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
   const editTrainingMutation = useMutation(
     trpc.training.update.mutationOptions({
       onSuccess: () => {
-        toast.success("Training updated!");
+        toast.success(t("success.generic.description"));
         onOpenChange?.(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
@@ -53,7 +53,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
         );
       },
       onError: (error) => {
-        toast.error("Failed to update training");
+        toast.error(t("errors.generic.description"));
         console.error(error);
         onOpenChange?.(false);
       },
@@ -80,7 +80,6 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                {/* Edit the parameters of the training. */}
                 {t("web:dialog.training.edit.description")}
               </DialogDescription>
             </DialogHeader>
