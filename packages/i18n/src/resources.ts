@@ -383,6 +383,29 @@ interface Resources {
             "editExercise": "Edit Exercise"
           }
         }
+      },
+      "training": {
+        "create": {
+          "button": "web:dialog.training.create.button",
+          "description": "web:dialog.training.create.description",
+          "form": {
+            "description": {
+              "label": "web:dialog.training.create.form.description.label",
+              "placeholder": "web:dialog.training.create.form.description.placeholder"
+            },
+            "imageUrl": {
+              "label": "web:dialog.training.create.form.imageUrl.label"
+            },
+            "name": {
+              "label": "web:dialog.training.create.form.name.label",
+              "placeholder": "web:dialog.training.create.form.name.placeholder"
+            }
+          },
+          "title": {
+            "new": "web:dialog.training.create.title.new",
+            "training": "web:dialog.training.create.title.training"
+          }
+        }
       }
     },
     "layout": {

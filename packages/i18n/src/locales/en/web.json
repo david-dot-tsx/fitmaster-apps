@@ -59,6 +59,29 @@
           "editExercise": "Edit Exercise"
         }
       }
+    },
+    "training": {
+      "create": {
+        "button": "Create Training",
+        "description": "Insert the parameters of the new training.",
+        "form": {
+          "description": {
+            "label": "Details",
+            "placeholder": "Training description"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          },
+          "name": {
+            "label": "Training Identity",
+            "placeholder": "e.g. Cardio II"
+          }
+        },
+        "title": {
+          "new": "New",
+          "training": "Training"
+        }
+      }
     }
   },
   "layout": {
