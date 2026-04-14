@@ -85,6 +85,7 @@
   "focus": "focus",
   "forgot_password": "Forgot Password",
   "forgotPassword": "Forgot password?",
+  "from": "from",
   "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
   "gender": "gender",
   "getBackToMainScreen": "Get back to main screen",
@@ -109,6 +110,7 @@
   "logout": "Logout",
   "main": "main",
   "nickname": "nickname",
+  "noDataFound": "No data found.",
   "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
   "noExercisesAddedYet": "No exercises added yet.",
   "noLeaderboardEntriesYet": "No leaderboard entries yet.",
@@ -157,6 +159,7 @@
   "takePhoto": "Take Photo",
   "tapToSetPhoto": "Tap to set photo",
   "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
+  "to": "to",
   "training": {
     "block": {
       "coolDown": "Cool Down",

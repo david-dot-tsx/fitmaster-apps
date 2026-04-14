@@ -12,6 +12,7 @@ import {
   type TrainingUpdateInputForm,
   trainingUpdateInputFormSchema,
 } from "@repo/validators";
+import { NAMESPACES } from "@repo/i18n/web";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -26,11 +27,13 @@ import {
 } from "@/components/ui/dialog";
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 interface EditTrainingDialogProps extends Pick<DialogProps, "open" | "onOpenChange"> {
   training: Training | null;
 }
 export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainingDialogProps) => {
+  const { t } = useTranslation([NAMESPACES.WEB]);
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const methods = useForm<TrainingUpdateInputForm>({
@@ -72,28 +75,37 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
               <div className="flex items-center gap-2">
                 <div className="size-2 rounded-full bg-amber-400 shadow-[0_0_8px_rgba(251,191,36,0.8)]" />
                 <DialogTitle className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
-                  Edit <span className="text-amber-400">Training</span> {training?.name}
+                  {t("web:dialog.training.edit.title.editTraining")}: <br />
+                  <span className="text-amber-400">{training?.name}</span>
                 </DialogTitle>
               </div>
               <DialogDescription className="text-xs font-bold uppercase tracking-widest text-zinc-500">
-                Edit the parameters of the training.
+                {/* Edit the parameters of the training. */}
+                {t("web:dialog.training.edit.description")}
               </DialogDescription>
             </DialogHeader>
             <div className="my-8 space-y-6">
               <FieldGroup className="grid grid-cols-2 gap-4">
                 {/* Full width Name */}
                 <div className="col-span-2">
-                  <FormInput name="name" label="Training Identity" placeholder="e.g. Cardio II" />
+                  <FormInput
+                    name="name"
+                    label={t("web:dialog.training.edit.form.name.label")}
+                    placeholder={t("web:dialog.training.edit.form.name.placeholder")}
+                  />
                 </div>
 
                 {/* Description & URL */}
                 <div className="col-span-2 space-y-4">
                   <FormInput
                     name="description"
-                    label="Details"
-                    placeholder="Training description"
+                    label={t("web:dialog.training.edit.form.description.label")}
+                    placeholder={t("web:dialog.training.edit.form.description.placeholder")}
                   />
-                  <FormInput name="imageUrl" label="Visual Asset (URL)" />
+                  <FormInput
+                    name="imageUrl"
+                    label={t("web:dialog.training.edit.form.imageUrl.label")}
+                  />
                 </div>
               </FieldGroup>
             </div>
@@ -104,14 +116,14 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
                   type="button"
                   className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200"
                 >
-                  Abort
+                  {t("cancel")}
                 </Button>
               </DialogClose>
               <Button
                 type="submit"
                 className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
               >
-                Update
+                {t("update")}
               </Button>
             </DialogFooter>
           </form>

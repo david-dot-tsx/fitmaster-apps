@@ -46,16 +46,15 @@ export const DeleteDialog = ({
               <AlertTriangle className="size-5 text-red-500 shadow-[0_0_15px_rgba(239,68,68,0.4)]" />
             </div>
             <AlertDialogTitle className="text-xl font-black uppercase italic text-zinc-100">
-              {t("web:dialog.exercise.delete.title.deleteExercise")}: <br />
+              {/* //TODO: delete dialog is shared, remove exercise from path */}
+              {t("web:dialog.delete.title.deleteExercise")}: <br />
               <span className="text-red-500">{entityName}</span>
             </AlertDialogTitle>
           </div>
 
           <AlertDialogDescription className="text-xs font-bold uppercase leading-relaxed tracking-widest text-zinc-500">
-            <span className="mr-1 text-red-600">
-              {t("web:dialog.exercise.delete.description.warning")}!
-            </span>
-            {t("web:dialog.exercise.delete.description.paragraph")}
+            <span className="mr-1 text-red-600">{t("web:dialog.delete.description.warning")}!</span>
+            {t("web:dialog.delete.description.paragraph")}
             <span className="flex flex-col">
               <span className="mt-2 block font-orbitron text-[16px] uppercase tracking-wider text-zinc-300">
                 {entityName}

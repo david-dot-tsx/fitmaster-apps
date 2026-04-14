@@ -89,6 +89,7 @@ interface Resources {
     "focus": "focus",
     "forgotPassword": "Forgot password?",
     "forgot_password": "Forgot Password",
+    "from": "from",
     "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
     "gender": "gender",
     "getBackToMainScreen": "Get back to main screen",
@@ -113,6 +114,7 @@ interface Resources {
     "logout": "Logout",
     "main": "main",
     "nickname": "nickname",
+    "noDataFound": "noDataFound",
     "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
     "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
@@ -161,6 +163,7 @@ interface Resources {
     "takePhoto": "Take Photo",
     "tapToSetPhoto": "Tap to set photo",
     "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
+    "to": "to",
     "training": {
       "block": {
         "coolDown": "Cool Down",
@@ -328,6 +331,15 @@ interface Resources {
   },
   "web": {
     "dialog": {
+      "delete": {
+        "description": {
+          "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
+          "warning": "WARNING"
+        },
+        "title": {
+          "deleteExercise": "Delete Exercise"
+        }
+      },
       "exercise": {
         "create": {
           "button": "Create Exercise",
@@ -353,15 +365,6 @@ interface Resources {
           "title": {
             "exercise": "Exercise",
             "new": "New"
-          }
-        },
-        "delete": {
-          "description": {
-            "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
-            "warning": "WARNING"
-          },
-          "title": {
-            "deleteExercise": "Delete Exercise"
           }
         },
         "edit": {
@@ -409,7 +412,42 @@ interface Resources {
             "new": "New",
             "training": "Training"
           }
+        },
+        "edit": {
+          "description": "Edit the parameters of the training.",
+          "form": {
+            "description": {
+              "label": "Details",
+              "placeholder": "Training description"
+            },
+            "imageUrl": {
+              "label": "Visual Asset (URL)"
+            },
+            "name": {
+              "label": "Training Identity",
+              "placeholder": "e.g. Cardio II"
+            }
+          },
+          "title": {
+            "editTraining": "Edit Training"
+          }
+        },
+        "updateStatus": {
+          "description": {
+            "availableActions": "Available actions after the status change:",
+            "paragraph": "Are you sure you want to update the status of the training"
+          },
+          "select": {
+            "ariaLabel": "Update training status",
+            "title": "Update training status"
+          }
         }
+      },
+      "warning": {
+        "cancelButton": "Cancel",
+        "confirmButton": "Confirm",
+        "description": "This action may have unintended consequences. Please confirm to continue.",
+        "title": "Warning"
       }
     },
     "layout": {
@@ -608,25 +646,25 @@ interface Resources {
       "training": {
         "columns": {
           "createdAt": {
-            "label": "web:table.training.columns.createdAt.label"
+            "label": "Created At"
           },
           "description": {
-            "label": "web:table.training.columns.description.label"
+            "label": "Overview"
           },
           "id": {
-            "label": "web:table.training.columns.id.label"
+            "label": "ID"
           },
           "imageUrl": {
-            "label": "web:table.training.columns.imageUrl.label"
+            "label": "Cover"
           },
           "name": {
-            "label": "web:table.training.columns.name.label"
+            "label": "Program Title"
           },
           "status": {
-            "label": "web:table.training.columns.status.label"
+            "label": "Status"
           },
           "updatedAt": {
-            "label": "web:table.training.columns.updatedAt.label"
+            "label": "Last Update"
           }
         }
       }

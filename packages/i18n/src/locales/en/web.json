@@ -1,5 +1,14 @@
 {
   "dialog": {
+    "delete": {
+      "description": {
+        "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
+        "warning": "WARNING"
+      },
+      "title": {
+        "deleteExercise": "Delete Exercise"
+      }
+    },
     "exercise": {
       "create": {
         "button": "Create Exercise",
@@ -25,15 +34,6 @@
         "title": {
           "exercise": "Exercise",
           "new": "New"
-        }
-      },
-      "delete": {
-        "description": {
-          "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
-          "warning": "WARNING"
-        },
-        "title": {
-          "deleteExercise": "Delete Exercise"
         }
       },
       "edit": {
@@ -81,7 +81,42 @@
           "new": "New",
           "training": "Training"
         }
+      },
+      "edit": {
+        "description": "Edit the parameters of the training.",
+        "form": {
+          "description": {
+            "label": "Details",
+            "placeholder": "Training description"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          },
+          "name": {
+            "label": "Training Identity",
+            "placeholder": "e.g. Cardio II"
+          }
+        },
+        "title": {
+          "editTraining": "Edit Training"
+        }
+      },
+      "updateStatus": {
+        "description": {
+          "availableActions": "Available actions after the status change:",
+          "paragraph": "Are you sure you want to update the status of the training"
+        },
+        "select": {
+          "ariaLabel": "Update training status",
+          "title": "Update training status"
+        }
       }
+    },
+    "warning": {
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "description": "This action may have unintended consequences. Please confirm to continue.",
+      "title": "Warning"
     }
   },
   "layout": {
