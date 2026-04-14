@@ -83,6 +83,7 @@ interface Resources {
     "exercises": "exercises",
     "exercises_one": "exercise",
     "exercises_other": "exercises",
+    "expiring": "Expiring",
     "finishedTrainings": "Finished trainings",
     "firstName": "First Name",
     "focus": "focus",
@@ -107,6 +108,7 @@ interface Resources {
     },
     "lastName": "Last Name",
     "launch": "Launch",
+    "loading": "loading",
     "login": "Login",
     "logout": "Logout",
     "main": "main",
@@ -124,6 +126,7 @@ interface Resources {
     "profilePicture": "Profile Picture",
     "progress": "progress",
     "pts": "pts",
+    "published": "Published",
     "quickScan": "Quick Scan",
     "register": "Register",
     "reps": "reps",
@@ -176,6 +179,7 @@ interface Resources {
       "seconds": "s",
       "xp": "xp"
     },
+    "unpublished": "Unpublished",
     "update": "update",
     "volume": "volume",
     "warmup": "warm up",
@@ -386,24 +390,24 @@ interface Resources {
       },
       "training": {
         "create": {
-          "button": "web:dialog.training.create.button",
-          "description": "web:dialog.training.create.description",
+          "button": "Create Training",
+          "description": "Insert the parameters of the new training.",
           "form": {
             "description": {
-              "label": "web:dialog.training.create.form.description.label",
-              "placeholder": "web:dialog.training.create.form.description.placeholder"
+              "label": "Details",
+              "placeholder": "Training description"
             },
             "imageUrl": {
-              "label": "web:dialog.training.create.form.imageUrl.label"
+              "label": "Visual Asset (URL)"
             },
             "name": {
-              "label": "web:dialog.training.create.form.name.label",
-              "placeholder": "web:dialog.training.create.form.name.placeholder"
+              "label": "Training Identity",
+              "placeholder": "e.g. Cardio II"
             }
           },
           "title": {
-            "new": "web:dialog.training.create.title.new",
-            "training": "web:dialog.training.create.title.training"
+            "new": "New",
+            "training": "Training"
           }
         }
       }
