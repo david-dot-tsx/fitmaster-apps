@@ -8,7 +8,6 @@ import { useTRPC } from "@/lib/trpc/client";
 import { TrainingTable } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-table";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
-import { useTranslation } from "@/lib/i18n/i18n";
 
 export const TrainingTabContent = ({
   statuses,
@@ -17,7 +16,6 @@ export const TrainingTabContent = ({
   statuses: TrainingStatus[];
   userRole: Role;
 }) => {
-  const { t } = useTranslation();
   const trpc = useTRPC();
   const { data, status, refetch } = useQuery(
     trpc.training.listStaff.queryOptions({
@@ -27,8 +25,8 @@ export const TrainingTabContent = ({
 
   return (
     <div className="mt-4 flex flex-col gap-4">
-      {status === "pending" && <LoadingState message={`${t("loading")}...`} />}
-      {status === "error" && <ErrorState title={`${t("error")}...`} onTryAgain={refetch} />}
+      {status === "pending" && <LoadingState />}
+      {status === "error" && <ErrorState onTryAgain={refetch} />}
       {status === "success" && data && <TrainingTable trainings={data} userRole={userRole} />}
     </div>
   );

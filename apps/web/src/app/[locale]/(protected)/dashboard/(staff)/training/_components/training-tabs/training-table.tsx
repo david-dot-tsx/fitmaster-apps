@@ -33,6 +33,7 @@ import {
   UpdateStatusDialog,
   UpdateTrainingStatusSelect,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -55,6 +56,7 @@ interface TrainingTableProps {
 }
 
 export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
+  const { t } = useTranslation();
   const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -69,7 +71,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
   const { mutate: deleteTraining, status: deleteStatus } = useMutation(
     trpc.training.delete.mutationOptions({
       onSuccess: () => {
-        toast.success("Training deleted!");
+        toast.success(t("success.generic.description"));
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
@@ -78,7 +80,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         );
       },
       onError: (error) => {
-        toast.error("Failed to delete training");
+        toast.error(t("errors.generic.description"));
         console.error(error);
         setOpenDeleteDialog(false);
       },

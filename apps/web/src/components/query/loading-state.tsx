@@ -1,17 +1,23 @@
 "use client";
 
 import React from "react";
+import { type ResourceKey } from "i18next";
+
+import { getTKey } from "@repo/i18n/web";
 
 import { cn } from "@/lib/utils";
 import { Spinner } from "@/components/ui/spinner";
+import { useTranslation } from "@/lib/i18n/i18n";
 
 export function LoadingState({
-  message = "Loading…",
+  message = getTKey("common:loading"),
   className,
 }: {
-  message?: string;
+  message?: ResourceKey;
   className?: string;
 }) {
+  const { t } = useTranslation();
+
   return (
     <div
       className={cn(
@@ -20,7 +26,7 @@ export function LoadingState({
       )}
     >
       <Spinner className="size-8" />
-      <span className="text-sm font-bold uppercase tracking-widest">{message}</span>
+      <span className="text-sm font-bold uppercase tracking-widest">{t(message)}...</span>
     </div>
   );
 }
