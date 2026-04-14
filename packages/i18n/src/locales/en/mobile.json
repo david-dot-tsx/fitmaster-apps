@@ -92,6 +92,7 @@
       "title": "Register"
     },
     "trainingDetails": {
+      "aboutTraining": "About training",
       "description": "Discover",
       "subtitle": "Training plan details.",
       "title": "Training overview"

@@ -98,7 +98,7 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
               exercisesAmount={training.exercises.length}
             />
 
-            <Section title={t("about")}>
+            <Section title={t("mobile:screens.trainingDetails.aboutTraining")}>
               <Text className="text-zinc-300">{training.description}</Text>
             </Section>
             <TrainingExerciseList exercises={training.exercises} />

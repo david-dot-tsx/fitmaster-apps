@@ -3,7 +3,6 @@ interface Resources {
 
   },
   "common": {
-    "about": "about",
     "active": "active",
     "adjustPhoto": "Adjust photo",
     "appStore": "App Store",
@@ -288,6 +287,7 @@ interface Resources {
         "title": "Register"
       },
       "trainingDetails": {
+        "aboutTraining": "mobile:screens.trainingDetails.aboutTraining",
         "description": "Discover",
         "subtitle": "Training plan details.",
         "title": "Training overview"
@@ -337,7 +337,7 @@ interface Resources {
           "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
           "warning": "WARNING"
         },
-        "titleTrans": "web:dialog.delete.titleTrans"
+        "titleTrans": "Delete entity: <br/> <1>{{entityName}}</1>"
       },
       "exercise": {
         "create": {

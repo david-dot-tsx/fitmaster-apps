@@ -9,7 +9,6 @@
     "interface": "i18next-resources-for-ts interface -i ./src/locales/en -o ./src/resources.ts"
   },
   "dependencies": {
-    "@repo/api": "workspace:*",
     "i18next": "^25.8.3",
     "i18next-cli": "^1.51.7",
     "i18next-resources-for-ts": "^2.0.0"
