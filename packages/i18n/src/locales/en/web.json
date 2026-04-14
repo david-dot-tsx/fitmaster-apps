@@ -276,6 +276,31 @@
           "label": "Last Update"
         }
       }
+    },
+    "training": {
+      "columns": {
+        "createdAt": {
+          "label": "Created At"
+        },
+        "description": {
+          "label": "Overview"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Cover"
+        },
+        "name": {
+          "label": "Program Title"
+        },
+        "status": {
+          "label": "Status"
+        },
+        "updatedAt": {
+          "label": "Last Update"
+        }
+      }
     }
   }
 }

@@ -108,7 +108,7 @@ interface Resources {
     },
     "lastName": "Last Name",
     "launch": "Launch",
-    "loading": "loading",
+    "loading": "Loading",
     "login": "Login",
     "logout": "Logout",
     "main": "main",
@@ -602,6 +602,31 @@ interface Resources {
           },
           "updatedAt": {
             "label": "Last Update"
+          }
+        }
+      },
+      "training": {
+        "columns": {
+          "createdAt": {
+            "label": "web:table.training.columns.createdAt.label"
+          },
+          "description": {
+            "label": "web:table.training.columns.description.label"
+          },
+          "id": {
+            "label": "web:table.training.columns.id.label"
+          },
+          "imageUrl": {
+            "label": "web:table.training.columns.imageUrl.label"
+          },
+          "name": {
+            "label": "web:table.training.columns.name.label"
+          },
+          "status": {
+            "label": "web:table.training.columns.status.label"
+          },
+          "updatedAt": {
+            "label": "web:table.training.columns.updatedAt.label"
           }
         }
       }
