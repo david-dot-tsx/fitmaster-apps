@@ -2,11 +2,11 @@
 
 import { Globe } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
 import { type ResourceKey } from "i18next";
 
 import { getTKey, type Locale, LOCALES } from "@repo/i18n/web";
 
+import { useT } from "@/lib/i18n/i18n";
 import { updateLocaleCookieAction } from "@/actions/locale.actions";
 import { Button } from "@/components/ui/button";
 import {
@@ -23,7 +23,7 @@ const locales: { code: Locale; name: ResourceKey; flag: string }[] = [
 ] as const;
 
 export function LocaleSwitch() {
-  const { i18n, t } = useTranslation();
+  const { i18n, t } = useT();
   const router = useRouter();
   const currentPathname = usePathname();
   const currentLocale = i18n.language;

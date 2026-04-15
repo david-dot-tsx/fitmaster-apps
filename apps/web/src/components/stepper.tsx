@@ -1,9 +1,7 @@
 import { findIndex } from "remeda";
-import { useTranslation } from "react-i18next";
 import { type ResourceKey } from "i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
+import { useT } from "@/lib/i18n/i18n";
 import { cn } from "@/lib/utils";
 
 export interface Step<T> {
@@ -21,7 +19,7 @@ interface SingleStepComponent<T> {
 }
 
 const SingleStepComponent = <T,>({ status, step, isLastStep, index }: SingleStepComponent<T>) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <li className={cn("flex flex-1 flex-col gap-2", { "pr-4": !isLastStep })}>

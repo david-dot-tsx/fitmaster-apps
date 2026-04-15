@@ -23,7 +23,7 @@ export const OnboardingCompletedScreen = () => {
           <Heading size="3xl" className="text-center">
             {t("mobile:screens.onboarding.steps.completed.title")}
           </Heading>
-          <Text size="md" className="text-typography-500 text-center">
+          <Text size="md" className="text-center text-typography-500">
             {t("mobile:screens.onboarding.steps.completed.description")}
           </Text>
         </View>

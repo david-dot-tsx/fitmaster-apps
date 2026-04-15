@@ -3,10 +3,8 @@
 import { AlertTriangle, Loader2 } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
+import { useT } from "@/lib/i18n/i18n";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -38,7 +36,7 @@ export const WarningDialog = ({
   cancelLabel,
   status,
 }: WarningDialogProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>

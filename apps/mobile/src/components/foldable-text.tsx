@@ -35,7 +35,7 @@ export const FoldableText = ({ text, maxLines = 2 }: FoldableTextProps) => {
       </Text>
       {isTextTruncated && (
         <Button variant="link" onPress={() => setIsExpanded((prev) => !prev)}>
-          <ButtonText className="text-2xs my-0 py-0 font-semibold uppercase text-zinc-500">
+          <ButtonText className="my-0 py-0 text-2xs font-semibold uppercase text-zinc-500">
             {isExpanded ? t("showLess") : t("showMore")}
           </ButtonText>
         </Button>

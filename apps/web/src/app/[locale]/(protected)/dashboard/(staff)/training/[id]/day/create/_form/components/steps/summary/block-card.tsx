@@ -5,7 +5,6 @@ import {
   type WorkoutCreateBlockBase,
   type WorkoutBlockTypes,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -13,7 +12,7 @@ import { ExerciseRow } from "@/app/[locale]/(protected)/dashboard/(staff)/traini
 import { stepConfig } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
 import { cn } from "@/lib/utils";
 import { DAY_CREATOR_STEPS } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 interface BlockCardProps {
   block: WorkoutCreateBlockBase;
@@ -22,7 +21,7 @@ interface BlockCardProps {
 }
 export const BlockCard = ({ block, blockType, exercises }: BlockCardProps) => {
   const config = stepConfig[blockType];
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <Card

@@ -13,7 +13,6 @@ import {
   type TrainingUpdateInputForm,
   trainingUpdateInputFormSchema,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -28,13 +27,13 @@ import {
 } from "@/components/ui/dialog";
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 interface EditTrainingDialogProps extends Pick<DialogProps, "open" | "onOpenChange"> {
   training: Training | null;
 }
 export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainingDialogProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const methods = useForm<TrainingUpdateInputForm>({

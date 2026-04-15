@@ -62,7 +62,7 @@ export const TrainingDaySessionStats = ({
 const StatItem = ({ label, children }: { label: string; children: React.ReactNode }) => {
   return (
     <View className="flex h-full flex-1 justify-between">
-      <Text className="font-orbitron-semibold text-2xs text-center uppercase tracking-widest text-zinc-500">
+      <Text className="text-center font-orbitron-semibold text-2xs uppercase tracking-widest text-zinc-500">
         {label}
       </Text>
       <View className="flex-1 justify-center ">{children}</View>

@@ -13,9 +13,8 @@ import {
   BodyPart,
   Difficulty,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
 import {
@@ -48,7 +47,7 @@ const bodyPartOptions = [
 ];
 
 export const CreateExerciseDialog = () => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const [open, setOpen] = useState(false);
   const trpc = useTRPC();
   const queryClient = useQueryClient();

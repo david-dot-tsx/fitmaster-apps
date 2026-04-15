@@ -41,7 +41,7 @@ export const QueryErrorHandler = ({
       <VStack className="max-w-sm items-center gap-5">
         <Icon as={AlertCircle} size="2xl" className="text-amber-400" />
         <VStack className="items-center gap-2">
-          <Text className="font-orbitron-semibold text-center text-lg uppercase tracking-tight text-zinc-100">
+          <Text className="text-center font-orbitron-semibold text-lg uppercase tracking-tight text-zinc-100">
             {title ?? t("error")}
           </Text>
           <Text className="text-center text-sm leading-relaxed text-zinc-400">

@@ -1,11 +1,9 @@
 import React from "react";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const NoDataFoundRow = ({ colSpan }: { colSpan: number }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <tr>

@@ -4,7 +4,7 @@ import { Edit2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 type ActionButtonsCellProps = {
   onDelete: () => void;
@@ -20,7 +20,7 @@ export const ActionButtonsCell = ({
   onEdit,
   children,
 }: ActionButtonsCellProps) => {
-  const { t } = useTranslation();
+  const { t } = useT();
   const actionButtonClass =
     "h-8 w-8 p-0 bg-zinc-900/50 border border-zinc-800 transition-all duration-200 backdrop-blur-sm";
 

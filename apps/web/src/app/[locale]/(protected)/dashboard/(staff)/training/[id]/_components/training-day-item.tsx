@@ -5,13 +5,12 @@ import {
   workoutBlockTypesSchema,
   type TrainingDayDetailed,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingDayItem = ({ day, index }: { day: TrainingDayDetailed; index: number }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className="group relative flex gap-12">
@@ -68,7 +67,7 @@ const BlockSection = ({
   blockType: WorkoutBlockTypes;
   isMain?: boolean;
 }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className={cn("space-y-4", { "transition-transform lg:scale-105": isMain })}>

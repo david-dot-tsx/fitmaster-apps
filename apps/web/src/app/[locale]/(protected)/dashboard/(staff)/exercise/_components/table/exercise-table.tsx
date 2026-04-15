@@ -11,7 +11,6 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { type ExerciseListOutput, type ExerciseBaseWithId, Difficulty } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell";
@@ -26,12 +25,12 @@ import { DateCell } from "@/components/table/cells/date-cell";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 import { NoDataFoundRow } from "@/components/table/no-data-found-row";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 const columnHelper = createColumnHelper<ExerciseListOutput[number]>();
 
 export const ExerciseTable = () => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();

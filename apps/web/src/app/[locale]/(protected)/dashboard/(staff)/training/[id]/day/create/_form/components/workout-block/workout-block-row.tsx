@@ -8,7 +8,6 @@ import {
   WorkoutType,
   type WorkoutCreateBlockBase,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { Button } from "@/components/ui/button";
 import { FormSelect, type SelectOption } from "@/components/form/form-select";
@@ -19,7 +18,7 @@ import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/
 import { cn } from "@/lib/utils";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 const getExerciseSelectOptions = (exercises: ExerciseBaseWithId[]) => {
   return exercises.map((exercise) => ({ children: exercise.name, value: exercise.id })) || [];
@@ -44,7 +43,7 @@ const workoutTypeOptions: SelectOption[] = [
 ];
 
 export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const trpc = useTRPC();
   const {
     control,

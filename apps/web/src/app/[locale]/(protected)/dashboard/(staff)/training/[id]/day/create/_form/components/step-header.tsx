@@ -1,15 +1,13 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
+import { useT } from "@/lib/i18n/i18n";
 import { type DayCreatorStep } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 import { cn } from "@/lib/utils";
 import { stepConfig } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
 
 export const StepHeader = ({ step }: { step: DayCreatorStep }) => {
   const config = stepConfig[step];
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className="mb-8 mt-4 flex items-center gap-6">

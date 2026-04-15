@@ -1,11 +1,9 @@
 import React from "react";
 import { ArrowLeftIcon, ArrowRightIcon, CheckIcon } from "lucide-react";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 interface StepsNavigationProps {
   className?: string;
@@ -18,7 +16,7 @@ export const StepsNavigation = ({
   handlePrevious,
   isLastStep,
 }: StepsNavigationProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div

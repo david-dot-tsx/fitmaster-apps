@@ -5,19 +5,18 @@ import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 
 import { type ExerciseBaseWithId } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
 import { EditExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/edit-exercise-dialog";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 interface ExerciseActionsProps {
   exercise: ExerciseBaseWithId;
 }
 export const ExerciseActions = ({ exercise }: ExerciseActionsProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
   const router = useRouter();

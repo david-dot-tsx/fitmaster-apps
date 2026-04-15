@@ -1,13 +1,12 @@
 import Image from "next/image";
 
 import { type Training } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { Badge } from "@/components/ui/badge";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingHero = ({ training }: { training: Training }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/20 backdrop-blur-md">

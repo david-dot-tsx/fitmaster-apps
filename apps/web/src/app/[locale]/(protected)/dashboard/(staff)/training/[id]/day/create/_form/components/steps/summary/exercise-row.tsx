@@ -1,7 +1,6 @@
 import { type ExerciseBaseWithId, type WorkoutBlockExercise } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const ExerciseRow = ({
   exercise,
@@ -10,7 +9,7 @@ export const ExerciseRow = ({
   exercise: WorkoutBlockExercise;
   exercises?: ExerciseBaseWithId[];
 }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className="group relative flex items-center justify-between rounded-lg border border-transparent p-3 transition-colors hover:border-zinc-800 hover:bg-zinc-900/50">

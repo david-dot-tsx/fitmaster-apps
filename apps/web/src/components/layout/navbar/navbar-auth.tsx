@@ -3,10 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
+import { useT } from "@/lib/i18n/i18n";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/providers/auth/auth-provider";
 
@@ -14,7 +12,7 @@ export const NavbarAuth = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { session } = useAuth();
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useT();
 
   // TODO: Tanstack query: To refactor to queryfactory
   const { mutate: logout } = useMutation({

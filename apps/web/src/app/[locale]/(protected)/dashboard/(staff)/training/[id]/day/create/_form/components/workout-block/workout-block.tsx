@@ -4,17 +4,16 @@ import { useEffect, useState } from "react";
 import { PlusIcon } from "lucide-react";
 
 import { type WorkoutCreateBlockBase } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
 import { WorkoutBlockRow } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block-row";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const WorkoutBlock = () => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const [expandedItem, setExpandedItem] = useState<string | undefined>(undefined);
   const { control } = useFormContext<WorkoutCreateBlockBase>();
   const { fields, append, remove } = useFieldArray({

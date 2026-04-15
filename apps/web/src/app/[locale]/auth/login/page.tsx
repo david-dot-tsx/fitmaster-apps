@@ -9,14 +9,14 @@ import { toast } from "sonner";
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
 
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useTranslation([NAMESPACES.API_ERRORS, NAMESPACES.WEB]);
+  const { t } = useT([NAMESPACES.API_ERRORS]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),

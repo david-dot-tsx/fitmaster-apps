@@ -7,7 +7,6 @@ import { PlusIcon } from "lucide-react";
 import { toast } from "sonner";
 
 import { trainingCreateInputFormSchema, type TrainingCreateInputForm } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -23,11 +22,11 @@ import {
 } from "@/components/ui/dialog";
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const CreateTrainingDialog = () => {
   const [open, setOpen] = useState(false);
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const trpc = useTRPC();
   const methods = useForm<TrainingCreateInputForm>({
     resolver: zodResolver(trainingCreateInputFormSchema),

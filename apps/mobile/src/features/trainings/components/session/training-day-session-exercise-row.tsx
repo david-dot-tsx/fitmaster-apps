@@ -146,7 +146,7 @@ export const TrainingDaySessionExerciseRow = ({
               >
                 {we.exercise.name}
               </Text>
-              <Text className="text-2xs mt-0.5 font-bold uppercase tracking-wider text-zinc-500">
+              <Text className="mt-0.5 text-2xs font-bold uppercase tracking-wider text-zinc-500">
                 {we.workoutType}
               </Text>
             </View>

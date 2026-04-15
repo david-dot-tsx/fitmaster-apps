@@ -17,7 +17,6 @@ import {
   type TrainingListStaffOutput,
   type Role,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
 import { ImageCell } from "@/components/table/cells/image-cell";
@@ -34,7 +33,7 @@ import {
   UpdateStatusDialog,
   UpdateTrainingStatusSelect,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -57,7 +56,7 @@ interface TrainingTableProps {
 }
 
 export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();

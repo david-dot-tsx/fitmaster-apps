@@ -14,7 +14,6 @@ import {
   exerciseUpdateInputFormSchema,
   exerciseUpdateInputSchema,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/web";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -30,7 +29,7 @@ import {
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { FormSelect } from "@/components/form/form-select";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 // TODO: move to a separate file, create use the same options for the create form, take into account i18n
 const difficultyOptions = [
@@ -58,7 +57,7 @@ export const EditExerciseDialog = ({
   onOpenChange,
   onSuccess,
 }: EditExerciseDialogProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const methods = useForm<ExerciseUpdateInputForm>({

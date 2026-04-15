@@ -6,8 +6,6 @@ import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
 import { Trans } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -19,7 +17,7 @@ import {
   AlertDialogTitle,
 } from "@/components/ui/alert-dialog";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 type DeleteDialogProps = Pick<AlertDialogProps, "open" | "onOpenChange"> & {
   onConfirm: () => void;
@@ -34,7 +32,7 @@ export const DeleteDialog = ({
   status,
   entityName,
 }: DeleteDialogProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>

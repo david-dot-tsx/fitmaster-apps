@@ -7,7 +7,7 @@ import { getTKey } from "@repo/i18n/web";
 
 import { cn } from "@/lib/utils";
 import { Spinner } from "@/components/ui/spinner";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export function LoadingState({
   message = getTKey("common:loading"),
@@ -16,7 +16,7 @@ export function LoadingState({
   message?: ResourceKey;
   className?: string;
 }) {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   return (
     <div

@@ -5,8 +5,6 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
 import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
 import {
   storedTrainingDayCreateInputSchema,
@@ -22,10 +20,10 @@ import {
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const StepSummary = ({ trainingId }: { trainingId: string }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();

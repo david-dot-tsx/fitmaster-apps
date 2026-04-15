@@ -41,7 +41,7 @@ export const TrainingDaySessionBlock = ({
           </Text>
         </View>
         <View className="aspect-square rounded-md border border-amber-400/25 bg-zinc-900 p-1">
-          <Text className="font-orbitron-bold aspect-square text-center text-sm text-amber-400/90">
+          <Text className="aspect-square text-center font-orbitron-bold text-sm text-amber-400/90">
             {exercises.length}
           </Text>
         </View>

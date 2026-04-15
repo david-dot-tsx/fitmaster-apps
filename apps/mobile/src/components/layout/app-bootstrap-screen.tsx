@@ -71,7 +71,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                   <View className="aspect-[4/3] w-full max-w-sm">
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
                   </View>
-                  <Text className="font-orbitron-semibold text-center text-xs uppercase tracking-[0.28em] text-zinc-400">
+                  <Text className="text-center font-orbitron-semibold text-xs uppercase tracking-[0.28em] text-zinc-400">
                     {t("slogan.keywords.strength")} · {t("slogan.keywords.focus")} ·{" "}
                     {t("slogan.keywords.progress")}
                   </Text>

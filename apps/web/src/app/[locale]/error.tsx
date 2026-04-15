@@ -1,9 +1,7 @@
 "use client";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
 import { Button } from "@/components/ui/button";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export default function RootError({
   reset,
@@ -12,7 +10,7 @@ export default function RootError({
   reset: () => void;
   error: Error & { digest?: string };
 }) {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <div className="flex w-full flex-1 items-center justify-center bg-zinc-950 p-6">

@@ -23,7 +23,7 @@ export const TrainingCardDayCounterBadge = ({
     <Badge
       action="primary"
       size="lg"
-      className={cn("bg-background-amber/80 border-amber-400/40 py-1.5", className)}
+      className={cn("border-amber-400/40 bg-background-amber/80 py-1.5", className)}
     >
       <BadgeText className="font-orbitron-extrabold uppercase tracking-wide text-amber-400">
         {isStarted && currentDay

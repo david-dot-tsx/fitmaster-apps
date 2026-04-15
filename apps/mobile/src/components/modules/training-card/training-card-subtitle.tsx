@@ -103,7 +103,7 @@ export const TrainingCardSubtitle = ({
 
   return (
     <Pressable
-      className="bg-background-amber/50 mb-2 flex-row items-center gap-2 self-start rounded-3xl px-2.5 py-1"
+      className="mb-2 flex-row items-center gap-2 self-start rounded-3xl bg-background-amber/50 px-2.5 py-1"
       onPress={onPress}
       disabled={disabled}
     >

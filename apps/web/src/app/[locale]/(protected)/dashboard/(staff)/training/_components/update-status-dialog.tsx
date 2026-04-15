@@ -12,7 +12,7 @@ import {
   type Role,
   canChangeStatus,
 } from "@repo/validators";
-import { getTKey, NAMESPACES } from "@repo/i18n/web";
+import { getTKey } from "@repo/i18n/web";
 
 import { WarningDialog, type WarningDialogProps } from "@/components/warning-dialog";
 import { useTRPC } from "@/lib/trpc/client";
@@ -24,7 +24,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 interface UpdateStatusDialogProps extends Pick<WarningDialogProps, "open" | "onOpenChange"> {
   training: Training | null;
@@ -52,7 +52,7 @@ export const UpdateStatusDialog = ({
   open,
   onOpenChange,
 }: UpdateStatusDialogProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const updateStatusMutation = useMutation(
@@ -135,7 +135,7 @@ export const UpdateTrainingStatusSelect = ({
   onValueChange,
   userRole,
 }: UpdateTrainingStatusSelectProps) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <Select value={currentValue} onValueChange={onValueChange}>

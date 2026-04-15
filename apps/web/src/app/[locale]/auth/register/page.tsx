@@ -2,13 +2,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 import Link from "next/link";
 import { toast } from "sonner";
 
 import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
 import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
 
+import { useT } from "@/lib/i18n/i18n";
 import { useTRPC } from "@/lib/trpc/client";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageWrapper } from "@/components/layout/page-wrapper";
@@ -17,7 +17,7 @@ import { FormInput } from "@/components/form/form-input";
 
 export default function RegisterPage() {
   const trpc = useTRPC();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.API_ERRORS, NAMESPACES.WEB]);
+  const { t } = useT([NAMESPACES.API_ERRORS]);
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {

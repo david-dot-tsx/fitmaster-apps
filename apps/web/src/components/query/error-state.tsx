@@ -2,11 +2,11 @@
 
 import React from "react";
 import { AlertTriangle, RotateCw } from "lucide-react";
-import { useTranslation } from "react-i18next";
 import { type ResourceKey } from "i18next";
 
 import { getTKey } from "@repo/i18n/web";
 
+import { useT } from "@/lib/i18n/i18n";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -21,7 +21,7 @@ export function ErrorState({
   tryAgainLabel?: ResourceKey;
   className?: string;
 }) {
-  const { t } = useTranslation();
+  const { t } = useT();
 
   return (
     <div

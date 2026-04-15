@@ -5,8 +5,6 @@ import { notFound, useRouter } from "next/navigation";
 import { PlusIcon } from "lucide-react";
 import { Trans } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
 import { useTRPC } from "@/lib/trpc/client";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
@@ -16,10 +14,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
-import { useTranslation } from "@/lib/i18n/i18n";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingContent = ({ id }: { id: string }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
   const router = useRouter();
   const trpc = useTRPC();
   const {

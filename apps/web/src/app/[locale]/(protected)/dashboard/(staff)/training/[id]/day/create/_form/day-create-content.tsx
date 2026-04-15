@@ -2,9 +2,8 @@
 
 import { Zap, Flame, Snowflake, ListCheck } from "lucide-react";
 import { type ResourceKey } from "i18next";
-import { useTranslation } from "react-i18next";
 
-import { getTKey, NAMESPACES } from "@repo/i18n/web";
+import { getTKey } from "@repo/i18n/web";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { FormStepRenderer } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/form-step-renderer";
@@ -12,6 +11,7 @@ import {
   DAY_CREATOR_STEPS,
   type DayCreatorStepKey,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+import { useT } from "@/lib/i18n/i18n";
 
 export const stepConfig: Record<
   DayCreatorStepKey,
@@ -44,7 +44,7 @@ export const stepConfig: Record<
 } as const;
 
 export const DayCreateContent = ({ trainingId }: { trainingId: string }) => {
-  const { t } = useTranslation([NAMESPACES.WEB]);
+  const { t } = useT();
 
   return (
     <PageWrapper
