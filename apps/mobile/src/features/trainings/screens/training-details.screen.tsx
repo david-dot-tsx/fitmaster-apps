@@ -2,10 +2,8 @@ import React from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -18,7 +16,7 @@ import { useToastNotification } from "@/components/modules/toast-notifcation/toa
 import { QueryErrorHandler } from "@/components/modules/query-error-handler/query-error-handler";
 
 export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const router = useRouter();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();

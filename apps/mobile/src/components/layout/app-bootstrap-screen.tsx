@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import { NAMESPACES } from "@repo/i18n/mobile";
 
-import { useTranslation } from "@/lib/i18n";
+import { useT } from "@/lib/i18n";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
@@ -34,7 +34,7 @@ type AppBootstrapScreenProps = {
  */
 export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
   const isLoading = phase === "loading";
-  const { t } = useTranslation([NAMESPACES.API_ERRORS, NAMESPACES.MOBILE]);
+  const { t } = useT([NAMESPACES.API_ERRORS]);
 
   return (
     <View className="flex-1 bg-zinc-950">

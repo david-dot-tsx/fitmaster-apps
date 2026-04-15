@@ -2,11 +2,10 @@ import { ScrollView } from "react-native";
 import React, { useState } from "react";
 import { differenceInCalendarYears } from "date-fns";
 import { SettingsIcon, UserIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
 import type { CustomerProfileGetOutput } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
@@ -26,7 +25,7 @@ export const Profile = ({
   isMyProfile: boolean;
 }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <ScreenWrapper

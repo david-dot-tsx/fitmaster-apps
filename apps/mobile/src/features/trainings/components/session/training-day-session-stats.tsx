@@ -1,9 +1,8 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
+import { useT } from "@/lib/i18n";
 
 interface TrainingDaySessionStatsProps {
   dominantPart: string;
@@ -17,7 +16,7 @@ export const TrainingDaySessionStats = ({
   withWeight,
   total,
 }: TrainingDaySessionStatsProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <View className="rounded-2xl border border-zinc-800/80 bg-zinc-900/50 p-3">

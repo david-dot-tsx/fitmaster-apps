@@ -1,11 +1,10 @@
 import React from "react";
 import { ActivitySquareIcon, StarIcon, ZapIcon } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
 import { Difficulty } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Text } from "@/components/ui/text";
 import { HStack } from "@/components/ui/hstack";
 import { Icon } from "@/components/ui/icon";
@@ -16,7 +15,7 @@ type ExerciseMetaProps = {
 };
 
 export const ExerciseMeta = ({ difficulty, bodyPart }: ExerciseMetaProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <HStack className="mb-5 mt-3 gap-3">

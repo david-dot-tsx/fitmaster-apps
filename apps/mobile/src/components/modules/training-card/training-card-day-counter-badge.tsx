@@ -1,9 +1,7 @@
 import React from "react";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeText } from "@/components/ui/badge";
 
 export const TrainingCardDayCounterBadge = ({
@@ -17,7 +15,7 @@ export const TrainingCardDayCounterBadge = ({
   className?: string;
   isStarted?: boolean;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useT();
 
   return (
     <Badge

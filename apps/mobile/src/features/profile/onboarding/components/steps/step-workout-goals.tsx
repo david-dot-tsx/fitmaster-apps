@@ -1,14 +1,12 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { VStack } from "@/components/ui/vstack";
 import { FormTextarea } from "@/components/form/form-textarea";
 import { StepWrapper } from "@/features/profile/onboarding/components/steps/step-wrapper";
 
 export const StepWorkoutGoals = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <StepWrapper title={t("mobile:screens.onboarding.steps.workoutGoals.title")}>

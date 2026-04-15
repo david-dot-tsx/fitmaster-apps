@@ -1,10 +1,9 @@
 import React, { useMemo } from "react";
 import { DumbbellIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Text } from "@/components/ui/text";
 import { Icon } from "@/components/ui/icon";
 import { HStack } from "@/components/ui/hstack";
@@ -26,7 +25,7 @@ export const TraitList = ({
 }: {
   sessionExercise: TrainingSessionWorkoutWithDetails;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const traitsComponents = useMemo(() => {
     const components = [];
     if (sessionExercise?.targetReps) {

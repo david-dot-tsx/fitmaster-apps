@@ -8,14 +8,14 @@ import {
 } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { type ResourceKey } from "i18next";
-import { useTranslation } from "react-i18next";
 
 import {
   WorkoutExerciseSessionStatus,
   type TrainingSessionWorkoutWithDetails,
 } from "@repo/validators";
-import { NAMESPACES, getTKey } from "@repo/i18n/mobile";
+import { getTKey } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
 
 const STATUS_BADGE = {
@@ -29,7 +29,7 @@ const STATUS_BADGE = {
 type StatusBadgeType = "CURRENT" | WorkoutExerciseSessionStatus;
 
 const StatusBadge = ({ status, className }: { status: StatusBadgeType; className?: string }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const badgeStatus: Record<
     StatusBadgeType,
     {
@@ -85,7 +85,7 @@ export const TrainingDaySessionExerciseRow = ({
   barClass: string;
   isCurrent: boolean;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const we = sessionExercise.workoutExercise;
   const meta = [
     we.reps != null ? { label: t("reps"), value: String(we.reps), units: t("units.reps") } : null,
@@ -146,7 +146,7 @@ export const TrainingDaySessionExerciseRow = ({
               >
                 {we.exercise.name}
               </Text>
-              <Text className="mt-0.5 text-2xs font-bold uppercase tracking-wider text-zinc-500">
+              <Text className="text-2xs mt-0.5 font-bold uppercase tracking-wider text-zinc-500">
                 {we.workoutType}
               </Text>
             </View>

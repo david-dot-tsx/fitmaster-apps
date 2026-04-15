@@ -3,10 +3,10 @@ import { ActivityIndicator, View } from "react-native";
 import { AlertCircle } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { type ResourceKey } from "i18next";
-import { useTranslation } from "react-i18next";
 
-import { getTKey, NAMESPACES } from "@repo/i18n/mobile";
+import { getTKey } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
 import { Button, ButtonText } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export const QueryErrorHandler = ({
   retryLabel = getTKey("common:tryAgain"),
   className,
 }: QueryErrorHandlerProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <View
@@ -41,7 +41,7 @@ export const QueryErrorHandler = ({
       <VStack className="max-w-sm items-center gap-5">
         <Icon as={AlertCircle} size="2xl" className="text-amber-400" />
         <VStack className="items-center gap-2">
-          <Text className="text-center font-orbitron-semibold text-lg uppercase tracking-tight text-zinc-100">
+          <Text className="font-orbitron-semibold text-center text-lg uppercase tracking-tight text-zinc-100">
             {title ?? t("error")}
           </Text>
           <Text className="text-center text-sm leading-relaxed text-zinc-400">

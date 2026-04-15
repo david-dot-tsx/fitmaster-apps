@@ -5,10 +5,8 @@ import { Gesture, GestureDetector } from "react-native-gesture-handler";
 import * as ImagePicker from "expo-image-picker";
 import { Controller, useFormContext } from "react-hook-form";
 import { Camera, Images, User } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Modal, ModalBackdrop, ModalContent } from "@/components/ui/modal";
 import { Alert, AlertIcon, AlertText } from "@/components/ui/alert";
 import { AlertCircleIcon } from "@/components/ui/icon";
@@ -38,7 +36,7 @@ interface FormProfilePictureProps {
 
 export const FormProfilePicture = ({ name, transform }: FormProfilePictureProps) => {
   const { control } = useFormContext();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   const [adjustModalVisible, setAdjustModalVisible] = useState(false);
   const [pendingImageUri, setPendingImageUri] = useState<string | null>(null);

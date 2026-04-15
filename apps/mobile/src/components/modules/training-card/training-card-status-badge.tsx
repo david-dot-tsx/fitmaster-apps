@@ -1,11 +1,10 @@
 import React, { useMemo } from "react";
 import { Play, CircleDot, CheckCircle2, XCircle, Star } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
 import { TrainingSessionStatus } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
 
 const BADGE_STATUSES = {
@@ -48,7 +47,7 @@ export const TrainingCardStatusBadge = ({
   trainingSessionStatus?: TrainingSessionStatus;
   className?: string;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   const badgeStatusConfig = useMemo(() => {
     return {

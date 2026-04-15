@@ -7,11 +7,10 @@ import {
   Star,
   XCircleIcon,
 } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
 import { TrainingSessionStatus } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Icon } from "@/components/ui/icon";
 
 const SUBTITLE_STATUS = {
@@ -66,7 +65,7 @@ export const TrainingCardSubtitle = ({
   onPress,
   disabled,
 }: TrainingCardSubtitleProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const subtitleConfig = useMemo((): Record<
     SubtitleType,
     { icon: React.ElementType; text: string }

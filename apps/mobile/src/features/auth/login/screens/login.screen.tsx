@@ -4,11 +4,10 @@ import { router } from "expo-router";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { FormProvider, useForm } from "react-hook-form";
 import { LogIn } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { useAuthContext } from "@/providers/auth/auth-context";
 import { FormInput } from "@/components/form/form-input";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
@@ -20,7 +19,7 @@ import { Section } from "@/components/ui/section";
 
 export const LoginScreen = () => {
   const { login, loginStatus } = useAuthContext();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
     defaultValues: {

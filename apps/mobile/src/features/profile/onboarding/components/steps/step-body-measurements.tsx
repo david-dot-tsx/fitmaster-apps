@@ -1,9 +1,7 @@
 import React from "react";
 import { View } from "react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { VStack } from "@/components/ui/vstack";
 import { FormWheelPicker } from "@/components/form/form-wheel-picker";
 import { StepWrapper } from "@/features/profile/onboarding/components/steps/step-wrapper";
@@ -19,7 +17,7 @@ const heights = [...Array(120).keys()].map((index) => ({
 }));
 
 export const StepBodyMeasurements = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <StepWrapper title={t("mobile:screens.onboarding.steps.bodyMeasurements.title")}>

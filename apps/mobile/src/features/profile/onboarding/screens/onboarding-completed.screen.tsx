@@ -2,10 +2,8 @@ import React from "react";
 import { View } from "react-native";
 import { router } from "expo-router";
 import { CheckCircle2 } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Icon } from "@/components/ui/icon";
@@ -13,7 +11,7 @@ import { Text } from "@/components/ui/text";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 
 export const OnboardingCompletedScreen = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <ScreenWrapper className="flex-1 bg-zinc-950">

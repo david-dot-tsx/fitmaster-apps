@@ -1,10 +1,10 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 import { type ResourceKey } from "i18next";
 
 import { Gender, type GenderType } from "@repo/validators";
-import { getTKey, NAMESPACES } from "@repo/i18n/mobile";
+import { getTKey } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { VStack } from "@/components/ui/vstack";
 import { FormInput } from "@/components/form/form-input";
 import { FormRadio } from "@/components/form/form-radio";
@@ -17,7 +17,7 @@ const genderOptions: { label: ResourceKey; value: GenderType }[] = [
 ];
 
 export const StepIntroduction = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <StepWrapper title={t("mobile:screens.onboarding.steps.introduction.title")}>

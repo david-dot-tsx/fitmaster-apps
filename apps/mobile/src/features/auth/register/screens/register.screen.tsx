@@ -3,12 +3,11 @@ import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "react-i18next";
 import { UserPlus } from "lucide-react-native";
 
 import { type UserCreateInputForm, userCreateInputFormSchema } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
@@ -20,7 +19,7 @@ import { FormInput } from "@/components/form/form-input";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 
 export const RegisterScreen = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const { openToast } = useToastNotification();
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
     onSuccess: () => {

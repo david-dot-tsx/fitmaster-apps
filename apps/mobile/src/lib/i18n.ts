@@ -1,5 +1,5 @@
 import i18n, { type LanguageDetectorAsyncModule } from "i18next";
-import { initReactI18next, useTranslation as useTranslationReactI18next } from "react-i18next";
+import { initReactI18next, useTranslation } from "react-i18next";
 import * as Localization from "expo-localization";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
@@ -10,7 +10,8 @@ import {
   type MobileNamespaces,
 } from "@repo/i18n/mobile";
 
-type ExtraNamespace = Exclude<MobileNamespaces, typeof NAMESPACES.COMMON>;
+const DEFAULT_MOBILE_NAMESPACES = [NAMESPACES.COMMON, NAMESPACES.MOBILE] as const;
+type ExtraNamespace = Exclude<MobileNamespaces, (typeof DEFAULT_MOBILE_NAMESPACES)[number]>;
 
 const LANGUAGE_DETECTOR: LanguageDetectorAsyncModule = {
   type: "languageDetector",
@@ -43,18 +44,14 @@ i18nextInstance
 
 export default i18nextInstance;
 
-export function useTranslation(): ReturnType<
-  typeof useTranslationReactI18next<typeof NAMESPACES.COMMON>
->;
-export function useTranslation<const TNamespace extends ExtraNamespace>(
-  namespaces: readonly TNamespace[],
-): ReturnType<typeof useTranslationReactI18next<readonly [typeof NAMESPACES.COMMON, TNamespace]>>;
-export function useTranslation<const TNamespace extends ExtraNamespace>(
-  namespaces?: readonly TNamespace[],
-) {
-  const scopedNamespaces = [NAMESPACES.COMMON, ...(namespaces ?? [])] as const;
+export function useT(): ReturnType<typeof useTranslation<typeof DEFAULT_MOBILE_NAMESPACES>>;
 
-  return useTranslationReactI18next(
-    scopedNamespaces as readonly [typeof NAMESPACES.COMMON, TNamespace],
-  );
+export function useT<const TNamespace extends ExtraNamespace>(
+  namespaces: readonly TNamespace[],
+): ReturnType<typeof useTranslation<readonly [...typeof DEFAULT_MOBILE_NAMESPACES, TNamespace]>>;
+
+export function useT<const TNamespace extends ExtraNamespace>(namespaces?: readonly TNamespace[]) {
+  const scopedNamespaces = [...DEFAULT_MOBILE_NAMESPACES, ...(namespaces ?? [])] as const;
+
+  return useTranslation(scopedNamespaces);
 }

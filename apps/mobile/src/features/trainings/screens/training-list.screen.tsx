@@ -2,10 +2,8 @@ import React, { useCallback } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -16,7 +14,7 @@ const LIMIT = 25;
 
 export const TrainingListScreen = () => {
   const router = useRouter();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, refetch, isFetching } =
     trpc.training.listPublished.useInfiniteQuery(
       { limit: LIMIT },

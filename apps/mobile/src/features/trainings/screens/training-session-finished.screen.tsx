@@ -1,10 +1,8 @@
 import { View, Text } from "react-native";
 import React from "react";
 import { router } from "expo-router";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Heading } from "@/components/ui/heading";
 import { VStack } from "@/components/ui/vstack";
@@ -15,7 +13,7 @@ export const TrainingSessionFinishedScreen = (_props: {
   trainingId: string;
   sessionId: string;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <ScreenWrapper>

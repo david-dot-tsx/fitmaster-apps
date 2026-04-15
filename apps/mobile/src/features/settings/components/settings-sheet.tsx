@@ -2,10 +2,8 @@ import React from "react";
 import { Pressable, View } from "react-native";
 import { AnimatePresence, MotiView } from "moti";
 import { XIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Icon } from "@/components/ui/icon";
@@ -19,7 +17,7 @@ type SettingsSheetProps = {
 
 export const SettingsSheet = ({ isOpen, onClose }: SettingsSheetProps) => {
   const { logout } = useAuthContext();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const handleLogout = async () => {
     onClose();
     await logout();

@@ -1,10 +1,8 @@
 import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { TrophyIcon } from "lucide-react-native";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -23,7 +21,7 @@ type LeaderboardEntry = {
 };
 
 export const LeaderboardScreen = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const { data: me } = trpc.user.me.useQuery();
   const { data: myProfile } = trpc.profile.getCustomerProfile.useQuery(
     { userId: me?.id },

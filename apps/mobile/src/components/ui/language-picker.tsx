@@ -1,14 +1,14 @@
 import React, { useMemo } from "react";
 import { View, Text, Pressable } from "react-native";
-import { useTranslation } from "react-i18next";
 import { CheckIcon } from "lucide-react-native";
 
-import { LOCALES, NAMESPACES } from "@repo/i18n/mobile";
+import { LOCALES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Icon } from "@/components/ui/icon";
 
 export function LanguagePicker() {
-  const { i18n, t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { i18n, t } = useT();
   const LANGUAGES = useMemo(
     () => [
       { code: LOCALES.EN, label: t("languages.english"), flag: "🇺🇸" },

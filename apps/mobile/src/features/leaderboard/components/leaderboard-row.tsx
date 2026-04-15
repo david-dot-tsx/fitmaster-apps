@@ -1,10 +1,8 @@
 import React from "react";
 import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
 
@@ -23,7 +21,7 @@ export const LeaderboardRow = ({
   isCurrentUser,
 }: LeaderboardRowProps) => {
   const router = useRouter();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <Pressable onPress={() => router.push(`/profile/${nickname}`)}>

@@ -1,9 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useState } from "react";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Button, ButtonText } from "@/components/ui/button";
 
 type FoldableTextProps = {
@@ -14,7 +12,7 @@ type FoldableTextProps = {
 export const FoldableText = ({ text, maxLines = 2 }: FoldableTextProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTextTruncated, setIsTextTruncated] = useState(false);
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <View className="relative">

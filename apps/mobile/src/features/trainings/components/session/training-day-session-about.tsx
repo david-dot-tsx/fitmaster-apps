@@ -1,15 +1,14 @@
 import React, { useMemo } from "react";
 import { View } from "react-native";
 import { entries, groupBy } from "remeda";
-import { useTranslation } from "react-i18next";
 
 import {
   Difficulty,
   WorkoutExerciseSessionStatus,
   type TrainingSessionWorkoutWithDetails,
 } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { StatPill } from "@/components/ui/stat-pill";
 import { TrainingDaySessionStats } from "@/features/trainings/components/session/training-day-session-stats";
 import { VStack } from "@/components/ui/vstack";
@@ -18,7 +17,7 @@ interface TrainingDaySessionAboutProps {
   sessionExercises: TrainingSessionWorkoutWithDetails[];
 }
 export const TrainingDaySessionAbout = ({ sessionExercises }: TrainingDaySessionAboutProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const stats = useMemo(() => {
     const total = sessionExercises.length;
     if (total === 0) {

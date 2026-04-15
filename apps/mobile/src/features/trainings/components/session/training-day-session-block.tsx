@@ -1,11 +1,10 @@
 import React from "react";
 import { Text, View } from "react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
 import { TrainingDaySessionExerciseRow } from "@/features/trainings/components/session/training-day-session-exercise-row";
@@ -24,7 +23,7 @@ export const TrainingDaySessionBlock = ({
   currentExercise: TrainingSessionWorkoutWithDetails | undefined;
 }) => {
   const config = WORKOUT_BLOCK_DISPLAY[blockType];
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <VStack className={cn("mb-4 ", config.shadowClass)}>

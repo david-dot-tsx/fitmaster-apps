@@ -3,10 +3,8 @@ import { ActivityIndicator, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 import { type MutationStatus } from "@tanstack/react-query";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { TrainingDaySessionPreview } from "@/features/trainings/components/session/training-day-session-preview";
 import { VStack } from "@/components/ui/vstack";
@@ -38,7 +36,7 @@ export const TrainingSessionScreen = ({
   trainingId: string;
   sessionId: string;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const {
     data: dayData,
     mutate: startDayMutation,

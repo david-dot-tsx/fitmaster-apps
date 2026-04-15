@@ -1,11 +1,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { type ResourceKey } from "i18next";
-import { useTranslation } from "react-i18next";
 import React from "react";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import {
   FormControl,
   FormControlError,
@@ -25,7 +23,7 @@ export interface FormRadioProps {
 
 export const FormRadio = ({ name, label, options }: FormRadioProps) => {
   const { control } = useFormContext();
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <Controller

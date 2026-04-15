@@ -1,8 +1,6 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { HStack } from "@/components/ui/hstack";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
@@ -14,7 +12,7 @@ type MyPositionCardProps = {
 };
 
 export const MyPositionCard = ({ position, nickname, points }: MyPositionCardProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <VStack className="mb-3 rounded-xl border border-amber-400/30 bg-amber-400/10 px-4 py-3">

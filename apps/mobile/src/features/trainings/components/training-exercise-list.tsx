@@ -1,8 +1,6 @@
 import React from "react";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
-
+import { useT } from "@/lib/i18n";
 import { Text } from "@/components/ui/text";
 import { Section } from "@/components/ui/section";
 
@@ -21,7 +19,7 @@ type TrainingExerciseListProps = {
 };
 
 export const TrainingExerciseList = ({ exercises }: TrainingExerciseListProps) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
 
   return (
     <Section title={t("exercises")}>

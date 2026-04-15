@@ -3,11 +3,10 @@ import { ActivityIndicator, ScrollView, View } from "react-native";
 import { router } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
-import { useTranslation } from "react-i18next";
 
 import { WorkoutExerciseSessionStatus } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Button, ButtonText } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc/client";
@@ -31,7 +30,7 @@ export const TrainingSessionExerciseScreen = ({
   trainingId: string;
   sessionId: string;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const stopWatchProps = useStopWatch();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
@@ -193,7 +192,7 @@ const SessionExerciseOverview = ({
   totalExercisesAmount?: number;
   currentExerciseStatus: WorkoutExerciseSessionStatus;
 }) => {
-  const { t } = useTranslation([NAMESPACES.COMMON, NAMESPACES.MOBILE]);
+  const { t } = useT();
   const hasProgress =
     exercisesLeftAmount != null && totalExercisesAmount != null && totalExercisesAmount > 0;
   const currentIndex =
