@@ -3,7 +3,6 @@ import { type ParseKeys, type InitOptions, type AppendNamespace } from "i18next"
 import type Resources from "./resources";
 import { type Namespace, NAMESPACES } from "./types/namespaces";
 import { LOCALES, type Locale } from "./types/locales";
-export * from "./utils/api-error";
 
 /**
  * TODO:

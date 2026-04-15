@@ -1,1 +1,4 @@
-{}
+{
+  "INVALID_CREDENTIALS": "Nieprawidłowe dane logowania",
+  "USER_ALREADY_EXISTS": "Użytkownik już istnieje"
+}

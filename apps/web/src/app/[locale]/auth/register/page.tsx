@@ -6,7 +6,8 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
-import { getApiErrorNamespacedTranslationKey, I18N_NAMESPACES } from "@repo/i18n/web";
+import { I18N_NAMESPACES } from "@repo/i18n/web";
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
 import { useT } from "@/lib/i18n/i18n";
 import { useTRPC } from "@/lib/trpc/client";
@@ -14,8 +15,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
+import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
 
 export default function RegisterPage() {
+  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
   const trpc = useTRPC();
   const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
   const methods = useForm<UserCreateInputForm>({
@@ -30,15 +33,20 @@ export default function RegisterPage() {
   const registerMutation = useMutation(
     trpc.user.create.mutationOptions({
       onSuccess: () => {
-        toast.success("Registered!");
+        toast.success(t("success.generic.description"));
       },
-      onError: (err) => {
-        const apiErrorTranslationKey = getApiErrorNamespacedTranslationKey(err.message);
-        if (apiErrorTranslationKey) {
-          methods.setError("email", { message: t(apiErrorTranslationKey) });
-        } else {
-          toast.error("Failed to register");
-        }
+      onError: (error) => {
+        getApiErrorTranslatedMessage(error.message, {
+          onMatch: {
+            [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: (translatedMessage: string) => {
+              methods.setError("email", { message: translatedMessage });
+              toast.error(translatedMessage);
+            },
+          },
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+          },
+        });
       },
     }),
   );

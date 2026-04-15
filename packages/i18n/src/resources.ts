@@ -1,6 +1,7 @@
 interface Resources {
   "api-errors": {
-
+    "INVALID_CREDENTIALS": "api-errors:INVALID_CREDENTIALS",
+    "USER_ALREADY_EXISTS": "api-errors:USER_ALREADY_EXISTS"
   },
   "common": {
     "active": "active",
@@ -44,11 +45,6 @@ interface Resources {
     "error": "error",
     "errorCode": "Error code",
     "errors": {
-      "auth": {
-        "login": {
-          "failed": "Login failed. Please Check your credentials and try again."
-        }
-      },
       "exercise": {
         "finish": {
           "failed": {
@@ -102,6 +98,7 @@ interface Resources {
     "height": "Height",
     "initializeRegistration": "Initialize registration",
     "intensity": "intensity",
+    "invalidCredentials": "Invalid credentials",
     "joinTraining": "Join training",
     "languages": {
       "english": "English",
@@ -184,6 +181,7 @@ interface Resources {
     },
     "unpublished": "Unpublished",
     "update": "update",
+    "userAlreadyExists": "userAlreadyExists",
     "volume": "volume",
     "warmup": "warm up",
     "weight": "Weight",

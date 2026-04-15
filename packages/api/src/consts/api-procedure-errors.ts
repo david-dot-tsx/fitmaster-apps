@@ -8,3 +8,4 @@ export const API_PROCEDURE_ERRORS = {
   NOT_FOUND: "NOT_FOUND",
   FORBIDDEN: "FORBIDDEN",
 } as const;
+export type ApiProcedureErrors = (typeof API_PROCEDURE_ERRORS)[keyof typeof API_PROCEDURE_ERRORS];

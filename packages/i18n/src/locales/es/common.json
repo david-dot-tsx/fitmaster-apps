@@ -41,11 +41,6 @@
   "error": "error",
   "errorCode": "Código de error",
   "errors": {
-    "auth": {
-      "login": {
-        "failed": "Error al iniciar sesión. Compruebe sus credenciales e intente de nuevo."
-      }
-    },
     "exercise": {
       "finish": {
         "failed": {
@@ -102,6 +97,7 @@
   "height": "Altura",
   "initializeRegistration": "Iniciar registro",
   "intensity": "intensidad",
+  "invalidCredentials": "Credenciales inválidas",
   "joinTraining": "Unirse al entrenamiento",
   "languages": {
     "english": "Inglés",
@@ -145,9 +141,9 @@
       "strength": "Fuerza"
     },
     "main": {
-      "body": "Cuerpo",
-      "forge": "forja",
-      "your": "Tu"
+      "body": "BODY",
+      "forge": "FORGE",
+      "your": "YOUR"
     }
   },
   "somethingWentWrong": "Algo salió mal",
@@ -184,6 +180,7 @@
   },
   "unpublished": "No publicado",
   "update": "actualizar",
+  "userAlreadyExists": "",
   "volume": "volumen",
   "warmup": "calentamiento",
   "weight": "Peso",

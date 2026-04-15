@@ -7,8 +7,9 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
-import { getApiErrorNamespacedTranslationKey, I18N_NAMESPACES } from "@repo/i18n/web";
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
+import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
 import { useT } from "@/lib/i18n/i18n";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -16,7 +17,8 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
+  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { t } = useT();
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
@@ -37,13 +39,7 @@ export default function LoginPage() {
 
       if (!res.ok) {
         const errorData = await res.json();
-        const apiErrorTranslationKey = getApiErrorNamespacedTranslationKey(errorData.error.message);
-        if (apiErrorTranslationKey) {
-          methods.setError("email", {
-            message: t(apiErrorTranslationKey),
-          });
-        }
-        throw new Error(errorData.message);
+        throw new Error(errorData.error.message);
       }
 
       return res.json();
@@ -52,8 +48,18 @@ export default function LoginPage() {
       router.push("/dashboard");
       router.refresh();
     },
-    onError: () => {
-      toast.error(t("errors.auth.login.failed"));
+    onError: (error) => {
+      getApiErrorTranslatedMessage(error.message, {
+        onMatch: {
+          [API_PROCEDURE_ERRORS.INVALID_CREDENTIALS]: (translatedMessage: string) => {
+            methods.setError("email", { message: translatedMessage });
+            toast.error(translatedMessage);
+          },
+        },
+        default: (translatedMessage: string) => {
+          toast.error(translatedMessage);
+        },
+      });
     },
   });
 

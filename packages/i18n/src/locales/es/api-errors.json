@@ -1,1 +1,4 @@
-{}
+{
+  "INVALID_CREDENTIALS": "Credenciales inválidas",
+  "USER_ALREADY_EXISTS": "El usuario ya existe"
+}

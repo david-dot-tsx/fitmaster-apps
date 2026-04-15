@@ -40,11 +40,6 @@
   "error": "error",
   "errorCode": "Error code",
   "errors": {
-    "auth": {
-      "login": {
-        "failed": "Login failed. Please Check your credentials and try again."
-      }
-    },
     "exercise": {
       "finish": {
         "failed": {
@@ -98,6 +93,7 @@
   "height": "Height",
   "initializeRegistration": "Initialize registration",
   "intensity": "intensity",
+  "invalidCredentials": "Invalid credentials",
   "joinTraining": "Join training",
   "languages": {
     "english": "English",
@@ -180,6 +176,7 @@
   },
   "unpublished": "Unpublished",
   "update": "update",
+  "userAlreadyExists": "userAlreadyExists",
   "volume": "volume",
   "warmup": "warm up",
   "weight": "Weight",
