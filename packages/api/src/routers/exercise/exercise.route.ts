@@ -26,7 +26,7 @@ export const exercise = router({
     }),
 
   update: staffProcedure
-    .meta({ openapi: { method: "PUT", path: "/exercise.update", tags: ["Exercise"] } })
+    .meta({ openapi: { method: "POST", path: "/exercise.update", tags: ["Exercise"] } })
     .input(exerciseUpdateInputSchema)
     .output(exerciseUpdateOutputSchema)
     .mutation(async ({ input, ctx }) => {
@@ -36,7 +36,7 @@ export const exercise = router({
     }),
 
   delete: staffProcedure
-    .meta({ openapi: { method: "DELETE", path: "/exercise.delete", tags: ["Exercise"] } })
+    .meta({ openapi: { method: "POST", path: "/exercise.delete", tags: ["Exercise"] } })
     .input(exerciseDeleteInputSchema)
     .output(exerciseDeleteOutputSchema)
     .mutation(async ({ input, ctx }) => {
