@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "build": "turbo run build",
+    "build:web": "turbo run build --filter=web",
     "dev": "turbo run dev",
     "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
     "dev:web": "turbo dev --filter=web",
