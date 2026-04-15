@@ -68,7 +68,7 @@ model Profile {
   id              String           @id @default(uuid())
   userId          String           @unique
   bio             String?
-  nickname        String
+  nickname        String 
   firstName       String?
   lastName        String?
   birthDate       DateTime
@@ -79,6 +79,8 @@ model Profile {
   customerProfile CustomerProfile?
   user            User             @relation(fields: [userId], references: [id])
   trainerProfile  TrainerProfile?
+
+  @@index([nickname])
 }
 
 model TrainerProfile {
