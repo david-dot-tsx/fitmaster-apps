@@ -3,7 +3,7 @@ import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
 import { useT } from "@/lib/i18n/i18n";
 
-interface getApiErrorTranslatedMessageOptions {
+interface handleApiErrorMessageOptions {
   onMatch?: Partial<Record<keyof typeof API_PROCEDURE_ERRORS, (translatedMessage: string) => void>>;
   default?: (translatedMessage: string) => void;
 }
@@ -13,12 +13,12 @@ const API_ERROR_TRANSLATION_KEYS = {
   [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: getTKey("api-errors:USER_ALREADY_EXISTS"),
 } as const;
 
-export const useApiErrorTranslatedMessage = () => {
+export const useHandleApiErrorMessage = () => {
   const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
 
-  const getApiErrorTranslatedMessage = (
+  const handleApiErrorMessage = (
     errorMessage?: string,
-    options?: getApiErrorTranslatedMessageOptions,
+    options?: handleApiErrorMessageOptions,
   ): string | null => {
     const translationKey = errorMessage
       ? API_ERROR_TRANSLATION_KEYS[errorMessage as keyof typeof API_ERROR_TRANSLATION_KEYS]
@@ -38,5 +38,5 @@ export const useApiErrorTranslatedMessage = () => {
     return translatedMessage;
   };
 
-  return { getApiErrorTranslatedMessage };
+  return { handleApiErrorMessage };
 };

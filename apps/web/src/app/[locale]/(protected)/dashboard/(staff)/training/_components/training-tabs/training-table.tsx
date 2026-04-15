@@ -34,7 +34,7 @@ import {
   UpdateTrainingStatusSelect,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
 import { useT } from "@/lib/i18n/i18n";
-import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -58,7 +58,7 @@ interface TrainingTableProps {
 
 export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
   const { t } = useT();
-  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -82,7 +82,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         );
       },
       onError: (error) => {
-        getApiErrorTranslatedMessage(error.message, {
+        handleApiErrorMessage(error.message, {
           default: (translatedMessage: string) => {
             toast.error(translatedMessage);
             setOpenDeleteDialog(false);

@@ -15,10 +15,10 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
-import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export default function RegisterPage() {
-  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const trpc = useTRPC();
   const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
   const methods = useForm<UserCreateInputForm>({
@@ -36,7 +36,7 @@ export default function RegisterPage() {
         toast.success(t("success.generic.description"));
       },
       onError: (error) => {
-        getApiErrorTranslatedMessage(error.message, {
+        handleApiErrorMessage(error.message, {
           onMatch: {
             [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: (translatedMessage: string) => {
               methods.setError("email", { message: translatedMessage });

@@ -9,7 +9,7 @@ import { toast } from "sonner";
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
 import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
-import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 import { useT } from "@/lib/i18n/i18n";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -17,7 +17,7 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const { t } = useT();
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
@@ -49,7 +49,7 @@ export default function LoginPage() {
       router.refresh();
     },
     onError: (error) => {
-      getApiErrorTranslatedMessage(error.message, {
+      handleApiErrorMessage(error.message, {
         onMatch: {
           [API_PROCEDURE_ERRORS.INVALID_CREDENTIALS]: (translatedMessage: string) => {
             methods.setError("email", { message: translatedMessage });

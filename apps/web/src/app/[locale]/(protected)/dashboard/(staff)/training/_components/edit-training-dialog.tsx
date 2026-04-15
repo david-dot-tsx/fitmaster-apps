@@ -28,7 +28,7 @@ import {
 import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { useT } from "@/lib/i18n/i18n";
-import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 interface EditTrainingDialogProps extends Pick<DialogProps, "open" | "onOpenChange"> {
   training: Training | null;
@@ -37,7 +37,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
   const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
-  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const methods = useForm<TrainingUpdateInputForm>({
     resolver: zodResolver(trainingUpdateInputFormSchema),
     values: training ?? undefined,
@@ -55,7 +55,7 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
         );
       },
       onError: (error) => {
-        getApiErrorTranslatedMessage(error.message, {
+        handleApiErrorMessage(error.message, {
           default: (translatedMessage: string) => {
             toast.error(translatedMessage);
             onOpenChange?.(false);

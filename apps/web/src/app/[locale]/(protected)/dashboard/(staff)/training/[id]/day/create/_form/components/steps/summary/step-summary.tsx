@@ -21,11 +21,11 @@ import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/trainin
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 import { useT } from "@/lib/i18n/i18n";
-import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const { t } = useT();
-  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -56,7 +56,7 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
         router.push(`/dashboard/training/${trainingId}`);
       },
       onError: (error) => {
-        getApiErrorTranslatedMessage(error.message, {
+        handleApiErrorMessage(error.message, {
           default: (translatedMessage: string) => {
             toast.error(translatedMessage);
           },
