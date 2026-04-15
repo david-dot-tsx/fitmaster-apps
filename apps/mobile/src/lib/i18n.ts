@@ -6,12 +6,12 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 import {
   resourcesToMobile,
   initOptions,
-  NAMESPACES,
-  type MobileNamespaces,
+  I18N_NAMESPACES,
+  type I18nNamespaces,
 } from "@repo/i18n/mobile";
 
-const DEFAULT_MOBILE_NAMESPACES = [NAMESPACES.COMMON, NAMESPACES.MOBILE] as const;
-type ExtraNamespace = Exclude<MobileNamespaces, (typeof DEFAULT_MOBILE_NAMESPACES)[number]>;
+const PRELOADED_NAMESPACES = [I18N_NAMESPACES.COMMON, I18N_NAMESPACES.MOBILE] as const;
+type ExtraNamespace = Exclude<I18nNamespaces, (typeof PRELOADED_NAMESPACES)[number]>;
 
 const LANGUAGE_DETECTOR: LanguageDetectorAsyncModule = {
   type: "languageDetector",
@@ -44,14 +44,14 @@ i18nextInstance
 
 export default i18nextInstance;
 
-export function useT(): ReturnType<typeof useTranslation<typeof DEFAULT_MOBILE_NAMESPACES>>;
+export function useT(): ReturnType<typeof useTranslation<typeof PRELOADED_NAMESPACES>>;
 
 export function useT<const TNamespace extends ExtraNamespace>(
   namespaces: readonly TNamespace[],
-): ReturnType<typeof useTranslation<readonly [...typeof DEFAULT_MOBILE_NAMESPACES, TNamespace]>>;
+): ReturnType<typeof useTranslation<readonly [...typeof PRELOADED_NAMESPACES, TNamespace]>>;
 
 export function useT<const TNamespace extends ExtraNamespace>(namespaces?: readonly TNamespace[]) {
-  const scopedNamespaces = [...DEFAULT_MOBILE_NAMESPACES, ...(namespaces ?? [])] as const;
+  const scopedNamespaces = [...PRELOADED_NAMESPACES, ...(namespaces ?? [])] as const;
 
   return useTranslation(scopedNamespaces);
 }

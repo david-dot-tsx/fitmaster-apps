@@ -31,7 +31,7 @@ export const initOptions = {
 
 export type ResourcesType = Resources;
 
-export { type Namespace, NAMESPACES };
+// export { type Namespace, NAMESPACES };
 export { type Locale, LOCALES };
 
 export function getTKey<TKey extends AppendNamespace<Namespace, ParseKeys<Namespace>>>(key: TKey) {

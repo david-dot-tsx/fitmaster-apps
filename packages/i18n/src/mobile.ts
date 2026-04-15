@@ -1,4 +1,3 @@
-import { LOCALES, type Namespace, NAMESPACES } from "./shared";
 import plCommon from "./locales/pl/common.json";
 import enCommon from "./locales/en/common.json";
 import esCommon from "./locales/es/common.json";
@@ -8,6 +7,8 @@ import esApiErrors from "./locales/es/api-errors.json";
 import plMobile from "./locales/pl/mobile.json";
 import enMobile from "./locales/en/mobile.json";
 import esMobile from "./locales/es/mobile.json";
+import { NAMESPACES, NAMESPACES_KEYS } from "./types/namespaces";
+import { LOCALES } from "./types/locales";
 
 export * from "./shared";
 
@@ -29,4 +30,10 @@ export const resourcesToMobile = {
   },
 };
 
-export type MobileNamespaces = Namespace;
+export const I18N_NAMESPACES = {
+  [NAMESPACES_KEYS.COMMON]: NAMESPACES.COMMON,
+  [NAMESPACES_KEYS.API_ERRORS]: NAMESPACES.API_ERRORS,
+  [NAMESPACES_KEYS.MOBILE]: NAMESPACES.MOBILE,
+};
+
+export type I18nNamespaces = (typeof I18N_NAMESPACES)[keyof typeof I18N_NAMESPACES];

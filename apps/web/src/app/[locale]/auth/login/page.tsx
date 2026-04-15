@@ -7,7 +7,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 import { authLoginInputSchema, type AuthLoginInput } from "@repo/validators";
-import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
+import { getApiErrorNamespacedTranslationKey, I18N_NAMESPACES } from "@repo/i18n/web";
 
 import { useT } from "@/lib/i18n/i18n";
 import { PageWrapper } from "@/components/layout/page-wrapper";
@@ -16,7 +16,7 @@ import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
 
 export default function LoginPage() {
-  const { t } = useT([NAMESPACES.API_ERRORS]);
+  const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
   const router = useRouter();
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),

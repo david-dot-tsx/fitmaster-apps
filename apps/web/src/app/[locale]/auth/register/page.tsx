@@ -6,7 +6,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 
 import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
-import { getApiErrorNamespacedTranslationKey, NAMESPACES } from "@repo/i18n/web";
+import { getApiErrorNamespacedTranslationKey, I18N_NAMESPACES } from "@repo/i18n/web";
 
 import { useT } from "@/lib/i18n/i18n";
 import { useTRPC } from "@/lib/trpc/client";
@@ -17,7 +17,7 @@ import { FormInput } from "@/components/form/form-input";
 
 export default function RegisterPage() {
   const trpc = useTRPC();
-  const { t } = useT([NAMESPACES.API_ERRORS]);
+  const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {

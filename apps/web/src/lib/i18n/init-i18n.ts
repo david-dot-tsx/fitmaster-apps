@@ -3,10 +3,10 @@ import { createInstance } from "i18next";
 
 import {
   initOptions,
-  NAMESPACES,
   resourcesToBackendPaths,
+  I18N_NAMESPACES,
   type Locale,
-  type WebNamespaces,
+  type I18nNamespaces,
 } from "@repo/i18n/web";
 
 export type InitI18nOptions = {
@@ -36,15 +36,15 @@ export async function initI18nInstance({
   }
 
   instance.use(
-    resourcesToBackend((language: Locale, namespace: WebNamespaces) => {
+    resourcesToBackend((language: Locale, namespace: I18nNamespaces) => {
       return resourcesToBackendPaths(language)[namespace]();
     }),
   );
 
   await instance.init({
     ...initOptions,
-    ns: [...initOptions.ns, NAMESPACES.WEB],
-    defaultNS: NAMESPACES.COMMON,
+    ns: [...initOptions.ns, I18N_NAMESPACES.WEB],
+    defaultNS: I18N_NAMESPACES.COMMON,
     lng: locale,
   });
 

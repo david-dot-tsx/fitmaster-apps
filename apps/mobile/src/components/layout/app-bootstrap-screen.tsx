@@ -5,7 +5,7 @@ import { router } from "expo-router";
 import { ChevronRight } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { NAMESPACES } from "@repo/i18n/mobile";
+import { I18N_NAMESPACES } from "@repo/i18n/mobile";
 
 import { useT } from "@/lib/i18n";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
@@ -34,7 +34,7 @@ type AppBootstrapScreenProps = {
  */
 export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
   const isLoading = phase === "loading";
-  const { t } = useT([NAMESPACES.API_ERRORS]);
+  const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
 
   return (
     <View className="flex-1 bg-zinc-950">
@@ -71,7 +71,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                   <View className="aspect-[4/3] w-full max-w-sm">
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
                   </View>
-                  <Text className="text-center font-orbitron-semibold text-xs uppercase tracking-[0.28em] text-zinc-400">
+                  <Text className="font-orbitron-semibold text-center text-xs uppercase tracking-[0.28em] text-zinc-400">
                     {t("slogan.keywords.strength")} · {t("slogan.keywords.focus")} ·{" "}
                     {t("slogan.keywords.progress")}
                   </Text>
