@@ -46,7 +46,6 @@ export const ExerciseMeta = ({ difficulty, bodyPart }: ExerciseMetaProps) => {
         <Icon as={ActivitySquareIcon} size="sm" color="#fbbf24" />
         <Text className="text-sm font-semibold text-zinc-200">{bodyPart}</Text>
       </HStack>
-
       <HStack className="ml-auto items-center gap-1.5 rounded-lg border border-sky-400/40 bg-zinc-900 px-3 py-2">
         <Icon as={StarIcon} size="sm" className="text-sky-400" />
         <Text className="text-sm font-semibold text-zinc-200">15 {t("units.xp")}</Text>
