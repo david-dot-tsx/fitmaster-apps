@@ -1,8 +1,8 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
-    "version": "1.0.0",
+    "name": "FitMaster",
+    "slug": "fitmastermobile",
+    "version": "0.0.1",
     "orientation": "portrait",
     "icon": "./src/assets/images/icon.png",
     "scheme": "mobile",
@@ -16,12 +16,6 @@
     },
     "android": {
       "backgroundColor": "#09090b",
-      "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
-        "foregroundImage": "./src/assets/images/android-icon-foreground.png",
-        "backgroundImage": "./src/assets/images/android-icon-background.png",
-        "monochromeImage": "./src/assets/images/android-icon-monochrome.png"
-      },
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
     },
@@ -36,7 +30,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./src/assets/images/splash-icon.png",
+          "image": "./src/assets/images/bg-landing.jpg",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000",
