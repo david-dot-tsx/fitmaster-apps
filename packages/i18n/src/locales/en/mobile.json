@@ -55,8 +55,8 @@
         },
         "failed": {
           "button": "Try Again",
-          "restartForm": "Restart Form",
           "description": "Something went wrong while creating your profile. You can try again or restart the form from the beginning.",
+          "restartForm": "Restart Form",
           "title": "Submission Failed"
         },
         "introduction": {

@@ -38,7 +38,7 @@ export const SubmitErrorModal = ({ isOpen, onTryAgain, onRestartForm }: SubmitEr
         </ModalBody>
         <ModalFooter className="flex-col gap-3">
           <Button className="w-full" onPress={onTryAgain}>
-            <ButtonText>{t("mobile:screens.onboarding.steps.failed.button")}</ButtonText>
+            <ButtonText>{t("mobile:screens.onboarding.steps.failed.restartForm")}</ButtonText>
           </Button>
           <Button className="w-full" action="secondary" variant="outline" onPress={onRestartForm}>
             <ButtonText>{t("mobile:screens.onboarding.steps.failed.button")}</ButtonText>

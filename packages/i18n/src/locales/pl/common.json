@@ -132,6 +132,12 @@
   "quickScan": "Szybki skan",
   "register": "Zarejestruj",
   "reps": "powt.",
+  "screens": {
+    "staff": {
+      "description": "Funkcje trenera są dostępne w aplikacji na komputer. Proszę zalogować się tam, aby kontynuować.",
+      "title": "Wykryto konto trenera"
+    }
+  },
   "selectYourLanguage": "Wybierz język",
   "settings": "ustawienia",
   "showLess": "pokaż mniej",

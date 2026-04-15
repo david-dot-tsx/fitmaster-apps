@@ -124,6 +124,12 @@
   "quickScan": "Quick Scan",
   "register": "Register",
   "reps": "reps",
+  "screens": {
+    "staff": {
+      "description": "Trainer features are available in the desktop app. Please sign in there to continue.",
+      "title": "Trainer account detected"
+    }
+  },
   "selectYourLanguage": "Select your language",
   "settings": "settings",
   "showLess": "show less",
