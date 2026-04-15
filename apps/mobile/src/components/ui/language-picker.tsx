@@ -1,20 +1,22 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { View, Text, Pressable } from "react-native";
-import { useTranslation } from "react-i18next";
 import { CheckIcon } from "lucide-react-native";
 
 import { LOCALES } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Icon } from "@/components/ui/icon";
 
-const LANGUAGES = [
-  { code: LOCALES.EN, label: "English", flag: "🇺🇸" },
-  { code: LOCALES.PL, label: "Polski", flag: "🇵🇱" },
-  { code: LOCALES.ES, label: "Español", flag: "🇪🇸" },
-];
-
 export function LanguagePicker() {
-  const { i18n, t } = useTranslation();
+  const { i18n, t } = useT();
+  const LANGUAGES = useMemo(
+    () => [
+      { code: LOCALES.EN, label: t("languages.english"), flag: "🇺🇸" },
+      { code: LOCALES.PL, label: t("languages.polish"), flag: "🇵🇱" },
+      { code: LOCALES.ES, label: t("languages.spanish"), flag: "🇪🇸" },
+    ],
+    [t],
+  );
 
   const changeLanguage = (code: string) => {
     i18n.changeLanguage(code);
@@ -23,7 +25,7 @@ export function LanguagePicker() {
   return (
     <View className="rounded-2xl border border-zinc-800 bg-zinc-950/50 p-4">
       <Text className="mb-4 text-xs font-black uppercase tracking-[0.3em] text-zinc-500">
-        {t("select_your_language", { defaultValue: "Select your language" })}
+        {t("selectYourLanguage")}
       </Text>
 
       <View className="space-y-2">

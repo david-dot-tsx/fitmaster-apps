@@ -45,7 +45,7 @@ export const PageWrapper = ({
           </h1>
 
           {subtitle && (
-            <p className="font-orbitron max-w-2xl text-sm leading-relaxed text-zinc-500">
+            <p className="max-w-2xl font-orbitron text-sm leading-relaxed text-zinc-500">
               {subtitle}
             </p>
           )}
@@ -54,7 +54,7 @@ export const PageWrapper = ({
 
       {divider && (
         <div className="relative mb-10 h-px w-full overflow-hidden bg-zinc-800">
-          <div className="absolute left-0 top-0 h-full w-1/3 bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
+          <div className="absolute left-0 top-0 size-full bg-gradient-to-r from-transparent via-amber-400/40 to-transparent" />
         </div>
       )}
 

@@ -1,29 +1,33 @@
 import React from "react";
 
 import { TrainingStatus } from "@repo/validators";
+import { getTKey } from "@repo/i18n/web";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { TrainingTab } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tab";
 import { cn } from "@/lib/utils";
+import { getServerTranslations } from "@/lib/i18n/server";
 
 const TABS = {
   UNPUBLISHED: {
-    label: "Unpublished",
+    label: getTKey("common:unpublished"),
     value: "unpublished",
     statuses: [TrainingStatus.DRAFT, TrainingStatus.READY_TO_PUBLISH],
   },
   PUBLISHED: {
-    label: "Published",
+    label: getTKey("common:published"),
     value: "published",
     statuses: [TrainingStatus.PUBLISHED],
   },
   EXPIRING: {
-    label: "Expiring",
+    label: getTKey("common:expiring"),
     value: "expiring",
     statuses: [TrainingStatus.HIDDEN, TrainingStatus.DISABLED],
   },
 };
-export const TrainingTabs = () => {
+export const TrainingTabs = async () => {
+  const { t } = await getServerTranslations();
+
   return (
     <Tabs defaultValue={TABS.UNPUBLISHED.value} className="w-full space-y-8">
       <TabsList className="h-12 w-full justify-start gap-2 rounded-xl border border-zinc-800/50 bg-zinc-950/50 p-1.5 backdrop-blur-md md:w-fit">
@@ -45,7 +49,7 @@ export const TrainingTabs = () => {
                   "bg-zinc-800 group-data-[state=active]:bg-amber-400 group-data-[state=active]:shadow-[0_0_8px_rgba(251,191,36,0.8)]",
                 )}
               />
-              {tab.label}
+              {t(tab.label)}
             </span>
 
             <div

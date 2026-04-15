@@ -1,8 +1,194 @@
 {
-  "login": "Login",
-  "logout": "Wyloguj",
+  "active": "aktywny",
+  "adjustPhoto": "Dostosuj zdjęcie",
+  "appStore": "App Store",
+  "back": "Wstecz",
+  "beTheFirstToScorePoints": "Bądź pierwszym, który zdobędzie punkty.",
+  "bio": "Biogram",
+  "block": "zablokuj",
+  "browseTrainingsToGetStarted": "Przeglądaj treningi, aby rozpocząć!",
+  "cameraAccessNeededToTakePhoto": "Dostęp do aparatu jest wymagany, aby zrobić zdjęcie.",
+  "cancel": "anuluj",
+  "chatIsComingSoon": "Czat dostępny wkrótce.",
+  "chooseFromGallery": "Wybierz z galerii",
+  "completed": "ukończono",
+  "completeExercise": "Zakończ ćwiczenie",
+  "confirm": "potwierdź",
+  "confirmDelete": "Potwierdź usunięcie",
+  "continue": "Kontynuuj",
+  "create": "utwórz",
+  "current": "aktualny",
+  "currentTrainings": "Aktualne treningi",
+  "day": "dzień",
+  "day_one": "dzień",
+  "day_few": "",
+  "day_many": "",
+  "day_other": "dni",
+  "delete": "Usuń",
+  "description": "opis",
+  "distance": "dystans",
+  "done": "gotowe",
+  "duration": "czas trwania",
+  "edit": "Edytuj",
   "email": "Email",
+  "emailAddress": "Adres email",
+  "enums": {
+    "gender": {
+      "female": "kobieta",
+      "male": "mężczyzna",
+      "other": "inna"
+    }
+  },
+  "error": "błąd",
+  "errorCode": "Kod błędu",
+  "errors": {
+    "exercise": {
+      "finish": {
+        "failed": {
+          "description": "Proszę spróbować ponownie.",
+          "title": "Nie udało się zakończyć ćwiczenia"
+        }
+      },
+      "start": {
+        "failed": {
+          "description": "Proszę spróbować ponownie później.",
+          "title": "Nie udało się rozpocząć ćwiczenia"
+        }
+      }
+    },
+    "generic": {
+      "description": "Wystąpił błąd. Proszę spróbować ponownie."
+    },
+    "training": {
+      "session": {
+        "new": {
+          "failed": {
+            "description": "Proszę spróbować ponownie później.",
+            "title": "Nie udało się dołączyć do treningu"
+          }
+        }
+      }
+    }
+  },
+  "exercise_one": "ćwiczenie",
+  "exercise_few": "",
+  "exercise_many": "",
+  "exercise_other": "ćwiczenia",
+  "exerciseInThisSession": "Ćwiczenie w tej sesji",
+  "exercises": "ćwiczenia",
+  "exercises_one": "ćwiczenie",
+  "exercises_few": "",
+  "exercises_many": "",
+  "exercises_other": "ćwiczenia",
+  "exercisesCount_one": "{{count}} ćwiczenie",
+  "exercisesCount_few": "",
+  "exercisesCount_many": "",
+  "exercisesCount_other": "{{count}} ćwiczenia",
+  "expiring": "Wygasa",
+  "finishedTrainings": "Ukończone treningi",
+  "firstName": "Imię",
+  "focus": "koncentracja",
+  "forgot_password": "Zapomniane hasło",
+  "forgotPassword": "Zapomniałeś hasła?",
+  "galleryAccessNeededToPickPhoto": "Dostęp do galerii jest wymagany, aby wybrać zdjęcie.",
+  "gender": "płeć",
+  "getBackToMainScreen": "Powrót do ekranu głównego",
+  "goal": "Cel",
+  "goals": "cele",
+  "googlePlay": "Google Play",
+  "goToMainPage": "Idź do strony głównej",
+  "goToTrainingDetails": "Idź do szczegółów treningu",
+  "height": "Wzrost",
+  "initializeRegistration": "Rozpocznij rejestrację",
+  "intensity": "intensywność",
+  "joinTraining": "Dołącz do treningu",
+  "languages": {
+    "english": "Angielski",
+    "polish": "Polski",
+    "spanish": "Hiszpański"
+  },
+  "lastName": "Nazwisko",
+  "launch": "Uruchom",
+  "loading": "Ładowanie",
+  "login": "Zaloguj",
+  "logout": "Wyloguj",
+  "main": "główny",
+  "nickname": "pseudonim",
+  "noDataFound": "Nie znaleziono danych.",
+  "noDescriptionProvidedForThisExercise": "Brak opisu dla tego ćwiczenia.",
+  "noExercisesAddedYet": "Nie dodano jeszcze żadnych ćwiczeń.",
+  "noLeaderboardEntriesYet": "Brak wpisów w rankingu.",
+  "noTrainingsPublishedYet": "Brak opublikowanych treningów.",
   "password": "Hasło",
-  "password_confirmation": "Potwierdź hasło",
-  "register": "Zarejestruj się"
+  "passwordConfirmation": "Potwierdzenie hasła",
+  "pending": "oczekujące",
+  "pinchToZoomDragToReposition": "Uszczypnij, aby przybliżyć · Przeciągnij, aby zmienić pozycję",
+  "pleaseCheckBackSoon": "Proszę sprawdź wkrótce.",
+  "processing": "przetwarzanie",
+  "profilePicture": "Zdjęcie profilowe",
+  "progress": "progres",
+  "pts": "pkt",
+  "published": "Opublikowano",
+  "quickScan": "Szybki skan",
+  "register": "Zarejestruj",
+  "reps": "powt.",
+  "selectYourLanguage": "Wybierz język",
+  "settings": "ustawienia",
+  "showLess": "pokaż mniej",
+  "showMore": "pokaż więcej",
+  "skipped": "pominięto",
+  "slogan": {
+    "keywords": {
+      "focus": "Koncentracja",
+      "progress": "Progres",
+      "strength": "Siła"
+    },
+    "main": {
+      "body": "BODY",
+      "forge": "FORGE",
+      "your": "YOUR"
+    }
+  },
+  "somethingWentWrong": "Coś poszło nie tak",
+  "startExercise": "Rozpocznij ćwiczenie",
+  "startTraining": "Rozpocznij trening",
+  "startTrainingDay": "Rozpocznij dzień treningowy",
+  "stats": "statystyki",
+  "success": {
+    "generic": {
+      "description": "Operacja zakończona sukcesem."
+    }
+  },
+  "system": "System",
+  "takePhoto": "Zrób zdjęcie",
+  "tapToSetPhoto": "Dotknij, aby ustawić zdjęcie",
+  "thisFeatureIsTemporarilyUnavailable": "Ta funkcja jest tymczasowo niedostępna",
+  "training": {
+    "block": {
+      "coolDown": "Schłodzenie",
+      "mainWorkout": "Trening główny",
+      "warmUp": "Rozgrzewka"
+    }
+  },
+  "trainingFinished": "Trening ukończony",
+  "traits": "cechy",
+  "tryAgain": "Spróbuj ponownie",
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "meters": "m",
+    "reps": "x",
+    "seconds": "s",
+    "xp": "xp"
+  },
+  "unpublished": "Nieopublikowane",
+  "update": "aktualizuj",
+  "volume": "objętość",
+  "warmup": "rozgrzewka",
+  "weight": "Waga",
+  "weightUsage": "Użycie obciążenia",
+  "yo": "l.",
+  "youHaveNotJoinedAnyTrainingsYet": "Nie dołączyłeś jeszcze do żadnych treningów.",
+  "yourPosition": "Twoja pozycja",
+  "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "Tutaj będziesz mógł pisać i omawiać treningi z profesjonalistami."
 }

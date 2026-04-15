@@ -1,6 +1,9 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { type ResourceKey } from "i18next";
+import React from "react";
 
+import { useT } from "@/lib/i18n";
 import {
   FormControl,
   FormControlError,
@@ -15,11 +18,12 @@ import { Radio, RadioGroup, RadioIcon, RadioIndicator, RadioLabel } from "@/comp
 export interface FormRadioProps {
   name: string;
   label: string;
-  options: { label: string; value: string }[];
+  options: { label: ResourceKey; value: string }[];
 }
 
 export const FormRadio = ({ name, label, options }: FormRadioProps) => {
   const { control } = useFormContext();
+  const { t } = useT();
 
   return (
     <Controller
@@ -28,7 +32,9 @@ export const FormRadio = ({ name, label, options }: FormRadioProps) => {
       render={({ field, fieldState }) => (
         <FormControl isInvalid={Boolean(fieldState.error)}>
           <FormControlLabel>
-            <FormControlLabelText className={cn("font-normal tracking-widest text-white")}>
+            <FormControlLabelText
+              className={cn("font-normal capitalize tracking-widest text-white")}
+            >
               {label}
             </FormControlLabelText>
           </FormControlLabel>
@@ -44,7 +50,7 @@ export const FormRadio = ({ name, label, options }: FormRadioProps) => {
                 <RadioIndicator>
                   <RadioIcon as={CircleIcon} className="fill-amber-400  text-amber-400" />
                 </RadioIndicator>
-                <RadioLabel>{option.label}</RadioLabel>
+                <RadioLabel>{t(option.label)}</RadioLabel>
               </Radio>
             ))}
           </RadioGroup>

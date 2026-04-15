@@ -2,6 +2,7 @@ import React from "react";
 import { Pressable } from "react-native";
 import { useRouter } from "expo-router";
 
+import { useT } from "@/lib/i18n";
 import { HStack } from "@/components/ui/hstack";
 import { Text } from "@/components/ui/text";
 
@@ -20,6 +21,7 @@ export const LeaderboardRow = ({
   isCurrentUser,
 }: LeaderboardRowProps) => {
   const router = useRouter();
+  const { t } = useT();
 
   return (
     <Pressable onPress={() => router.push(`/profile/${nickname}`)}>
@@ -35,7 +37,9 @@ export const LeaderboardRow = ({
           #{position}
         </Text>
         <Text className="flex-1 text-sm font-semibold text-amber-400">{nickname}</Text>
-        <Text className="text-sm text-zinc-400">{points.toLocaleString()} pts</Text>
+        <Text className="text-sm text-zinc-400">
+          {points.toLocaleString()} {t("pts")}
+        </Text>
       </HStack>
     </Pressable>
   );

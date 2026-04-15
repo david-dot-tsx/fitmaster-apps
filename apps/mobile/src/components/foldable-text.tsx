@@ -1,6 +1,7 @@
 import { View, Text } from "react-native";
 import React, { useState } from "react";
 
+import { useT } from "@/lib/i18n";
 import { Button, ButtonText } from "@/components/ui/button";
 
 type FoldableTextProps = {
@@ -11,6 +12,7 @@ type FoldableTextProps = {
 export const FoldableText = ({ text, maxLines = 2 }: FoldableTextProps) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const [isTextTruncated, setIsTextTruncated] = useState(false);
+  const { t } = useT();
 
   return (
     <View className="relative">
@@ -31,8 +33,8 @@ export const FoldableText = ({ text, maxLines = 2 }: FoldableTextProps) => {
       </Text>
       {isTextTruncated && (
         <Button variant="link" onPress={() => setIsExpanded((prev) => !prev)}>
-          <ButtonText className="my-0 py-0 text-sm font-semibold text-zinc-500">
-            {isExpanded ? "Show less" : "Show more"}
+          <ButtonText className="my-0 py-0 text-2xs font-semibold uppercase text-zinc-500">
+            {isExpanded ? t("showLess") : t("showMore")}
           </ButtonText>
         </Button>
       )}

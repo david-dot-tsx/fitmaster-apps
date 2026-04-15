@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { Play, CircleDot, CheckCircle2, XCircle, Star } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 
 import { TrainingSessionStatus } from "@repo/validators";
 
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
 
 const BADGE_STATUSES = {
@@ -39,34 +40,6 @@ const getCurrentStatusBadgeText = ({
   throw new Error("Invalid status");
 };
 
-const badgeStatusConfig = {
-  [BADGE_STATUSES.NOT_JOINED]: {
-    icon: Play,
-    action: "primary",
-    text: "JOIN NOW",
-  },
-  [BADGE_STATUSES.JOINED]: {
-    icon: Star,
-    action: "muted",
-    text: "JOINED",
-  },
-  [BADGE_STATUSES.IN_PROGRESS]: {
-    icon: CircleDot,
-    action: "info",
-    text: "IN PROGRESS",
-  },
-  [BADGE_STATUSES.COMPLETED]: {
-    icon: CheckCircle2,
-    action: "success",
-    text: "FINISHED",
-  },
-  [BADGE_STATUSES.CANCELLED]: {
-    icon: XCircle,
-    action: "error",
-    text: "CANCELLED",
-  },
-} as const;
-
 export const TrainingCardStatusBadge = ({
   trainingSessionStatus,
   className,
@@ -74,6 +47,38 @@ export const TrainingCardStatusBadge = ({
   trainingSessionStatus?: TrainingSessionStatus;
   className?: string;
 }) => {
+  const { t } = useT();
+
+  const badgeStatusConfig = useMemo(() => {
+    return {
+      [BADGE_STATUSES.NOT_JOINED]: {
+        icon: Play,
+        action: "primary",
+        text: t("mobile:training.sesssion.card.badge.joinNow"),
+      },
+      [BADGE_STATUSES.JOINED]: {
+        icon: Star,
+        action: "muted",
+        text: t("mobile:training.sesssion.card.badge.joined"),
+      },
+      [BADGE_STATUSES.IN_PROGRESS]: {
+        icon: CircleDot,
+        action: "info",
+        text: t("mobile:training.sesssion.card.badge.inProgress"),
+      },
+      [BADGE_STATUSES.COMPLETED]: {
+        icon: CheckCircle2,
+        action: "success",
+        text: t("mobile:training.sesssion.card.badge.finished"),
+      },
+      [BADGE_STATUSES.CANCELLED]: {
+        icon: XCircle,
+        action: "error",
+        text: t("mobile:training.sesssion.card.badge.cancelled"),
+      },
+    } as const;
+  }, [t]);
+
   const badgeStatus = getCurrentStatusBadgeText({ trainingSessionStatus });
 
   return (

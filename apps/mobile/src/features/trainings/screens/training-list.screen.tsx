@@ -3,6 +3,7 @@ import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -13,6 +14,7 @@ const LIMIT = 25;
 
 export const TrainingListScreen = () => {
   const router = useRouter();
+  const { t } = useT();
   const { data, fetchNextPage, hasNextPage, isFetchingNextPage, status, refetch, isFetching } =
     trpc.training.listPublished.useInfiniteQuery(
       { limit: LIMIT },
@@ -46,9 +48,9 @@ export const TrainingListScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: "Trainings",
-        description: "Discover",
-        subtitle: "Pick a plan and start your next session.",
+        title: t("mobile:screens.trainingList.title"),
+        description: t("mobile:screens.trainingList.description"),
+        subtitle: t("mobile:screens.trainingList.subtitle"),
         icon: DumbbellIcon,
       }}
     >
@@ -72,11 +74,12 @@ export const TrainingListScreen = () => {
                   hasUserCompletedThisDay: false,
                 }
               }
+              className="my-2.5"
               trainingName={item.name}
               status={item.trainingSessions[0]?.status}
               action={{
                 onPress: () => router.push(`/training/${item.id}`),
-                text: "Go to training details",
+                text: t("goToTrainingDetails"),
               }}
             />
           )}
@@ -86,7 +89,7 @@ export const TrainingListScreen = () => {
           ListEmptyComponent={
             <View className="mx-4 mt-14 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
               <Text className="text-center text-zinc-400">
-                No trainings published yet.{"\n"}Please check back soon.
+                {t("noTrainingsPublishedYet")} {"\n"} {t("pleaseCheckBackSoon")}
               </Text>
             </View>
           }

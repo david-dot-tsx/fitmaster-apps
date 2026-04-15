@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeText } from "@/components/ui/badge";
 
 export const TrainingCardDayCounterBadge = ({
@@ -14,6 +15,8 @@ export const TrainingCardDayCounterBadge = ({
   className?: string;
   isStarted?: boolean;
 }) => {
+  const { t } = useT();
+
   return (
     <Badge
       action="primary"
@@ -21,7 +24,9 @@ export const TrainingCardDayCounterBadge = ({
       className={cn("border-amber-400/40 bg-background-amber/80 py-1.5", className)}
     >
       <BadgeText className="font-orbitron-extrabold uppercase tracking-wide text-amber-400">
-        {isStarted && currentDay ? `Day ${currentDay}/${totalDays}` : `Days ${totalDays}`}
+        {isStarted && currentDay
+          ? `${t("day")} ${currentDay}/${totalDays}`
+          : `${t("day", { count: totalDays })} ${totalDays}`}
       </BadgeText>
     </Badge>
   );

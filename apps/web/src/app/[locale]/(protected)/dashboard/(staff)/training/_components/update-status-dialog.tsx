@@ -3,6 +3,7 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { ArrowUpDown, Check } from "lucide-react";
 import { map } from "remeda";
+import { Trans } from "react-i18next";
 
 import {
   TRAINER_TRAINING_STATUS_FLOW,
@@ -11,6 +12,7 @@ import {
   type Role,
   canChangeStatus,
 } from "@repo/validators";
+import { getTKey } from "@repo/i18n/web";
 
 import { WarningDialog, type WarningDialogProps } from "@/components/warning-dialog";
 import { useTRPC } from "@/lib/trpc/client";
@@ -22,6 +24,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n/i18n";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 interface UpdateStatusDialogProps extends Pick<WarningDialogProps, "open" | "onOpenChange"> {
   training: Training | null;
@@ -31,15 +35,15 @@ interface UpdateStatusDialogProps extends Pick<WarningDialogProps, "open" | "onO
 const statusChangeConsequencesDescription = (newStatus: TrainingStatus) => {
   switch (newStatus) {
     case TrainingStatus.READY_TO_PUBLISH:
-      return "It means that the training is ready to be published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.readyToPublish");
     case TrainingStatus.PUBLISHED:
-      return "It means that the training is published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.published");
     case TrainingStatus.DISABLED:
-      return "It means that the training is visible but customers cannot launch it.";
+      return getTKey("web:dialog.training.updateStatus.description.disabled");
     case TrainingStatus.HIDDEN:
-      return "The training will be published and visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.hidden");
     case TrainingStatus.DRAFT:
-      return "It means that the training is in draft mode, can be edited and it is not visible to customers.";
+      return getTKey("web:dialog.training.updateStatus.description.draft");
   }
 };
 
@@ -49,20 +53,25 @@ export const UpdateStatusDialog = ({
   open,
   onOpenChange,
 }: UpdateStatusDialogProps) => {
+  const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const updateStatusMutation = useMutation(
     trpc.training.updateStatus.mutationOptions({
       onSuccess: () => {
-        toast.success("Training status updated!");
+        toast.success(t("success.generic.description"));
         onOpenChange(false);
         queryClient.invalidateQueries({
           queryKey: trpc.training.listStaff.queryKey(),
         });
       },
       onError: (error) => {
-        toast.error("Failed to update training status");
-        console.error(error);
+        handleApiErrorMessage(error.message, {
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+          },
+        });
       },
     }),
   );
@@ -79,20 +88,28 @@ export const UpdateStatusDialog = ({
       }}
       description={
         <>
-          Are you sure you want to update the status of the training{" "}
-          <span className="font-black italic text-zinc-300">&quot;{training?.name}&quot;</span> from{" "}
-          <span className="text-sm font-black tracking-wide text-amber-400">
-            {training?.status}
-          </span>{" "}
-          to <span className="text-sm font-black text-amber-500">{newStatus}</span>?
+          <Trans
+            i18nKey="web:dialog.training.updateStatus.description.paragraphTrans"
+            t={t}
+            values={{
+              trainingName: training?.name,
+              fromStatus: training?.status,
+              toStatus: newStatus,
+            }}
+            components={{
+              1: <span className="text-sm font-black italic text-zinc-300" />,
+              2: <span className="text-sm font-black tracking-wide text-amber-400" />,
+              3: <span className="text-sm font-black text-amber-500" />,
+            }}
+          />
           {newStatus && (
             <>
               <span className="mt-4 block"></span>
-              <span className="italic">{statusChangeConsequencesDescription(newStatus)}</span>
+              <span className="italic">{t(statusChangeConsequencesDescription(newStatus))}</span>
               <span className="mt-4 block"></span>
               <span>
                 {" "}
-                Available actions after the status change:{" "}
+                {t("web:dialog.training.updateStatus.description.availableActions")}:{" "}
                 <span className="flex flex-col pt-2">
                   {TRAINER_TRAINING_STATUS_FLOW["PUBLISHED"].map((status) => (
                     <span
@@ -123,11 +140,13 @@ export const UpdateTrainingStatusSelect = ({
   onValueChange,
   userRole,
 }: UpdateTrainingStatusSelectProps) => {
+  const { t } = useT();
+
   return (
     <Select value={currentValue} onValueChange={onValueChange}>
       <SelectTrigger
-        aria-label="Update training status"
-        title="Update training status"
+        aria-label={t("web:dialog.training.updateStatus.select.ariaLabel")}
+        title={t("web:dialog.training.updateStatus.select.title")}
         className={cn(
           "size-8 justify-center border border-zinc-800 bg-zinc-900/50 p-0 text-zinc-400 backdrop-blur-sm transition-all duration-200",
           "hover:border-amber-400/50 hover:bg-amber-400/10 hover:text-amber-400",

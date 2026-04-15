@@ -3,12 +3,12 @@ import { KeyboardAvoidingView, Platform, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useTranslation } from "react-i18next";
 import { UserPlus } from "lucide-react-native";
 
 import { type UserCreateInputForm, userCreateInputFormSchema } from "@repo/validators";
-import { NAMESPACES } from "@repo/i18n/mobile";
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { VStack } from "@/components/ui/vstack";
 import { HStack } from "@/components/ui/hstack";
@@ -18,19 +18,34 @@ import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Section } from "@/components/ui/section";
 import { FormInput } from "@/components/form/form-input";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const RegisterScreen = () => {
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const { openToast } = useToastNotification();
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
     onSuccess: () => {
       router.push("/auth/login");
     },
-    onError: (_error) => {
-      openToast({
-        title: "Register Failed",
-        description: "Something went wrong. Try again later.",
-        action: "error",
+    onError: (error) => {
+      handleApiErrorMessage(error.message, {
+        onMatch: {
+          [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: (translatedMessage: string) => {
+            openToast({
+              title: t("mobile:screens.register.failed.title"),
+              description: translatedMessage,
+              action: "error",
+            });
+          },
+        },
+        default: (translatedMessage: string) => {
+          openToast({
+            title: t("mobile:screens.register.failed.title"),
+            description: translatedMessage,
+            action: "error",
+          });
+        },
       });
     },
   });
@@ -48,9 +63,9 @@ export const RegisterScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: t("register"),
-        description: "Account",
-        subtitle: "Create an account to start training.",
+        title: t("mobile:screens.register.title"),
+        description: t("mobile:screens.register.description"),
+        subtitle: t("mobile:screens.register.subtitle"),
         icon: UserPlus,
       }}
     >
@@ -70,8 +85,8 @@ export const RegisterScreen = () => {
                 <FormProvider {...methods}>
                   <FormInput
                     name="email"
-                    label="Email"
-                    placeholder="Email Address"
+                    label={t("email")}
+                    placeholder={t("emailAddress")}
                     textContentType="emailAddress"
                     keyboardType="email-address"
                   />
@@ -84,8 +99,8 @@ export const RegisterScreen = () => {
                   />
                   <FormInput
                     name="passwordConfirmation"
-                    label={t("password_confirmation")}
-                    placeholder={t("password_confirmation")}
+                    label={t("passwordConfirmation")}
+                    placeholder={t("passwordConfirmation")}
                     secureTextEntry
                     textContentType="password"
                   />
@@ -93,7 +108,7 @@ export const RegisterScreen = () => {
                     action="primary"
                     onPress={methods.handleSubmit((data) => mutateRegister(data))}
                   >
-                    <ButtonText className="font-semibold text-zinc-950">Register</ButtonText>
+                    <ButtonText className="font-semibold text-zinc-950">{t("register")}</ButtonText>
                   </Button>
                 </FormProvider>
               </VStack>

@@ -4,6 +4,7 @@ import { AlertTriangle, Loader2 } from "lucide-react";
 import { type AlertDialogProps } from "@radix-ui/react-alert-dialog";
 import { type MutationStatus } from "@tanstack/react-query";
 
+import { useT } from "@/lib/i18n/i18n";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -29,12 +30,14 @@ export const WarningDialog = ({
   open,
   onOpenChange,
   onConfirm,
-  title = "Warning",
-  description = "This action may have unintended consequences. Please confirm to continue.",
-  confirmLabel = "Proceed",
-  cancelLabel = "Cancel",
+  title,
+  description,
+  confirmLabel,
+  cancelLabel,
   status,
 }: WarningDialogProps) => {
+  const { t } = useT();
+
   return (
     <AlertDialog open={open} onOpenChange={onOpenChange}>
       <AlertDialogContent className="border-amber-400/20 bg-zinc-950/90 backdrop-blur-2xl sm:max-w-[460px]">
@@ -46,18 +49,18 @@ export const WarningDialog = ({
               <AlertTriangle className="size-5 text-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.25)]" />
             </div>
             <AlertDialogTitle className="text-xl font-black uppercase italic tracking-tighter text-zinc-100">
-              {title}
+              {title ?? t("web:dialog.warning.title")}
             </AlertDialogTitle>
           </div>
 
           <AlertDialogDescription className="text-xs font-bold uppercase leading-relaxed tracking-widest text-zinc-500">
-            {description}
+            {description ?? t("web:dialog.warning.description")}
           </AlertDialogDescription>
         </AlertDialogHeader>
 
         <AlertDialogFooter className="mt-8 gap-3 sm:gap-0">
           <AlertDialogCancel className="border-zinc-800 bg-transparent text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-zinc-900 hover:text-zinc-200">
-            {cancelLabel}
+            {cancelLabel ?? t("web:dialog.warning.cancelButton")}
           </AlertDialogCancel>
 
           <AlertDialogAction
@@ -73,7 +76,7 @@ export const WarningDialog = ({
             )}
           >
             {status === "pending" && <Loader2 className="mr-2 size-3 animate-spin" />}
-            {confirmLabel}
+            {confirmLabel ?? t("web:dialog.warning.confirmButton")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

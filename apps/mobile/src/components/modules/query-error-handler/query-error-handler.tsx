@@ -2,7 +2,11 @@ import React from "react";
 import { ActivityIndicator, View } from "react-native";
 import { AlertCircle } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { type ResourceKey } from "i18next";
 
+import { getTKey } from "@repo/i18n/mobile";
+
+import { useT } from "@/lib/i18n";
 import { VStack } from "@/components/ui/vstack";
 import { Text } from "@/components/ui/text";
 import { Button, ButtonText } from "@/components/ui/button";
@@ -13,7 +17,7 @@ export interface QueryErrorHandlerProps {
   isFetching: boolean;
   title?: string;
   message?: string;
-  retryLabel?: string;
+  retryLabel?: ResourceKey;
   className?: string;
 }
 
@@ -22,9 +26,11 @@ export const QueryErrorHandler = ({
   isFetching,
   title,
   message,
-  retryLabel = "Try again",
+  retryLabel = getTKey("common:tryAgain"),
   className,
 }: QueryErrorHandlerProps) => {
+  const { t } = useT();
+
   return (
     <View
       className={cn(
@@ -35,11 +41,11 @@ export const QueryErrorHandler = ({
       <VStack className="max-w-sm items-center gap-5">
         <Icon as={AlertCircle} size="2xl" className="text-amber-400" />
         <VStack className="items-center gap-2">
-          <Text className="text-center font-orbitron-semibold text-lg uppercase tracking-tight text-zinc-100">
-            {title ?? "Error"}
+          <Text className="font-orbitron-semibold text-center text-lg uppercase tracking-tight text-zinc-100">
+            {title ?? t("error")}
           </Text>
           <Text className="text-center text-sm leading-relaxed text-zinc-400">
-            {message ?? "An error occurred while loading this content. Please try again."}
+            {message ?? t("errors.generic.description")}
           </Text>
         </VStack>
         <Button
@@ -51,7 +57,7 @@ export const QueryErrorHandler = ({
           {isFetching ? (
             <ActivityIndicator size="small" color="#18181b" />
           ) : (
-            <ButtonText className="font-semibold text-zinc-950">{retryLabel}</ButtonText>
+            <ButtonText className="font-semibold text-zinc-950">{t(retryLabel)}</ButtonText>
           )}
         </Button>
       </VStack>

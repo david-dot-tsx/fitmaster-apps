@@ -4,6 +4,7 @@ import { cn } from "@gluestack-ui/utils/nativewind-utils";
 
 import { type TrainingSessionWorkoutWithDetails } from "@repo/validators";
 
+import { useT } from "@/lib/i18n";
 import { Icon } from "@/components/ui/icon";
 import { VStack } from "@/components/ui/vstack";
 import { TrainingDaySessionExerciseRow } from "@/features/trainings/components/session/training-day-session-exercise-row";
@@ -22,6 +23,7 @@ export const TrainingDaySessionBlock = ({
   currentExercise: TrainingSessionWorkoutWithDetails | undefined;
 }) => {
   const config = WORKOUT_BLOCK_DISPLAY[blockType];
+  const { t } = useT();
 
   return (
     <VStack className={cn("mb-4 ", config.shadowClass)}>
@@ -31,10 +33,10 @@ export const TrainingDaySessionBlock = ({
         </View>
         <View className="flex-1">
           <Text className="font-orbitron-semibold text-lg tracking-widest text-zinc-100">
-            {config.label}
+            {t(config.label)}
           </Text>
           <Text className="text-xs uppercase tracking-wider text-zinc-500">
-            {exercises.length} exercise{exercises.length === 1 ? "" : "s"}
+            {exercises.length} {t("exercise", { count: exercises.length })}
           </Text>
         </View>
         <View className="aspect-square rounded-md border border-amber-400/25 bg-zinc-900 p-1">

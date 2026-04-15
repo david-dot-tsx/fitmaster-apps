@@ -11,6 +11,7 @@ import {
   ModalHeader,
 } from "@/components/ui/modal";
 import { Text } from "@/components/ui/text";
+import { useT } from "@/lib/i18n";
 
 interface SubmitErrorModalProps {
   isOpen: boolean;
@@ -19,27 +20,28 @@ interface SubmitErrorModalProps {
 }
 
 export const SubmitErrorModal = ({ isOpen, onTryAgain, onRestartForm }: SubmitErrorModalProps) => {
+  const { t } = useT();
+
   return (
     <Modal isOpen={isOpen}>
       <ModalBackdrop />
       <ModalContent>
         <ModalHeader>
           <Heading size="lg" className="text-typography-950">
-            Submission Failed
+            {t("mobile:screens.onboarding.steps.failed.title")}
           </Heading>
         </ModalHeader>
         <ModalBody>
           <Text size="sm" className="text-typography-500">
-            Something went wrong while creating your profile. You can try again or restart the form
-            from the beginning.
+            {t("mobile:screens.onboarding.steps.failed.description")}
           </Text>
         </ModalBody>
         <ModalFooter className="flex-col gap-3">
           <Button className="w-full" onPress={onTryAgain}>
-            <ButtonText>Try Again</ButtonText>
+            <ButtonText>{t("mobile:screens.onboarding.steps.failed.button")}</ButtonText>
           </Button>
           <Button className="w-full" action="secondary" variant="outline" onPress={onRestartForm}>
-            <ButtonText>Restart Form</ButtonText>
+            <ButtonText>{t("mobile:screens.onboarding.steps.failed.button")}</ButtonText>
           </Button>
         </ModalFooter>
       </ModalContent>

@@ -1,9 +1,186 @@
 {
+  "active": "active",
+  "adjustPhoto": "Adjust photo",
+  "appStore": "App Store",
+  "back": "Back",
+  "beTheFirstToScorePoints": "Be the first to score points.",
+  "bio": "Bio",
+  "block": "block",
+  "browseTrainingsToGetStarted": "Browse trainings to get started!",
+  "cameraAccessNeededToTakePhoto": "Camera access is needed to take a photo.",
+  "cancel": "cancel",
+  "chatIsComingSoon": "Chat is coming soon.",
+  "chooseFromGallery": "Choose from Gallery",
+  "completed": "completed",
+  "completeExercise": "Complete exercise",
+  "confirm": "confirm",
+  "confirmDelete": "Confirm Delete",
+  "continue": "Continue",
+  "create": "create",
+  "current": "current",
+  "currentTrainings": "Current trainings",
+  "day": "day",
+  "day_one": "day",
+  "day_other": "days",
+  "delete": "Delete",
+  "description": "description",
+  "distance": "distance",
+  "done": "done",
+  "duration": "duration",
+  "edit": "Edit",
+  "email": "Email",
+  "emailAddress": "Email Address",
+  "enums": {
+    "gender": {
+      "female": "female",
+      "male": "male",
+      "other": "other"
+    }
+  },
+  "error": "error",
+  "errorCode": "Error code",
+  "errors": {
+    "exercise": {
+      "finish": {
+        "failed": {
+          "description": "Please try again.",
+          "title": "Failed to finish exercise"
+        }
+      },
+      "start": {
+        "failed": {
+          "description": "Please try again later.",
+          "title": "Failed to start exercise"
+        }
+      }
+    },
+    "generic": {
+      "description": "An error has occurred. Please try again."
+    },
+    "training": {
+      "session": {
+        "new": {
+          "failed": {
+            "description": "Please try again later.",
+            "title": "Failed to join training"
+          }
+        }
+      }
+    }
+  },
+  "exercise_one": "exercise",
+  "exercise_other": "exercises",
+  "exerciseInThisSession": "Exercise in this session",
+  "exercises": "exercises",
+  "exercises_one": "exercise",
+  "exercises_other": "exercises",
+  "exercisesCount_one": "{{count}} exercise",
+  "exercisesCount_other": "{{count}} exercises",
+  "expiring": "Expiring",
+  "finishedTrainings": "Finished trainings",
+  "firstName": "First Name",
+  "focus": "focus",
+  "forgot_password": "Forgot Password",
+  "forgotPassword": "Forgot password?",
+  "galleryAccessNeededToPickPhoto": "Gallery access is needed to pick a photo.",
+  "gender": "gender",
+  "getBackToMainScreen": "Get back to main screen",
+  "goal": "Goal",
+  "goals": "goals",
+  "googlePlay": "Google Play",
+  "goToMainPage": "Go to main page",
+  "goToTrainingDetails": "Go to training details",
+  "height": "Height",
+  "initializeRegistration": "Initialize registration",
+  "intensity": "intensity",
+  "joinTraining": "Join training",
+  "languages": {
+    "english": "English",
+    "polish": "Polish",
+    "spanish": "Spanish"
+  },
+  "lastName": "Last Name",
+  "launch": "Launch",
+  "loading": "Loading",
   "login": "Login",
   "logout": "Logout",
-  "email": "Email",
+  "main": "main",
+  "nickname": "nickname",
+  "noDataFound": "No data found.",
+  "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
+  "noExercisesAddedYet": "No exercises added yet.",
+  "noLeaderboardEntriesYet": "No leaderboard entries yet.",
+  "noTrainingsPublishedYet": "No trainings published yet.",
   "password": "Password",
-  "password_confirmation": "Password Confirmation",
+  "passwordConfirmation": "Password Confirmation",
+  "pending": "pending",
+  "pinchToZoomDragToReposition": "Pinch to zoom · Drag to reposition",
+  "pleaseCheckBackSoon": "Please check back soon.",
+  "processing": "processing",
+  "profilePicture": "Profile Picture",
+  "progress": "progress",
+  "pts": "pts",
+  "published": "Published",
+  "quickScan": "Quick Scan",
   "register": "Register",
-  "forgot_password": "Forgot Password"
+  "reps": "reps",
+  "selectYourLanguage": "Select your language",
+  "settings": "settings",
+  "showLess": "show less",
+  "showMore": "show more",
+  "skipped": "skipped",
+  "slogan": {
+    "keywords": {
+      "focus": "Focus",
+      "progress": "Progress",
+      "strength": "Strength"
+    },
+    "main": {
+      "body": "Body",
+      "forge": "forge",
+      "your": "Your"
+    }
+  },
+  "somethingWentWrong": "Something went wrong",
+  "startExercise": "Start exercise",
+  "startTraining": "Start training",
+  "startTrainingDay": "Start training day",
+  "stats": "stats",
+  "success": {
+    "generic": {
+      "description": "Operation completed successfully."
+    }
+  },
+  "system": "System",
+  "takePhoto": "Take Photo",
+  "tapToSetPhoto": "Tap to set photo",
+  "thisFeatureIsTemporarilyUnavailable": "This feature is temporarily unavailable",
+  "training": {
+    "block": {
+      "coolDown": "Cool Down",
+      "mainWorkout": "Main Workout",
+      "warmUp": "Warm Up"
+    }
+  },
+  "trainingFinished": "Training finished",
+  "traits": "traits",
+  "tryAgain": "Try again",
+  "units": {
+    "cm": "cm",
+    "kg": "kg",
+    "meters": "m",
+    "reps": "x",
+    "seconds": "s",
+    "xp": "xp"
+  },
+  "unpublished": "Unpublished",
+  "update": "update",
+  "volume": "volume",
+  "warmup": "warm up",
+  "weight": "Weight",
+  "weightUsage": "Weight use",
+  "yo": "yo",
+  "youHaveNotJoinedAnyTrainingsYet": "You have not joined any trainings yet.",
+  "yourPosition": "Your Position",
+  "youWillBeAbleToMessageAndDiscussTrainingsWithProfessionalsHere": "You will be able to message and discuss trainings with professionals here."
 }

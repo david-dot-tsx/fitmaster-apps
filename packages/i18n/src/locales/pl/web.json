@@ -1,0 +1,420 @@
+{
+  "dialog": {
+    "delete": {
+      "description": {
+        "paragraph": "Ta akcja jest nieodwracalna. Próbujesz trwale usunąć następujący rekord:",
+        "warning": "OSTRZEŻENIE"
+      },
+      "titleTrans": "Usuń obiekt: <br/> <1>{{entityName}}</1>"
+    },
+    "exercise": {
+      "create": {
+        "button": "Utwórz ćwiczenie",
+        "description": "Wprowadź parametry nowego ćwiczenia.",
+        "form": {
+          "bodyPart": {
+            "label": "Docelowa anatomia"
+          },
+          "description": {
+            "label": "Szczegóły"
+          },
+          "difficulty": {
+            "label": "Poziom intensywności"
+          },
+          "exerciseName": {
+            "label": "Nazwa ćwiczenia",
+            "placeholder": ""
+          },
+          "imageUrl": {
+            "label": "Link do zdjęcia (URL)"
+          }
+        },
+        "title": {
+          "exercise": "Ćwiczenie",
+          "new": "Nowe"
+        }
+      },
+      "edit": {
+        "description": "Edytuj parametry ćwiczenia.",
+        "form": {
+          "bodyPart": {
+            "label": "Docelowa anatomia"
+          },
+          "description": {
+            "label": "Szczegóły"
+          },
+          "difficulty": {
+            "label": "Poziom intensywności"
+          },
+          "exerciseName": {
+            "label": "Nazwa ćwiczenia"
+          },
+          "imageUrl": {
+            "label": "Link do zdjęcia (URL)"
+          }
+        },
+        "title": {
+          "editExerciseTrans": "Edytuj ćwiczenie: <br/> <1>{{exerciseName}}</1>"
+        }
+      }
+    },
+    "training": {
+      "create": {
+        "button": "Utwórz trening",
+        "description": "Wprowadź parametry nowego treningu.",
+        "form": {
+          "description": {
+            "label": "Szczegóły",
+            "placeholder": "Opis treningu"
+          },
+          "imageUrl": {
+            "label": "Link do zdjęcia (URL)"
+          },
+          "name": {
+            "label": "Nazwa treningu",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "new": "Nowy",
+          "training": "Trening"
+        }
+      },
+      "edit": {
+        "description": "Edytuj parametry treningu.",
+        "form": {
+          "description": {
+            "label": "Szczegóły",
+            "placeholder": "Opis treningu"
+          },
+          "imageUrl": {
+            "label": "Link do zdjęcia (URL)"
+          },
+          "name": {
+            "label": "Nazwa treningu",
+            "placeholder": ""
+          }
+        },
+        "title": {
+          "editTrainingTrans": "Edytuj trening: <br/> <1>{{trainingName}}</1>"
+        }
+      },
+      "updateStatus": {
+        "description": {
+          "availableActions": "Dostępne akcje po zmianie statusu:",
+          "disabled": "Oznacza, że trening jest widoczny, ale klienci nie mogą go uruchomić.",
+          "draft": "Oznacza, że trening jest w trybie szkicu, może być edytowany i nie jest widoczny dla klientów.",
+          "hidden": "Oznacza, że trening jest widoczny, ale klienci nie mogą go uruchomić.",
+          "paragraphTrans": "Czy na pewno chcesz zaktualizować status treningu <1>{{trainingName}}</1> z <2>{{fromStatus}}</2> na <3>{{toStatus}}</3>?",
+          "published": "Oznacza, że trening jest opublikowany i widoczny dla klientów.",
+          "readyToPublish": "Oznacza, że trening jest gotowy do publikacji i widoczny dla klientów."
+        },
+        "select": {
+          "ariaLabel": "Aktualizuj status treningu",
+          "title": "Aktualizuj status treningu"
+        }
+      }
+    },
+    "warning": {
+      "cancelButton": "Anuluj",
+      "confirmButton": "Potwierdź",
+      "description": "Ta akcja może mieć niezamierzone konsekwencje. Potwierdź, aby kontynuować.",
+      "title": "Ostrzeżenie"
+    }
+  },
+  "layout": {
+    "footer": {
+      "contact": "Kontakt",
+      "copyright": "Prawa autorskie",
+      "developedBy": "Stworzone przez",
+      "privacy": "Prywatność",
+      "terms": "Regulamin"
+    },
+    "navbar": {
+      "links": {
+        "dashboard": "Panel",
+        "exercises": "Ćwiczenia",
+        "trainings": "Treningi"
+      }
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "customer": {
+        "description": {
+          "downloadItBelowAndLogInToSyncYourData": "Pobierz ją poniżej i zaloguj się, aby zsynchronizować dane.",
+          "mobileApp": "Aplikacja Mobilna",
+          "toStartYourFirstSessionAndTrackYourProgress": "Aby rozpocząć pierwszą sesję i śledzić postępy, będziesz potrzebować naszej"
+        },
+        "eyebrow": "Osobiste Postępy",
+        "getReadyForTraining": "Przygotuj się do treningu",
+        "startYour": "Rozpocznij swój",
+        "subtitle": "Monitoruj swoje parametry i realizuj aktywne programy.",
+        "title": "Training Hub",
+        "workout": "Trening"
+      },
+      "staff": {
+        "cards": {
+          "analytics": {
+            "label": "Raporty",
+            "title": "Analityka"
+          },
+          "chat": {
+            "label": "Czat z użytkownikami",
+            "title": "Czat"
+          },
+          "exercises": {
+            "label": "Biblioteka",
+            "title": "Ćwiczenia"
+          },
+          "programs": {
+            "label": "Przeglądaj treningi",
+            "title": "Programy"
+          },
+          "settings": {
+            "label": "Ustawienia aplikacji",
+            "title": "Ustawienia"
+          },
+          "users": {
+            "label": "Zarządzaj użytkownikami",
+            "title": "Użytkownicy"
+          }
+        },
+        "eyebrow": "Profesjonalne Wglądy",
+        "sections": {
+          "newestTrainings": {
+            "title": {
+              "newest": "Najnowsze",
+              "trainings": "Treningi"
+            }
+          }
+        },
+        "subtitle": "Analizuj postępy klientów i optymalizuj protokoły treningowe.",
+        "title": "Coach Console"
+      }
+    },
+    "exerciseDetail": {
+      "eyebrow": "Zarządzanie Zasobami",
+      "noDescriptionProvidedForThisExercise": "Nie podano opisu dla tego ćwiczenia.",
+      "subtitle": "Wyświetl szczegóły ćwiczenia."
+    },
+    "exerciseList": {
+      "eyebrow": "Zarządzanie Zasobami",
+      "subtitle": "Twórz, edytuj i organizuj ruchy w skali całego systemu.",
+      "title": "Ćwiczenia"
+    },
+    "landing": {
+      "mainContent": {
+        "subtitle": {
+          "availableModules": "Dostępne moduły"
+        },
+        "title": {
+          "core": "Kluczowe",
+          "features": "Funkcje"
+        }
+      },
+      "sections": {
+        "exercises": {
+          "header": {
+            "button": {
+              "viewAllExercises": "Zobacz wszystkie ćwiczenia"
+            },
+            "subtitle": {
+              "visualAssets": "Zasoby wizualne"
+            },
+            "title": {
+              "library": "Biblioteka",
+              "preview": "Podgląd"
+            }
+          }
+        },
+        "features": {
+          "01": {
+            "description": "Ustanów bezpośrednie połączenie z elitarnymi trenerami. Taktyczne poprawki i wsparcie techniczne dostarczane przez bezpieczny kanał komunikacji.",
+            "id": "01",
+            "title": "Wsparcie Trenera"
+          },
+          "02": {
+            "description": "Twoja sekwencja dostarczana przez dedykowaną aplikację mobilną. Wykonywanie zadań i instruktaż w czasie rzeczywistym w dowolnym środowisku.",
+            "id": "02",
+            "title": "Aplikacja Mobilna"
+          },
+          "03": {
+            "description": "Pełnozakresowe monitorowanie każdej serii, powtórzenia i obciążenia. Wykorzystaj diagnostykę opartą na danych, aby optymalizować swoją krzywą progresu.",
+            "id": "03",
+            "title": "Metryki Wydajności"
+          }
+        },
+        "finalCta": {
+          "button": {
+            "compatibleWithiOSAndAndroid": "Kompatybilne z iOS i Android",
+            "initializeTransformation": "Zainicjuj Transformację"
+          },
+          "finalCTA": "Twoja transformacja nie jest już kwestią przypadku. Zabezpiecz swój dostęp do systemu i wdróż swój trening przez interfejs mobilny.",
+          "subtitle": {
+            "finalPhase": "Faza Finałowa"
+          },
+          "title": {
+            "commitToThe": "Zaangażuj się w",
+            "protocol": "Protokół"
+          }
+        },
+        "hero": {
+          "buttonBrowseTrainings": "Przeglądaj treningi",
+          "buttonJoinTheProgram": "Dołącz do programu",
+          "mobileAppAvailableNow": "Aplikacja Mobilna już dostępna",
+          "trainWithTheSamePrecisionAsWorldClassAthletes": "Trenuj z taką samą precyzją jak światowej klasy sportowcy. Specjalnie opracowane programy zaprojektowane, by przełamywać Twoje limity i redefiniować wydajność."
+        },
+        "stats": {
+          "activeUsers": "Aktywni użytkownicy",
+          "launchedWorkouts": "Uruchomione treningi",
+          "satisfiedClients": "Zadowoleni klienci"
+        }
+      }
+    },
+    "login": {
+      "eyebrow": "Uwierzytelnianie",
+      "subtitle": "Zweryfikuj poświadczenia, aby wykuwać siebie.",
+      "title": "Logowanie"
+    },
+    "register": {
+      "existingProfileLogIn": "Masz już profil? Zaloguj się",
+      "eyebrow": "Rejestracja",
+      "subtitle": "Utwórz nowe konto, aby wykuwać siebie.",
+      "title": "Rejestracja"
+    },
+    "trainingDayCreator": {
+      "eyebrow": "Zarządzanie Treningiem",
+      "form": {
+        "distance": {
+          "label": "Dystans",
+          "placeholder": "Dystans w metrach"
+        },
+        "duration": {
+          "label": "Czas trwania",
+          "placeholder": "Czas w sekundach"
+        },
+        "exercise": {
+          "label": "Ćwiczenie",
+          "placeholder": "Wybierz ćwiczenie"
+        },
+        "removeExercise": {
+          "label": "Usuń ćwiczenie"
+        },
+        "reps": {
+          "label": "Powtórzenia",
+          "placeholder": "Liczba powtórzeń"
+        },
+        "weight": {
+          "label": "Ciężar",
+          "placeholder": "Ciężar w kilogramach"
+        },
+        "workoutType": {
+          "label": "Typ treningu",
+          "placeholder": "Wybierz typ treningu"
+        }
+      },
+      "stepper": {
+        "addNextExercise": "Dodaj kolejne ćwiczenie",
+        "coolDown": {
+          "description": "Uspokój tętno i zadbaj o regenerację powysiłkową.",
+          "label": "Schłodzenie"
+        },
+        "currentBlock": "Bieżący blok",
+        "finalizeTrainingDay": "Sfinalizuj dzień treningowy",
+        "mainWorkout": {
+          "description": "Główna część treningu – skupienie na technice i intensywności.",
+          "label": "Trening główny"
+        },
+        "selectExercise": "Wybierz ćwiczenie",
+        "summary": {
+          "description": "Podsumowanie treningu i wykonanych ćwiczeń.",
+          "label": "Podsumowanie"
+        },
+        "warmUp": {
+          "description": "Przygotuj ciało do wysiłku i zwiększ temperaturę mięśni.",
+          "label": "Rozgrzewka"
+        }
+      },
+      "subtitle": "Konstruuj i organizuj dni treningowe. Zdefiniuj przebieg każdej fazy.",
+      "title": "Kreator dnia treningowego"
+    },
+    "trainingDetail": {
+      "dayConfiguration": "Konfiguracja dnia",
+      "eyebrow": "Zarządzanie Treningiem",
+      "hero": {
+        "createdAt": "Utworzono",
+        "id": "ID"
+      },
+      "noExercisesPlanned": "Brak zaplanowanych ćwiczeń",
+      "subtitle": "Konstruuj i organizuj dni treningowe. Zdefiniuj przebieg każdej fazy.",
+      "timeline": {
+        "addDay": "Dodaj dzień",
+        "createNewTrainingDay": "Utwórz nowy dzień treningowy",
+        "title": "Timeline <1>Treningu<1>",
+        "totalDays_one": "Dni treningowe  {{count}}",
+        "totalDays_few": "",
+        "totalDays_many": "",
+        "totalDays_other": "Dni treningowe {{count}}"
+      },
+      "title": "Training Designer"
+    },
+    "trainingList": {
+      "eyebrow": "Zarządzanie Treningiem",
+      "subtitle": "Twórz, edytuj i organizuj plany treningowe w skali całego systemu.",
+      "title": "Treningi"
+    }
+  },
+  "table": {
+    "exercise": {
+      "columns": {
+        "bodyPart": {
+          "label": "Cel"
+        },
+        "description": {
+          "label": "Szczegóły protokołu"
+        },
+        "difficulty": {
+          "label": "Intensywność"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Podgląd"
+        },
+        "name": {
+          "label": "Nazwa ćwiczenia"
+        },
+        "updatedAt": {
+          "label": "Ostatnia aktualizacja"
+        }
+      }
+    },
+    "training": {
+      "columns": {
+        "createdAt": {
+          "label": "Utworzono"
+        },
+        "description": {
+          "label": "Przegląd"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Okładka"
+        },
+        "name": {
+          "label": "Tytuł programu"
+        },
+        "status": {
+          "label": "Status"
+        },
+        "updatedAt": {
+          "label": "Ostatnia aktualizacja"
+        }
+      }
+    }
+  }
+}

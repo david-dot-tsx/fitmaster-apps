@@ -1,8 +1,4 @@
 {
   "INVALID_CREDENTIALS": "Nieprawidłowe dane logowania",
-  "FAILED_TO_LOGOUT": "Nie udało się wylogować",
-  "SESSION_EXPIRED_OR_INVALID": "Sesja wygasła lub jest nieprawidłowa",
-  "SESSION_INVALID": "Nieprawidłowa sesja",
-  "USER_ALREADY_EXISTS": "Użytkownik już istnieje",
-  "NOT_FOUND": "Nie znaleziono"
+  "USER_ALREADY_EXISTS": "Użytkownik już istnieje"
 }

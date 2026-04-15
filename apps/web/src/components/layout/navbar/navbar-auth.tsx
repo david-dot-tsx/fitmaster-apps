@@ -3,10 +3,8 @@ import React from "react";
 import Link from "next/link";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
 
-import { NAMESPACES } from "@repo/i18n/web";
-
+import { useT } from "@/lib/i18n/i18n";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/providers/auth/auth-provider";
 
@@ -14,7 +12,7 @@ export const NavbarAuth = () => {
   const router = useRouter();
   const queryClient = useQueryClient();
   const { session } = useAuth();
-  const { t } = useTranslation([NAMESPACES.COMMON]);
+  const { t } = useT();
 
   // TODO: Tanstack query: To refactor to queryfactory
   const { mutate: logout } = useMutation({
@@ -48,7 +46,7 @@ export const NavbarAuth = () => {
         <Button
           variant="ghost"
           size="sm"
-          className="text-[10px] font-black uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
+          className="text-[10px] font-medium uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
           onClick={() => logout()}
         >
           {t("logout")}
@@ -59,14 +57,14 @@ export const NavbarAuth = () => {
             asChild
             variant="ghost"
             size="sm"
-            className="text-[10px] font-black uppercase tracking-widest text-zinc-400"
+            className="text-[10px] font-medium uppercase tracking-widest text-zinc-400"
           >
             <Link href="/auth/login">{t("login")}</Link>
           </Button>
           <Button
             asChild
             size="sm"
-            className="bg-amber-400 text-[10px] font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
+            className="bg-amber-400 text-[10px] font-medium uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
           >
             <Link href="/auth/register">{t("register")}</Link>
           </Button>

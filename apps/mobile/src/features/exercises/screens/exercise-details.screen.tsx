@@ -2,6 +2,7 @@ import React from "react";
 import { ActivityIndicator, ScrollView, View } from "react-native";
 import { DumbbellIcon } from "lucide-react-native";
 
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -14,13 +15,14 @@ import { FoldableText } from "@/components/foldable-text";
 
 export const ExerciseDetailsScreen = ({ id }: { id: string }) => {
   const { data: exercise, status, refetch, isFetching } = trpc.exercise.getById.useQuery({ id });
+  const { t } = useT();
 
   return (
     <ScreenWrapper
       header={{
-        title: exercise?.name ?? "Exercise details",
-        description: "Exercise library",
-        subtitle: "Technique, traits, and difficulty.",
+        title: exercise?.name ?? t("mobile:screens.exerciseDetails.title"),
+        description: t("mobile:screens.exerciseDetails.description"),
+        subtitle: t("mobile:screens.exerciseDetails.subtitle"),
         icon: DumbbellIcon,
         backButton: true,
       }}
@@ -50,11 +52,11 @@ export const ExerciseDetailsScreen = ({ id }: { id: string }) => {
           <VStack className="gap-4 pb-6 pt-4">
             <ExerciseMeta difficulty={exercise.difficulty} bodyPart={exercise.bodyPart} />
 
-            <Section title="Description">
+            <Section title={t("description")}>
               {exercise.description && exercise.description.length > 0 ? (
                 <FoldableText text={exercise.description} />
               ) : (
-                <Text className="text-zinc-400">No description provided for this exercise.</Text>
+                <Text className="text-zinc-400">{t("noDescriptionProvidedForThisExercise")}</Text>
               )}
             </Section>
           </VStack>

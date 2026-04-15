@@ -2,6 +2,7 @@ import React from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserRound } from "lucide-react-native";
+import { t } from "i18next";
 
 import { customerProfileCreateFormSchema } from "@repo/validators";
 
@@ -28,9 +29,9 @@ export const OnboardingScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: "Profile setup",
-        description: "Onboarding",
-        subtitle: "Tell us about you so we can personalize your training.",
+        title: t("mobile:screens.onboarding.title"),
+        description: t("mobile:screens.onboarding.description"),
+        subtitle: t("mobile:screens.onboarding.subtitle"),
         icon: UserRound,
       }}
     >

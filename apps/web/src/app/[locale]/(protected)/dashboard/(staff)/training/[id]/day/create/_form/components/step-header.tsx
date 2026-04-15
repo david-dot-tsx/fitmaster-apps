@@ -1,11 +1,13 @@
 import React from "react";
 
+import { useT } from "@/lib/i18n/i18n";
 import { type DayCreatorStep } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
 import { cn } from "@/lib/utils";
 import { stepConfig } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
 
 export const StepHeader = ({ step }: { step: DayCreatorStep }) => {
   const config = stepConfig[step];
+  const { t } = useT();
 
   return (
     <div className="mb-8 mt-4 flex items-center gap-6">
@@ -20,11 +22,11 @@ export const StepHeader = ({ step }: { step: DayCreatorStep }) => {
         <div className="flex items-center gap-2">
           <span className={cn("size-1.5 rounded-full", config.accent)} />
           <span className="text-[10px] font-black uppercase tracking-[0.2em] text-zinc-500">
-            Current Block
+            {t("web:pages.trainingDayCreator.stepper.currentBlock")}
           </span>
         </div>
-        <h2 className="text-3xl font-black tracking-tight text-zinc-100">{config.label}</h2>
-        <p className="max-w-md text-sm text-zinc-500">{config.description}</p>
+        <h2 className="text-3xl font-black tracking-tight text-zinc-100">{t(config.label)}</h2>
+        <p className="max-w-md text-sm text-zinc-500">{t(config.description)}</p>
       </div>
     </div>
   );

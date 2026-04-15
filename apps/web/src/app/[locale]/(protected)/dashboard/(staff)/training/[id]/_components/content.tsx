@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { PlusIcon } from "lucide-react";
+import { Trans } from "react-i18next";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { PageWrapper } from "@/components/layout/page-wrapper";
@@ -13,8 +14,10 @@ import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingContent = ({ id }: { id: string }) => {
+  const { t } = useT();
   const router = useRouter();
   const trpc = useTRPC();
   const {
@@ -32,12 +35,11 @@ export const TrainingContent = ({ id }: { id: string }) => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
   if (trainingStatus === "pending" || trainingDaysStatus === "pending") {
-    return <LoadingState message="Loading training…" />;
+    return <LoadingState />;
   }
   if (trainingStatus === "error" || trainingDaysStatus === "error") {
     return (
       <ErrorState
-        title="Failed to load training"
         onTryAgain={() => {
           if (trainingError) void refetchTraining();
           if (trainingDaysError) void refetchTrainingDays();
@@ -51,7 +53,11 @@ export const TrainingContent = ({ id }: { id: string }) => {
 
   return (
     <>
-      <PageWrapper title="Training" subtitle="Full view of the training.">
+      <PageWrapper
+        title={t("web:pages.trainingDetail.title")}
+        subtitle={t("web:pages.trainingDetail.subtitle")}
+        eyebrow={t("web:pages.trainingDetail.eyebrow")}
+      >
         <div className="flex flex-col gap-12">
           <TrainingHero training={trainingData} />
 
@@ -59,15 +65,24 @@ export const TrainingContent = ({ id }: { id: string }) => {
             <div className="mb-8 flex items-center justify-between">
               <div className="flex flex-row items-center justify-between gap-8">
                 <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
-                  Training <span className="text-amber-400">Timeline</span>
+                  {/* //TODO: use that trans component in dialog windows and others components  */}
+                  <Trans
+                    t={t}
+                    i18nKey="web:pages.trainingDetail.timeline.title"
+                    components={{
+                      1: <span className="text-amber-400" />,
+                    }}
+                  />
                 </h2>
                 <div className="self-end rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                  Total Days: {trainingDaysData.length}
+                  {t("web:pages.trainingDetail.timeline.totalDays", {
+                    count: trainingDaysData.length,
+                  })}
                 </div>
               </div>
               <Button className="bg-amber-400 font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.3)] hover:bg-amber-500">
                 <PlusIcon className="mr-2 size-4 stroke-[3px]" />
-                Add Day
+                {t("web:pages.trainingDetail.timeline.addDay")}
               </Button>
             </div>
 
@@ -91,7 +106,7 @@ export const TrainingContent = ({ id }: { id: string }) => {
                     <PlusIcon className="size-5 transition-transform group-hover:rotate-90" />
                   </div>
                   <span className="text-xs font-bold uppercase tracking-widest">
-                    Add new Training Day
+                    {t("web:pages.trainingDetail.timeline.createNewTrainingDay")}
                   </span>
                 </div>
               </Button>

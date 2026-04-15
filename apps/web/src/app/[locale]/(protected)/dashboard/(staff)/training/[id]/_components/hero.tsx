@@ -3,8 +3,11 @@ import Image from "next/image";
 import { type Training } from "@repo/validators";
 
 import { Badge } from "@/components/ui/badge";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingHero = ({ training }: { training: Training }) => {
+  const { t } = useT();
+
   return (
     <div className="relative overflow-hidden rounded-3xl border border-zinc-800 bg-zinc-900/20 backdrop-blur-md">
       {/* Background Glow */}
@@ -28,9 +31,9 @@ export const TrainingHero = ({ training }: { training: Training }) => {
         {/* Info */}
         <div className="flex flex-col justify-center gap-4">
           <div className="space-y-1">
-            <h1 className="text-4xl font-black uppercase italic tracking-tighter text-zinc-100">
+            <h2 className="text-4xl font-black uppercase italic tracking-tighter text-zinc-100">
               {training.name}
-            </h1>
+            </h2>
             <p className="max-w-xl text-sm leading-relaxed text-zinc-500">
               {training.description || "—"}
             </p>
@@ -39,7 +42,7 @@ export const TrainingHero = ({ training }: { training: Training }) => {
           <div className="mt-2 flex gap-6">
             <div className="flex flex-col">
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">
-                Created At
+                {t("web:pages.trainingDetail.hero.createdAt")}
               </span>
               <span className="text-sm font-bold text-zinc-300">
                 {new Date(training.createdAt).toLocaleDateString()}
@@ -48,10 +51,10 @@ export const TrainingHero = ({ training }: { training: Training }) => {
             <div className="h-8 w-px bg-zinc-800" />
             <div className="flex flex-col">
               <span className="text-[10px] font-black uppercase tracking-widest text-zinc-600">
-                ID
+                {t("web:pages.trainingDetail.hero.id")}
               </span>
               <span className="font-mono text-sm font-bold tracking-tighter text-zinc-300">
-                {training.id.slice(0, 13)}...
+                {training.id}
               </span>
             </div>
           </div>

@@ -20,8 +20,12 @@ import {
 import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
+import { useT } from "@/lib/i18n/i18n";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const StepSummary = ({ trainingId }: { trainingId: string }) => {
+  const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const trpc = useTRPC();
   const router = useRouter();
   const queryClient = useQueryClient();
@@ -44,12 +48,19 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const createTrainingDayMutation = useMutation(
     trpc.trainingDay.create.mutationOptions({
       onSuccess: () => {
-        toast.success("Training day created!");
+        toast.success(t("success.generic.description"));
         resetStore();
         queryClient.invalidateQueries(
           trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId }),
         );
         router.push(`/dashboard/training/${trainingId}`);
+      },
+      onError: (error) => {
+        handleApiErrorMessage(error.message, {
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+          },
+        });
       },
     }),
   );
@@ -63,12 +74,12 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const stepIterator = getStepIterator();
 
   if (trainingStatus === "pending" || exercisesStatus === "pending") {
-    return <LoadingState message="Loading summary…" />;
+    return <LoadingState message={`${t("loading")}...`} />;
   }
   if (trainingStatus === "error" || exercisesStatus === "error") {
     return (
       <ErrorState
-        title="Failed to load summary data"
+        title={t("errors.generic.description")}
         onTryAgain={() => {
           if (trainingError) void refetchTraining();
           if (exercisesError) void refetchExercises();

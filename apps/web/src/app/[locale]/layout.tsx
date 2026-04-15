@@ -43,7 +43,7 @@ export default async function RootLayout({
   const { hasRefreshToken } = await hasSessionTokensAction();
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={cn("font-sans", orbitron.variable, inter.variable, quantico.variable)}>
         <RootProvider session={hasRefreshToken} locale={locale}>
           <LayoutWrapper>{children}</LayoutWrapper>

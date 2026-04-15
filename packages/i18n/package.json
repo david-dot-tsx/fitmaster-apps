@@ -10,8 +10,8 @@
   },
   "dependencies": {
     "i18next": "^25.8.3",
-    "i18next-resources-for-ts": "^2.0.0",
-    "@repo/api": "workspace:*"
+    "i18next-cli": "^1.51.7",
+    "i18next-resources-for-ts": "^2.0.0"
   },
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",

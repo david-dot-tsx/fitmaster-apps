@@ -1,9 +1,11 @@
 import { findIndex } from "remeda";
+import { type ResourceKey } from "i18next";
 
+import { useT } from "@/lib/i18n/i18n";
 import { cn } from "@/lib/utils";
 
 export interface Step<T> {
-  label: string;
+  label: ResourceKey;
   name: T;
 }
 
@@ -17,6 +19,8 @@ interface SingleStepComponent<T> {
 }
 
 const SingleStepComponent = <T,>({ status, step, isLastStep, index }: SingleStepComponent<T>) => {
+  const { t } = useT();
+
   return (
     <li className={cn("flex flex-1 flex-col gap-2", { "pr-4": !isLastStep })}>
       <div className="flex items-center gap-2">
@@ -39,7 +43,7 @@ const SingleStepComponent = <T,>({ status, step, isLastStep, index }: SingleStep
             "text-zinc-500": status !== "CURRENT",
           })}
         >
-          {step.label}
+          {t(step.label)}
         </span>
       </div>
       <div className="relative h-1 w-full overflow-hidden rounded-full bg-zinc-800">

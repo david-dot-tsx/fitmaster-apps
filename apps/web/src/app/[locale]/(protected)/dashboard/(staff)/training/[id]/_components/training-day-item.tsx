@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import {
   type WorkoutBlockTypes,
   workoutBlockTypesSchema,
@@ -5,8 +7,11 @@ import {
 } from "@repo/validators";
 
 import { cn } from "@/lib/utils";
+import { useT } from "@/lib/i18n/i18n";
 
 export const TrainingDayItem = ({ day, index }: { day: TrainingDayDetailed; index: number }) => {
+  const { t } = useT();
+
   return (
     <div className="group relative flex gap-12">
       {/* Timeline Connector */}
@@ -23,24 +28,24 @@ export const TrainingDayItem = ({ day, index }: { day: TrainingDayDetailed; inde
       <div className="flex-1 pb-12">
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900/40 p-6 backdrop-blur-sm transition-all hover:border-zinc-700">
           <h3 className="mb-6 flex items-center gap-4 text-[10px] font-black uppercase tracking-[0.3em] text-zinc-500">
-            Day Configuration
+            {t("web:pages.trainingDetail.dayConfiguration")}
             <div className="h-px flex-1 bg-zinc-800/50" />
           </h3>
 
           <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
             <BlockSection
-              title="Warm Up"
+              title={t("training.block.warmUp")}
               block={day.workoutBlocks.WARM_UP}
               blockType={workoutBlockTypesSchema.enum.WARM_UP}
             />
             <BlockSection
-              title="Main Workout"
+              title={t("training.block.mainWorkout")}
               block={day.workoutBlocks.MAIN_WORKOUT}
               blockType={workoutBlockTypesSchema.enum.MAIN_WORKOUT}
               isMain
             />
             <BlockSection
-              title="Cool Down"
+              title={t("training.block.coolDown")}
               block={day.workoutBlocks.COOL_DOWN}
               blockType={workoutBlockTypesSchema.enum.COOL_DOWN}
             />
@@ -61,48 +66,88 @@ const BlockSection = ({
   block: TrainingDayDetailed["workoutBlocks"][keyof TrainingDayDetailed["workoutBlocks"]];
   blockType: WorkoutBlockTypes;
   isMain?: boolean;
-}) => (
-  <div className={cn("space-y-4", { "transition-transform lg:scale-105": isMain })}>
-    <div className="flex items-center gap-2">
-      <div
-        className={cn("size-1.5 rounded-full shadow-[0_0_8px_currentColor]", {
-          "bg-zinc-400": blockType === workoutBlockTypesSchema.enum.WARM_UP,
-          "bg-amber-400": blockType === workoutBlockTypesSchema.enum.MAIN_WORKOUT,
-          "bg-blue-400": blockType === workoutBlockTypesSchema.enum.COOL_DOWN,
-        })}
-      />
-      <span
-        className={cn("text-[10px] font-black uppercase tracking-widest", {
-          "text-zinc-400": blockType === workoutBlockTypesSchema.enum.WARM_UP,
-          "text-amber-400": blockType === workoutBlockTypesSchema.enum.MAIN_WORKOUT,
-          "text-blue-400": blockType === workoutBlockTypesSchema.enum.COOL_DOWN,
-        })}
-      >
-        {title}
-      </span>
-    </div>
+}) => {
+  const { t } = useT();
 
-    <div className="space-y-2">
-      {block.map((workoutExercise) => (
+  return (
+    <div className={cn("space-y-4", { "transition-transform lg:scale-105": isMain })}>
+      <div className="flex items-center gap-2">
         <div
-          key={workoutExercise.id}
-          className="flex flex-col rounded-lg border border-zinc-800/50 bg-black/20 p-3 transition-colors hover:bg-black/40"
+          className={cn("size-1.5 rounded-full shadow-[0_0_8px_currentColor]", {
+            "bg-zinc-400": blockType === workoutBlockTypesSchema.enum.WARM_UP,
+            "bg-amber-400": blockType === workoutBlockTypesSchema.enum.MAIN_WORKOUT,
+            "bg-blue-400": blockType === workoutBlockTypesSchema.enum.COOL_DOWN,
+          })}
+        />
+        <span
+          className={cn("text-[10px] font-black uppercase tracking-widest", {
+            "text-zinc-400": blockType === workoutBlockTypesSchema.enum.WARM_UP,
+            "text-amber-400": blockType === workoutBlockTypesSchema.enum.MAIN_WORKOUT,
+            "text-blue-400": blockType === workoutBlockTypesSchema.enum.COOL_DOWN,
+          })}
         >
-          <span className="text-xs font-bold uppercase tracking-tight text-zinc-200">
-            {workoutExercise.exercise.name}
-          </span>
+          {title}
+        </span>
+      </div>
 
-          <div className="mt-2 flex items-center gap-3 text-[10px] font-black uppercase text-zinc-500">
-            {workoutExercise.reps && <span>{workoutExercise.reps} Reps</span>}
-            {workoutExercise.duration && <span>{workoutExercise.duration} Min</span>}
-            {workoutExercise.distance && <span>{workoutExercise.distance} Km</span>}
-            {workoutExercise.weight && (
-              <span className="text-amber-500">{workoutExercise.weight} Kg</span>
-            )}
+      <div className="space-y-2">
+        {block.map((workoutExercise) => (
+          <div
+            key={workoutExercise.id}
+            className="flex flex-col rounded-lg border border-zinc-800/50 bg-black/20 p-3 transition-colors hover:bg-black/40"
+          >
+            <Link href={`/dashboard/exercise/${workoutExercise.exercise.id}`}>
+              <span className="text-xs font-bold uppercase tracking-wider text-zinc-200">
+                {workoutExercise.exercise.name}
+              </span>
+            </Link>
+
+            <div className="mt-2 flex items-center gap-3 font-mono text-xs font-black uppercase text-zinc-500">
+              {workoutExercise.reps && (
+                <span>
+                  {t("reps")}:
+                  <span className="ml-1 text-amber-400/80">
+                    {workoutExercise.reps}
+                    <span className="ml-px lowercase text-zinc-500">{t("units.reps")}</span>
+                  </span>
+                </span>
+              )}
+              {workoutExercise.duration && (
+                <span>
+                  {t("duration")}:
+                  <span className="ml-1 text-amber-400/80">
+                    {workoutExercise.duration}
+                    <span className="ml-px lowercase text-zinc-500">{t("units.seconds")}</span>
+                  </span>
+                </span>
+              )}
+              {workoutExercise.distance && (
+                <span>
+                  {t("distance")}:
+                  <span className="ml-1 text-amber-400/80">
+                    {workoutExercise.distance}
+                    <span className="ml-px lowercase text-zinc-500">{t("units.meters")}</span>
+                  </span>
+                </span>
+              )}
+              {workoutExercise.weight && (
+                <span>
+                  {t("weight")}:
+                  <span className="ml-1 text-amber-400/80">
+                    {workoutExercise.weight}
+                    <span className="ml-px lowercase text-zinc-500">{t("units.kg")}</span>
+                  </span>
+                </span>
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-      {block.length === 0 && <span className="italic text-zinc-600">No exercises planned</span>}
+        ))}
+        {block.length === 0 && (
+          <span className="italic text-zinc-600">
+            {t("web:pages.trainingDetail.noExercisesPlanned")}
+          </span>
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};

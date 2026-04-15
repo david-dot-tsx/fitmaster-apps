@@ -1,0 +1,418 @@
+{
+  "dialog": {
+    "delete": {
+      "description": {
+        "paragraph": "This action is irreversible. You are attempting to permanently delete the following record:",
+        "warning": "WARNING"
+      },
+      "titleTrans": "Delete entity: <br/> <1>{{entityName}}</1>"
+    },
+    "exercise": {
+      "create": {
+        "button": "Create Exercise",
+        "description": "Insert the parameters of the new exercise.",
+        "form": {
+          "bodyPart": {
+            "label": "Target Anatomy"
+          },
+          "description": {
+            "label": "Details"
+          },
+          "difficulty": {
+            "label": "Intensity Level"
+          },
+          "exerciseName": {
+            "label": "Exercise Name",
+            "placeholder": "e.g. Bench Press"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          }
+        },
+        "title": {
+          "exercise": "Exercise",
+          "new": "New"
+        }
+      },
+      "edit": {
+        "description": "Edit the parameters of the exercise.",
+        "form": {
+          "bodyPart": {
+            "label": "Target Anatomy"
+          },
+          "description": {
+            "label": "Details"
+          },
+          "difficulty": {
+            "label": "Intensity Level"
+          },
+          "exerciseName": {
+            "label": "Exercise Name"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          }
+        },
+        "title": {
+          "editExerciseTrans": "Edit Exercise: <br/> <1>{{exerciseName}}</1>"
+        }
+      }
+    },
+    "training": {
+      "create": {
+        "button": "Create Training",
+        "description": "Insert the parameters of the new training.",
+        "form": {
+          "description": {
+            "label": "Details",
+            "placeholder": "Training description"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          },
+          "name": {
+            "label": "Training Identity",
+            "placeholder": "e.g. Cardio II"
+          }
+        },
+        "title": {
+          "new": "New",
+          "training": "Training"
+        }
+      },
+      "edit": {
+        "description": "Edit the parameters of the training.",
+        "form": {
+          "description": {
+            "label": "Details",
+            "placeholder": "Training description"
+          },
+          "imageUrl": {
+            "label": "Visual Asset (URL)"
+          },
+          "name": {
+            "label": "Training Identity",
+            "placeholder": "e.g. Cardio II"
+          }
+        },
+        "title": {
+          "editTrainingTrans": "Edit Training: <br/> <1>{{trainingName}}</1>"
+        }
+      },
+      "updateStatus": {
+        "description": {
+          "availableActions": "Available actions after the status change:",
+          "disabled": "It means that the training is visible but customers cannot launch it .",
+          "draft": "It means that the training is in draft mode, can be edited and it is not visible to customers.",
+          "hidden": "It means that the training is visible but customers cannot launch it.",
+          "paragraphTrans": "Are you sure you want to update the status of the training <1>{{trainingName}}</1> from <2>{{fromStatus}}</2> to <3>{{toStatus}}</3>?",
+          "published": "It means that the training is published and visible to customers.",
+          "readyToPublish": "It means that the training is ready to be published and visible to customers."
+        },
+        "select": {
+          "ariaLabel": "Update training status",
+          "title": "Update training status"
+        }
+      }
+    },
+    "warning": {
+      "cancelButton": "Cancel",
+      "confirmButton": "Confirm",
+      "description": "This action may have unintended consequences. Please confirm to continue.",
+      "title": "Warning"
+    }
+  },
+  "layout": {
+    "footer": {
+      "contact": "Contact",
+      "copyright": "Copyright",
+      "developedBy": "Developed by",
+      "privacy": "Privacy",
+      "terms": "Terms"
+    },
+    "navbar": {
+      "links": {
+        "dashboard": "Dashboard",
+        "exercises": "Exercises",
+        "trainings": "Trainings"
+      }
+    }
+  },
+  "pages": {
+    "dashboard": {
+      "customer": {
+        "description": {
+          "downloadItBelowAndLogInToSyncYourData": "Download it below and log in to sync your data.",
+          "mobileApp": "Mobile App",
+          "toStartYourFirstSessionAndTrackYourProgress": "To start your first session and track your progress, you'll need our"
+        },
+        "eyebrow": "Personal Progress",
+        "getReadyForTraining": "Get Ready for training",
+        "startYour": "Start your",
+        "subtitle": "Track your metrics and follow your active programs.",
+        "title": "Training Hub",
+        "workout": "Workout"
+      },
+      "staff": {
+        "cards": {
+          "analytics": {
+            "label": "Reports",
+            "title": "Analytics"
+          },
+          "chat": {
+            "label": "Chat with users",
+            "title": "Chat"
+          },
+          "exercises": {
+            "label": "Library",
+            "title": "Exercises"
+          },
+          "programs": {
+            "label": "View Trainings",
+            "title": "Programs"
+          },
+          "settings": {
+            "label": "App Settings",
+            "title": "Settings"
+          },
+          "users": {
+            "label": "Manage Users",
+            "title": "Users"
+          }
+        },
+        "eyebrow": "Professional Insights",
+        "sections": {
+          "newestTrainings": {
+            "title": {
+              "newest": "Newest",
+              "trainings": "Trainings"
+            }
+          }
+        },
+        "subtitle": "Review client progress and optimize training protocols.",
+        "title": "Coach Console"
+      }
+    },
+    "exerciseDetail": {
+      "eyebrow": "Asset Management",
+      "noDescriptionProvidedForThisExercise": "No description provided for this exercise.",
+      "subtitle": "View the details of an exercise."
+    },
+    "exerciseList": {
+      "eyebrow": "Asset Management",
+      "subtitle": "Create, edit, and organize movements within the global system.",
+      "title": "Exercise"
+    },
+    "landing": {
+      "mainContent": {
+        "subtitle": {
+          "availableModules": "Available Modules"
+        },
+        "title": {
+          "core": "Core",
+          "features": "Features"
+        }
+      },
+      "sections": {
+        "exercises": {
+          "header": {
+            "button": {
+              "viewAllExercises": "View All Exercises"
+            },
+            "subtitle": {
+              "visualAssets": "Visual Assets"
+            },
+            "title": {
+              "library": "Library",
+              "preview": "Preview"
+            }
+          }
+        },
+        "features": {
+          "01": {
+            "description": "Establish a 1-on-1 uplink with elite performance coaches. Tactical adjustments and technical support delivered via a secure communication channel.",
+            "id": "01",
+            "title": "Coach Support"
+          },
+          "02": {
+            "description": "Your sequence delivered via a dedicated mobile application. Real-time execution and guidance in any environment.",
+            "id": "02",
+            "title": "Mobile App"
+          },
+          "03": {
+            "description": "Full-spectrum monitoring of every set, rep, and load. Leverage data-driven diagnostics to optimize your progression curve.",
+            "id": "03",
+            "title": "Performance Metrics"
+          }
+        },
+        "finalCta": {
+          "button": {
+            "compatibleWithiOSAndAndroid": "Compatible with iOS & Android",
+            "initializeTransformation": "Initialize Transformation"
+          },
+          "finalCTA": "Your transformation is no longer a matter of chance. Secure your access to the system and deploy your training via our mobile interface.",
+          "subtitle": {
+            "finalPhase": "Final Phase"
+          },
+          "title": {
+            "commitToThe": "Commit to the",
+            "protocol": "Protocol"
+          }
+        },
+        "hero": {
+          "buttonBrowseTrainings": "Browse Trainings",
+          "buttonJoinTheProgram": "Join the program",
+          "mobileAppAvailableNow": "Mobile App Available Now",
+          "trainWithTheSamePrecisionAsWorldClassAthletes": "Train with the same precision as world-class athletes. Custom-built programs designed to break your limits and redefine your performance."
+        },
+        "stats": {
+          "activeUsers": "Active Users",
+          "launchedWorkouts": "Launched Workouts",
+          "satisfiedClients": "Satisfied Clients"
+        }
+      }
+    },
+    "login": {
+      "eyebrow": "Authentication",
+      "subtitle": "Verify credentials to forge yourself.",
+      "title": "Login"
+    },
+    "register": {
+      "existingProfileLogIn": "Existing profile? Log in",
+      "eyebrow": "Registration",
+      "subtitle": "Create a new account to forge yourself.",
+      "title": "Register"
+    },
+    "trainingDayCreator": {
+      "eyebrow": "Training Management",
+      "form": {
+        "distance": {
+          "label": "Distance",
+          "placeholder": "Distance in meters"
+        },
+        "duration": {
+          "label": "Duration",
+          "placeholder": "Duration in seconds"
+        },
+        "exercise": {
+          "label": "Exercise",
+          "placeholder": "Select an exercise"
+        },
+        "removeExercise": {
+          "label": "Remove Exercise"
+        },
+        "reps": {
+          "label": "Reps",
+          "placeholder": "Amount of reps"
+        },
+        "weight": {
+          "label": "Weight",
+          "placeholder": "Weight in kilograms"
+        },
+        "workoutType": {
+          "label": "Workout Type",
+          "placeholder": "Select a workout type"
+        }
+      },
+      "stepper": {
+        "addNextExercise": "Add Next Exercise",
+        "coolDown": {
+          "description": "Relax your heart and take care of post-workout recovery.",
+          "label": "Cool Down"
+        },
+        "currentBlock": "Current Block",
+        "finalizeTrainingDay": "Finalize Training Day",
+        "mainWorkout": {
+          "description": "Main part of the workout - focus on technique and intensity.",
+          "label": "Main Workout"
+        },
+        "selectExercise": "Select an exercise",
+        "summary": {
+          "description": "Summary of the workout and performed exercises.",
+          "label": "Summary"
+        },
+        "warmUp": {
+          "description": "Prepare your body for the workout and increase the muscle temperature.",
+          "label": "Warm Up"
+        }
+      },
+      "subtitle": "Construct and organize training days. Define the workflow for each phase.",
+      "title": "Training Day Creator"
+    },
+    "trainingDetail": {
+      "dayConfiguration": "Day Configuration",
+      "eyebrow": "Training Management",
+      "hero": {
+        "createdAt": "Created At",
+        "id": "ID"
+      },
+      "noExercisesPlanned": "No exercises planned",
+      "subtitle": "Construct and organize training days. Define the workflow for each phase.",
+      "timeline": {
+        "addDay": "Add Day",
+        "createNewTrainingDay": "Create new training day",
+        "title": "Training <1>Timeline<1>",
+        "totalDays_one": "Total Days {{count}}",
+        "totalDays_other": "Total Days {{count}}"
+      },
+      "title": "Training Designer"
+    },
+    "trainingList": {
+      "eyebrow": "Training Management",
+      "subtitle": "Create, edit, and organize training plans within the global system.",
+      "title": "Trainings"
+    }
+  },
+  "table": {
+    "exercise": {
+      "columns": {
+        "bodyPart": {
+          "label": "Target"
+        },
+        "description": {
+          "label": "Protocol Details"
+        },
+        "difficulty": {
+          "label": "Intensity"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Preview"
+        },
+        "name": {
+          "label": "Exercise Name"
+        },
+        "updatedAt": {
+          "label": "Last Update"
+        }
+      }
+    },
+    "training": {
+      "columns": {
+        "createdAt": {
+          "label": "Created At"
+        },
+        "description": {
+          "label": "Overview"
+        },
+        "id": {
+          "label": "ID"
+        },
+        "imageUrl": {
+          "label": "Cover"
+        },
+        "name": {
+          "label": "Program Title"
+        },
+        "status": {
+          "label": "Status"
+        },
+        "updatedAt": {
+          "label": "Last Update"
+        }
+      }
+    }
+  }
+}

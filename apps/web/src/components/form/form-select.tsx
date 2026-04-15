@@ -39,8 +39,10 @@ export const FormSelect = ({ name, label, placeholder, options, ...rest }: FormS
                 trigger(name);
               }
             }}
-            {...rest}
             {...field}
+            {...rest}
+            name={field.name}
+            value={field.value ?? undefined}
           >
             <SelectTrigger>
               <SelectValue placeholder={placeholder} />

@@ -7,34 +7,58 @@ import {
   CircleStarIcon,
 } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
+import { type ResourceKey } from "i18next";
 
 import {
   WorkoutExerciseSessionStatus,
   type TrainingSessionWorkoutWithDetails,
 } from "@repo/validators";
+import { getTKey } from "@repo/i18n/mobile";
 
+import { useT } from "@/lib/i18n";
 import { Badge, BadgeIcon, BadgeText } from "@/components/ui/badge";
 
-const STATUS_LABEL = {
-  [WorkoutExerciseSessionStatus.NOT_STARTED]: "Pending",
-  [WorkoutExerciseSessionStatus.IN_PROGRESS]: "Active",
-  [WorkoutExerciseSessionStatus.COMPLETED]: "Done",
-  [WorkoutExerciseSessionStatus.SKIPPED]: "Skipped",
-  CURRENT: "Current",
+const STATUS_BADGE = {
+  [WorkoutExerciseSessionStatus.NOT_STARTED]: WorkoutExerciseSessionStatus.NOT_STARTED,
+  [WorkoutExerciseSessionStatus.IN_PROGRESS]: WorkoutExerciseSessionStatus.IN_PROGRESS,
+  [WorkoutExerciseSessionStatus.COMPLETED]: WorkoutExerciseSessionStatus.COMPLETED,
+  [WorkoutExerciseSessionStatus.SKIPPED]: WorkoutExerciseSessionStatus.SKIPPED,
+  CURRENT: "CURRENT",
 } as const;
 
-type StatusLabel = keyof typeof STATUS_LABEL;
+type StatusBadgeType = "CURRENT" | WorkoutExerciseSessionStatus;
 
-const StatusBadge = ({ status, className }: { status: StatusLabel; className?: string }) => {
+const StatusBadge = ({ status, className }: { status: StatusBadgeType; className?: string }) => {
+  const { t } = useT();
   const badgeStatus: Record<
-    StatusLabel,
-    { icon: React.ElementType; action: React.ComponentProps<typeof Badge>["action"] }
+    StatusBadgeType,
+    {
+      icon: React.ElementType;
+      action: React.ComponentProps<typeof Badge>["action"];
+      label: ResourceKey;
+    }
   > = {
-    [WorkoutExerciseSessionStatus.NOT_STARTED]: { icon: LucideBadgeIcon, action: "muted" },
-    [WorkoutExerciseSessionStatus.IN_PROGRESS]: { icon: CircleStarIcon, action: "info" },
-    [WorkoutExerciseSessionStatus.COMPLETED]: { icon: BadgeCheckIcon, action: "success" },
-    [WorkoutExerciseSessionStatus.SKIPPED]: { icon: BadgeXIcon, action: "warning" },
-    CURRENT: { icon: CircleStarIcon, action: "info" },
+    [WorkoutExerciseSessionStatus.NOT_STARTED]: {
+      icon: LucideBadgeIcon,
+      action: "muted",
+      label: getTKey("common:pending"),
+    },
+    [WorkoutExerciseSessionStatus.IN_PROGRESS]: {
+      icon: CircleStarIcon,
+      action: "info",
+      label: getTKey("common:active"),
+    },
+    [WorkoutExerciseSessionStatus.COMPLETED]: {
+      icon: BadgeCheckIcon,
+      action: "success",
+      label: getTKey("common:done"),
+    },
+    [WorkoutExerciseSessionStatus.SKIPPED]: {
+      icon: BadgeXIcon,
+      action: "warning",
+      label: getTKey("common:skipped"),
+    },
+    CURRENT: { icon: CircleStarIcon, action: "info", label: getTKey("common:current") },
   };
 
   return (
@@ -44,7 +68,7 @@ const StatusBadge = ({ status, className }: { status: StatusLabel; className?: s
       action={badgeStatus[status].action}
       className={cn("max-w-[120px]", className)}
     >
-      <BadgeText className="text-2xs">{STATUS_LABEL[status]}</BadgeText>
+      <BadgeText className="text-2xs">{t(badgeStatus[status].label)}</BadgeText>
       <BadgeIcon as={badgeStatus[status].icon} size="sm" className="ml-1" />
     </Badge>
   );
@@ -61,13 +85,20 @@ export const TrainingDaySessionExerciseRow = ({
   barClass: string;
   isCurrent: boolean;
 }) => {
+  const { t } = useT();
   const we = sessionExercise.workoutExercise;
   const meta = [
-    we.reps != null ? { label: "Reps", value: String(we.reps) } : null,
-    we.weight != null && we.weight > 0 ? { label: "Kg", value: String(we.weight) } : null,
-    we.duration != null ? { label: "Sec", value: String(we.duration) } : null,
-    we.distance != null ? { label: "M", value: String(we.distance) } : null,
-  ].filter(Boolean) as { label: string; value: string }[];
+    we.reps != null ? { label: t("reps"), value: String(we.reps), units: t("units.reps") } : null,
+    we.weight != null && we.weight > 0
+      ? { label: t("weight"), value: String(we.weight), units: t("units.kg") }
+      : null,
+    we.duration != null
+      ? { label: t("duration"), value: String(we.duration), units: t("units.seconds") }
+      : null,
+    we.distance != null
+      ? { label: t("distance"), value: String(we.distance), units: t("units.meters") }
+      : null,
+  ].filter(Boolean) as { label: string; value: string; units: string }[];
 
   return (
     <View
@@ -115,12 +146,12 @@ export const TrainingDaySessionExerciseRow = ({
               >
                 {we.exercise.name}
               </Text>
-              <Text className="mt-0.5 text-2xs font-bold uppercase tracking-wider text-zinc-500">
+              <Text className="text-2xs mt-0.5 font-bold uppercase tracking-wider text-zinc-500">
                 {we.workoutType}
               </Text>
             </View>
             <StatusBadge
-              status={isCurrent ? "CURRENT" : sessionExercise.status}
+              status={isCurrent ? STATUS_BADGE.CURRENT : sessionExercise.status}
               className="mt-0.5"
             />
           </View>
@@ -131,13 +162,14 @@ export const TrainingDaySessionExerciseRow = ({
                   <Text className="font-quantico-bold text-[9px] uppercase tracking-wide text-zinc-500">
                     {m.label}
                   </Text>
+                  {/* //TODO: create const with units */}
                   <Text
                     className={cn(
                       "font-mono text-xs font-bold tabular-nums",
-                      m.label === "Kg" ? "text-amber-400" : "text-zinc-200",
+                      m.label === t("weight") ? "text-amber-400" : "text-zinc-200",
                     )}
                   >
-                    {m.label === "Kg" ? `${m.value} kg` : m.value}
+                    {`${m.value}${m.units}`}
                   </Text>
                 </View>
               ))}

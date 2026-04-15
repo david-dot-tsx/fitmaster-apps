@@ -25,8 +25,8 @@ export const TrainingTabContent = ({
 
   return (
     <div className="mt-4 flex flex-col gap-4">
-      {status === "pending" && <LoadingState message="Loading trainings…" />}
-      {status === "error" && <ErrorState title="Failed to load trainings" onTryAgain={refetch} />}
+      {status === "pending" && <LoadingState />}
+      {status === "error" && <ErrorState onTryAgain={refetch} />}
       {status === "success" && data && <TrainingTable trainings={data} userRole={userRole} />}
     </div>
   );

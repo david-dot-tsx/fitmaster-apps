@@ -6,8 +6,10 @@ import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server
 import { ExerciseTable } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/table/exercise-table";
 import { CreateExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/create-exercise-dialog";
 import { getSessionUser } from "@/lib/session-user";
+import { getServerTranslations } from "@/lib/i18n/server";
 
 export default async function ExercisePage() {
+  const { t } = await getServerTranslations();
   const sessionUser = await getSessionUser();
   if (!sessionUser.isStaff) {
     notFound();
@@ -16,7 +18,11 @@ export default async function ExercisePage() {
   void queryClient.prefetchQuery(trpcServerOptionsProxy.exercise.list.queryOptions());
 
   return (
-    <PageWrapper title="Exercise">
+    <PageWrapper
+      title={t("web:pages.exerciseList.title")}
+      subtitle={t("web:pages.exerciseList.subtitle")}
+      eyebrow={t("web:pages.exerciseList.eyebrow")}
+    >
       <div className="flex w-full flex-col">
         <div className="flex flex-row justify-end">
           <CreateExerciseDialog />

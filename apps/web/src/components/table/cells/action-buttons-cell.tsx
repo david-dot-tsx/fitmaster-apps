@@ -4,6 +4,7 @@ import { Edit2, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { useT } from "@/lib/i18n/i18n";
 
 type ActionButtonsCellProps = {
   onDelete: () => void;
@@ -19,7 +20,7 @@ export const ActionButtonsCell = ({
   onEdit,
   children,
 }: ActionButtonsCellProps) => {
-  // Wspólny styl dla przycisków w tabeli
+  const { t } = useT();
   const actionButtonClass =
     "h-8 w-8 p-0 bg-zinc-900/50 border border-zinc-800 transition-all duration-200 backdrop-blur-sm";
 
@@ -33,7 +34,6 @@ export const ActionButtonsCell = ({
         }}
       >
         {children}
-        {/* Przycisk Edycji */}
         <Tooltip>
           <TooltipTrigger asChild>
             {editLink ? (
@@ -63,11 +63,10 @@ export const ActionButtonsCell = ({
             )}
           </TooltipTrigger>
           <TooltipContent className="border-zinc-800 bg-zinc-950 text-[10px] font-black uppercase tracking-widest text-amber-400">
-            Edit
+            {t("edit")}
           </TooltipContent>
         </Tooltip>
 
-        {/* Przycisk Usuwania */}
         <Tooltip>
           <TooltipTrigger asChild>
             <Button
@@ -82,7 +81,7 @@ export const ActionButtonsCell = ({
             </Button>
           </TooltipTrigger>
           <TooltipContent className="border-zinc-800 bg-zinc-950 text-[10px] font-black uppercase tracking-widest text-red-500">
-            Delete
+            {t("delete")}
           </TooltipContent>
         </Tooltip>
       </div>

@@ -42,7 +42,7 @@ export const FormTextarea = ({
         return (
           <FormControl isInvalid={Boolean(fieldState.error)} className="w-full">
             <FormControlLabel>
-              <FormControlLabelText className="font-normal tracking-widest text-white">
+              <FormControlLabelText className="font-normal capitalize tracking-widest text-white">
                 {label}
               </FormControlLabelText>
             </FormControlLabel>

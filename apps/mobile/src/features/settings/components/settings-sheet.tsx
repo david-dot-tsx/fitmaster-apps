@@ -3,6 +3,7 @@ import { Pressable, View } from "react-native";
 import { AnimatePresence, MotiView } from "moti";
 import { XIcon } from "lucide-react-native";
 
+import { useT } from "@/lib/i18n";
 import { Button, ButtonText } from "@/components/ui/button";
 import { Heading } from "@/components/ui/heading";
 import { Icon } from "@/components/ui/icon";
@@ -16,7 +17,7 @@ type SettingsSheetProps = {
 
 export const SettingsSheet = ({ isOpen, onClose }: SettingsSheetProps) => {
   const { logout } = useAuthContext();
-
+  const { t } = useT();
   const handleLogout = async () => {
     onClose();
     await logout();
@@ -57,7 +58,7 @@ export const SettingsSheet = ({ isOpen, onClose }: SettingsSheetProps) => {
             {/* Header */}
             <View className="mb-6 flex-row items-center justify-between">
               <Heading className="text-lg uppercase tracking-tighter text-zinc-100">
-                Settings
+                {t("settings")}
               </Heading>
               <Pressable
                 onPress={onClose}
@@ -76,7 +77,7 @@ export const SettingsSheet = ({ isOpen, onClose }: SettingsSheetProps) => {
               className="mt-4  border-red-900 bg-red-900/20"
             >
               <ButtonText className="text-sm uppercase tracking-tight text-red-300">
-                Logout
+                {t("logout")}
               </ButtonText>
             </Button>
           </MotiView>

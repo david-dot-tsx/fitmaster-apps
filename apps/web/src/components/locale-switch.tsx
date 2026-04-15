@@ -2,10 +2,11 @@
 
 import { Globe } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
-import { useTranslation } from "react-i18next";
+import { type ResourceKey } from "i18next";
 
-import { type Locale, LOCALES } from "@repo/i18n/web";
+import { getTKey, type Locale, LOCALES } from "@repo/i18n/web";
 
+import { useT } from "@/lib/i18n/i18n";
 import { updateLocaleCookieAction } from "@/actions/locale.actions";
 import { Button } from "@/components/ui/button";
 import {
@@ -15,14 +16,14 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const locales = [
-  { code: LOCALES.EN, name: "English", flag: "🇺🇸" },
-  { code: LOCALES.PL, name: "Polski", flag: "🇵🇱" },
-  { code: LOCALES.ES, name: "Español", flag: "🇪🇸" },
+const locales: { code: Locale; name: ResourceKey; flag: string }[] = [
+  { code: LOCALES.EN, name: getTKey("common:languages.english"), flag: "🇺🇸" },
+  { code: LOCALES.PL, name: getTKey("common:languages.polish"), flag: "🇵🇱" },
+  { code: LOCALES.ES, name: getTKey("common:languages.spanish"), flag: "🇪🇸" },
 ] as const;
 
 export function LocaleSwitch() {
-  const { i18n } = useTranslation();
+  const { i18n, t } = useT();
   const router = useRouter();
   const currentPathname = usePathname();
   const currentLocale = i18n.language;
@@ -56,7 +57,7 @@ export function LocaleSwitch() {
             className="gap-2 text-xs font-bold hover:bg-zinc-900 focus:bg-zinc-900 focus:text-amber-400"
           >
             <span>{locale.flag}</span>
-            <span>{locale.name}</span>
+            <span>{t(locale.name)}</span>
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>

@@ -2,6 +2,7 @@ import React, { useCallback, useMemo } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { TrophyIcon } from "lucide-react-native";
 
+import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Text } from "@/components/ui/text";
@@ -20,6 +21,7 @@ type LeaderboardEntry = {
 };
 
 export const LeaderboardScreen = () => {
+  const { t } = useT();
   const { data: me } = trpc.user.me.useQuery();
   const { data: myProfile } = trpc.profile.getCustomerProfile.useQuery(
     { userId: me?.id },
@@ -86,9 +88,9 @@ export const LeaderboardScreen = () => {
   return (
     <ScreenWrapper
       header={{
-        title: "Leaderboard",
-        description: "Compete",
-        subtitle: "See who leads and where you rank today.",
+        title: t("mobile:screens.leaderboard.title"), //"Leaderboard",
+        description: t("mobile:screens.leaderboard.description"), //"Compete",
+        subtitle: t("mobile:screens.leaderboard.subtitle"), //"See who leads and where you rank today.",
         icon: TrophyIcon,
       }}
     >
@@ -124,7 +126,7 @@ export const LeaderboardScreen = () => {
           ListEmptyComponent={
             <View className="mx-4 mt-10 items-center rounded-2xl border border-zinc-800 bg-zinc-900/50 px-8 py-10">
               <Text className="text-center text-zinc-400">
-                No leaderboard entries yet.{"\n"}Be the first to score points.
+                {t("noLeaderboardEntriesYet")} {"\n"} {t("beTheFirstToScorePoints")}
               </Text>
             </View>
           }

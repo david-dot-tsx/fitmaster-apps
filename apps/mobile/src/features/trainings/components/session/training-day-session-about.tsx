@@ -8,6 +8,7 @@ import {
   type TrainingSessionWorkoutWithDetails,
 } from "@repo/validators";
 
+import { useT } from "@/lib/i18n";
 import { StatPill } from "@/components/ui/stat-pill";
 import { TrainingDaySessionStats } from "@/features/trainings/components/session/training-day-session-stats";
 import { VStack } from "@/components/ui/vstack";
@@ -16,6 +17,7 @@ interface TrainingDaySessionAboutProps {
   sessionExercises: TrainingSessionWorkoutWithDetails[];
 }
 export const TrainingDaySessionAbout = ({ sessionExercises }: TrainingDaySessionAboutProps) => {
+  const { t } = useT();
   const stats = useMemo(() => {
     const total = sessionExercises.length;
     if (total === 0) {
@@ -76,27 +78,27 @@ export const TrainingDaySessionAbout = ({ sessionExercises }: TrainingDaySession
     <VStack className="gap-12">
       <View className="flex-row flex-wrap gap-y-3 ">
         <StatPill
-          label="Volume"
+          label={t("volume")}
           value={stats.total}
-          subLabel="Exercises"
+          subLabel={t("exercises")}
           barClass="bg-amber-400"
           barProgress={stats.total > 0 ? 100 : 0}
         />
         <StatPill
-          label="Progress"
+          label={t("progress")}
           value={`${stats.completed}/${stats.total}`}
-          subLabel="Done"
+          subLabel={t("done")}
           barClass="bg-emerald-400"
           barProgress={progressPct}
         />
         <StatPill
-          label="Warmup"
+          label={t("warmup")}
           value={stats.warmup}
           barClass="bg-zinc-400"
           barProgress={stats.total > 0 ? (stats.warmup / stats.total) * 100 : 0}
         />
         <StatPill
-          label="Main"
+          label={t("main")}
           value={stats.main}
           barClass="bg-amber-500"
           barProgress={stats.total > 0 ? (stats.main / stats.total) * 100 : 0}

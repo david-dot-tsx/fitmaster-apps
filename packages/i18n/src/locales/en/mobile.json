@@ -1,0 +1,149 @@
+{
+  "screens": {
+    "bootstrap": {
+      "phaseCta": {
+        "login": "Sign in to continue your training journey.",
+        "onboarding": "Finish setting up your profile to unlock your plan."
+      }
+    },
+    "chat": {
+      "description": "Ask professionals",
+      "subtitle": "Connect with professionals and share your progress.",
+      "title": "Chat"
+    },
+    "exerciseDetails": {
+      "description": "Exercise library",
+      "subtitle": "Technique, traits, and difficulty.",
+      "title": "Exercise details"
+    },
+    "leaderboard": {
+      "description": "Compete",
+      "subtitle": "See who leads and where you rank.",
+      "title": "Leaderboard"
+    },
+    "login": {
+      "credentials": "Credentials",
+      "description": "Account",
+      "failed": {
+        "title": "Login Failed"
+      },
+      "subtitle": "Welcome back. Sign in to continue.",
+      "title": "Login"
+    },
+    "main": {
+      "description": "Your training hub",
+      "subtitle": "Jump back into your active plans and sessions.",
+      "title": "Hello"
+    },
+    "onboarding": {
+      "description": "Onboarding",
+      "steps": {
+        "bio": {
+          "placeholder": "Tell others a little about yourself… 😊",
+          "title": "About you"
+        },
+        "birthDate": {
+          "title": "Your date of birth"
+        },
+        "bodyMeasurements": {
+          "title": "Your body measurements"
+        },
+        "completed": {
+          "button": "Let's Go",
+          "description": "Your profile has been created. Time to start your fitness journey.",
+          "title": "You're all set!"
+        },
+        "failed": {
+          "button": "Try Again",
+          "restartForm": "Restart Form",
+          "description": "Something went wrong while creating your profile. You can try again or restart the form from the beginning.",
+          "title": "Submission Failed"
+        },
+        "introduction": {
+          "title": "Introduce yourself"
+        },
+        "profileImage": {
+          "title": "Profile Image"
+        },
+        "workoutGoals": {
+          "placeholder": "What is your fitness goal? (e.g. lose weight, gain muscle, etc.)",
+          "title": "Workout Goals"
+        }
+      },
+      "subtitle": "Tell us about you so we can personalize your training.",
+      "title": "Profile setup"
+    },
+    "profile": {
+      "loading": {
+        "myProfile": {
+          "description": "Profile",
+          "subtitle": "Loading my profile details...",
+          "title": "My Profile"
+        },
+        "userProfile": {
+          "description": "Profile",
+          "subtitle": "Loading profile details...",
+          "title": "User Profile"
+        }
+      },
+      "myProfile": {
+        "description": "My Profile",
+        "subtitle": "My profile details"
+      },
+      "userProfile": {
+        "description": "Profile",
+        "subtitle": "User profile details"
+      }
+    },
+    "register": {
+      "description": "Account",
+      "failed": {
+        "title": "Register Failed"
+      },
+      "subtitle": "Create an account to start training.",
+      "title": "Register"
+    },
+    "trainingDetails": {
+      "aboutTraining": "About training",
+      "description": "Discover",
+      "subtitle": "Training plan details.",
+      "title": "Training overview"
+    },
+    "trainingList": {
+      "description": "Discover",
+      "subtitle": "Pick a plan and start your next session.",
+      "title": "Trainings"
+    },
+    "trainingSession": {
+      "description": "Your training plan",
+      "subtitle": "Today's training plan",
+      "title": "Today"
+    },
+    "trainingSessionExercise": {
+      "description": "Session workout",
+      "subtitle": "Track time and complete this exercise.",
+      "title": "Exercise"
+    }
+  },
+  "training": {
+    "sesssion": {
+      "card": {
+        "badge": {
+          "cancelled": "Cancelled",
+          "finished": "Finished",
+          "inProgress": "In Progress",
+          "joined": "Joined",
+          "joinNow": "Join Now"
+        },
+        "subtitle": {
+          "awaitingToday": "Complete today's session",
+          "cancelled": "Training cancelled",
+          "completed": "Training completed! Congratulations!",
+          "completedToday": "Today's session completed",
+          "joined": "Start your training",
+          "notJoined": "The training is available"
+        }
+      }
+    }
+  }
+}

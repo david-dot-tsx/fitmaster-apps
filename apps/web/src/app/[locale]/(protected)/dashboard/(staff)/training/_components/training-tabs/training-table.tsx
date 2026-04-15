@@ -33,6 +33,8 @@ import {
   UpdateStatusDialog,
   UpdateTrainingStatusSelect,
 } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
+import { useT } from "@/lib/i18n/i18n";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
@@ -55,6 +57,8 @@ interface TrainingTableProps {
 }
 
 export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
+  const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const router = useRouter();
   const trpc = useTRPC();
   const queryClient = useQueryClient();
@@ -69,7 +73,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
   const { mutate: deleteTraining, status: deleteStatus } = useMutation(
     trpc.training.delete.mutationOptions({
       onSuccess: () => {
-        toast.success("Training deleted!");
+        toast.success(t("success.generic.description"));
         setOpenDeleteDialog(false);
         queryClient.invalidateQueries(
           trpc.training.listStaff.queryOptions({
@@ -78,9 +82,12 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         );
       },
       onError: (error) => {
-        toast.error("Failed to delete training");
-        console.error(error);
-        setOpenDeleteDialog(false);
+        handleApiErrorMessage(error.message, {
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+            setOpenDeleteDialog(false);
+          },
+        });
       },
     }),
   );
@@ -88,20 +95,20 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
   const columns = useMemo(
     () => [
       columnHelper.accessor("name", {
-        header: "Program Title",
+        header: t("web:table.training.columns.name.label"),
         cell: ({ row }) => (
           <div className="flex flex-col">
             <span className="font-black uppercase italic tracking-tight text-zinc-200 transition-colors group-hover:text-amber-400">
               {row.original.name}
             </span>
             <span className="mt-0.5 text-[9px] font-bold uppercase tracking-widest text-zinc-600">
-              Release ID: {row.original.id.slice(0, 8)}
+              {t("web:table.training.columns.id.label")}: {row.original.id.slice(0, 8)}
             </span>
           </div>
         ),
       }),
       columnHelper.accessor("status", {
-        header: "Status",
+        header: t("web:table.training.columns.status.label"),
         cell: ({ getValue }) => {
           const status = getValue() as keyof typeof statusConfig;
           const config = statusConfig[status] || statusConfig.DRAFT;
@@ -119,7 +126,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         },
       }),
       columnHelper.accessor("description", {
-        header: "Overview",
+        header: t("web:table.training.columns.description.label"),
         cell: ({ getValue }) => (
           <TextTruncatedCell
             text={getValue() || "—"}
@@ -128,7 +135,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         ),
       }),
       columnHelper.accessor("imageUrl", {
-        header: "Cover",
+        header: t("web:table.training.columns.imageUrl.label"),
         cell: ({ row }) => (
           <div className="relative h-10 w-16 overflow-hidden rounded-md border border-zinc-800 bg-zinc-900 transition-all duration-300 group-hover:border-amber-400/40">
             <ImageCell
@@ -140,7 +147,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         ),
       }),
       columnHelper.accessor("createdAt", {
-        header: "Created At",
+        header: t("web:table.training.columns.createdAt.label"),
         cell: ({ getValue }) => (
           <DateCell
             date={getValue()}
@@ -150,7 +157,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         ),
       }),
       columnHelper.accessor("updatedAt", {
-        header: "Last Update",
+        header: t("web:table.training.columns.updatedAt.label"),
         cell: ({ getValue }) => (
           <DateCell
             date={getValue()}
@@ -187,7 +194,7 @@ export const TrainingTable = ({ trainings, userRole }: TrainingTableProps) => {
         ),
       }),
     ],
-    [userRole],
+    [t, userRole],
   );
 
   const table = useReactTable({

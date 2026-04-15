@@ -5,6 +5,9 @@ import { router } from "expo-router";
 import { ChevronRight } from "lucide-react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { I18N_NAMESPACES } from "@repo/i18n/mobile";
+
+import { useT } from "@/lib/i18n";
 import { Button, ButtonIcon, ButtonText } from "@/components/ui/button";
 import { Text } from "@/components/ui/text";
 import { VStack } from "@/components/ui/vstack";
@@ -31,6 +34,7 @@ type AppBootstrapScreenProps = {
  */
 export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
   const isLoading = phase === "loading";
+  const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
 
   return (
     <View className="flex-1 bg-zinc-950">
@@ -62,22 +66,22 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                 resizeMode="contain"
                 accessibilityLabel="FitMaster"
               />
-
               <View className="flex-1 justify-center pt-14">
                 <VStack className="w-full items-center gap-5">
                   <View className="aspect-[4/3] w-full max-w-sm">
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
                   </View>
-                  <Text className="text-center font-orbitron-semibold text-xs uppercase tracking-[0.28em] text-zinc-400">
-                    Strength · Focus · Progress
+                  <Text className="font-orbitron-semibold text-center text-xs uppercase tracking-[0.28em] text-zinc-400">
+                    {t("slogan.keywords.strength")} · {t("slogan.keywords.focus")} ·{" "}
+                    {t("slogan.keywords.progress")}
                   </Text>
                   {isLoading ? (
                     <ActivityIndicator size="large" color="#fbbf24" />
                   ) : (
                     <Text className="max-w-sm text-center text-sm leading-relaxed text-zinc-300">
                       {phase === "login"
-                        ? "Sign in to continue your training journey."
-                        : "Finish setting up your profile to unlock your plan."}
+                        ? t("mobile:screens.bootstrap.phaseCta.login")
+                        : t("mobile:screens.bootstrap.phaseCta.onboarding")}
                     </Text>
                   )}
                 </VStack>
@@ -94,7 +98,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                         router.push("/auth/login");
                       }}
                     >
-                      <ButtonText className="uppercase">Log in</ButtonText>
+                      <ButtonText className="uppercase">{t("launch")}</ButtonText>
                       <ButtonIcon as={ChevronRight} size="xl" />
                     </Button>
                   )}
@@ -105,7 +109,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                       className="bg-amber-400"
                       onPress={() => router.push("/onboarding")}
                     >
-                      <ButtonText className="uppercase">Continue</ButtonText>
+                      <ButtonText className="uppercase">{t("continue")}</ButtonText>
                       <ButtonIcon as={ChevronRight} size="xl" />
                     </Button>
                   )}
