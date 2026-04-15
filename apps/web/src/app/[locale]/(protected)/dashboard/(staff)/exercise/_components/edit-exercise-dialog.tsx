@@ -30,6 +30,7 @@ import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { FormSelect } from "@/components/form/form-select";
 import { useT } from "@/lib/i18n/i18n";
+import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
 
 // TODO: move to a separate file, create use the same options for the create form, take into account i18n
 const difficultyOptions = [
@@ -58,6 +59,7 @@ export const EditExerciseDialog = ({
   onSuccess,
 }: EditExerciseDialogProps) => {
   const { t } = useT();
+  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
   const methods = useForm<ExerciseUpdateInputForm>({
@@ -77,9 +79,12 @@ export const EditExerciseDialog = ({
         onSuccess?.();
       },
       onError: (error) => {
-        toast.error(t("errors.generic.description"));
-        console.error(error);
-        onOpenChange?.(false);
+        getApiErrorTranslatedMessage(error.message, {
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+            onOpenChange?.(false);
+          },
+        });
       },
     }),
   );

@@ -25,6 +25,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useT } from "@/lib/i18n/i18n";
+import { useApiErrorTranslatedMessage } from "@/hooks/use-api-error-translated-message";
 
 interface UpdateStatusDialogProps extends Pick<WarningDialogProps, "open" | "onOpenChange"> {
   training: Training | null;
@@ -55,6 +56,7 @@ export const UpdateStatusDialog = ({
   const { t } = useT();
   const queryClient = useQueryClient();
   const trpc = useTRPC();
+  const { getApiErrorTranslatedMessage } = useApiErrorTranslatedMessage();
   const updateStatusMutation = useMutation(
     trpc.training.updateStatus.mutationOptions({
       onSuccess: () => {
@@ -65,8 +67,11 @@ export const UpdateStatusDialog = ({
         });
       },
       onError: (error) => {
-        toast.error(t("errors.generic.description"));
-        console.error(error);
+        getApiErrorTranslatedMessage(error.message, {
+          default: (translatedMessage: string) => {
+            toast.error(translatedMessage);
+          },
+        });
       },
     }),
   );
