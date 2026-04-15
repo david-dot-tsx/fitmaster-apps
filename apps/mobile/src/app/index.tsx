@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
 import { Redirect } from "expo-router";
 
+import { Role } from "@repo/validators";
+
 import { trpc } from "@/lib/trpc/client";
 import { useAuthStoreState } from "@/providers/auth/auth.store";
 import { AUTH_STATUS } from "@/providers/auth/types";
 import { AppBootstrapScreen } from "@/components/layout/app-bootstrap-screen";
+import StaffScreen from "@/components/staff-screen";
 
 const MIN_LOADING_MS = 1000;
 
@@ -28,6 +31,9 @@ export default function Index() {
   /** Keeps the loading UI visible for at least {@link MIN_LOADING_MS} after mount. */
   const showLoadingPhase = isBootstrapping || !minLoadingElapsed;
 
+  if (!showLoadingPhase && me?.role !== Role.CUSTOMER) {
+    return <StaffScreen />;
+  }
   if (
     !showLoadingPhase &&
     authStatus === AUTH_STATUS.AUTHENTICATED &&

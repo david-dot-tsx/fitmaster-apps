@@ -129,6 +129,12 @@ interface Resources {
     "quickScan": "Quick Scan",
     "register": "Register",
     "reps": "reps",
+    "screens": {
+      "staff": {
+        "description": "screens.staff.description",
+        "title": "screens.staff.title"
+      }
+    },
     "selectYourLanguage": "Select your language",
     "settings": "settings",
     "showLess": "show less",
@@ -245,9 +251,10 @@ interface Resources {
             "title": "You're all set!"
           },
           "failed": {
-            "button": "mobile:screens.onboarding.steps.failed.button",
-            "description": "mobile:screens.onboarding.steps.failed.description",
-            "title": "mobile:screens.onboarding.steps.failed.title"
+            "button": "Try Again",
+            "description": "Something went wrong while creating your profile. You can try again or restart the form from the beginning.",
+            "restartForm": "Restart Form",
+            "title": "Submission Failed"
           },
           "introduction": {
             "title": "Introduce yourself"

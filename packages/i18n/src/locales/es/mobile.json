@@ -55,8 +55,8 @@
         },
         "failed": {
           "button": "Inténtalo de nuevo",
-          "restartForm": "Reiniciar formulario",
           "description": "Algo salió mal al crear tu perfil. Puedes intentarlo de nuevo o reiniciar el formulario desde el principio.",
+          "restartForm": "Reiniciar formulario",
           "title": "Fallo en la creación del perfil"
         },
         "introduction": {
