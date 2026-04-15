@@ -30,7 +30,7 @@ export const FinalCTASection = async () => {
           {t("web:pages.landing.sections.finalCta.title.commitToThe")} <br />
           <span className="text-glow text-amber-400">
             {t("web:pages.landing.sections.finalCta.title.protocol")}
-            <span className="text-zinc-500">.</span>
+            <span className="ml-1 text-zinc-500">.</span>
           </span>
         </h2>
 
