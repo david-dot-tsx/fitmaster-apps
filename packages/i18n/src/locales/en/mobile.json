@@ -24,6 +24,9 @@
     "login": {
       "credentials": "Credentials",
       "description": "Account",
+      "failed": {
+        "title": "Login Failed"
+      },
       "subtitle": "Welcome back. Sign in to continue.",
       "title": "Login"
     },
@@ -49,6 +52,12 @@
           "button": "Let's Go",
           "description": "Your profile has been created. Time to start your fitness journey.",
           "title": "You're all set!"
+        },
+        "failed": {
+          "button": "Try Again",
+          "restartForm": "Restart Form",
+          "description": "Something went wrong while creating your profile. You can try again or restart the form from the beginning.",
+          "title": "Submission Failed"
         },
         "introduction": {
           "title": "Introduce yourself"
@@ -88,6 +97,9 @@
     },
     "register": {
       "description": "Account",
+      "failed": {
+        "title": "Register Failed"
+      },
       "subtitle": "Create an account to start training.",
       "title": "Register"
     },

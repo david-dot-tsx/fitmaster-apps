@@ -22,6 +22,7 @@ import { FoldableText } from "@/components/foldable-text";
 import { ContentHero } from "@/components/modules/content-hero/content-hero";
 import { Icon } from "@/components/ui/icon";
 import { getWorkoutBlockDisplay } from "@/features/trainings/constants/workout-block-display";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const TrainingSessionExerciseScreen = ({
   trainingId,
@@ -31,6 +32,7 @@ export const TrainingSessionExerciseScreen = ({
   sessionId: string;
 }) => {
   const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const stopWatchProps = useStopWatch();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
@@ -49,11 +51,15 @@ export const TrainingSessionExerciseScreen = ({
       }
       utils.training.session.getCurrentExercise.invalidate();
     },
-    onError: (_error) => {
-      openToast({
-        title: t("errors.exercise.start.failed.title"),
-        description: t("errors.exercise.start.failed.description"),
-        action: "error",
+    onError: () => {
+      handleApiErrorMessage(undefined, {
+        default: () => {
+          openToast({
+            title: t("errors.exercise.start.failed.title"),
+            description: t("errors.exercise.start.failed.description"),
+            action: "error",
+          });
+        },
       });
     },
   });
@@ -220,7 +226,7 @@ const SessionExerciseOverview = ({
                   {totalExercisesAmount}
                 </Text>
               </HStack>
-              <Text className="mt-1 text-2xs text-zinc-600">{t("exerciseInThisSession")}</Text>
+              <Text className="text-2xs mt-1 text-zinc-600">{t("exerciseInThisSession")}</Text>
             </View>
             <View className="h-14 w-px self-stretch bg-zinc-800" />
           </>

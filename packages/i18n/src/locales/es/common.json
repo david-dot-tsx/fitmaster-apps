@@ -56,7 +56,7 @@
       }
     },
     "generic": {
-      "description": "Ocurrió un error al cargar este contenido. Por favor, inténtelo de nuevo."
+      "description": "Ocurrió un error. Por favor, inténtelo de nuevo."
     },
     "training": {
       "session": {
@@ -97,7 +97,6 @@
   "height": "Altura",
   "initializeRegistration": "Iniciar registro",
   "intensity": "intensidad",
-  "invalidCredentials": "Credenciales inválidas",
   "joinTraining": "Unirse al entrenamiento",
   "languages": {
     "english": "Inglés",
@@ -180,7 +179,6 @@
   },
   "unpublished": "No publicado",
   "update": "actualizar",
-  "userAlreadyExists": "",
   "volume": "volumen",
   "warmup": "calentamiento",
   "weight": "Peso",

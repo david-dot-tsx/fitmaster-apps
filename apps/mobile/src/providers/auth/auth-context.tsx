@@ -2,10 +2,14 @@ import React, { createContext, useContext, useEffect } from "react";
 import { router } from "expo-router";
 import { type MutationStatus, useQueryClient } from "@tanstack/react-query";
 
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
+
 import { useAuthStoreActions, useAuthStoreState } from "@/providers/auth/auth.store";
 import { AUTH_STATUS } from "@/providers/auth/types";
 import { trpc } from "@/lib/trpc/client";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
+import { useT } from "@/lib/i18n";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 interface AuthContextType {
   login: ({ email, password }: { email: string; password: string }) => void;
@@ -22,6 +26,8 @@ export const AuthContext = createContext<AuthContextType>({
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
+  const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const queryClient = useQueryClient();
   const { setAuthenticated, setUnauthenticated, loadTokens } = useAuthStoreActions();
   const { authStatus, refreshToken } = useAuthStoreState();
@@ -35,11 +41,24 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       await setAuthenticated(result.token, result.refreshToken);
       router.push("/");
     },
-    onError: (_error) => {
-      openToast({
-        title: "Login Failed",
-        description: "Something went wrong. Try again.",
-        action: "error",
+    onError: (error) => {
+      handleApiErrorMessage(error.message, {
+        onMatch: {
+          [API_PROCEDURE_ERRORS.INVALID_CREDENTIALS]: (translatedMessage: string) => {
+            openToast({
+              title: t("mobile:screens.login.failed.title"),
+              description: translatedMessage,
+              action: "error",
+            });
+          },
+        },
+        default: (translatedMessage: string) => {
+          openToast({
+            title: t("mobile:screens.login.failed.title"),
+            description: translatedMessage,
+            action: "error",
+          });
+        },
       });
     },
   });

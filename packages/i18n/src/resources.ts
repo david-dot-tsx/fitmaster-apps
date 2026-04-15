@@ -1,7 +1,7 @@
 interface Resources {
   "api-errors": {
-    "INVALID_CREDENTIALS": "api-errors:INVALID_CREDENTIALS",
-    "USER_ALREADY_EXISTS": "api-errors:USER_ALREADY_EXISTS"
+    "INVALID_CREDENTIALS": "Invalid credentials",
+    "USER_ALREADY_EXISTS": "User already exists"
   },
   "common": {
     "active": "active",
@@ -60,7 +60,7 @@ interface Resources {
         }
       },
       "generic": {
-        "description": "An error occurred while loading this content. Please try again."
+        "description": "An error has occurred. Please try again."
       },
       "training": {
         "session": {
@@ -98,7 +98,6 @@ interface Resources {
     "height": "Height",
     "initializeRegistration": "Initialize registration",
     "intensity": "intensity",
-    "invalidCredentials": "Invalid credentials",
     "joinTraining": "Join training",
     "languages": {
       "english": "English",
@@ -181,7 +180,6 @@ interface Resources {
     },
     "unpublished": "Unpublished",
     "update": "update",
-    "userAlreadyExists": "userAlreadyExists",
     "volume": "volume",
     "warmup": "warm up",
     "weight": "Weight",
@@ -217,6 +215,9 @@ interface Resources {
       "login": {
         "credentials": "Credentials",
         "description": "Account",
+        "failed": {
+          "title": "Login Failed"
+        },
         "subtitle": "Welcome back. Sign in to continue.",
         "title": "Login"
       },
@@ -242,6 +243,11 @@ interface Resources {
             "button": "Let's Go",
             "description": "Your profile has been created. Time to start your fitness journey.",
             "title": "You're all set!"
+          },
+          "failed": {
+            "button": "mobile:screens.onboarding.steps.failed.button",
+            "description": "mobile:screens.onboarding.steps.failed.description",
+            "title": "mobile:screens.onboarding.steps.failed.title"
           },
           "introduction": {
             "title": "Introduce yourself"
@@ -281,6 +287,9 @@ interface Resources {
       },
       "register": {
         "description": "Account",
+        "failed": {
+          "title": "Register Failed"
+        },
         "subtitle": "Create an account to start training.",
         "title": "Register"
       },

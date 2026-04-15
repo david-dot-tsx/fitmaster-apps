@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus } from "lucide-react-native";
 
 import { type UserCreateInputForm, userCreateInputFormSchema } from "@repo/validators";
+import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
 import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
@@ -17,19 +18,34 @@ import { ScreenWrapper } from "@/components/layout/screen-wrapper";
 import { Section } from "@/components/ui/section";
 import { FormInput } from "@/components/form/form-input";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const RegisterScreen = () => {
   const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const { openToast } = useToastNotification();
   const { mutate: mutateRegister, status: registerStatus } = trpc.user.create.useMutation({
     onSuccess: () => {
       router.push("/auth/login");
     },
-    onError: (_error) => {
-      openToast({
-        title: "Register Failed",
-        description: "Something went wrong. Try again later.",
-        action: "error",
+    onError: (error) => {
+      handleApiErrorMessage(error.message, {
+        onMatch: {
+          [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: (translatedMessage: string) => {
+            openToast({
+              title: t("mobile:screens.register.failed.title"),
+              description: translatedMessage,
+              action: "error",
+            });
+          },
+        },
+        default: (translatedMessage: string) => {
+          openToast({
+            title: t("mobile:screens.register.failed.title"),
+            description: translatedMessage,
+            action: "error",
+          });
+        },
       });
     },
   });

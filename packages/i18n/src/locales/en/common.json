@@ -55,7 +55,7 @@
       }
     },
     "generic": {
-      "description": "An error occurred while loading this content. Please try again."
+      "description": "An error has occurred. Please try again."
     },
     "training": {
       "session": {
@@ -93,7 +93,6 @@
   "height": "Height",
   "initializeRegistration": "Initialize registration",
   "intensity": "intensity",
-  "invalidCredentials": "Invalid credentials",
   "joinTraining": "Join training",
   "languages": {
     "english": "English",
@@ -176,7 +175,6 @@
   },
   "unpublished": "Unpublished",
   "update": "update",
-  "userAlreadyExists": "userAlreadyExists",
   "volume": "volume",
   "warmup": "warm up",
   "weight": "Weight",

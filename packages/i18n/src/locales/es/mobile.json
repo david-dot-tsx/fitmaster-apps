@@ -24,6 +24,9 @@
     "login": {
       "credentials": "Credenciales",
       "description": "Cuenta",
+      "failed": {
+        "title": "Iniciar sesión fallido"
+      },
       "subtitle": "Bienvenido de nuevo. Inicia sesión para continuar.",
       "title": "Iniciar sesión"
     },
@@ -49,6 +52,12 @@
           "button": "Vamos",
           "description": "Tu perfil ha sido creado. Es hora de empezar tu trayectoria fitness.",
           "title": "¡Todo listo!"
+        },
+        "failed": {
+          "button": "Inténtalo de nuevo",
+          "restartForm": "Reiniciar formulario",
+          "description": "Algo salió mal al crear tu perfil. Puedes intentarlo de nuevo o reiniciar el formulario desde el principio.",
+          "title": "Fallo en la creación del perfil"
         },
         "introduction": {
           "title": "Preséntate"
@@ -88,6 +97,9 @@
     },
     "register": {
       "description": "Cuenta",
+      "failed": {
+        "title": "Registro fallido"
+      },
       "subtitle": "Crea una cuenta para empezar a entrenar.",
       "title": "Registrarse"
     },

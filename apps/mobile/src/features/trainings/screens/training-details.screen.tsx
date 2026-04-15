@@ -14,9 +14,11 @@ import { Section } from "@/components/ui/section";
 import TrainingCard from "@/components/modules/training-card/training-card";
 import { useToastNotification } from "@/components/modules/toast-notifcation/toast-notification";
 import { QueryErrorHandler } from "@/components/modules/query-error-handler/query-error-handler";
+import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) => {
   const { t } = useT();
+  const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const router = useRouter();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
@@ -37,10 +39,14 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
         router.push(`/training/${trainingId}/session/${trainingSession?.id}`);
       },
       onError: () => {
-        openToast({
-          title: t("errors.training.session.new.failed.title"),
-          description: t("errors.training.session.new.failed.description"),
-          action: "error",
+        handleApiErrorMessage(undefined, {
+          default: () => {
+            openToast({
+              title: t("errors.training.session.new.failed.title"),
+              description: t("errors.training.session.new.failed.description"),
+              action: "error",
+            });
+          },
         });
       },
     });

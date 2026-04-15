@@ -24,6 +24,9 @@
     "login": {
       "credentials": "Dane logowania",
       "description": "Konto",
+      "failed": {
+        "title": "Logowanie nie powiodło się"
+      },
       "subtitle": "Witaj z powrotem. Zaloguj się, aby kontynuować.",
       "title": "Logowanie"
     },
@@ -49,6 +52,12 @@
           "button": "Zaczynajmy",
           "description": "Twój profil został utworzony. Czas rozpocząć Trenning",
           "title": "Wszystko gotowe!"
+        },
+        "failed": {
+          "button": "Spróbuj ponownie",
+          "description": "Coś poszło nie tak podczas tworzenia Twojego profilu. Możesz spróbować ponownie lub zrestartować formularz od początku.",
+          "restartForm": "Zrestartuj formularz",
+          "title": "Błąd podczas tworzenia profilu"
         },
         "introduction": {
           "title": "Przedstaw się"
@@ -88,6 +97,9 @@
     },
     "register": {
       "description": "Konto",
+      "failed": {
+        "title": "Rejestracja nie powiodła się"
+      },
       "subtitle": "Utwórz konto, aby rozpocząć treningi.",
       "title": "Rejestracja"
     },

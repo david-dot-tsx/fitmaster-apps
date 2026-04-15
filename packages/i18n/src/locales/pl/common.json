@@ -57,7 +57,7 @@
       }
     },
     "generic": {
-      "description": "Wystąpił błąd podczas ładowania treści. Proszę spróbować ponownie."
+      "description": "Wystąpił błąd. Proszę spróbować ponownie."
     },
     "training": {
       "session": {
@@ -101,7 +101,6 @@
   "height": "Wzrost",
   "initializeRegistration": "Rozpocznij rejestrację",
   "intensity": "intensywność",
-  "invalidCredentials": "Nieprawidłowe dane logowania",
   "joinTraining": "Dołącz do treningu",
   "languages": {
     "english": "Angielski",
@@ -184,7 +183,6 @@
   },
   "unpublished": "Nieopublikowane",
   "update": "aktualizuj",
-  "userAlreadyExists": "",
   "volume": "objętość",
   "warmup": "rozgrzewka",
   "weight": "Waga",

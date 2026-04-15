@@ -48,7 +48,7 @@ export function TRPCReactProvider(
                 ...options,
                 credentials: "omit", // TODO: Change to "include" when the backend is ready
               });
-              if (response.status === 401) {
+              if (response.status === 401 && refreshToken) {
                 const refreshTokensResponse = await fetch(
                   `${env.EXPO_PUBLIC_API_URL}${env.EXPO_PUBLIC_API_TRPC_PATH}/auth.refreshToken`,
                   {
@@ -59,10 +59,19 @@ export function TRPCReactProvider(
                     body: JSON.stringify({ json: { refreshToken: refreshToken } }),
                   },
                 );
-                const data = await refreshTokensResponse.json();
+                const data = (await refreshTokensResponse.json()) as {
+                  result?: { data?: { json?: unknown } };
+                };
+                const refreshTokensResultData = data.result?.data?.json;
+
+                if (!refreshTokensResultData) {
+                  await setUnauthenticated();
+
+                  return response;
+                }
 
                 const { success: parseTokensSuccess, data: parseTokensData } =
-                  authRefreshTokenOutputSchema.safeParse(data.result.data.json);
+                  authRefreshTokenOutputSchema.safeParse(refreshTokensResultData);
 
                 if (parseTokensSuccess) {
                   await setAuthenticated(parseTokensData.token, parseTokensData.refreshToken);

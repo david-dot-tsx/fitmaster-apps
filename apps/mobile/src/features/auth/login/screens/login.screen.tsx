@@ -23,8 +23,8 @@ export const LoginScreen = () => {
   const methods = useForm<AuthLoginInput>({
     resolver: zodResolver(authLoginInputSchema),
     defaultValues: {
-      email: "",
-      password: "",
+      email: "test@test.com",
+      password: "test123333",
     },
     disabled: loginStatus === "pending",
   });
