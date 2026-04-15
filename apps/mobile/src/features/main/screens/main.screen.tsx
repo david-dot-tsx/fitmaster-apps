@@ -49,6 +49,7 @@ export const MainScreen = () => {
               stats={item.stats}
               status={item.status}
               trainingName={item.training.name}
+              className="my-2.5"
               action={{
                 onPress: () => router.push(`/training/${item.training.id}/session/${item.id}`),
                 text: t("startTrainingDay"),
