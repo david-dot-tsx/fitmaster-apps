@@ -4,6 +4,7 @@
   "scripts": {
     "build": "turbo run build",
     "build:web": "turbo run build --filter=web",
+    "db:generate": "turbo run db:generate --filter=@repo/db",
     "dev": "turbo run dev",
     "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
     "dev:web": "turbo dev --filter=web",
