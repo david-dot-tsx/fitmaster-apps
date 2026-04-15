@@ -28,7 +28,7 @@ export const Navbar = async () => {
         <div className="flex flex-row items-center gap-12">
           <Link
             href={sessionUser.isAuthenticated ? "/dashboard" : "/"}
-            className="transition-opacity hover:opacity-80"
+            className="flex flex-row items-center gap-4 transition-opacity hover:opacity-80"
           >
             <Image
               src="/assets/app-logo.png"
@@ -37,6 +37,10 @@ export const Navbar = async () => {
               height={32}
               className="object-contain brightness-110"
             />
+            {/* //TODO: move app name to shared package */}
+            <span className="text-glow text-2xl font-medium uppercase tracking-[0.2em] text-amber-400">
+              FitMaster
+            </span>
           </Link>
 
           <div className="hidden flex-row gap-8 md:flex">
