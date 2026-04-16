@@ -45,6 +45,7 @@
     },
     "db:deploy": {
       "cache": false,
+      "inputs": ["prisma/schema.prisma", "prisma/migrations/**"],
       "env": ["DATABASE_URL"]
     }
   }
