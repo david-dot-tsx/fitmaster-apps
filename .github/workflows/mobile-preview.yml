@@ -35,6 +35,8 @@ jobs:
 
       - name: Build dependencies
         run: pnpm turbo run build --filter=@repo/*
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
 
       - name: Publish Update
         run: |
