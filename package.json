@@ -2,7 +2,7 @@
   "name": "fitmaster-apps",
   "private": true,
   "scripts": {
-    "build": "turbo run build",
+    "build": "turbo run db:generate && turbo run build",
     "build:web": "turbo run build --filter=web",
     "db:generate": "turbo run db:generate --filter=@repo/db",
     "db:deploy": "turbo run db:deploy --filter=@repo/db",
