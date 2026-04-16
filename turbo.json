@@ -13,7 +13,7 @@
   ],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "db:generate"],
+      "dependsOn": ["^build", "^db:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
       "env": [
@@ -37,7 +37,9 @@
       "env": ["DATABASE_URL", "PORT", "HOST", "CORS_ORIGIN", "NODE_ENV"]
     },
     "db:generate": {
-      "cache": false
+      "cache": false,
+      "inputs": ["prisma/schema.prisma"],
+      "outputs": ["generated/**"]
     },
     "db:migrate": {
       "cache": false,
