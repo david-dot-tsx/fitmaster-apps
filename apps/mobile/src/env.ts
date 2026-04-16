@@ -16,7 +16,7 @@ export const createValidateEnv = () => {
       issues.forEach((issue) => {
         console.error("❌ Invalid environment variables:", issue.path, issue.message);
       });
-      throw new Error("Invalid environment variables");
+      throw new Error("Invalid environment variables", { cause: issues });
     },
   });
 };
