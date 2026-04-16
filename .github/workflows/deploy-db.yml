@@ -7,7 +7,7 @@ on:
     paths:
       - "packages/db/prisma/schema.prisma"
       - "packages/db/prisma/migrations/**"
-    workflow_dispatch:
+  workflow_dispatch: # allows manual triggering of the workflow
 
 jobs:
   deploy:
