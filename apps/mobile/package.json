@@ -91,6 +91,7 @@
     "@types/react": "19.1.0",
     "@types/react-dom": "19.1.0",
     "babel-plugin-module-resolver": "^5.0.0",
+    "babel-preset-expo": "^55.0.17",
     "eslint": "9.25.0",
     "eslint-config-expo": "~10.0.0",
     "expo-router-sitemap": "^0.1.1",
