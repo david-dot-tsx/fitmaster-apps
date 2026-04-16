@@ -1,0 +1,22 @@
+{
+  "cli": {
+    "version": ">= 10.0.0"
+  },
+  "build": {
+    "development": {
+      "developmentClient": true,
+      "distribution": "internal"
+    },
+    "preview": {
+      "distribution": "internal",
+      "channel": "preview"
+    },
+    "production": {}
+  },
+  "submit": {
+    "production": {}
+  },
+  "updates": {
+    "url": "https://u.expo.dev/56928831-fef8-4274-a8f7-d91d2c1c607a"
+  }
+}
