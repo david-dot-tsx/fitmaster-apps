@@ -42,3 +42,6 @@ jobs:
         run: |
           cd apps/mobile
           CI=1 npx eas-cli update --branch preview --message "${{ github.event.head_commit.message || 'Manual update' }}"
+        env:
+        EXPO_PUBLIC_API_URL: ${{ secrets.EXPO_PUBLIC_API_URL }}
+        EXPO_PUBLIC_API_TRPC_PATH: ${{ secrets.EXPO_PUBLIC_API_TRPC_PATH }}
