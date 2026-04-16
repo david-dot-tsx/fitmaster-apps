@@ -5,6 +5,7 @@
     "build": "turbo run build",
     "build:web": "turbo run build --filter=web",
     "db:generate": "turbo run db:generate --filter=@repo/db",
+    "db:deploy": "turbo run db:deploy --filter=@repo/db",
     "dev": "turbo run dev",
     "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
     "dev:web": "turbo dev --filter=web",
@@ -31,7 +32,7 @@
     "turbo": "2.7.4",
     "typescript": "5.9.2"
   },
-  "packageManager": "pnpm@10.28.2",
+  "packageManager": "pnpm@10.33.0",
   "pnpm": {
     "overrides": {
       "react": "19.1.0",
