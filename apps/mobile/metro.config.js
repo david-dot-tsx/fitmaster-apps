@@ -14,4 +14,6 @@ config.resolver.nodeModulesPaths = [
   path.resolve(workspaceRoot, "node_modules"),
 ];
 
+config.resolver.disableHierarchicalLookup = true;
+
 module.exports = withNativeWind(config, { input: "./src/global.css" });
