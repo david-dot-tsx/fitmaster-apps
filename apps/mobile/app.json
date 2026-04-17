@@ -10,9 +10,11 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.david-dot-tsx.fitmaster"
     },
     "android": {
+      "package": "com.david-dot-tsx.fitmaster",
       "backgroundColor": "#09090b",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
@@ -28,7 +30,7 @@
       [
         "expo-splash-screen",
         {
-          "image": "./src/assets/images/bg-landing.jpg",
+          "image": "./src/assets/images/icon.png",
           "imageWidth": 200,
           "resizeMode": "contain",
           "backgroundColor": "#000000"
