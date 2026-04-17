@@ -11,10 +11,10 @@
     "newArchEnabled": true,
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.david-dot-tsx.fitmaster"
+      "bundleIdentifier": "com.daviddottsx.fitmaster"
     },
     "android": {
-      "package": "com.david-dot-tsx.fitmaster",
+      "package": "com.daviddottsx.fitmaster",
       "backgroundColor": "#09090b",
       "edgeToEdgeEnabled": true,
       "predictiveBackGestureEnabled": false
