@@ -5,7 +5,6 @@
     "build": "turbo run db:generate && turbo run build",
     "build:web": "turbo run build --filter=web",
     "db:generate": "turbo run db:generate --filter=@repo/db",
-    "eas-build-pre-install": "pnpm --filter @repo/db db:generate",
     "db:deploy": "turbo run db:deploy --filter=@repo/db",
     "dev": "turbo run dev",
     "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
