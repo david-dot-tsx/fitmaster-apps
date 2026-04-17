@@ -10,6 +10,7 @@
     "dev:mobile": "pnpm clean:mobile && turbo dev --filter=mobile -- --clearcache --android",
     "dev:web": "turbo dev --filter=web",
     "dev:backend": "turbo dev --filter=backend",
+    "eas-build-post-install": "pnpm --filter @repo/db db:generate",
     "lint": "turbo run lint",
     "format": "prettier --cache --write .",
     "format:check": "prettier --cache --check .",
