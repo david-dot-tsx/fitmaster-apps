@@ -4,10 +4,11 @@
   "type": "module",
   "scripts": {
     "db:push": "prisma db push",
-    "db:generate": "prisma generate",
+    "db:generate": "DATABASE_URL=postgresql://noop:noop@localhost:5432/noop prisma generate",
     "db:migrate": "prisma migrate dev",
     "db:deploy": "prisma migrate deploy",
     "db:seed": "tsx prisma/seed.ts",
+    "postinstall": "pnpm db:generate || echo 'Prisma generate failed, skipping...'",
     "lint": "eslint . --max-warnings 0",
     "check-types": "tsc --noEmit"
   },

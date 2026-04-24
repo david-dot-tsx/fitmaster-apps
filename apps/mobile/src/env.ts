@@ -1,5 +1,5 @@
-import { z } from "zod";
 import { createEnv } from "@t3-oss/env-core";
+import { z } from "zod";
 
 export const envSchema = z.object({
   EXPO_PUBLIC_API_URL: z.url(),
@@ -10,7 +10,10 @@ export const createValidateEnv = () => {
   return createEnv({
     clientPrefix: "EXPO_PUBLIC_",
     client: envSchema.shape,
-    runtimeEnv: process.env,
+    runtimeEnv: {
+      EXPO_PUBLIC_API_URL: process.env.EXPO_PUBLIC_API_URL,
+      EXPO_PUBLIC_API_TRPC_PATH: process.env.EXPO_PUBLIC_API_TRPC_PATH,
+    },
     emptyStringAsUndefined: true,
     onValidationError: (issues) => {
       issues.forEach((issue) => {
