@@ -21,6 +21,9 @@ expo-env.d.ts
 # Metro
 .metro-health-check*
 
+# Android apk
+*.apk
+
 # debug
 npm-debug.*
 yarn-debug.*

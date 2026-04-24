@@ -31,7 +31,7 @@ export default function Index() {
   /** Keeps the loading UI visible for at least {@link MIN_LOADING_MS} after mount. */
   const showLoadingPhase = isBootstrapping || !minLoadingElapsed;
 
-  if (!showLoadingPhase && me?.role !== Role.CUSTOMER) {
+  if (!showLoadingPhase && authStatus === AUTH_STATUS.AUTHENTICATED && me?.role !== Role.CUSTOMER) {
     return <StaffScreen />;
   }
   if (
