@@ -20,12 +20,17 @@ export const trpcServerOptionsProxy = createTRPCOptionsProxy<AppRouter>({
       httpBatchLink({
         url: env.NEXT_PUBLIC_API_URL + env.NEXT_PUBLIC_API_TRPC_PATH,
         transformer: superjson,
+        fetch: (url, options) => {
+          return fetch(url, {
+            ...options,
+            credentials: "include",
+          });
+        },
         async headers() {
           const cookieStore = await cookies();
 
           return {
             cookie: cookieStore.toString(),
-            credentials: "include",
           };
         },
       }),
@@ -39,12 +44,17 @@ export const trpcServerClient = createTRPCProxyClient<AppRouter>({
     httpBatchLink({
       url: env.NEXT_PUBLIC_API_URL + env.NEXT_PUBLIC_API_TRPC_PATH,
       transformer: superjson,
+      fetch: (url, options) => {
+        return fetch(url, {
+          ...options,
+          credentials: "include",
+        });
+      },
       async headers() {
         const cookieStore = await cookies();
 
         return {
           cookie: cookieStore.toString(),
-          credentials: "include",
         };
       },
     }),
