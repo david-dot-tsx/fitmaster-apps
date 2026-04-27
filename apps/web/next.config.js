@@ -10,6 +10,21 @@ const nextConfig = {
       },
     ],
   },
+  async rewrites() {
+    const trpcTarget = process.env.API_PROXY_TARGET_URL;
+    console.log("trpcTarget", trpcTarget);
+
+    if (!trpcTarget) {
+      return [];
+    }
+
+    return [
+      {
+        source: "/api/external/:path*",
+        destination: `${trpcTarget.replace(/\/$/, "")}/trpc/:path*`,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

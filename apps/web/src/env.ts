@@ -11,6 +11,7 @@ export const env = createEnv({
     NODE_ENV: z.enum(["local", "development", "production", "test"]),
     COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
     COOKIE_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
+    API_PROXY_TARGET_URL: z.url(),
   },
   /*
    * Environment variables available on the client (and server).
@@ -34,6 +35,7 @@ export const env = createEnv({
     NODE_ENV: process.env.NODE_ENV,
     COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: process.env.COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS,
     COOKIE_TOKEN_MAX_AGE_IN_SECONDS: process.env.COOKIE_TOKEN_MAX_AGE_IN_SECONDS,
+    API_PROXY_TARGET_URL: process.env.API_PROXY_TARGET_URL,
   },
   // experimental__runtimeEnv: {
   //   NEXT_PUBLIC_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_PUBLISHABLE_KEY,

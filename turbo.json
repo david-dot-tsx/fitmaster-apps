@@ -23,7 +23,8 @@
         "COOKIE_TOKEN_MAX_AGE_IN_SECONDS",
         "COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS",
         "EXPO_PUBLIC_API_URL",
-        "EXPO_PUBLIC_API_TRPC_PATH"
+        "EXPO_PUBLIC_API_TRPC_PATH",
+        "API_PROXY_TARGET_URL"
       ]
     },
     "lint": {
@@ -36,7 +37,7 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "env": ["DATABASE_URL", "PORT", "HOST", "CORS_ORIGIN", "NODE_ENV"]
+      "env": ["DATABASE_URL", "PORT", "HOST", "CORS_ORIGIN", "NODE_ENV", "API_PROXY_TARGET_URL"]
     },
     "db:generate": {
       "cache": false,
