@@ -1,21 +1,11 @@
-/* eslint-disable no-console */
-"use client";
 import { times } from "remeda";
 import { Dumbbell } from "lucide-react";
-import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { getServerTranslations } from "@/lib/i18n/server";
-import { useTRPC } from "@/lib/trpc/client";
 
 export const ExercisesSection = () => {
-  const trpc = useTRPC();
-  const { data: exercises, error, status } = useQuery(trpc.exercise.list.queryOptions());
-  console.log("exercises", exercises);
-  console.log("error", error);
-  console.log("status", status);
-
   return (
     <div className="mt-32">
       <Header />
