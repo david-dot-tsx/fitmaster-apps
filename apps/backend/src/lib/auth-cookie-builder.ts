@@ -10,7 +10,7 @@ export class AuthCookieBuilder {
     this.cookieBuilder = new BaseAuthCookieBuilder({
       refreshTokenMaxAgeInSeconds: env.COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS,
       tokenMaxAgeInSeconds: env.COOKIE_TOKEN_MAX_AGE_IN_SECONDS,
-      secure: env.NODE_ENV === "production",
+      secure: env.NODE_ENV !== "local",
     });
   }
 

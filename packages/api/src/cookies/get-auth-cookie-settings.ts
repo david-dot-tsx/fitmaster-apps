@@ -22,7 +22,7 @@ export class AuthCookieBuilder {
   public getAuthCookieSettings({
     name,
     value,
-    sameSite = "lax",
+    sameSite = "none",
   }: {
     name: AuthCookieNamesValues;
     value: string;
