@@ -21,7 +21,7 @@ const nextConfig = {
     return [
       {
         source: "/api/external/:path*",
-        destination: `${trpcTarget.replace(/\/$/, "")}/trpc/:path*`,
+        destination: `${trpcTarget.replace(/\/$/, "")}/:path*`,
       },
     ];
   },
