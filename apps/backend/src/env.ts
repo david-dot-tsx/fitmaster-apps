@@ -13,7 +13,7 @@ export const env = createEnv({
     HOST: z.string(),
 
     // Environment
-    NODE_ENV: z.enum(["development", "production", "test"]),
+    NODE_ENV: z.enum(["local", "development", "production", "test"]),
 
     // CORS
     CORS_ORIGIN: z.string(),
