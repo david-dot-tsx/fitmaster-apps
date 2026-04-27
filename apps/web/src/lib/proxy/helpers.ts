@@ -9,6 +9,7 @@ import { UNLOCALIZED_PUBLIC_PATHS } from "@/lib/proxy/consts/unlocalized-public-
 import { type CookieSetupParams } from "@/lib/proxy/types/cookie-setup-params";
 import { COOKIES_NAMES } from "@/consts/cookies";
 import { getUnlocalizedPath } from "@/helpers/unlocalized-path";
+import { env } from "@/env";
 
 const locales: Locale[] = Object.values(LOCALES);
 acceptLanguage.languages(locales);
@@ -45,6 +46,8 @@ export const setLocaleCookie = (response: NextResponse, locale: string) => {
       path: "/",
       httpOnly: true,
       expires: addYears(Date.now(), 1),
+      sameSite: "none",
+      secure: env.NODE_ENV !== "local",
     },
   };
   response.cookies.set(localeCookieSettings.name, locale, localeCookieSettings.cookieSettings);

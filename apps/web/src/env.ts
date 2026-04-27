@@ -8,7 +8,7 @@ export const env = createEnv({
    */
   server: {
     // Cookie
-    NODE_ENV: z.enum(["development", "production", "test"]),
+    NODE_ENV: z.enum(["local", "development", "production", "test"]),
     COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
     COOKIE_TOKEN_MAX_AGE_IN_SECONDS: z.coerce.number(),
   },
