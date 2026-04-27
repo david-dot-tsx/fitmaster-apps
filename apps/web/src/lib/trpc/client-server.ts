@@ -25,12 +25,13 @@ export const trpcServerOptionsProxy = createTRPCOptionsProxy<AppRouter>({
 
           return {
             cookie: cookieStore.toString(),
+            credentials: "include",
           };
         },
       }),
     ],
   }),
-  queryClient: getQueryClient, // Twój stabilny query client z cache()
+  queryClient: getQueryClient,
 });
 
 export const trpcServerClient = createTRPCProxyClient<AppRouter>({
@@ -43,6 +44,7 @@ export const trpcServerClient = createTRPCProxyClient<AppRouter>({
 
         return {
           cookie: cookieStore.toString(),
+          credentials: "include",
         };
       },
     }),
