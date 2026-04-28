@@ -9,12 +9,14 @@ interface StepsNavigationProps {
   className?: string;
   handlePrevious: (() => void) | undefined;
   isLastStep: boolean;
+  disabledButtons?: boolean;
 }
 
 export const StepsNavigation = ({
   className,
   handlePrevious,
   isLastStep,
+  disabledButtons = false,
 }: StepsNavigationProps) => {
   const { t } = useT();
 
@@ -29,7 +31,7 @@ export const StepsNavigation = ({
         type="button"
         variant="ghost"
         onClick={handlePrevious}
-        disabled={!handlePrevious}
+        disabled={!handlePrevious || disabledButtons}
         className="h-12 px-6 text-zinc-500 hover:bg-zinc-900 hover:text-white"
       >
         <ArrowLeftIcon className="mr-2 size-4" />
@@ -38,6 +40,7 @@ export const StepsNavigation = ({
 
       <Button
         type="submit"
+        disabled={disabledButtons}
         className={cn(
           "h-12 px-8 font-black uppercase tracking-tight transition-all duration-300",
           isLastStep

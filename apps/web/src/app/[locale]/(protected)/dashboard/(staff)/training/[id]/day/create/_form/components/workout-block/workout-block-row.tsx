@@ -78,9 +78,7 @@ export const WorkoutBlockRow = ({ fieldId, index, remove }: WorkoutBlockRowProps
         </div>
       </AccordionTrigger>
       <AccordionContent className="rounded-b-xl border border-t-0 border-zinc-800 bg-zinc-900/20 p-6 group-data-[state=open]:border-amber-400/30">
-        {exercisesStatus === "pending" && (
-          <LoadingState message="Loading exercises…" className="justify-start py-2" />
-        )}
+        {exercisesStatus === "pending" && <LoadingState className="justify-start py-2" />}
         {exercisesStatus === "error" && (
           <ErrorState onTryAgain={refetchExercises} className="mb-6 items-start text-left" />
         )}
