@@ -49,11 +49,11 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
     trpc.trainingDay.create.mutationOptions({
       onSuccess: () => {
         toast.success(t("success.generic.description"));
-        resetStore();
+        router.push(`/dashboard/training/${trainingId}`);
         queryClient.invalidateQueries(
           trpc.trainingDay.getTrainingsDays.queryOptions({ trainingId }),
         );
-        router.push(`/dashboard/training/${trainingId}`);
+        resetStore();
       },
       onError: (error) => {
         handleApiErrorMessage(error.message, {
@@ -74,7 +74,7 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
   const stepIterator = getStepIterator();
 
   if (trainingStatus === "pending" || exercisesStatus === "pending") {
-    return <LoadingState message={`${t("loading")}...`} />;
+    return <LoadingState className="mx-auto" />;
   }
   if (trainingStatus === "error" || exercisesStatus === "error") {
     return (
@@ -108,6 +108,9 @@ export const StepSummary = ({ trainingId }: { trainingId: string }) => {
           )}
         >
           <StepsNavigation
+            disabledButtons={
+              createTrainingDayMutation.isPending || createTrainingDayMutation.isSuccess
+            }
             handlePrevious={stepIterator.previous}
             isLastStep={isLastStep()}
             className="mt-4"

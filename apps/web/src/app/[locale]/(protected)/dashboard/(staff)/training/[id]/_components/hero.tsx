@@ -13,7 +13,7 @@ export const TrainingHero = ({ training }: { training: Training }) => {
       {/* Background Glow */}
       <div className="absolute -right-20 -top-20 size-64 bg-amber-400/10 blur-[100px]" />
 
-      <div className="flex flex-col gap-8 p-8 md:flex-row">
+      <div className="flex flex-col gap-8 p-4 md:flex-row md:p-8">
         {/* Cover Image */}
         <div className="relative h-48 w-full shrink-0 overflow-hidden rounded-2xl border border-zinc-800 shadow-2xl md:w-72">
           <Image

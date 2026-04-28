@@ -76,7 +76,9 @@ export const exercise = router({
     .meta({ openapi: { method: "GET", path: "/exercise.list", tags: ["Exercise"] } })
     .output(exerciseListOutputSchema)
     .query(async ({ ctx }) => {
-      const exercises = await ctx.prisma.exercise.findMany();
+      const exercises = await ctx.prisma.exercise.findMany({
+        orderBy: { createdAt: "desc" },
+      });
 
       return exercises;
     }),

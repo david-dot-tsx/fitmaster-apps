@@ -86,9 +86,11 @@ export const ExerciseTable = () => {
               className={cn(
                 "border bg-transparent text-[10px] font-black uppercase tracking-widest",
                 {
-                  "border-red-500/50 text-red-500": value === Difficulty.HARD,
-                  "border-amber-400/50 text-amber-400": value === Difficulty.MEDIUM,
-                  "border-emerald-500/50 text-emerald-500": value === Difficulty.EASY,
+                  "border-red-500/50 text-red-500 hover:bg-red-500/20": value === Difficulty.HARD,
+                  "border-amber-400/50 text-amber-400 hover:bg-amber-400/20":
+                    value === Difficulty.MEDIUM,
+                  "border-emerald-500/50 text-emerald-500 hover:bg-emerald-500/20":
+                    value === Difficulty.EASY,
                 },
               )}
             >
@@ -160,7 +162,7 @@ export const ExerciseTable = () => {
   });
 
   if (listStatus === "pending") {
-    return <LoadingState message="Loading exercises…" />;
+    return <LoadingState className="mx-auto" />;
   }
   if (listStatus === "error") {
     return <ErrorState title="Failed to load exercises" onTryAgain={refetch} />;
@@ -185,47 +187,49 @@ export const ExerciseTable = () => {
         open={openEditDialog}
         onOpenChange={setOpenEditDialog}
       />
-      <div className="w-full overflow-hidden rounded-xl border border-zinc-800 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
-        <table className="w-full table-auto border-collapse">
-          <thead>
-            {table.getHeaderGroups().map((headerGroup) => (
-              <tr key={headerGroup.id} className="border-b border-zinc-800 bg-zinc-900/50">
-                {headerGroup.headers.map((header) => (
-                  <th
-                    key={header.id}
-                    className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-400"
-                  >
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(header.column.columnDef.header, header.getContext())}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody className="divide-y divide-zinc-800/50">
-            {table.getRowModel().rows.map((row) => (
-              <tr
-                key={row.id}
-                className="group cursor-pointer transition-colors hover:bg-amber-400/[0.03]"
-                onClick={() => router.push(`/dashboard/exercise/${row.original.id}`)}
-              >
-                {row.getVisibleCells().map((cell) => (
-                  <td
-                    key={cell.id}
-                    className={cn("p-4 transition-colors group-hover:text-zinc-100", {
-                      "w-full": cell.column.id === "description",
-                      "min-w-56": cell.column.id === "name",
-                    })}
-                  >
-                    {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                  </td>
-                ))}
-              </tr>
-            ))}
-            {data?.length === 0 && <NoDataFoundRow colSpan={columns.length} />}
-          </tbody>
-        </table>
+      <div className="w-full rounded-xl border border-zinc-800 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[900px] table-auto border-collapse">
+            <thead>
+              {table.getHeaderGroups().map((headerGroup) => (
+                <tr key={headerGroup.id} className="border-b border-zinc-800 bg-zinc-900/50">
+                  {headerGroup.headers.map((header) => (
+                    <th
+                      key={header.id}
+                      className="p-4 text-left text-[10px] font-semibold uppercase tracking-[0.2em] text-zinc-400"
+                    >
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(header.column.columnDef.header, header.getContext())}
+                    </th>
+                  ))}
+                </tr>
+              ))}
+            </thead>
+            <tbody className="divide-y divide-zinc-800/50">
+              {table.getRowModel().rows.map((row) => (
+                <tr
+                  key={row.id}
+                  className="group cursor-pointer transition-colors hover:bg-amber-400/[0.03]"
+                  onClick={() => router.push(`/dashboard/exercise/${row.original.id}`)}
+                >
+                  {row.getVisibleCells().map((cell) => (
+                    <td
+                      key={cell.id}
+                      className={cn("p-4 transition-colors group-hover:text-zinc-100", {
+                        "w-full": cell.column.id === "description",
+                        "min-w-56": cell.column.id === "name",
+                      })}
+                    >
+                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    </td>
+                  ))}
+                </tr>
+              ))}
+              {data?.length === 0 && <NoDataFoundRow colSpan={columns.length} />}
+            </tbody>
+          </table>
+        </div>
       </div>
     </>
   );

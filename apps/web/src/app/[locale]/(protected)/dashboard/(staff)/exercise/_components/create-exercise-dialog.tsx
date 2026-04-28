@@ -31,7 +31,9 @@ import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { FormSelect } from "@/components/form/form-select";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
+import { getRandomImageUrl } from "@/lib/get-random-image-url";
 
+// TODO: i18n
 // TODO: move to a separate file, create use the same options for the create form, take into account i18n
 const difficultyOptions = [
   { children: "Easy", value: Difficulty.EASY },
@@ -39,6 +41,7 @@ const difficultyOptions = [
   { children: "Hard", value: Difficulty.HARD },
 ];
 
+// TODO: i18n
 // TODO: move to a separate file, create use the same options for the create form
 const bodyPartOptions = [
   { children: "Chest", value: BodyPart.CHEST },
@@ -46,6 +49,14 @@ const bodyPartOptions = [
   { children: "Legs", value: BodyPart.LEGS },
   { children: "Shoulders", value: BodyPart.SHOULDERS },
 ];
+
+const getDefaultValues = (): ExerciseCreateInputForm => ({
+  name: "",
+  difficulty: null,
+  bodyPart: null,
+  description: "",
+  imageUrl: getRandomImageUrl(),
+});
 
 export const CreateExerciseDialog = () => {
   const { t } = useT();
@@ -55,19 +66,11 @@ export const CreateExerciseDialog = () => {
   const queryClient = useQueryClient();
   const methods = useForm<ExerciseCreateInputForm>({
     resolver: zodResolver(exerciseCreateInputFormSchema),
-    defaultValues: {
-      name: "",
-      difficulty: null,
-      bodyPart: null,
-      description: "",
-      imageUrl: "https://picsum.photos/id/260/1024/1024",
-    },
+    defaultValues: getDefaultValues(),
   });
 
   const onOpenChange = (open: boolean) => {
-    if (!open) {
-      methods.reset();
-    }
+    methods.reset(getDefaultValues());
     setOpen(open);
   };
 
@@ -149,6 +152,8 @@ export const CreateExerciseDialog = () => {
                     label={t("web:dialog.exercise.create.form.description.label")}
                   />
                   <FormInput
+                    //TODO: to remove disabled, Disabled because the image url is random
+                    disabled
                     name="imageUrl"
                     label={t("web:dialog.exercise.create.form.imageUrl.label")}
                   />
@@ -167,6 +172,7 @@ export const CreateExerciseDialog = () => {
                 </Button>
               </DialogClose>
               <Button
+                disabled={createExerciseMutation.status === "pending"}
                 type="submit"
                 className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
               >

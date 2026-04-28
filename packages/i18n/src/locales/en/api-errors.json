@@ -1,4 +1,5 @@
 {
   "INVALID_CREDENTIALS": "Invalid credentials",
+  "PUBLISHED_TRAINING_WITHOUT_DAYS": "Training cannot be published without days",
   "USER_ALREADY_EXISTS": "User already exists"
 }

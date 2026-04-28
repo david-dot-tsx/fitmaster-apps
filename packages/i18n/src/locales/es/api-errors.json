@@ -1,4 +1,5 @@
 {
   "INVALID_CREDENTIALS": "Credenciales inválidas",
+  "PUBLISHED_TRAINING_WITHOUT_DAYS": "El entrenamiento no puede ser publicado sin días",
   "USER_ALREADY_EXISTS": "El usuario ya existe"
 }

@@ -148,6 +148,8 @@ export const EditExerciseDialog = ({
                     label={t("web:dialog.exercise.edit.form.description.label")}
                   />
                   <FormInput
+                    //TODO: to remove disabled, Disabled because the image url is random
+                    disabled
                     name="imageUrl"
                     label={t("web:dialog.exercise.edit.form.imageUrl.label")}
                   />
@@ -166,6 +168,7 @@ export const EditExerciseDialog = ({
               </DialogClose>
               <Button
                 type="submit"
+                disabled={editExerciseMutation.status === "pending"}
                 className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
               >
                 {t("update")}

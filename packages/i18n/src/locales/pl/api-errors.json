@@ -1,4 +1,5 @@
 {
   "INVALID_CREDENTIALS": "Nieprawidłowe dane logowania",
+  "PUBLISHED_TRAINING_WITHOUT_DAYS": "Trening nie może być opublikowany bez dni",
   "USER_ALREADY_EXISTS": "Użytkownik już istnieje"
 }

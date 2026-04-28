@@ -9,19 +9,31 @@ import {
 import { cn } from "@/lib/utils";
 import { useT } from "@/lib/i18n/i18n";
 
-export const TrainingDayItem = ({ day, index }: { day: TrainingDayDetailed; index: number }) => {
+export const TrainingDayItem = ({
+  day,
+  index,
+  totalDays,
+}: {
+  day: TrainingDayDetailed;
+  index: number;
+  totalDays: number;
+}) => {
   const { t } = useT();
 
   return (
-    <div className="group relative flex gap-12">
+    <div className="relative flex gap-8 md:gap-12">
       {/* Timeline Connector */}
-      <div className="relative flex flex-col items-center">
+      <div className="relative ml-4 flex flex-col items-center sm:ml-0">
         <div className="absolute top-0">
           <div className="flex size-10 items-center justify-center rounded-full border-2 border-zinc-800 bg-zinc-950 font-black text-amber-400 shadow-[0_0_15px_rgba(251,191,36,0.1)]">
             <span>{index + 1}</span>
           </div>
         </div>
-        <div className="h-full w-[2px] bg-gradient-to-b from-zinc-800 to-zinc-800/50 group-last:mb-12 group-last:to-transparent" />
+        <div
+          className={cn("h-full w-[2px] bg-gradient-to-b from-zinc-800 to-zinc-800/30", {
+            "to-transparent": index === totalDays - 1,
+          })}
+        />
       </div>
 
       {/* Content */}

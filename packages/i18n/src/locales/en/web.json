@@ -370,7 +370,7 @@
           "label": "Target"
         },
         "description": {
-          "label": "Protocol Details"
+          "label": "Details"
         },
         "difficulty": {
           "label": "Intensity"

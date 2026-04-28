@@ -2,11 +2,15 @@
 import React, { useState } from "react";
 import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { PlusIcon } from "lucide-react";
 import { toast } from "sonner";
 
-import { trainingCreateInputFormSchema, type TrainingCreateInputForm } from "@repo/validators";
+import {
+  trainingCreateInputFormSchema,
+  TrainingStatus,
+  type TrainingCreateInputForm,
+} from "@repo/validators";
 
 import { FieldGroup } from "@/components/ui/field";
 import { Button } from "@/components/ui/button";
@@ -24,25 +28,27 @@ import { FormInput } from "@/components/form/form-input";
 import { useTRPC } from "@/lib/trpc/client";
 import { useT } from "@/lib/i18n/i18n";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
+import { getRandomImageUrl } from "@/lib/get-random-image-url";
+
+const getDefaultValues = (): TrainingCreateInputForm => ({
+  name: "",
+  description: "",
+  imageUrl: getRandomImageUrl(),
+});
 
 export const CreateTrainingDialog = () => {
   const [open, setOpen] = useState(false);
   const { t } = useT();
+  const queryClient = useQueryClient();
   const trpc = useTRPC();
   const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const methods = useForm<TrainingCreateInputForm>({
     resolver: zodResolver(trainingCreateInputFormSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      imageUrl: "https://picsum.photos/id/280/1024/1024",
-    },
+    defaultValues: getDefaultValues(),
   });
 
   const onOpenChange = (open: boolean) => {
-    if (!open) {
-      methods.reset();
-    }
+    methods.reset(getDefaultValues());
     setOpen(open);
   };
 
@@ -50,6 +56,11 @@ export const CreateTrainingDialog = () => {
     trpc.training.create.mutationOptions({
       onSuccess: () => {
         toast.success(t("success.generic.description"));
+        queryClient.invalidateQueries(
+          trpc.training.listStaff.queryOptions({
+            status: [TrainingStatus.DRAFT, TrainingStatus.READY_TO_PUBLISH],
+          }),
+        );
         onOpenChange(false);
       },
       onError: (error) => {
@@ -107,6 +118,8 @@ export const CreateTrainingDialog = () => {
                     placeholder={t("web:dialog.training.create.form.description.placeholder")}
                   />
                   <FormInput
+                    //TODO: to remove disabled, Disabled because the image url is random
+                    disabled
                     name="imageUrl"
                     label={t("web:dialog.training.create.form.imageUrl.label")}
                   />
@@ -125,6 +138,7 @@ export const CreateTrainingDialog = () => {
                 </Button>
               </DialogClose>
               <Button
+                disabled={createTrainingMutation.status === "pending"}
                 type="submit"
                 className="bg-amber-400 px-8 text-[10px] font-black uppercase tracking-[0.2em] text-black shadow-[0_0_20px_rgba(251,191,36,0.2)] transition-all hover:bg-amber-500 active:scale-95"
               >

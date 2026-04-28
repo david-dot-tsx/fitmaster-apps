@@ -77,7 +77,7 @@ export const StaffDashboard = async () => {
             </span>
           </h2>
           <div className="w-full overflow-hidden rounded-xl border border-zinc-800/70 bg-zinc-950/50 shadow-2xl backdrop-blur-md">
-            <div className="p-8">{t("thisFeatureIsTemporarilyUnavailable")}</div>
+            <div className="p-8 text-zinc-500">{t("thisFeatureIsTemporarilyUnavailable")}</div>
           </div>
         </div>
       </div>

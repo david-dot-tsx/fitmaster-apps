@@ -72,7 +72,7 @@ export default function RegisterPage() {
           <CardContent>
             <FormProvider {...methods}>
               <form
-                className="flex flex-col gap-6 px-8"
+                className="flex flex-col gap-6 md:px-8"
                 onSubmit={methods.handleSubmit((data) => registerMutation.mutate(data))}
               >
                 <div className="space-y-4">
@@ -98,7 +98,9 @@ export default function RegisterPage() {
 
                 <Button
                   type="submit"
-                  disabled={registerMutation.isPending}
+                  disabled={
+                    registerMutation.status === "pending" || registerMutation.status === "success"
+                  }
                   className="relative mt-4 w-full overflow-hidden rounded-none border-t border-amber-400/20 bg-zinc-900 py-6 font-black uppercase tracking-widest text-zinc-400 transition-all duration-300 hover:bg-amber-400 hover:text-black hover:shadow-[0_0_20px_rgba(251,191,36,0.4)] disabled:opacity-20"
                 >
                   {registerMutation.isPending ? `${t("processing")}...` : t("register")}

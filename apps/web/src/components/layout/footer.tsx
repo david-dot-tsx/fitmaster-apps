@@ -10,7 +10,7 @@ export const Footer = async ({ className }: { className?: string }) => {
   const { t } = await getServerTranslations();
 
   return (
-    <footer className={cn("relative mt-auto w-full px-8 pb-8 pt-12 md:px-16", className)}>
+    <footer className={cn("relative mt-auto w-full px-4 pb-8 pt-12 md:px-16 lg:px-8", className)}>
       <div className="absolute left-0 top-0 h-px w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
 
       <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
