@@ -1,6 +1,7 @@
 interface Resources {
   "api-errors": {
     "INVALID_CREDENTIALS": "Invalid credentials",
+    "PUBLISHED_TRAINING_WITHOUT_DAYS": "Training cannot be published without days",
     "USER_ALREADY_EXISTS": "User already exists"
   },
   "common": {
@@ -131,8 +132,8 @@ interface Resources {
     "reps": "reps",
     "screens": {
       "staff": {
-        "description": "screens.staff.description",
-        "title": "screens.staff.title"
+        "description": "Trainer features are available in the desktop app. Please sign in there to continue.",
+        "title": "Trainer account detected"
       }
     },
     "selectYourLanguage": "Select your language",
@@ -716,7 +717,7 @@ interface Resources {
             "label": "Target"
           },
           "description": {
-            "label": "Protocol Details"
+            "label": "Details"
           },
           "difficulty": {
             "label": "Intensity"

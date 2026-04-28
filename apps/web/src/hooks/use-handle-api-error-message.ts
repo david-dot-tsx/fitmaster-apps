@@ -11,6 +11,9 @@ interface handleApiErrorMessageOptions {
 const API_ERROR_TRANSLATION_KEYS = {
   [API_PROCEDURE_ERRORS.INVALID_CREDENTIALS]: getTKey("api-errors:INVALID_CREDENTIALS"),
   [API_PROCEDURE_ERRORS.USER_ALREADY_EXISTS]: getTKey("api-errors:USER_ALREADY_EXISTS"),
+  [API_PROCEDURE_ERRORS.PUBLISHED_TRAINING_WITHOUT_DAYS]: getTKey(
+    "api-errors:PUBLISHED_TRAINING_WITHOUT_DAYS",
+  ),
 } as const;
 
 export const useHandleApiErrorMessage = () => {
