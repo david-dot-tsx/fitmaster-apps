@@ -8,6 +8,7 @@ import { NavLink } from "@/components/layout/navbar/nav-link";
 import { Button } from "@/components/ui/button";
 import { LocaleSwitch } from "@/components/locale-switch";
 import { cn } from "@/lib/utils";
+import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
 
 interface NavbarMobileProps {
   navLinks: { href: string; label: string }[];
@@ -127,6 +128,9 @@ export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
               className="absolute right-0 top-full -z-10 w-full rounded-b-md border border-border/60 bg-background/95 p-2 shadow-lg backdrop-blur-md md:hidden"
             >
               <nav id={menuId} className="my-2 flex flex-col gap-1 px-4" aria-label="Mobile main">
+                <div className="mb-4 flex justify-end">
+                  <NavbarAuth />
+                </div>
                 {navLinks.map(({ href, label }) => (
                   <NavLink
                     key={href}

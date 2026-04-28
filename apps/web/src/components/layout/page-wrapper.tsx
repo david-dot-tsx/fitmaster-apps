@@ -20,7 +20,7 @@ export const PageWrapper = ({
   return (
     <div
       className={cn(
-        "relative flex w-full flex-1 flex-col p-8 md:px-16",
+        "relative mb-12 flex w-full flex-1 flex-col px-2 sm:px-4 md:px-16 lg:px-8",
         {
           "max-w-full": size === "full",
           "mx-auto max-w-6xl": size === "medium",

@@ -22,7 +22,7 @@ export const Navbar = async () => {
   ];
 
   return (
-    <header className="sticky top-0 z-50 w-full bg-black/60 px-8 backdrop-blur-xl md:px-16">
+    <header className="sticky top-0 z-50 w-full bg-black/60 px-4 backdrop-blur-xl md:px-16 lg:px-8">
       <nav className="flex h-16 flex-row items-center justify-between gap-8">
         <Link
           href={sessionUser.isAuthenticated ? "/dashboard" : "/"}
