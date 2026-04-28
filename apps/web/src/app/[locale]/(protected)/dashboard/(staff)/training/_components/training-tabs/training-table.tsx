@@ -38,18 +38,28 @@ import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 const columnHelper = createColumnHelper<TrainingListStaffOutput[number]>();
 const statusConfig = {
-  DRAFT: { label: "Draft", color: "border-zinc-500 text-zinc-500 bg-zinc-500/10" },
+  DRAFT: {
+    label: "Draft",
+    color: "border-zinc-500 text-zinc-500 bg-zinc-500/10 hover:bg-zinc-500/30",
+  },
   READY_TO_PUBLISH: {
     label: "Ready",
-    color: "border-blue-400 text-blue-400 bg-blue-400/10 shadow-[0_0_10px_rgba(96,165,250,0.2)]",
+    color:
+      "border-blue-400 text-blue-400 bg-blue-400/10 shadow-[0_0_10px_rgba(96,165,250,0.2)] hover:bg-blue-400/30",
   },
   PUBLISHED: {
     label: "Live",
     color:
-      "border-emerald-500 text-emerald-500 bg-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.2)]",
+      "border-emerald-500 text-emerald-500 bg-emerald-500/10 shadow-[0_0_10px_rgba(16,185,129,0.2)] hover:bg-emerald-500/30",
   },
-  HIDDEN: { label: "Hidden", color: "border-orange-500 text-orange-500 bg-orange-500/10" },
-  DISABLED: { label: "Disabled", color: "border-red-500 text-red-500 bg-red-500/10" },
+  HIDDEN: {
+    label: "Hidden",
+    color: "border-orange-500 text-orange-500 bg-orange-500/10 hover:bg-orange-500/30",
+  },
+  DISABLED: {
+    label: "Disabled",
+    color: "border-red-500 text-red-500 bg-red-500/10 hover:bg-red-500/30",
+  },
 };
 interface TrainingTableProps {
   trainings: TrainingListStaffOutput;

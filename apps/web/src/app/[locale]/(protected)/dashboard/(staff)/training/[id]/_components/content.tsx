@@ -4,6 +4,7 @@ import { useState } from "react";
 import { notFound, useRouter } from "next/navigation";
 import { PlusIcon } from "lucide-react";
 import { Trans } from "react-i18next";
+import Link from "next/link";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { PageWrapper } from "@/components/layout/page-wrapper";
@@ -35,7 +36,7 @@ export const TrainingContent = ({ id }: { id: string }) => {
   const [openEditDialog, setOpenEditDialog] = useState(false);
 
   if (trainingStatus === "pending" || trainingDaysStatus === "pending") {
-    return <LoadingState />;
+    return <LoadingState className="mx-auto" />;
   }
   if (trainingStatus === "error" || trainingDaysStatus === "error") {
     return (
@@ -62,33 +63,41 @@ export const TrainingContent = ({ id }: { id: string }) => {
           <TrainingHero training={trainingData} />
 
           <div className="flex flex-col">
-            <div className="mb-8 flex items-center justify-between">
-              <div className="flex flex-row items-center justify-between gap-8">
-                <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
-                  {/* //TODO: use that trans component in dialog windows and others components  */}
-                  <Trans
-                    t={t}
-                    i18nKey="web:pages.trainingDetail.timeline.title"
-                    components={{
-                      1: <span className="text-amber-400" />,
-                    }}
-                  />
-                </h2>
-                <div className="self-end rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
-                  {t("web:pages.trainingDetail.timeline.totalDays", {
-                    count: trainingDaysData.length,
-                  })}
-                </div>
+            <div className="mb-8 flex flex-wrap items-center justify-between gap-8">
+              <h2 className="text-2xl font-black uppercase italic tracking-tighter text-zinc-100">
+                {/* //TODO: use that trans component in dialog windows and others components  */}
+                <Trans
+                  t={t}
+                  i18nKey="web:pages.trainingDetail.timeline.title"
+                  components={{
+                    1: <span className="text-amber-400" />,
+                  }}
+                />
+              </h2>
+              <div className="mr-auto self-end text-nowrap rounded-full border border-zinc-800 bg-zinc-900 px-3 py-1 text-[10px] font-black uppercase tracking-widest text-zinc-500">
+                {t("web:pages.trainingDetail.timeline.totalDays", {
+                  count: trainingDaysData.length,
+                })}
               </div>
-              <Button className="bg-amber-400 font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.3)] hover:bg-amber-500">
-                <PlusIcon className="mr-2 size-4 stroke-[3px]" />
-                {t("web:pages.trainingDetail.timeline.addDay")}
+              <Button
+                asChild
+                className="ml-auto bg-amber-400 font-black uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.3)] hover:bg-amber-500"
+              >
+                <Link href={`/dashboard/training/${id}/day/create`}>
+                  <PlusIcon className="mr-2 size-4 stroke-[3px]" />
+                  {t("web:pages.trainingDetail.timeline.addDay")}
+                </Link>
               </Button>
             </div>
 
             <div className="flex flex-col">
               {trainingDaysData.map((day, index) => (
-                <TrainingDayItem key={day.id} day={day} index={index} />
+                <TrainingDayItem
+                  key={day.id}
+                  day={day}
+                  index={index}
+                  totalDays={trainingDaysData.length}
+                />
               ))}
               <Button
                 type="button"
@@ -97,7 +106,7 @@ export const TrainingContent = ({ id }: { id: string }) => {
                   router.push(`/dashboard/training/${id}/day/create`);
                 }}
                 className={cn(
-                  "group relative ml-12 h-auto rounded-2xl border-dashed border-zinc-800 bg-zinc-900/20 py-8 transition-all duration-300",
+                  "group relative h-auto rounded-2xl border-dashed border-zinc-800 bg-zinc-900/20 py-8 transition-all duration-300 md:ml-12",
                   "hover:border-amber-400/50 hover:bg-amber-400/5 hover:text-amber-400",
                 )}
               >

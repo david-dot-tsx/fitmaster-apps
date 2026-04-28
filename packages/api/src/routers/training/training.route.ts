@@ -19,6 +19,7 @@ import {
   trainingUpdateOutputSchema,
   trainingUpdateStatusInputSchema,
   trainingUpdateStatusOutputSchema,
+  TrainingStatus,
 } from "@repo/validators";
 
 import { protectedProcedure, router, staffProcedure } from "../../server/trpc";
@@ -50,11 +51,22 @@ export const training = router({
     .input(trainingUpdateStatusInputSchema)
     .output(trainingUpdateStatusOutputSchema)
     .mutation(async ({ input, ctx }) => {
-      const training = await ctx.prisma.training.findUnique({ where: { id: input.trainingId } });
+      const training = await ctx.prisma.training.findUnique({
+        where: { id: input.trainingId },
+        include: { trainingDays: true },
+      });
+
       if (!training) {
         throw new TRPCError({
           code: "NOT_FOUND",
           message: API_PROCEDURE_ERRORS.NOT_FOUND,
+        });
+      }
+
+      if (input.status === TrainingStatus.PUBLISHED && training?.trainingDays.length === 0) {
+        throw new TRPCError({
+          code: "BAD_REQUEST",
+          message: API_PROCEDURE_ERRORS.PUBLISHED_TRAINING_WITHOUT_DAYS,
         });
       }
 

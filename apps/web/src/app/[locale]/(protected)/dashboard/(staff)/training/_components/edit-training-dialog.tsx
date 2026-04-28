@@ -115,6 +115,8 @@ export const EditTrainingDialog = ({ training, open, onOpenChange }: EditTrainin
                     placeholder={t("web:dialog.training.edit.form.description.placeholder")}
                   />
                   <FormInput
+                    //TODO: to remove disabled, Disabled because the image url is random
+                    disabled
                     name="imageUrl"
                     label={t("web:dialog.training.edit.form.imageUrl.label")}
                   />

@@ -70,6 +70,7 @@ export const UpdateStatusDialog = ({
         handleApiErrorMessage(error.message, {
           default: (translatedMessage: string) => {
             toast.error(translatedMessage);
+            onOpenChange(false);
           },
         });
       },
@@ -81,6 +82,7 @@ export const UpdateStatusDialog = ({
     <WarningDialog
       open={open}
       onOpenChange={onOpenChange}
+      status={updateStatusMutation.status}
       onConfirm={() => {
         if (training?.id) {
           updateStatusMutation.mutate({ trainingId: training.id, status: newStatus });
