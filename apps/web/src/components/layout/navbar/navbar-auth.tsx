@@ -41,7 +41,7 @@ export const NavbarAuth = () => {
   });
 
   return (
-    <div className="flex flex-row items-center gap-3">
+    <div className="flex flex-row items-center gap-1 sm:gap-3">
       {session ? (
         <Button
           variant="ghost"
