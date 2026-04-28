@@ -43,7 +43,7 @@ export const FinalCTASection = async () => {
             asChild
             className="h-16 w-full bg-amber-400 px-12 font-black uppercase tracking-[0.2em] text-black shadow-[0_0_30px_rgba(251,191,36,0.3)] transition-all hover:scale-105 hover:bg-amber-500 md:w-auto"
           >
-            <Link href="/auth/register">
+            <Link href="/auth/register" className="text-wrap">
               {t("web:pages.landing.sections.finalCta.button.initializeTransformation")}
             </Link>
           </Button>
