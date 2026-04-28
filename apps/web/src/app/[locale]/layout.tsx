@@ -4,6 +4,8 @@ import { Inter, Orbitron, Quantico } from "next/font/google";
 
 import "@/globals.css";
 
+import { LOCALES } from "@repo/i18n/web";
+
 import RootProvider from "@/providers/root-provider";
 import { hasSessionTokensAction } from "@/actions/session.actions";
 import { LayoutWrapper } from "@/components/layout/layout-wrapper";
@@ -44,10 +46,11 @@ export default async function RootLayout({
 }): Promise<ReactElement> {
   const { locale } = await params;
   const { hasRefreshToken } = await hasSessionTokensAction();
+  const localeFontClass = locale === LOCALES.PL ? "font-inter" : "font-sans";
 
   return (
     <html lang={locale} suppressHydrationWarning>
-      <body className={cn("font-sans", orbitron.variable, inter.variable, quantico.variable)}>
+      <body className={cn(localeFontClass, orbitron.variable, inter.variable, quantico.variable)}>
         <RootProvider session={hasRefreshToken} locale={locale}>
           <LayoutWrapper>{children}</LayoutWrapper>
         </RootProvider>
