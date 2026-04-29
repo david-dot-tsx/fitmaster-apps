@@ -107,6 +107,7 @@ export const user = router({
         data: {
           email: input.email,
           passwordHash: await argon2.hash(input.password),
+          role: input.role,
         },
         select: {
           id: true,
