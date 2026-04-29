@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
+import { TrainingStatus, WorkoutBlockType, WorkoutType } from "@prisma/client";
 
-import { TrainingStatus, WorkoutBlockType, WorkoutType } from "../../generated/prisma/client";
 import type { Seeder, SeederContext } from "./types";
 
 const getRandomImageUrl = (): string => {

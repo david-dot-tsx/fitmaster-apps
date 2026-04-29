@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { ActivityIndicator, FlatList, View } from "react-native";
 import { useRouter } from "expo-router";
 import { SparklesIcon } from "lucide-react-native";
+
+import { type TrainingSessionMyTrainingsItem, TrainingSessionStatus } from "@repo/validators";
 
 import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
@@ -23,6 +25,26 @@ export const CustomerMainScreen = ({ nickname }: CustomerMainScreenProps) => {
     isFetching,
     refetch: refetchMyTrainings,
   } = trpc.training.session.myTrainings.useQuery();
+
+  const getCardAction = useCallback(
+    (
+      trainingSession: TrainingSessionMyTrainingsItem,
+    ): { onPress: () => void; text: string } | undefined => {
+      if (trainingSession.status === TrainingSessionStatus.COMPLETED) {
+        return {
+          onPress: () => router.push(`/training/${trainingSession.training.id}`),
+          text: t("goToTrainingDetails"),
+        };
+      }
+
+      return {
+        onPress: () =>
+          router.push(`/training/${trainingSession.training.id}/session/${trainingSession.id}`),
+        text: t("startTrainingDay"),
+      };
+    },
+    [router, t],
+  );
 
   return (
     <ScreenWrapper
@@ -53,10 +75,7 @@ export const CustomerMainScreen = ({ nickname }: CustomerMainScreenProps) => {
               status={item.status}
               trainingName={item.training.name}
               className="my-2.5"
-              action={{
-                onPress: () => router.push(`/training/${item.training.id}/session/${item.id}`),
-                text: t("startTrainingDay"),
-              }}
+              action={getCardAction(item)}
             />
           )}
           contentContainerStyle={{ paddingBottom: 24 }}

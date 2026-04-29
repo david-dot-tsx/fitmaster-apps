@@ -18,7 +18,7 @@ export const ProfileScreen = ({ nickname }: { nickname: string }) => {
 
   const { data: me } = trpc.user.me.useQuery();
 
-  const isMyProfile = me?.profile?.id === profile?.userId;
+  const isMyProfile = me?.id === profile?.userId;
 
   if (status === "success") {
     return <Profile profile={profile} isMyProfile={isMyProfile} />;

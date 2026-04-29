@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useCallback } from "react";
 import { ActivityIndicator, ScrollView } from "react-native";
 import { useRouter } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
+
+import { TrainingSessionStatus } from "@repo/validators";
 
 import { useT } from "@/lib/i18n";
 import { trpc } from "@/lib/trpc/client";
@@ -34,9 +36,10 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
 
   const { mutate: newTrainingSession, status: newTrainingSessionStatus } =
     trpc.training.session.new.useMutation({
-      onSuccess: () => {
+      onSuccess: (data) => {
         utils.training.session.myTrainings.invalidate();
-        router.push(`/training/${trainingId}/session/${trainingSession?.id}`);
+        utils.training.invalidate();
+        router.push(`/training/${trainingId}/session/${data.id}`);
       },
       onError: () => {
         handleApiErrorMessage(undefined, {
@@ -50,6 +53,26 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
         });
       },
     });
+
+  const getCardAction = useCallback(():
+    | { onPress: () => void; text: string; disabled?: boolean }
+    | undefined => {
+    if (trainingSession?.status === TrainingSessionStatus.COMPLETED) {
+      return;
+    }
+    if (trainingSession) {
+      return {
+        onPress: () => router.push(`/training/${trainingId}/session/${trainingSession?.id}`),
+        text: t("startTraining"),
+      };
+    }
+
+    return {
+      onPress: () => newTrainingSession({ trainingId }),
+      disabled: newTrainingSessionStatus === "pending",
+      text: t("joinTraining"),
+    };
+  }, [trainingSession, newTrainingSessionStatus, t, router, trainingId, newTrainingSession]);
 
   return (
     <ScreenWrapper
@@ -84,17 +107,7 @@ export const TrainingDetailsScreen = ({ trainingId }: { trainingId: string }) =>
               }
             }
             status={trainingSession?.status}
-            action={{
-              onPress: () => {
-                if (trainingSession) {
-                  router.push(`/training/${trainingId}/session/${trainingSession?.id}`);
-                } else {
-                  newTrainingSession({ trainingId });
-                }
-              },
-              text: trainingSession ? t("startTraining") : t("joinTraining"),
-              disabled: newTrainingSessionStatus === "pending",
-            }}
+            action={getCardAction()}
           />
           <VStack className="mt-4 gap-4">
             <TrainingStats

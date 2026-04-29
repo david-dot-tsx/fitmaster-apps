@@ -1,6 +1,6 @@
 import { faker } from "@faker-js/faker";
+import { Gender, Role } from "@prisma/client";
 
-import { Gender, Role } from "../../generated/prisma/client";
 import type { Seeder, SeederContext } from "./types";
 
 const getRandomImageUrl = (): string => {

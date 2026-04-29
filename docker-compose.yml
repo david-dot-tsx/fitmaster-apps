@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:16-alpine 
+    image: postgres:16-alpine
     container_name: fitmaster-db
     restart: always
     environment:
@@ -12,7 +12,7 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  pgadmin: # Opcjonalnie: Graficzny interfejs do bazy w przeglądarce
+  pgadmin:
     image: dpage/pgadmin4
     container_name: fitmaster-pgadmin
     environment:

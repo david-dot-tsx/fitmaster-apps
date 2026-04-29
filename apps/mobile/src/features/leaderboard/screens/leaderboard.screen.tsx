@@ -112,6 +112,7 @@ export const LeaderboardScreen = () => {
       )}
       {leaderboardStatus === "success" && (
         <FlatList
+          className="flex-1 px-2"
           data={entries}
           keyExtractor={(item) => item.customerProfileId}
           renderItem={({ item }) => (
