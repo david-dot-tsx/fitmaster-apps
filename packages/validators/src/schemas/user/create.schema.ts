@@ -14,7 +14,7 @@ export type UserCreateOutput = z.infer<typeof userCreateOutputSchema>;
 export const userCreateInputFormSchema = credentialsSchema
   .extend({
     passwordConfirmation: z.string().nonempty().min(8).max(64),
-    role: z.enum([Role.CUSTOMER, Role.TRAINER]),
+    role: z.enum([Role.CUSTOMER, Role.TRAINER]).optional(),
   })
   .refine((data) => data.password === data.passwordConfirmation, {
     message: "Passwords do not match",
