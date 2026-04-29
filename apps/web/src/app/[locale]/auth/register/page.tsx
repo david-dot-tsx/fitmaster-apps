@@ -4,8 +4,9 @@ import { FormProvider, useForm } from "react-hook-form";
 import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
-import { userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
+import { Role, userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
 import { I18N_NAMESPACES } from "@repo/i18n/web";
 import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
@@ -15,25 +16,28 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { Button } from "@/components/ui/button";
 import { FormInput } from "@/components/form/form-input";
+import { FormRadioGroupRole } from "@/components/form/form-radio-group-role";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 
 export default function RegisterPage() {
   const { handleApiErrorMessage } = useHandleApiErrorMessage();
   const trpc = useTRPC();
   const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
+  const router = useRouter();
   const methods = useForm<UserCreateInputForm>({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
       email: "",
       password: "",
       passwordConfirmation: "",
+      role: Role.CUSTOMER,
     },
   });
-
   const registerMutation = useMutation(
     trpc.user.create.mutationOptions({
       onSuccess: () => {
         toast.success(t("success.generic.description"));
+        router.push("/auth/login");
       },
       onError: (error) => {
         handleApiErrorMessage(error.message, {
@@ -76,6 +80,7 @@ export default function RegisterPage() {
                 onSubmit={methods.handleSubmit((data) => registerMutation.mutate(data))}
               >
                 <div className="space-y-4">
+                  <FormRadioGroupRole name="role" label="Role" />
                   <FormInput
                     name="email"
                     label={t("email")}
