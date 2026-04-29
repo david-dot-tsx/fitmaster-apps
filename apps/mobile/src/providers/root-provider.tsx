@@ -3,8 +3,10 @@ import { useColorScheme as useNativewindColorScheme } from "nativewind";
 import { useEffect } from "react";
 
 import { GluestackUIProvider } from "@/components/ui/gluestack-ui-provider";
+import { OfflineBanner } from "@/components/layout/offline-banner";
 import { TRPCReactProvider } from "@/lib/trpc/client";
 import { AuthProvider } from "@/providers/auth/auth-context";
+import { ConnectivityProvider } from "@/providers/connectivity-provider";
 import { FontProvider } from "@/providers/font-provider";
 
 import "@/lib/i18n";
@@ -27,7 +29,12 @@ export const RootProvider = ({ children }: { children: React.ReactNode }) => {
       <GluestackUIProvider>
         <TRPCReactProvider>
           <AuthProvider>
-            <FontProvider>{children}</FontProvider>
+            <ConnectivityProvider>
+              <FontProvider>
+                <OfflineBanner />
+                {children}
+              </FontProvider>
+            </ConnectivityProvider>
           </AuthProvider>
         </TRPCReactProvider>
       </GluestackUIProvider>

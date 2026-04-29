@@ -25,6 +25,9 @@ const getRenderableComponentStatus = ({
   if (status === "pending" && failureCount === 0) {
     return "pending";
   }
+  if (status === "idle") {
+    return "pending";
+  }
 
   return "error";
 };

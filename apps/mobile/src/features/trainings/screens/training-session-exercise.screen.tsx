@@ -36,7 +36,12 @@ export const TrainingSessionExerciseScreen = ({
   const stopWatchProps = useStopWatch();
   const utils = trpc.useUtils();
   const { openToast } = useToastNotification();
-  const { data, isFetching, refetch, status } = trpc.training.session.getCurrentExercise.useQuery({
+  const {
+    data,
+    isFetching,
+    refetch,
+    status: statusCurrentExercise,
+  } = trpc.training.session.getCurrentExercise.useQuery({
     trainingSessionId: sessionId,
   });
 
@@ -44,44 +49,46 @@ export const TrainingSessionExerciseScreen = ({
   const exerciseEntity = currentExercise?.workoutExercise?.exercise;
   const isLastExercise = data?.exercisesLeftAmount === 0;
 
-  const { mutate: startExercise } = trpc.training.session.startExercise.useMutation({
-    onSuccess: () => {
-      if (!stopWatchProps.running) {
-        stopWatchProps.toggleStopWatch();
-      }
-      utils.training.session.getCurrentExercise.invalidate();
-    },
-    onError: () => {
-      handleApiErrorMessage(undefined, {
-        default: () => {
-          openToast({
-            title: t("errors.exercise.start.failed.title"),
-            description: t("errors.exercise.start.failed.description"),
-            action: "error",
-          });
-        },
-      });
-    },
-  });
+  const { mutate: startExercise, status: statusStartExercise } =
+    trpc.training.session.startExercise.useMutation({
+      onSuccess: () => {
+        if (!stopWatchProps.running) {
+          stopWatchProps.toggleStopWatch();
+        }
+        utils.training.session.getCurrentExercise.invalidate();
+      },
+      onError: () => {
+        handleApiErrorMessage(undefined, {
+          default: () => {
+            openToast({
+              title: t("errors.exercise.start.failed.title"),
+              description: t("errors.exercise.start.failed.description"),
+              action: "error",
+            });
+          },
+        });
+      },
+    });
 
-  const { mutate: completeExercise } = trpc.training.session.completeExercise.useMutation({
-    onSuccess: () => {
-      utils.training.session.getCurrentExercise.invalidate();
-      if (isLastExercise) {
-        router.push(`/training/${trainingId}/session/${sessionId}/finished`);
-      }
-    },
-    onError: (_error) => {
-      openToast({
-        title: t("errors.exercise.finish.failed.title"),
-        description: t("errors.exercise.finish.failed.description"),
-        action: "error",
-      });
-    },
-    onSettled: () => {
-      stopWatchProps.resetStopWatch();
-    },
-  });
+  const { mutate: completeExercise, status: statusCompleteExercise } =
+    trpc.training.session.completeExercise.useMutation({
+      onSuccess: () => {
+        utils.training.session.getCurrentExercise.invalidate();
+        if (isLastExercise) {
+          router.push(`/training/${trainingId}/session/${sessionId}/finished`);
+        }
+      },
+      onError: (_error) => {
+        openToast({
+          title: t("errors.exercise.finish.failed.title"),
+          description: t("errors.exercise.finish.failed.description"),
+          action: "error",
+        });
+      },
+      onSettled: () => {
+        stopWatchProps.resetStopWatch();
+      },
+    });
 
   return (
     <ScreenWrapper
@@ -93,17 +100,17 @@ export const TrainingSessionExerciseScreen = ({
         backButton: true,
       }}
     >
-      {status === "pending" && (
+      {statusCurrentExercise === "pending" && (
         <ScreenWrapper className="items-center justify-center">
           <ActivityIndicator size="large" color="#fbbf24" />
         </ScreenWrapper>
       )}
-      {status === "error" && (
+      {statusCurrentExercise === "error" && (
         <View className="flex-1 justify-center px-4">
           <QueryErrorHandler refetch={refetch} isFetching={isFetching} />
         </View>
       )}
-      {status === "success" && data != null && currentExercise != null && (
+      {statusCurrentExercise === "success" && data != null && currentExercise != null && (
         <View className="flex-1">
           <ScrollView
             className="flex-1"
@@ -143,6 +150,11 @@ export const TrainingSessionExerciseScreen = ({
             <Button
               size="lg"
               action="primary"
+              disabled={
+                statusStartExercise === "pending" ||
+                statusCompleteExercise === "pending" ||
+                statusCurrentExercise !== "success"
+              }
               className="w-full bg-amber-400"
               onPress={() => {
                 if (currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED) {
@@ -226,7 +238,7 @@ const SessionExerciseOverview = ({
                   {totalExercisesAmount}
                 </Text>
               </HStack>
-              <Text className="mt-1 text-2xs text-zinc-600">{t("exerciseInThisSession")}</Text>
+              <Text className="text-2xs mt-1 text-zinc-600">{t("exerciseInThisSession")}</Text>
             </View>
             <View className="h-14 w-px self-stretch bg-zinc-800" />
           </>

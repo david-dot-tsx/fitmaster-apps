@@ -1,13 +1,14 @@
 import { checkbox, number } from "@inquirer/prompts";
 import { PrismaPg } from "@prisma/adapter-pg";
+import { PrismaClient } from "@prisma/client";
 
-import { PrismaClient } from "../generated/prisma/client";
 import { exercisesSeeder } from "./seeders/exercises.seeder";
 import { trainingsSeeder } from "./seeders/trainings.seeder";
 import type { Seeder } from "./seeders/types";
 import { usersSeeder } from "./seeders/users.seeder";
+import { env } from "../src/env";
 
-const adapter = new PrismaPg({ connectionString: process.env["DATABASE_URL"]! });
+const adapter = new PrismaPg({ connectionString: env.DATABASE_URL });
 const prisma = new PrismaClient({ adapter });
 
 const SEEDERS: Seeder[] = [usersSeeder, exercisesSeeder, trainingsSeeder];

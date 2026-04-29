@@ -117,6 +117,7 @@ interface Resources {
     "noExercisesAddedYet": "No exercises added yet.",
     "noLeaderboardEntriesYet": "No leaderboard entries yet.",
     "noTrainingsPublishedYet": "No trainings published yet.",
+    "offline": "You are offline",
     "password": "Password",
     "passwordConfirmation": "Password Confirmation",
     "pending": "pending",

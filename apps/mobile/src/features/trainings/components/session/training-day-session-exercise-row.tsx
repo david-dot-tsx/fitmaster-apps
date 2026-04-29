@@ -1,5 +1,5 @@
 import React from "react";
-import { Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import {
   BadgeCheckIcon,
   BadgeIcon as LucideBadgeIcon,
@@ -8,6 +8,7 @@ import {
 } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
 import { type ResourceKey } from "i18next";
+import { useLocalSearchParams, useRouter } from "expo-router";
 
 import {
   WorkoutExerciseSessionStatus,
@@ -85,6 +86,11 @@ export const TrainingDaySessionExerciseRow = ({
   barClass: string;
   isCurrent: boolean;
 }) => {
+  const { trainingId, sessionId } = useLocalSearchParams<{
+    trainingId: string;
+    sessionId: string;
+  }>();
+  const router = useRouter();
   const { t } = useT();
   const we = sessionExercise.workoutExercise;
   const meta = [
@@ -101,82 +107,95 @@ export const TrainingDaySessionExerciseRow = ({
   ].filter(Boolean) as { label: string; value: string; units: string }[];
 
   return (
-    <View
-      className={cn(
-        "flex-row overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-900 pl-0 pr-2",
-        {
-          "bg-success-300/10": sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
-          "bg-sky-500/20":
-            sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
-        },
-      )}
+    <Pressable
+      onPress={() => {
+        if (isCurrent) {
+          router.push(`/training/${trainingId}/session/${sessionId}/exercise`);
+        }
+      }}
     >
-      <View className={cn("w-1 self-stretch rounded-l-xl", barClass)} />
-      <View className="min-w-0 flex-1 flex-row items-start gap-2 py-2.5 pl-3 pr-1">
-        <View
-          className={cn(
-            "mt-0.5 aspect-square w-7 items-center justify-center rounded-md border border-zinc-800/80 bg-zinc-800/80",
-            {
-              "bg-success-300/30 border-success-300/50 border":
-                sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
-              "border border-sky-500/40 bg-sky-500/20":
-                sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
-            },
-          )}
-        >
-          <Text
-            className={cn("font-orbitron-bold text-xs text-zinc-400", {
-              "text-success-600": sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
-              "text-sky-500":
-                sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
-            })}
+      <View
+        pointerEvents="none"
+        className={cn(
+          "flex-row overflow-hidden rounded-xl border border-zinc-800/60 bg-zinc-900 pl-0 pr-2",
+          {
+            "bg-success-300/10": sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
+            "bg-sky-500/20":
+              sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
+            "active:bg-sky-500/5": isCurrent,
+          },
+        )}
+      >
+        <View className={cn("w-1 self-stretch rounded-l-xl", barClass)} />
+        <View className="min-w-0 flex-1 flex-row items-start gap-2 py-2.5 pl-3 pr-1">
+          <View
+            className={cn(
+              "mt-0.5 aspect-square w-7 items-center justify-center rounded-md border border-zinc-800/80 bg-zinc-800/80",
+              {
+                "bg-success-300/30 border-success-300/50 border":
+                  sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
+                "border border-sky-500/40 bg-sky-500/20":
+                  sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
+              },
+            )}
           >
-            {index + 1}
-          </Text>
-        </View>
-        <View className="min-w-0 flex-1">
-          <View className="flex-row items-start gap-2">
-            <View className="min-w-0 flex-1">
-              <Text
-                className={cn("text-sm font-semibold leading-tight text-zinc-100", {
-                  "text-success-600":
-                    sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
-                })}
-                numberOfLines={2}
-              >
-                {we.exercise.name}
-              </Text>
-              <Text className="mt-0.5 text-2xs font-bold uppercase tracking-wider text-zinc-500">
-                {we.workoutType}
-              </Text>
-            </View>
-            <StatusBadge
-              status={isCurrent ? STATUS_BADGE.CURRENT : sessionExercise.status}
-              className="mt-0.5"
-            />
+            <Text
+              className={cn("font-orbitron-bold text-xs text-zinc-400", {
+                "text-success-600":
+                  sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
+                "text-sky-500":
+                  sessionExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS || isCurrent,
+              })}
+            >
+              {index + 1}
+            </Text>
           </View>
-          {meta.length > 0 ? (
-            <View className="mt-2 flex-row flex-wrap gap-x-4 gap-y-1 border-t border-zinc-800/50 pt-2">
-              {meta.map((m) => (
-                <View key={`${m.label}-${m.value}`} className="min-w-[48px]">
-                  <Text className="font-quantico-bold text-[9px] uppercase tracking-wide text-zinc-500">
-                    {m.label}
-                  </Text>
-                  {/* //TODO: create const with units */}
-                  <Text
-                    className={cn(
-                      "font-mono text-xs font-bold tabular-nums",
-                      m.label === t("weight") ? "text-amber-400" : "text-zinc-200",
-                    )}
-                  >
-                    {`${m.value}${m.units}`}
-                  </Text>
-                </View>
-              ))}
+          <View className="min-w-0 flex-1">
+            <View className="flex-row items-start gap-2">
+              <View className="min-w-0 flex-1">
+                <Text
+                  className={cn("text-sm font-semibold leading-tight text-zinc-100", {
+                    "text-success-600":
+                      sessionExercise.status === WorkoutExerciseSessionStatus.COMPLETED,
+                  })}
+                  numberOfLines={2}
+                >
+                  {we.exercise.name}
+                </Text>
+                <Text className="text-2xs mt-0.5 font-bold uppercase tracking-wider text-zinc-500">
+                  {we.workoutType}
+                </Text>
+              </View>
+              <View pointerEvents="none">
+                <StatusBadge
+                  status={isCurrent ? STATUS_BADGE.CURRENT : sessionExercise.status}
+                  className="mt-0.5"
+                />
+              </View>
             </View>
-          ) : null}
+            {meta.length > 0 ? (
+              <View className="mt-2 flex-row flex-wrap gap-x-4 gap-y-1 border-t border-zinc-800/50 pt-2">
+                {meta.map((m) => (
+                  <View key={`${m.label}-${m.value}`} className="min-w-[48px]">
+                    <Text className="font-quantico-bold text-[9px] uppercase tracking-wide text-zinc-500">
+                      {m.label}
+                    </Text>
+                    {/* //TODO: create const with units */}
+                    <Text
+                      className={cn(
+                        "font-mono text-xs font-bold tabular-nums",
+                        m.label === t("weight") ? "text-amber-400" : "text-zinc-200",
+                      )}
+                    >
+                      {`${m.value}${m.units}`}
+                    </Text>
+                  </View>
+                ))}
+              </View>
+            ) : null}
+          </View>
         </View>
       </View>
-    </View>
+    </Pressable>
   );
 };

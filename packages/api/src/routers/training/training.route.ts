@@ -141,7 +141,7 @@ export const training = router({
         skip: input.cursor ? 1 : 0,
         cursor: input.cursor ? { id: input.cursor } : undefined,
         where: { status: "PUBLISHED" },
-        orderBy: { createdAt: "desc" },
+        orderBy: { updatedAt: "desc" },
         include: {
           _count: {
             select: { trainingDays: true },

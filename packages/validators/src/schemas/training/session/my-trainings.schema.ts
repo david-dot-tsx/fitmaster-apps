@@ -17,6 +17,7 @@ export const trainingSessionMyTrainingsItemSchema = z
     stats: baseTrainingSessionStatsSchema,
   })
   .and(withTimestampsSchema);
+export type TrainingSessionMyTrainingsItem = z.infer<typeof trainingSessionMyTrainingsItemSchema>;
 
 export const trainingSessionMyTrainingsOutputSchema = z.array(trainingSessionMyTrainingsItemSchema);
 export type TrainingSessionMyTrainingsOutput = z.infer<

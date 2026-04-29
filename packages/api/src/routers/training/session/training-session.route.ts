@@ -84,6 +84,7 @@ export const trainingSession = router({
         where: {
           customerProfileId: customerProfile.id,
         },
+        orderBy: [{ status: "asc" }, { updatedAt: "desc" }],
         include: {
           training: {
             include: {
@@ -296,6 +297,7 @@ export const trainingSession = router({
           todaysExercisesAmount: progressDay.workoutExerciseSessions.length,
           hasUserCompletedThisDay: false,
         },
+        trainingSession,
       };
 
       return trainingSessionStartDayOutputSchema.parse(response);

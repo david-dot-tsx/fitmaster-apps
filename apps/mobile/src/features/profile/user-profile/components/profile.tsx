@@ -2,6 +2,7 @@ import { ScrollView } from "react-native";
 import React, { useState } from "react";
 import { differenceInCalendarYears } from "date-fns";
 import { SettingsIcon, UserIcon } from "lucide-react-native";
+import { usePathname } from "expo-router";
 
 import type { CustomerProfileGetOutput } from "@repo/validators";
 
@@ -26,6 +27,7 @@ export const Profile = ({
 }) => {
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const { t } = useT();
+  const pathname = usePathname();
 
   return (
     <ScreenWrapper
@@ -38,7 +40,7 @@ export const Profile = ({
           ? t("mobile:screens.profile.myProfile.subtitle")
           : t("mobile:screens.profile.userProfile.subtitle"),
         icon: UserIcon,
-        backButton: !isMyProfile,
+        backButton: !pathname.includes("/my-profile"),
       }}
     >
       <ScrollView className="px-4 py-8">
