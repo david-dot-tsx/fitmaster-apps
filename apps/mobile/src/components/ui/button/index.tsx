@@ -41,7 +41,7 @@ const buttonStyle = tva({
   variants: {
     action: {
       primary:
-        "bg-amber-400 data-[hover=true]:bg-amber-500 data-[active=true]:bg-amber-400/60 border-primary-300 data-[hover=true]:border-primary-400 data-[active=true]:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info",
+        "bg-amber-400 data-[hover=true]:bg-amber-500 data-[active=true]:bg-amber-400/60 border-primary-300 data-[hover=true]:border-primary-400 data-[active=true]:border-primary-500 data-[focus-visible=true]:web:ring-indicator-info disabled:bg-amber-400/60",
       secondary:
         "bg-secondary-500 border-secondary-300 data-[hover=true]:bg-secondary-600 data-[hover=true]:border-secondary-400 data-[active=true]:bg-secondary-700 data-[active=true]:border-secondary-700 data-[focus-visible=true]:web:ring-indicator-info",
       positive:
