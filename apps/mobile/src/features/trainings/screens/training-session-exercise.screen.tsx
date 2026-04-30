@@ -1,5 +1,5 @@
 import React from "react";
-import { ActivityIndicator, ScrollView, View } from "react-native";
+import { ScrollView, View } from "react-native";
 import { router } from "expo-router";
 import { DumbbellIcon } from "lucide-react-native";
 import { cn } from "@gluestack-ui/utils/nativewind-utils";
@@ -8,7 +8,7 @@ import { WorkoutExerciseSessionStatus } from "@repo/validators";
 
 import { useT } from "@/lib/i18n";
 import { ScreenWrapper } from "@/components/layout/screen-wrapper";
-import { Button, ButtonText } from "@/components/ui/button";
+import { Button, ButtonSpinner, ButtonText } from "@/components/ui/button";
 import { trpc } from "@/lib/trpc/client";
 import { Text } from "@/components/ui/text";
 import { TraitList } from "@/features/trainings/components/session-exercise/exercise-trait-list";
@@ -23,6 +23,7 @@ import { ContentHero } from "@/components/modules/content-hero/content-hero";
 import { Icon } from "@/components/ui/icon";
 import { getWorkoutBlockDisplay } from "@/features/trainings/constants/workout-block-display";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
+import { Spinner } from "@/components/ui/spinner";
 
 export const TrainingSessionExerciseScreen = ({
   trainingId,
@@ -38,12 +39,18 @@ export const TrainingSessionExerciseScreen = ({
   const { openToast } = useToastNotification();
   const {
     data,
-    isFetching,
+    isFetching: isFetchingCurrentExercise,
     refetch,
     status: statusCurrentExercise,
-  } = trpc.training.session.getCurrentExercise.useQuery({
-    trainingSessionId: sessionId,
-  });
+  } = trpc.training.session.getCurrentExercise.useQuery(
+    {
+      trainingSessionId: sessionId,
+    },
+    {
+      staleTime: 0,
+      gcTime: 0,
+    },
+  );
 
   const currentExercise = data?.currentExercise;
   const exerciseEntity = currentExercise?.workoutExercise?.exercise;
@@ -90,6 +97,11 @@ export const TrainingSessionExerciseScreen = ({
       },
     });
 
+  const isLoading =
+    statusStartExercise === "pending" ||
+    statusCompleteExercise === "pending" ||
+    isFetchingCurrentExercise;
+
   return (
     <ScreenWrapper
       header={{
@@ -100,85 +112,92 @@ export const TrainingSessionExerciseScreen = ({
         backButton: true,
       }}
     >
-      {statusCurrentExercise === "pending" && (
-        <ScreenWrapper className="items-center justify-center">
-          <ActivityIndicator size="large" color="#fbbf24" />
-        </ScreenWrapper>
-      )}
-      {statusCurrentExercise === "error" && (
-        <View className="flex-1 justify-center px-4">
-          <QueryErrorHandler refetch={refetch} isFetching={isFetching} />
-        </View>
-      )}
-      {statusCurrentExercise === "success" && data != null && currentExercise != null && (
-        <View className="flex-1">
-          <ScrollView
-            className="flex-1"
-            showsVerticalScrollIndicator={false}
-            keyboardShouldPersistTaps="handled"
-            contentContainerStyle={{
-              flexGrow: 1,
-              paddingBottom: 24,
-              paddingHorizontal: 16,
-            }}
-          >
-            <ContentHero className="mt-1" imageUrl={exerciseEntity?.imageUrl ?? null} />
-            <VStack className="mt-2 gap-4 pb-4">
-              <SessionExerciseOverview
-                workoutBlockType={currentExercise.workoutExercise.workoutBlockType}
-                exercisesLeftAmount={data.exercisesLeftAmount}
-                totalExercisesAmount={data.totalExercisesAmount}
-                currentExerciseStatus={currentExercise.status}
-              />
+      <View className="relative flex-1 flex-col">
+        {isFetchingCurrentExercise && (
+          <View className="absolute inset-0 z-20 items-center justify-center bg-zinc-950/50">
+            <Spinner size="large" color="#fbbf24" />
+          </View>
+        )}
 
-              <StopWatch
-                {...stopWatchProps}
-                disabled={currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED}
-              />
-
-              <Section title={t("description")}>
-                <FoldableText text={exerciseEntity?.description ?? ""} />
-              </Section>
-
-              <Section title={t("traits")}>
-                <TraitList sessionExercise={currentExercise} />
-              </Section>
-            </VStack>
-          </ScrollView>
-
-          <View className="border-t border-zinc-800 bg-zinc-950 px-4 pb-6 pt-4">
-            <Button
-              size="lg"
-              action="primary"
-              disabled={
-                statusStartExercise === "pending" ||
-                statusCompleteExercise === "pending" ||
-                statusCurrentExercise !== "success"
-              }
-              className="w-full bg-amber-400"
-              onPress={() => {
-                if (currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED) {
-                  startExercise({
-                    workoutExerciseSessionId: currentExercise.id,
-                  });
-                } else {
-                  stopWatchProps.setRunning(false);
-                  completeExercise({
-                    workoutExerciseSessionId: currentExercise.id,
-                    timeSpentMiliseconds: stopWatchProps.elapsed,
-                  });
-                }
+        {statusCurrentExercise === "error" && (
+          <View className="flex-1 justify-center px-4">
+            <QueryErrorHandler refetch={refetch} isFetching={isFetchingCurrentExercise} />
+          </View>
+        )}
+        {statusCurrentExercise === "success" && data != null && currentExercise != null && (
+          <View className="flex-1">
+            <ScrollView
+              className="flex-1"
+              showsVerticalScrollIndicator={false}
+              keyboardShouldPersistTaps="handled"
+              contentContainerStyle={{
+                flexGrow: 1,
+                paddingBottom: 24,
+                paddingHorizontal: 16,
               }}
             >
-              <ButtonText className="font-semibold text-zinc-950">
-                {currentExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS
-                  ? t("completeExercise")
-                  : t("startExercise")}
-              </ButtonText>
-            </Button>
+              <ContentHero className="mt-1" imageUrl={exerciseEntity?.imageUrl ?? null} />
+              <VStack className="mt-2 gap-4 pb-4">
+                <SessionExerciseOverview
+                  workoutBlockType={currentExercise.workoutExercise.workoutBlockType}
+                  exercisesLeftAmount={data.exercisesLeftAmount}
+                  totalExercisesAmount={data.totalExercisesAmount}
+                  currentExerciseStatus={currentExercise.status}
+                />
+
+                <StopWatch
+                  {...stopWatchProps}
+                  disabled={currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED}
+                />
+
+                <Section title={t("description")}>
+                  <FoldableText text={exerciseEntity?.description ?? ""} />
+                </Section>
+
+                <Section title={t("traits")}>
+                  <TraitList sessionExercise={currentExercise} />
+                </Section>
+              </VStack>
+            </ScrollView>
+
+            <View className="border-t border-zinc-800 bg-zinc-950 px-4 pb-6 pt-4">
+              <Button
+                size="lg"
+                action="primary"
+                disabled={isLoading}
+                className="relative w-full bg-amber-400"
+                onPress={() => {
+                  if (currentExercise.status === WorkoutExerciseSessionStatus.NOT_STARTED) {
+                    startExercise({
+                      workoutExerciseSessionId: currentExercise.id,
+                    });
+                  } else {
+                    stopWatchProps.setRunning(false);
+                    completeExercise({
+                      workoutExerciseSessionId: currentExercise.id,
+                      timeSpentMiliseconds: stopWatchProps.elapsed,
+                    });
+                  }
+                }}
+              >
+                <View className="flex w-full flex-row items-center justify-center">
+                  {isLoading && (
+                    <View className="absolute left-4">
+                      <ButtonSpinner className="text-zinc-950" />
+                    </View>
+                  )}
+
+                  <ButtonText className="font-semibold text-zinc-950">
+                    {currentExercise.status === WorkoutExerciseSessionStatus.IN_PROGRESS
+                      ? t("completeExercise")
+                      : t("startExercise")}
+                  </ButtonText>
+                </View>
+              </Button>
+            </View>
           </View>
-        </View>
-      )}
+        )}
+      </View>
     </ScreenWrapper>
   );
 };
