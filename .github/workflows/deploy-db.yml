@@ -9,15 +9,23 @@ on:
       - "packages/db/prisma/migrations/**"
   workflow_dispatch: # allows manual triggering of the workflow
 
+concurrency:
+  group: db-deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
 
       - name: Install pnpm
-        uses: pnpm/action-setup@v3
+        uses: pnpm/action-setup@v4
         with:
           version: 10.33.0
 
