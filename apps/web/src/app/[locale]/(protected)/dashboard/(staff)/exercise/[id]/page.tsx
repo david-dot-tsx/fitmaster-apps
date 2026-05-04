@@ -5,7 +5,7 @@ import Image from "next/image";
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { trpcServerClient } from "@/lib/trpc/client-server";
 import { getServerTranslations } from "@/lib/i18n/server";
-import { ExerciseActions } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/[id]/_components/exercise-actions";
+import { ExerciseActions } from "@/features/staff-exercise/exercise-actions";
 
 export default async function ExerciseDetailPage({ params }: { params: { id: string } }) {
   const { id } = await params;

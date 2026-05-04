@@ -8,9 +8,9 @@ import Link from "next/link";
 
 import { useTRPC } from "@/lib/trpc/client";
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
-import { TrainingHero } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/hero";
-import { TrainingDayItem } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/training-day-item";
+import { EditTrainingDialog } from "@/features/staff-training/edit-training-dialog";
+import { TrainingHero } from "@/features/staff-training/training-detail/hero";
+import { TrainingDayItem } from "@/features/staff-training/training-detail/training-day-item";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { LoadingState } from "@/components/query/loading-state";

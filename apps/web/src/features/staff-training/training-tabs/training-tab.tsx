@@ -5,7 +5,7 @@ import React from "react";
 import { type TrainingStatus } from "@repo/validators";
 
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
-import { TrainingTabContent } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tab-content";
+import { TrainingTabContent } from "@/features/staff-training/training-tabs/training-tab-content";
 import { getSessionUser } from "@/lib/session-user";
 
 export const TrainingTab = async ({ statuses }: { statuses: TrainingStatus[] }) => {

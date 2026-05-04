@@ -1,9 +1,9 @@
 import React from "react";
 
 import { useT } from "@/lib/i18n/i18n";
-import { type DayCreatorStep } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+import { type DayCreatorStep } from "@/features/staff-training/training-day-creator/consts/steps";
 import { cn } from "@/lib/utils";
-import { stepConfig } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
+import { stepConfig } from "@/features/staff-training/training-day-creator/day-create-content";
 
 export const StepHeader = ({ step }: { step: DayCreatorStep }) => {
   const config = stepConfig[step];

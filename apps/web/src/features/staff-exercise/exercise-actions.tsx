@@ -9,7 +9,7 @@ import { type ExerciseBaseWithId } from "@repo/validators";
 import { useTRPC } from "@/lib/trpc/client";
 import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
-import { EditExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/edit-exercise-dialog";
+import { EditExerciseDialog } from "@/features/staff-exercise/edit-exercise-dialog";
 import { useT } from "@/lib/i18n/i18n";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 

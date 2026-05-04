@@ -4,9 +4,9 @@ import { entries, groupBy, values } from "remeda";
 import { Difficulty, type ExerciseBaseWithId, type Training } from "@repo/validators";
 
 import { Separator } from "@/components/ui/separator";
-import { SummaryContainerBody } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-container-body";
-import { SummaryStats } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-stats";
-import { type StoredTrainingDayCreateInput } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
+import { SummaryContainerBody } from "@/features/staff-training/training-day-creator/components/steps/summary/summary-container-body";
+import { SummaryStats } from "@/features/staff-training/training-day-creator/components/steps/summary/summary-stats";
+import { type StoredTrainingDayCreateInput } from "@/features/staff-training/training-day-creator/store/day-creator.store";
 
 export interface Stats {
   exercises: {

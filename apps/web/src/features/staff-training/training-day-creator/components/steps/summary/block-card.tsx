@@ -8,10 +8,10 @@ import {
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { ExerciseRow } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/exercise-row";
-import { stepConfig } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
+import { ExerciseRow } from "@/features/staff-training/training-day-creator/components/steps/summary/exercise-row";
+import { stepConfig } from "@/features/staff-training/training-day-creator/day-create-content";
 import { cn } from "@/lib/utils";
-import { DAY_CREATOR_STEPS } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+import { DAY_CREATOR_STEPS } from "@/features/staff-training/training-day-creator/consts/steps";
 import { useT } from "@/lib/i18n/i18n";
 
 interface BlockCardProps {

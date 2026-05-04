@@ -8,7 +8,7 @@ import { type WorkoutCreateBlockBase } from "@repo/validators";
 import { Accordion } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { FieldGroup } from "@/components/ui/field";
-import { WorkoutBlockRow } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block-row";
+import { WorkoutBlockRow } from "@/features/staff-training/training-day-creator/components/workout-block/workout-block-row";
 import { cn } from "@/lib/utils";
 import { useT } from "@/lib/i18n/i18n";
 

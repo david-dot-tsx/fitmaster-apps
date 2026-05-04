@@ -3,7 +3,7 @@ import { dehydrate, HydrationBoundary } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
-import { TrainingContent } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/_components/content";
+import { TrainingContent } from "@/features/staff-training/training-detail/content";
 import { getSessionUser } from "@/lib/session-user";
 
 export default async function TrainingDetailPage({ params }: { params: { id: string } }) {

@@ -17,7 +17,7 @@ import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell"
 import { ImageCell } from "@/components/table/cells/image-cell";
 import { DeleteDialog } from "@/components/delete-dialog";
 import { cn } from "@/lib/utils";
-import { EditExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/edit-exercise-dialog";
+import { EditExerciseDialog } from "@/features/staff-exercise/edit-exercise-dialog";
 import { Badge } from "@/components/ui/badge";
 import { TextTruncatedCell } from "@/components/table/cells/text-truncated-cell";
 import { DATE_FORMATS } from "@/consts/date-formats";

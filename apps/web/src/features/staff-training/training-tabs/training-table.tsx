@@ -25,14 +25,14 @@ import { ActionButtonsCell } from "@/components/table/cells/action-buttons-cell"
 import { cn } from "@/lib/utils";
 import { DeleteDialog } from "@/components/delete-dialog";
 import { useTRPC } from "@/lib/trpc/client";
-import { EditTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/edit-training-dialog";
+import { EditTrainingDialog } from "@/features/staff-training/edit-training-dialog";
 import { Badge } from "@/components/ui/badge";
 import { DATE_FORMATS } from "@/consts/date-formats";
 import { NoDataFoundRow } from "@/components/table/no-data-found-row";
 import {
   UpdateStatusDialog,
   UpdateTrainingStatusSelect,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/update-status-dialog";
+} from "@/features/staff-training/update-status-dialog";
 import { useT } from "@/lib/i18n/i18n";
 import { useHandleApiErrorMessage } from "@/hooks/use-handle-api-error-message";
 

@@ -13,7 +13,7 @@ import {
 import {
   DAY_CREATOR_STEPS,
   type DayCreatorStep,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+} from "@/features/staff-training/training-day-creator/consts/steps";
 
 export const storedTrainingDayCreateInputSchema = trainingDayCreateInputSchema.omit({
   trainingId: true,

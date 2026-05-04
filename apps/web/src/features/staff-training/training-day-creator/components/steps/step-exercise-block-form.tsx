@@ -15,11 +15,11 @@ import {
   DAY_CREATOR_STEPS,
   type DayCreatorStep,
   formStepperSteps,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
-import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
-import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
-import { WorkoutBlock } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/workout-block";
-import { useDayCreatorStore } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
+} from "@/features/staff-training/training-day-creator/consts/steps";
+import { StepsNavigation } from "@/features/staff-training/training-day-creator/steps-navigation";
+import { StepHeader } from "@/features/staff-training/training-day-creator/components/step-header";
+import { WorkoutBlock } from "@/features/staff-training/training-day-creator/components/workout-block/workout-block";
+import { useDayCreatorStore } from "@/features/staff-training/training-day-creator/store/day-creator.store";
 
 const getCurrentStepSchema = (step: DayCreatorStep) => {
   switch (step) {
