@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { type Role, type TrainingStatus } from "@repo/validators";
 
 import { useTRPC } from "@/lib/trpc/client";
-import { TrainingTable } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-table";
+import { TrainingTable } from "@/features/staff-training/training-tabs/training-table";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 

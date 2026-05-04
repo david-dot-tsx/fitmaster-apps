@@ -3,8 +3,8 @@ import { notFound } from "next/navigation";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
-import { ExerciseTable } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/table/exercise-table";
-import { CreateExerciseDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/exercise/_components/create-exercise-dialog";
+import { ExerciseTable } from "@/features/staff-exercise/exercise-table";
+import { CreateExerciseDialog } from "@/features/staff-exercise/create-exercise-dialog";
 import { getSessionUser } from "@/lib/session-user";
 import { getServerTranslations } from "@/lib/i18n/server";
 

@@ -4,7 +4,7 @@ import { TrainingStatus } from "@repo/validators";
 import { getTKey } from "@repo/i18n/web";
 
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { TrainingTab } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tab";
+import { TrainingTab } from "@/features/staff-training/training-tabs/training-tab";
 import { cn } from "@/lib/utils";
 import { getServerTranslations } from "@/lib/i18n/server";
 

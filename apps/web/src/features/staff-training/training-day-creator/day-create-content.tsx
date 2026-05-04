@@ -6,11 +6,11 @@ import { type ResourceKey } from "i18next";
 import { getTKey } from "@repo/i18n/web";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import { FormStepRenderer } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/form-step-renderer";
+import { FormStepRenderer } from "@/features/staff-training/training-day-creator/form-step-renderer";
 import {
   DAY_CREATOR_STEPS,
   type DayCreatorStepKey,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
+} from "@/features/staff-training/training-day-creator/consts/steps";
 import { useT } from "@/lib/i18n/i18n";
 
 export const stepConfig: Record<

@@ -12,7 +12,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { FormSelect, type SelectOption } from "@/components/form/form-select";
 import { useTRPC } from "@/lib/trpc/client";
-import { ExercisePreview } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/workout-block/exercise-preview";
+import { ExercisePreview } from "@/features/staff-training/training-day-creator/components/workout-block/exercise-preview";
 import { FormInputNumber } from "@/components/form/form-input-number";
 import { AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { cn } from "@/lib/utils";

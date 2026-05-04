@@ -3,8 +3,8 @@
 import { redirect } from "next/navigation";
 
 import { getSessionUser } from "@/lib/session-user";
-import { StaffDashboard } from "@/app/[locale]/(protected)/dashboard/_components/staff-dashboard";
-import { CustomerDashboard } from "@/app/[locale]/(protected)/dashboard/_components/customer-dashboard";
+import { StaffDashboard } from "@/features/dashboard/staff-dashboard";
+import { CustomerDashboard } from "@/features/dashboard/customer-dashboard";
 
 export default async function DashboardPage() {
   const sessionUser = await getSessionUser();

@@ -2,7 +2,7 @@ import { HydrationBoundary, dehydrate } from "@tanstack/react-query";
 import { notFound } from "next/navigation";
 
 import { getQueryClient, trpcServerOptionsProxy } from "@/lib/trpc/client-server";
-import { DayCreateContent } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/day-create-content";
+import { DayCreateContent } from "@/features/staff-training/training-day-creator/day-create-content";
 import { getSessionUser } from "@/lib/session-user";
 
 export default async function DayCreatePage({ params }: { params: { id: string } }) {

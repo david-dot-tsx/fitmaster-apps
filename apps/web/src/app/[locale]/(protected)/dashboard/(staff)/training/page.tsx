@@ -2,8 +2,8 @@ import React from "react";
 import { notFound } from "next/navigation";
 
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import { CreateTrainingDialog } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/create-training-dialog";
-import { TrainingTabs } from "@/app/[locale]/(protected)/dashboard/(staff)/training/_components/training-tabs/training-tabs";
+import { CreateTrainingDialog } from "@/features/staff-training/create-training-dialog";
+import { TrainingTabs } from "@/features/staff-training/training-tabs/training-tabs";
 import { getSessionUser } from "@/lib/session-user";
 import { getServerTranslations } from "@/lib/i18n/server";
 

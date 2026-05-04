@@ -1,10 +1,10 @@
 import { PageWrapper } from "@/components/layout/page-wrapper";
-import { HeroSection } from "@/app/[locale]/_components/hero-section";
-import { StatsSection } from "@/app/[locale]/_components/stats-section";
-import { FeaturesSection } from "@/app/[locale]/_components/features-section";
-import { FinalCTASection } from "@/app/[locale]/_components/final-cta-section";
-import { MainContentAreaWrapper } from "@/app/[locale]/_components/main-content-area-wrapper";
-import { ExercisesSection } from "@/app/[locale]/_components/exercises-section";
+import { HeroSection } from "@/features/landing/hero-section";
+import { StatsSection } from "@/features/landing/stats-section";
+import { FeaturesSection } from "@/features/landing/features-section";
+import { FinalCTASection } from "@/features/landing/final-cta-section";
+import { MainContentAreaWrapper } from "@/features/landing/main-content-area-wrapper";
+import { ExercisesSection } from "@/features/landing/exercises-section";
 
 export default async function Home() {
   return (

@@ -5,19 +5,19 @@ import { FormProvider, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-import { StepsNavigation } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/steps-navigation";
+import { StepsNavigation } from "@/features/staff-training/training-day-creator/steps-navigation";
 import {
   storedTrainingDayCreateInputSchema,
   useDayCreatorStore,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/store/day-creator.store";
+} from "@/features/staff-training/training-day-creator/store/day-creator.store";
 import { useTRPC } from "@/lib/trpc/client";
-import { SummaryContainer } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/steps/summary/summary-container";
+import { SummaryContainer } from "@/features/staff-training/training-day-creator/components/steps/summary/summary-container";
 import { Stepper } from "@/components/stepper";
 import {
   DAY_CREATOR_STEPS,
   formStepperSteps,
-} from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/consts/steps";
-import { StepHeader } from "@/app/[locale]/(protected)/dashboard/(staff)/training/[id]/day/create/_form/components/step-header";
+} from "@/features/staff-training/training-day-creator/consts/steps";
+import { StepHeader } from "@/features/staff-training/training-day-creator/components/step-header";
 import { LoadingState } from "@/components/query/loading-state";
 import { ErrorState } from "@/components/query/error-state";
 import { useT } from "@/lib/i18n/i18n";
