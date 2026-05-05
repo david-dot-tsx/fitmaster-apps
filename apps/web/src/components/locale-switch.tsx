@@ -39,6 +39,7 @@ export function LocaleSwitch() {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button
+          data-testid="navbar-locale-switch"
           variant="ghost"
           size="sm"
           className="h-8 gap-2 px-2 text-zinc-400 hover:bg-zinc-900 hover:text-amber-400"

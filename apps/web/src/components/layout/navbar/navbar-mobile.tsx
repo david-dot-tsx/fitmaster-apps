@@ -12,6 +12,7 @@ import { NavbarAuth } from "@/components/layout/navbar/navbar-auth";
 
 interface NavbarMobileProps {
   navLinks: { href: string; label: string }[];
+  isAuthenticated?: boolean;
   className?: string;
 }
 export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
@@ -38,9 +39,10 @@ export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
 
   return (
     <>
-      <div className={cn("flex items-center gap-2", className)}>
+      <div data-testid="navbar-mobile" className={cn("flex items-center gap-2", className)}>
         <LocaleSwitch />
         <Button
+          data-testid="navbar-mobile-menu-toggle"
           type="button"
           variant="ghost"
           className="text-zinc-300 hover:text-amber-400"
@@ -84,6 +86,7 @@ export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
         {open && (
           <>
             <motion.div
+              data-testid="navbar-mobile-menu-overlay"
               ref={ref}
               className="absolute inset-y-0 left-0 -z-10 w-full bg-background/85"
               initial={{ opacity: 0 }}
@@ -105,6 +108,7 @@ export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
               }}
             />
             <motion.div
+              data-testid="navbar-mobile-menu-panel"
               key="mobile-menu"
               initial={{ opacity: 0, y: -20 }}
               animate={{
@@ -127,14 +131,20 @@ export const NavbarMobile = ({ navLinks, className }: NavbarMobileProps) => {
               }}
               className="absolute right-0 top-full -z-10 w-full rounded-b-md border border-border/60 bg-background/95 p-2 shadow-lg backdrop-blur-md md:hidden"
             >
-              <nav id={menuId} className="my-2 flex flex-col gap-1 px-4" aria-label="Mobile main">
-                <div className="mb-4 flex justify-end">
+              <nav
+                id={menuId}
+                data-testid="navbar-mobile-menu-nav"
+                className="my-2 flex flex-col gap-1 px-4"
+                aria-label="Mobile main"
+              >
+                <div data-testid="navbar-mobile-auth-container" className="mb-4 flex justify-end">
                   <NavbarAuth />
                 </div>
-                {navLinks.map(({ href, label }) => (
+                {navLinks.map(({ href, label }, index) => (
                   <NavLink
                     key={href}
                     href={href}
+                    testId={`navbar-mobile-nav-link-${index}`}
                     classNames={{
                       link: "text-base font-normal hover:bg-amber-400/20 p-2 rounded-sm border border-zinc-800/30 hover:border-amber-400/20",
                       linkActive: "bg-amber-400/10",

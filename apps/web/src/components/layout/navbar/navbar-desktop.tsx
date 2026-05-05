@@ -7,12 +7,16 @@ import { cn } from "@/lib/utils";
 
 interface NavbarDesktopProps {
   navLinks: { href: string; label: string }[];
+  isAuthenticated?: boolean;
   className?: string;
 }
 
 export const NavbarDesktop = ({ navLinks, className }: NavbarDesktopProps) => {
   return (
-    <div className={cn("flex flex-1 flex-row items-center justify-between", className)}>
+    <div
+      data-testid="navbar-desktop"
+      className={cn("flex flex-1 flex-row items-center justify-between", className)}
+    >
       <div className="flex flex-row gap-8">
         {navLinks.map((link) => (
           <NavLink key={link.href} href={link.href}>
