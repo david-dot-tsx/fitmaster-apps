@@ -40,12 +40,16 @@ export const Navbar = async () => {
             FitMaster
           </span>
         </Link>
-        <div data-testid="navbar-desktop-container" className="hidden md:flex">
-          <NavbarDesktop navLinks={navLinks} isAuthenticated={sessionUser.isAuthenticated} />
-        </div>
-        <div data-testid="navbar-mobile-container" className="md:hidden">
-          <NavbarMobile navLinks={navLinks} isAuthenticated={sessionUser.isAuthenticated} />
-        </div>
+        <NavbarDesktop
+          navLinks={navLinks}
+          isAuthenticated={sessionUser.isAuthenticated}
+          className="hidden md:flex"
+        />
+        <NavbarMobile
+          navLinks={navLinks}
+          isAuthenticated={sessionUser.isAuthenticated}
+          className="md:hidden"
+        />
       </nav>
 
       <div className="absolute bottom-0 left-0 h-0.5 w-full bg-gradient-to-r from-transparent via-zinc-800 to-transparent" />
