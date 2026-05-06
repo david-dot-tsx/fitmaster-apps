@@ -1,0 +1,14 @@
+services:
+  db-playwright:
+    image: postgres:16-alpine
+    container_name: fitmaster-db-playwright
+    environment:
+      POSTGRES_USER: pwuser
+      POSTGRES_PASSWORD: pwpassword
+      POSTGRES_DB: fitmaster_playwright
+    ports:
+      - "5433:5432"
+    # Ephemeral storage so the DB is always clean per run.
+    tmpfs:
+      - /var/lib/postgresql/data
+

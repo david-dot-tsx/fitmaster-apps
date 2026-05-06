@@ -24,7 +24,8 @@
         "COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS",
         "EXPO_PUBLIC_API_URL",
         "EXPO_PUBLIC_API_TRPC_PATH",
-        "API_PROXY_TARGET_URL"
+        "API_PROXY_TARGET_URL",
+        "PLAYWRIGHT_DATABASE_URL"
       ]
     },
     "lint": {
@@ -40,6 +41,9 @@
     "test:watch": {
       "cache": false,
       "persistent": true
+    },
+    "test:e2e": {
+      "dependsOn": ["^test:e2e"]
     },
     "transit": {
       "dependsOn": ["^transit"]

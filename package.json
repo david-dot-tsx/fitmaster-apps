@@ -20,7 +20,8 @@
     "validate": "turbo run lint --continue && turbo run check-types --continue",
     "prepare": "husky",
     "test": "vitest run",
-    "test:watch": "vitest --watch"
+    "test:watch": "vitest --watch",
+    "test:e2e": "turbo run test:e2e"
   },
   "devDependencies": {
     "@commitlint/cli": "20.3.1",
