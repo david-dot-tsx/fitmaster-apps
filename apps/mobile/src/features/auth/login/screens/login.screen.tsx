@@ -53,6 +53,7 @@ export const LoginScreen = () => {
               <VStack className="gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
                 <FormProvider {...methods}>
                   <FormInput
+                    testID="login-form-email-input"
                     name="email"
                     label={t("email")}
                     placeholder={t("emailAddress")}
@@ -60,25 +61,33 @@ export const LoginScreen = () => {
                     keyboardType="email-address"
                   />
                   <FormInput
+                    testID="login-form-password-input"
                     name="password"
                     label={t("password")}
                     placeholder={t("password")}
                     secureTextEntry
                     textContentType="password"
                   />
-                  <Button action="primary" onPress={methods.handleSubmit(login)}>
+                  <Button
+                    testID="login-form-submit-button"
+                    action="primary"
+                    onPress={methods.handleSubmit(login)}
+                  >
                     <ButtonText className="font-semibold text-zinc-950">{t("login")}</ButtonText>
                   </Button>
                 </FormProvider>
               </VStack>
             </Section>
             <HStack className="flex-wrap justify-between gap-2">
-              <Link onPress={() => router.push("/auth/register")}>
+              <Link testID="login-form-register-link" onPress={() => router.push("/auth/register")}>
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-500">
                   {t("register")}
                 </LinkText>
               </Link>
-              <Link onPress={() => router.push("/auth/forgot-password")}>
+              <Link
+                testID="login-form-forgot-password-link"
+                onPress={() => router.push("/auth/forgot-password")}
+              >
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-400">
                   {t("forgot_password")}
                 </LinkText>

@@ -13,7 +13,8 @@
     "sitemap": "expo-router-sitemap",
     "lint": "expo lint",
     "check-types": "tsc --noEmit",
-    "check-env": "tsx ./scripts/check-env.ts"
+    "check-env": "tsx ./scripts/check-env.ts",
+    "test:e2e-mobile": "maestro test .maestro/"
   },
   "dependencies": {
     "@expo-google-fonts/inter": "^0.4.2",

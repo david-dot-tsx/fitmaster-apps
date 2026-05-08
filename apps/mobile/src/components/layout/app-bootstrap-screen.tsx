@@ -71,7 +71,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                   <View className="aspect-[4/3] w-full max-w-sm">
                     <Image source={appHeroImage} resizeMode="contain" className="size-full" />
                   </View>
-                  <Text className="text-center font-orbitron-semibold text-xs uppercase tracking-[0.28em] text-zinc-400">
+                  <Text className="font-orbitron-semibold text-center text-xs uppercase tracking-[0.28em] text-zinc-400">
                     {t("slogan.keywords.strength")} · {t("slogan.keywords.focus")} ·{" "}
                     {t("slogan.keywords.progress")}
                   </Text>
@@ -91,6 +91,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                 <HStack className="w-full justify-end pb-2 pt-6">
                   {phase === "login" && (
                     <Button
+                      testID="launch-button"
                       size="lg"
                       action="primary"
                       className="bg-amber-400"
@@ -104,6 +105,7 @@ export const AppBootstrapScreen = ({ phase }: AppBootstrapScreenProps) => {
                   )}
                   {phase === "onboarding" && (
                     <Button
+                      testID="onboarding-button"
                       size="lg"
                       action="primary"
                       className="bg-amber-400"

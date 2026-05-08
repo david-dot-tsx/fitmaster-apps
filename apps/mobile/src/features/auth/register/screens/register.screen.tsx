@@ -84,6 +84,7 @@ export const RegisterScreen = () => {
               <VStack className="gap-4 rounded-2xl border border-zinc-800 bg-zinc-900/50 p-5">
                 <FormProvider {...methods}>
                   <FormInput
+                    testID="register-form-email-input"
                     name="email"
                     label={t("email")}
                     placeholder={t("emailAddress")}
@@ -91,6 +92,7 @@ export const RegisterScreen = () => {
                     keyboardType="email-address"
                   />
                   <FormInput
+                    testID="register-form-password-input"
                     name="password"
                     label={t("password")}
                     placeholder={t("password")}
@@ -98,6 +100,7 @@ export const RegisterScreen = () => {
                     textContentType="password"
                   />
                   <FormInput
+                    testID="register-form-password-confirmation-input"
                     name="passwordConfirmation"
                     label={t("passwordConfirmation")}
                     placeholder={t("passwordConfirmation")}
@@ -105,6 +108,7 @@ export const RegisterScreen = () => {
                     textContentType="password"
                   />
                   <Button
+                    testID="register-form-submit-button"
                     action="primary"
                     onPress={methods.handleSubmit((data) => mutateRegister(data))}
                   >
@@ -114,12 +118,15 @@ export const RegisterScreen = () => {
               </VStack>
             </Section>
             <HStack className="flex-wrap justify-between gap-2">
-              <Link onPress={() => router.push("/auth/login")}>
+              <Link testID="register-form-login-link" onPress={() => router.push("/auth/login")}>
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-500">
                   {t("login")}
                 </LinkText>
               </Link>
-              <Link onPress={() => router.push("/auth/forgot-password")}>
+              <Link
+                testID="register-form-forgot-password-link"
+                onPress={() => router.push("/auth/forgot-password")}
+              >
                 <LinkText className="text-2xs uppercase tracking-[0.18em] text-zinc-400">
                   {t("forgot_password")}
                 </LinkText>

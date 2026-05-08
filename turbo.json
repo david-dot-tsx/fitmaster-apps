@@ -45,6 +45,9 @@
     "test:e2e-web": {
       "dependsOn": ["^test:e2e-web"]
     },
+    "test:e2e-mobile": {
+      "dependsOn": ["^test:e2e-mobile"]
+    },
     "transit": {
       "dependsOn": ["^transit"]
     },
