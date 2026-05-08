@@ -42,8 +42,8 @@
       "cache": false,
       "persistent": true
     },
-    "test:e2e": {
-      "dependsOn": ["^test:e2e"]
+    "test:e2e-web": {
+      "dependsOn": ["^test:e2e-web"]
     },
     "transit": {
       "dependsOn": ["^transit"]

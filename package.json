@@ -21,7 +21,7 @@
     "prepare": "husky",
     "test": "vitest run",
     "test:watch": "vitest --watch",
-    "test:e2e": "turbo run test:e2e"
+    "test:e2e-web": "turbo run test:e2e-web"
   },
   "devDependencies": {
     "@commitlint/cli": "20.3.1",
