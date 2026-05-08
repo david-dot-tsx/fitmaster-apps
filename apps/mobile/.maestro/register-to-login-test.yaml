@@ -1,0 +1,37 @@
+appId: com.daviddottsx.fitmaster
+---
+- launchApp:
+    clearState: false
+#BootstrapApp Screen
+- assertVisible:
+    id: "launch-button"
+- tapOn:
+    id: "launch-button"
+
+#Login Screen - pass to Register Screen
+- assertVisible:
+    id: "login-form-submit-button"
+- tapOn:
+    id: "login-form-register-link"
+
+#Register Screen - Register
+- assertVisible:
+    id: "register-form-submit-button"
+- tapOn:
+    id: "register-form-email-input"
+- inputText: "maestro@test.dev"
+- tapOn:
+    id: "register-form-password-input"
+- inputText: "Password123!"
+- tapOn:
+    id: "register-form-password-confirmation-input"
+- inputText: "Password123!"
+- tapOn:
+    id: "register-form-submit-button"
+
+#Login Screen - Log in
+- assertVisible:
+    id: "login-form-submit-button"
+# - tapOn:
+#     id: "login-form-email-input"
+# - inputText: "maestro@test.dev"

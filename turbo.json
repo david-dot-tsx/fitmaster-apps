@@ -24,7 +24,8 @@
         "COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS",
         "EXPO_PUBLIC_API_URL",
         "EXPO_PUBLIC_API_TRPC_PATH",
-        "API_PROXY_TARGET_URL"
+        "API_PROXY_TARGET_URL",
+        "PLAYWRIGHT_DATABASE_URL"
       ]
     },
     "lint": {
@@ -33,6 +34,22 @@
     },
     "check-types": {
       "dependsOn": ["^check-types"]
+    },
+    "test": {
+      "dependsOn": ["transit"]
+    },
+    "test:watch": {
+      "cache": false,
+      "persistent": true
+    },
+    "test:e2e-web": {
+      "dependsOn": ["^test:e2e-web"]
+    },
+    "test:e2e-mobile": {
+      "dependsOn": ["^test:e2e-mobile"]
+    },
+    "transit": {
+      "dependsOn": ["^transit"]
     },
     "dev": {
       "cache": false,

@@ -9,10 +9,12 @@ import { getUnlocalizedPath } from "@/helpers/unlocalized-path";
 export const NavLink = ({
   href,
   children,
+  testId,
   classNames,
 }: {
   href: string;
   children: React.ReactNode;
+  testId?: string;
   classNames?: { link?: string; linkActive?: string; decoration?: string };
 }) => {
   const pathname = usePathname();
@@ -22,6 +24,7 @@ export const NavLink = ({
   return (
     <Link
       href={href}
+      data-testid={testId}
       className={cn(
         "group relative text-xs font-black uppercase tracking-[0.2em] text-zinc-400 transition-colors hover:text-amber-400",
         classNames?.link,

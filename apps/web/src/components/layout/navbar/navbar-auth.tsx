@@ -44,6 +44,7 @@ export const NavbarAuth = () => {
     <div className="flex flex-row items-center gap-1 sm:gap-3">
       {session ? (
         <Button
+          data-testid="navbar-logout-button"
           variant="ghost"
           size="sm"
           className="text-[10px] font-medium uppercase tracking-widest text-zinc-500 hover:bg-red-400/10 hover:text-red-400"
@@ -54,6 +55,7 @@ export const NavbarAuth = () => {
       ) : (
         <>
           <Button
+            data-testid="navbar-login-button"
             asChild
             variant="ghost"
             size="sm"
@@ -62,6 +64,7 @@ export const NavbarAuth = () => {
             <Link href="/auth/login">{t("login")}</Link>
           </Button>
           <Button
+            data-testid="navbar-register-button"
             asChild
             size="sm"
             className="bg-amber-400 text-[10px] font-medium uppercase tracking-widest text-black shadow-[0_0_15px_rgba(251,191,36,0.2)] hover:bg-amber-500"
