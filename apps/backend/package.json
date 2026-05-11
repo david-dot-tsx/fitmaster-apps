@@ -18,9 +18,9 @@
     "@fastify/swagger-ui": "^5.2.4",
     "@repo/api": "workspace:*",
     "@repo/db": "workspace:*",
-    "@t3-oss/env-core": "0.13.10",
-    "@trpc/server": "11.8.1",
-    "dotenv": "17.2.3",
+    "@t3-oss/env-core": "catalog:",
+    "@trpc/server": "catalog:",
+    "dotenv": "catalog:",
     "fastify": "5.7.1",
     "fastify-plugin": "^5.1.0",
     "fastify-type-provider-zod": "^6.1.0",
@@ -29,12 +29,12 @@
   "devDependencies": {
     "@repo/eslint-config": "workspace:*",
     "@repo/typescript-config": "workspace:*",
-    "@types/node": "22.15.3",
+    "@types/node": "catalog:",
     "eslint": "9.39.1",
     "fastify-tsconfig": "^3.0.0",
     "tsc-alias": "^1.8.16",
     "tsconfig-paths": "4.2.0",
-    "tsx": "4.19.2",
-    "typescript": "5.9.2"
+    "tsx": "catalog:",
+    "typescript": "catalog:"
   }
 }
