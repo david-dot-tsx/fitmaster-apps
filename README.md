@@ -22,11 +22,9 @@ configured). For mobile, use the **Expo hosted QR** link, paste the `exp://` URL
 or scan the image below.
 
 ### Expo QR (scan in Expo Go)
-
-![Open this project in Expo Go](./docs/assets/eas-qr.jpg)
-
-_Raster image (e.g. JPG/PNG) is used here because many Markdown previews and GitHub block **SVG** in
-README images._
+<picture>
+  <img alt="Demo app - Expo EAS QR Code" src="https://qr.expo.dev/eas-update?slug=exp&projectId=56928831-fef8-4274-a8f7-d91d2c1c607a&groupId=c2c2f053-0836-4923-9c51-8f85184fc0c8&host=u.expo.dev" height="240">
+</picture>
 
 ## Tech stack (keywords for recruiters)
 
