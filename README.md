@@ -13,7 +13,7 @@ and own a feature end to end?_ **Yes — and I would like to show you how in a c
 | Surface                       | Link                                                                                                                                                                                        |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Web (staff training area)** | [https://fitmaster-apps-web.vercel.app/](https://fitmaster-apps-web.vercel.app/)                                                                                                            |
-| **Mobile (Expo , Android)**   | `exp://u.expo.dev/56928831-fef8-4274-a8f7-d91d2c1c607a/group/c2c2f053-0836-4923-9c51-8f85184fc0c8`                                                                                          |
+| **Mobile (Expo , Android)**   | `exp://u.expo.dev/56928831-fef8-4274-a8f7-d91d2c1c607a/group/2640642c-df69-440a-95ea-0ec95fd84bc5`                                                                                          |
 | **Mobile QR (Expo hosted)**   | [qr.expo.dev — open in browser / scan](https://qr.expo.dev/eas-update?slug=exp&projectId=56928831-fef8-4274-a8f7-d91d2c1c607a&groupId=c2c2f053-0836-4923-9c51-8f85184fc0c8&host=u.expo.dev) |
 | **Demo video (YouTube)**      | [YouTube demo](https://www.youtube.com/watch?v=VIDEO_ID)                                                                                                                                    |
 
@@ -23,7 +23,7 @@ or scan the image below.
 
 ### Expo QR (scan in Expo Go)
 <picture>
-  <img alt="Demo app - Expo EAS QR Code" src="https://qr.expo.dev/eas-update?slug=exp&projectId=56928831-fef8-4274-a8f7-d91d2c1c607a&groupId=c2c2f053-0836-4923-9c51-8f85184fc0c8&host=u.expo.dev" height="240">
+  <img alt="Demo app - Expo EAS QR Code" src="https://qr.expo.dev/eas-update?slug=exp&projectId=56928831-fef8-4274-a8f7-d91d2c1c607a&groupId=2640642c-df69-440a-95ea-0ec95fd84bc5&host=u.expo.dev" height="240">
 </picture>
 
 ## Tech stack (keywords for recruiters)
