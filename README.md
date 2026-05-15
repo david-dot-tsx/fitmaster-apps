@@ -69,6 +69,30 @@ rate limits, etc.).
 | `packages/i18n`       | Shared translations                         |
 
 ---
+## Repository graph
+
+```mermaid
+graph TD
+    %% Applications (End Users)
+    web["apps/web"] --> api["@repo/api"]
+    web --> validators["@repo/validators"]
+    web --> i18n["@repo/i18n"]
+
+    mobile["apps/mobile"] --> api
+    mobile --> validators
+    mobile --> i18n
+
+    backend["apps/backend"] --> api
+    backend --> db["@repo/db"]
+
+    %% Shared Logics & Data Layer
+    api --> db
+    api --> validators
+
+    validators --> db
+
+```
+---
 
 ## CI (GitHub Actions)
 
