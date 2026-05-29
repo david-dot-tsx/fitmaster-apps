@@ -30,7 +30,7 @@
     "@repo/api": "workspace:*",
     "@repo/i18n": "workspace:*",
     "@repo/validators": "workspace:*",
-    "@t3-oss/env-nextjs": "0.13.10",
+    "@t3-oss/env-nextjs": "catalog:",
     "@tanstack/react-query": "catalog:",
     "@tanstack/react-table": "^8.21.3",
     "@trpc/client": "catalog:",
@@ -60,7 +60,7 @@
     "sonner": "^2.0.7",
     "superjson": "catalog:",
     "tailwind-merge": "catalog:",
-    "tailwindcss": "3.4.19",
+    "tailwindcss": "catalog:",
     "tailwindcss-animate": "^1.0.7",
     "zod": "catalog:",
     "zustand": "catalog:"
