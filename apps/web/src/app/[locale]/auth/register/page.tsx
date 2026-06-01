@@ -6,7 +6,7 @@ import Link from "next/link";
 import { toast } from "sonner";
 import { useRouter } from "next/navigation";
 
-import { Role, userCreateInputFormSchema, type UserCreateInputForm } from "@repo/validators";
+import { Role, userCreateInputFormSchema } from "@repo/validators";
 import { I18N_NAMESPACES } from "@repo/i18n/web";
 import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const trpc = useTRPC();
   const { t } = useT([I18N_NAMESPACES.API_ERRORS]);
   const router = useRouter();
-  const methods = useForm<UserCreateInputForm>({
+  const methods = useForm({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
       email: "",
