@@ -110,7 +110,7 @@ export function TRPCReactProvider(
     <QueryClientProvider client={queryClient}>
       <trpc.Provider client={trpcClient} queryClient={queryClient}>
         {props.children}
-        <DevToolsBubble queryClient={queryClient} />
+        {__DEV__ && <DevToolsBubble queryClient={queryClient} />}
       </trpc.Provider>
     </QueryClientProvider>
   );

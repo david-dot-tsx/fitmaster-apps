@@ -17,7 +17,7 @@ concurrency:
 
 jobs:
   quality:
-    name: Lint + Typecheck + Unit tests
+    name: Lint, types & Vitest
     runs-on: ubuntu-latest
     timeout-minutes: 20
     permissions:
@@ -47,7 +47,7 @@ jobs:
       - name: Check types
         run: pnpm check-types
 
-      - name: Unit tests
+      - name: Unit tests (Vitest)
         run: pnpm test
 
   build:
