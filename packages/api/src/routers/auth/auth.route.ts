@@ -15,10 +15,6 @@ import { generateRefreshToken, hashRefreshToken } from "../../server/utils/refre
 import { router, publicProcedure } from "../../server/trpc";
 import { API_PROCEDURE_ERRORS } from "../../consts/api-procedure-errors";
 
-/**
- * TODO:
- * - Create a router builder to avoid code duplication, and for specific procedures
- */
 export const auth = router({
   login: publicProcedure
     .meta({ openapi: { method: "POST", path: "/auth.login", tags: ["Auth"] } })
