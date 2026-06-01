@@ -47,7 +47,7 @@ jobs:
       - name: Check types
         run: pnpm check-types
 
-      - name: Test (Vitest)
+      - name: Unit tests (Vitest)
         run: pnpm test
 
   build:

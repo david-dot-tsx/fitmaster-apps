@@ -257,7 +257,7 @@ const SessionExerciseOverview = ({
                   {totalExercisesAmount}
                 </Text>
               </HStack>
-              <Text className="text-2xs mt-1 text-zinc-600">{t("exerciseInThisSession")}</Text>
+              <Text className="mt-1 text-2xs text-zinc-600">{t("exerciseInThisSession")}</Text>
             </View>
             <View className="h-14 w-px self-stretch bg-zinc-800" />
           </>

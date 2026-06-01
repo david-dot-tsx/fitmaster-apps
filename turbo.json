@@ -1,19 +1,10 @@
 {
   "$schema": "https://turborepo.com/schema.json",
   "ui": "tui",
-  "globalEnv": [
-    "EXPO_OS",
-    "DATABASE_URL",
-    "COOKIE_REFRESH_TOKEN_MAX_AGE_IN_SECONDS",
-    "COOKIE_TOKEN_MAX_AGE_IN_SECONDS",
-    "NODE_ENV",
-    "PORT",
-    "HOST",
-    "CORS_ORIGIN"
-  ],
+  "globalEnv": ["NODE_ENV"],
   "tasks": {
     "build": {
-      "dependsOn": ["^build", "^db:generate"],
+      "dependsOn": ["^db:generate"],
       "inputs": ["$TURBO_DEFAULT$", ".env*"],
       "outputs": [".next/**", "!.next/cache/**", "dist/**"],
       "env": [
@@ -25,31 +16,16 @@
         "EXPO_PUBLIC_API_URL",
         "EXPO_PUBLIC_API_TRPC_PATH",
         "API_PROXY_TARGET_URL",
-        "PLAYWRIGHT_DATABASE_URL"
+        "PLAYWRIGHT_DATABASE_URL",
+        "EXPO_OS"
       ]
     },
     "lint": {
       "dependsOn": ["^lint"],
-      "inputs": ["$TURBO_DEFAULT$", "eslint.config.{js,cjs,mjs}", ".eslintrc.{js,json}"]
+      "inputs": ["$TURBO_DEFAULT$", "eslint.config.{js,cjs,mjs}"]
     },
     "check-types": {
       "dependsOn": ["^check-types"]
-    },
-    "test": {
-      "dependsOn": ["transit"]
-    },
-    "test:watch": {
-      "cache": false,
-      "persistent": true
-    },
-    "test:e2e-web": {
-      "dependsOn": ["^test:e2e-web"]
-    },
-    "test:e2e-mobile": {
-      "dependsOn": ["^test:e2e-mobile"]
-    },
-    "transit": {
-      "dependsOn": ["^transit"]
     },
     "dev": {
       "cache": false,
@@ -58,17 +34,15 @@
     },
     "db:generate": {
       "cache": false,
-      "inputs": ["prisma/schema.prisma"],
-      "outputs": ["generated/**"]
+      "inputs": ["prisma/schema.prisma"]
     },
-    "db:migrate": {
-      "cache": false,
-      "persistent": true
-    },
+    "db:migrate": { "cache": false, "persistent": true },
     "db:deploy": {
       "cache": false,
       "inputs": ["prisma/schema.prisma", "prisma/migrations/**"],
       "env": ["DATABASE_URL"]
-    }
+    },
+    "test:e2e-web": { "dependsOn": ["^test:e2e-web"], "cache": false },
+    "test:e2e-mobile": { "dependsOn": ["^test:e2e-mobile"], "cache": false }
   }
 }

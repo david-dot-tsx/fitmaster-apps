@@ -8,13 +8,15 @@ export const ScreenWrapper = ({
   children,
   className,
   header,
+  testID,
 }: {
   children: React.ReactNode;
   className?: string;
   header?: ScreenHeaderProps;
+  testID?: string;
 }) => {
   return (
-    <SafeAreaView className={cn("size-full flex-1 bg-zinc-950", className)}>
+    <SafeAreaView testID={testID} className={cn("size-full flex-1 bg-zinc-950", className)}>
       {header && <ScreenHeader {...header} />}
       {children}
     </SafeAreaView>

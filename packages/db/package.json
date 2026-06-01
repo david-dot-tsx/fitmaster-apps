@@ -21,7 +21,7 @@
     "@t3-oss/env-core": "catalog:",
     "dotenv": "catalog:",
     "pg": "8.17.1",
-    "zod": "3.24.2"
+    "zod": "catalog:"
   },
   "devDependencies": {
     "@faker-js/faker": "^10.3.0",

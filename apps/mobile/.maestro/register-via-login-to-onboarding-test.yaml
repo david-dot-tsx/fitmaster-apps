@@ -1,8 +1,10 @@
 appId: com.daviddottsx.fitmaster
 ---
 - launchApp:
-    clearState: false
+    clearState: true
 #BootstrapApp Screen
+- assertVisible:
+    id: "app-bootstrap-screen"
 - assertVisible:
     id: "launch-button"
 - tapOn:
@@ -10,16 +12,20 @@ appId: com.daviddottsx.fitmaster
 
 #Login Screen - pass to Register Screen
 - assertVisible:
+    id: "login-screen"
+- assertVisible:
     id: "login-form-submit-button"
 - tapOn:
     id: "login-form-register-link"
 
 #Register Screen - Register
 - assertVisible:
+    id: "register-screen"
+- assertVisible:
     id: "register-form-submit-button"
 - tapOn:
     id: "register-form-email-input"
-- inputText: "maestro@test.dev"
+- inputText: "maestro+10@test.dev"
 - tapOn:
     id: "register-form-password-input"
 - inputText: "Password123!"
@@ -31,7 +37,26 @@ appId: com.daviddottsx.fitmaster
 
 #Login Screen - Log in
 - assertVisible:
+    id: "login-screen"
+- assertVisible:
     id: "login-form-submit-button"
-# - tapOn:
-#     id: "login-form-email-input"
-# - inputText: "maestro@test.dev"
+- tapOn:
+    id: "login-form-email-input"
+- inputText: "maestro+10@test.dev"
+- tapOn:
+    id: "login-form-password-input"
+- inputText: "Password123!"
+- tapOn:
+    id: "login-form-submit-button"
+
+#Boostrap Screen - ready to continue
+- assertVisible:
+    id: "app-bootstrap-screen"
+- assertVisible:
+    id: "onboarding-button"
+- tapOn:
+    id: "onboarding-button"
+
+#Onboarding Screen - display
+- assertVisible:
+    id: "onboarding-screen"
