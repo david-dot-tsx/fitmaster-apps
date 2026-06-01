@@ -5,7 +5,7 @@ import { FormProvider, useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { UserPlus } from "lucide-react-native";
 
-import { type UserCreateInputForm, userCreateInputFormSchema } from "@repo/validators";
+import { userCreateInputFormSchema } from "@repo/validators";
 import { API_PROCEDURE_ERRORS } from "@repo/api/client";
 
 import { useT } from "@/lib/i18n";
@@ -50,7 +50,7 @@ export const RegisterScreen = () => {
     },
   });
 
-  const methods = useForm<UserCreateInputForm>({
+  const methods = useForm({
     resolver: zodResolver(userCreateInputFormSchema),
     defaultValues: {
       email: "",
@@ -62,6 +62,7 @@ export const RegisterScreen = () => {
 
   return (
     <ScreenWrapper
+      testID="register-screen"
       header={{
         title: t("mobile:screens.register.title"),
         description: t("mobile:screens.register.description"),

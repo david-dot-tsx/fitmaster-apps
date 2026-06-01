@@ -28,6 +28,7 @@ export const OnboardingScreen = () => {
 
   return (
     <ScreenWrapper
+      testID="onboarding-screen"
       header={{
         title: t("mobile:screens.onboarding.title"),
         description: t("mobile:screens.onboarding.description"),
