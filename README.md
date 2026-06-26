@@ -15,7 +15,7 @@ and own a feature end to end?_ **Yes — and I would like to show you how in a c
 | **Web (staff training area)** | [https://fitmaster-apps-web.vercel.app/](https://fitmaster-apps-web.vercel.app/)                                                                                                            |
 | **Mobile (Expo , Android)**   | `exp://u.expo.dev/56928831-fef8-4274-a8f7-d91d2c1c607a/group/2640642c-df69-440a-95ea-0ec95fd84bc5`                                                                                          |
 | **Mobile QR (Expo hosted)**   | [qr.expo.dev — open in browser / scan](https://qr.expo.dev/eas-update?slug=exp&projectId=56928831-fef8-4274-a8f7-d91d2c1c607a&groupId=c2c2f053-0836-4923-9c51-8f85184fc0c8&host=u.expo.dev) |
-| **Demo video (YouTube)**      | [YouTube demo](https://youtu.be/Np8XH16sBzc)                                                                                                                                    |
+| **Demo video (YouTube)**      | [YouTube demo](https://youtu.be/8EAvQ_Wul10)                                                                                                                                    |
 
 Open the web app in a browser (you may need to sign in depending on how the deployment is
 configured). For mobile, use the **Expo hosted QR** link, paste the `exp://` URL into **Expo Go**,
@@ -70,28 +70,10 @@ rate limits, etc.).
 
 ---
 ## Repository graph
+<picture>
+  <img alt="Project schema" src="/docs/assets/system-schema.png">
+</picture>
 
-```mermaid
-graph TD
-    %% Applications (End Users)
-    web["apps/web"] --> api["@repo/api"]
-    web --> validators["@repo/validators"]
-    web --> i18n["@repo/i18n"]
-
-    mobile["apps/mobile"] --> api
-    mobile --> validators
-    mobile --> i18n
-
-    backend["apps/backend"] --> api
-    backend --> db["@repo/db"]
-
-    %% Shared Logics & Data Layer
-    api --> db
-    api --> validators
-
-    validators --> db
-
-```
 ---
 
 ## CI (GitHub Actions)
