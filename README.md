@@ -117,8 +117,6 @@ what your team builds, **I would be glad to hear from you**.
 
 - **Email:** [daviddottsx@gmail.com](mailto:daviddottsx@gmail.com)
 - **LinkedIn:** [linkedin.com/in/david-dot-tsx](https://www.linkedin.com/in/david-dot-tsx)
-- **GitHub:** profile links and other channels as listed on this repository’s owner page
-
 ---
 
 _FitMaster is a portfolio piece; names and copy are for demonstration._
